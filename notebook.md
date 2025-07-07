@@ -21,8 +21,50 @@ The fundamental idea is that when the model is generating a confabulation, it wi
 
 The method proposed in the paper is to use a measure of "semantic entropy" based on the next token probabilities. They distinguish between "semantic entropy", and "naive entropy", which is simply the entropy of the next token probabilities over a sequence. This is important, since different sequences of text can mean exactly the same thing, and the naive entropy would be high for these sequences, even if they are semantically equivalent.
 
+I summarize my understanding of the following sections:
+
+### Entropy
+
+Uncertainty of the output distribution is measured through predictive entropy given a specific input $x$. This consists of the entropy of the output conditioned by the input:
+
+$PE(x) = H(Y | x) = - \sum_{y \in rg(Y)} P(y|x) * ln(P(y|x))$
+
+#### Joint Probability of sequence of tokens
+
+Given a generated sequence $s$, the corresponding log probability of the sequence according to the LLM is:
+
+$log(P(s | x)) = \sum_i log(P_i|s_{<i}, x)$
+
+When comparing log probabilities, the authors normalize the probabilities through a division by the sequence length.
+
 ### Semantic Entropy
 
-### AUROC metric
+The idea is that the uncertainty of the token distribution is not necessarily the same as the uncertainty of its meaning. Even if the model is quite sure of its response, there can be many ways of saying the same thing.
+
+The semantic entropy metric seeks to estimate the uncertainty of the meaning of its generation, not just the choice of words. This involves 3 steps:
+
+1. Sample output sequences of tokens from the predictive distribution of an LLM
+2. Cluster sequences by meaning using some algorithm (they use another language model)
+3. Compute the cluster entropy
+
+### Evaluation Metrics
+
+The authors use AUROC and AURAC, where the "accuracy" of the response is measured through:
+
+LONG SEQUENCES:
+
+They input this into gpt 4
+
+```
+{question}
+The expected answer is: {reference answer}
+The proposed answer is: {predicted answer}
+Within the context of the question, does the proposed answer mean
+the same as the expected answer? Respond only with yes or no
+```
+
+For short sequences they use some other method I don't quite understand
 
 ### Results
+
+Too tired, I'm reviewing the paper again tomorrow.
