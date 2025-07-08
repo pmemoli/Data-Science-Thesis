@@ -68,3 +68,64 @@ For short sequences they use some other method I don't quite understand
 ### Results
 
 Too tired, I'm reviewing the paper again tomorrow.
+
+## July 8th 2025:
+
+Today I'm reviewing the evaluation metrics and results from the paper. For this I'm reviewing the fundamental metrics:
+
+### Evaluation Metrics
+
+Our variable is whether the sequence has a confabulated hallucination or not.
+
+#### ROC CURVE:
+
+The ROC curve is a graphical representation of how well a binary classifier which outputs some measure of certainty performs.
+
+WLOG the certainty measure is a probability measure.
+
+The roc curve plots the:
+
+Y: TRUE POSITIVE RATE (or recall, the proportion of POSITIVE cases that were identified as positive by the classifier)
+against the
+X: FALSE POSITIVE RATE (proportion of NEGATIVE cases that were identified as positive by the classifier)
+
+Each of which is estimated on a dataset.
+
+The classification is performed by comparing the certainty measure against some threhsold:
+
+Classifier(x) = 1(P(Y=1 | x) > threhold)
+
+So, for a small threshold, the recall is very high, but so is the false positive rate. Thus TPR(FPR(threhsold)) is monotonous for every composition.
+
+AUROC is simply the area under this curve.
+
+- A perfect classifier sets P(Y=1 | x) as 1 or 0, so the threshold becomes irrelevant (assuming it is between 0 and 1). Thus the AUROC is 1.
+
+- A perfectly random classifier has on average an auroc of 0.5
+
+- A bad classifier has an auroc of < 0.5, and > 0.5 if its good
+
+They use other metrics that tweak the AUROC, but i just don't think it is relevant spending more time on this.
+
+### Assesing accuracy
+
+Just like yesterday, i'm ignoring the details of the short sequence accuracy estimation. For long sequences, they decide whether the sequence is a confabulation or not through a GPT 4 prompt that decides if the proposed answer to a question is the same as the expected:
+
+We are assessing the quality of answers to the following question:
+{question}
+The expected answer is: {reference answer}
+The proposed answer is: {predicted answer}
+Within the context of the question, does the proposed answer mean
+the same as the expected answer? Respond only with yes or no.
+
+### Results
+
+They found an AUROC of ~0.75 with semantic entropy for detecting confabulations, whereas self-checking corresponds to an AUROC of ~0.5.
+
+### Takaways and possible next steps
+
+The results are very promising for the thesis! They indicate that it is indeed possible to estimate the performance just as a function of the model logits.
+
+The paper provides a metric that serves as a baseline for the thesis objective. Even if their aim was "detecting confabulation hallucinations", they are really just comparing the "uncertainty" of the generated sequence against the correctness of the response.
+
+A possible first step is to simply to choose a domain, and use this semantic entropy metric as a measure of performance by computing the corresponding AUROC. I can possibly tweak and play a bit with the algorithm that computes semantic entropy.
