@@ -129,3 +129,18 @@ The results are very promising for the thesis! They indicate that it is indeed p
 The paper provides a metric that serves as a baseline for the thesis objective. Even if their aim was "detecting confabulation hallucinations", they are really just comparing the "uncertainty" of the generated sequence against the correctness of the response.
 
 A possible first step is to simply to choose a domain, and use this semantic entropy metric as a measure of performance by computing the corresponding AUROC. I can possibly tweak and play a bit with the algorithm that computes semantic entropy.
+
+## July 9th 2025:
+
+I talked with Luciano about the next steps. We agreed on the following:
+
+1. Use phi3 mini instruct as an initial benchmark: https://huggingface.co/microsoft/Phi-3-mini-4k-instruct
+2. Choose two datasets -one where the model is expected to perform well, and one where it is expected to perform poorly- from the paper: https://arxiv.org/pdf/2404.14219
+3. Use the semantic entropy metric from the nature paper to compute the AUROC for both datasets
+
+The semantic entropy serves as a good baseline upon which I can build. Today I'm just going to download the model and the datasets (1 and 2), and get familiar with the relevant libraries.
+
+I think i'm sticking math datasets as a first approach. The accuracy evaluation is much easier, and I have two similar datasets that can be compared.
+
+- GSM8K: Performs quite well
+- MATH: Performs poorly
