@@ -144,3 +144,9 @@ I think i'm sticking math datasets as a first approach. The accuracy evaluation 
 
 - GSM8K: Performs quite well
 - MATH: Performs poorly
+
+## July 10th 2025:
+
+I'm continuing developing the code to compute different metrics in a modular way. The idea is to be able to easily plug in different metrics and datasets, and compare them easily.
+
+The transformers library is SO bad and undocumented. Nevertheless I was able to write a cute inference function that returns the sequence probabilities and generated text. From that I can calculate a bunch of entropy based metrics.

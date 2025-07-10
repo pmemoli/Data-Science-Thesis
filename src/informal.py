@@ -1,11 +1,14 @@
-from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
+# %%
+from transformers import AutoModelForCausalLM, AutoTokenizer
 from datasets import load_dataset
+import torch.nn.functional as F
+import torch
 
-# Datasets
+# %%
 math_ds = load_dataset("nlile/hendrycks-MATH-benchmark", split="train")
 gsm8k_ds = load_dataset("openai/gsm8k", "main", split="train")
 
-# # Load the model and tokenizer
+# %%
 model = AutoModelForCausalLM.from_pretrained(
     "microsoft/Phi-3-mini-4k-instruct",
     device_map="auto",
@@ -14,34 +17,60 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 tokenizer = AutoTokenizer.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
 
-# Messages for the model
+# %% Messages for the model
 messages = [
     {"role": "system", "content": "You are a helpful AI assistant."},
     {
         "role": "user",
-        "content": "Can you provide ways to eat combinations of bananas and dragonfruits?",
+        "content": "What is 2+2? Return the response in a format of ###{answer}### with no more information",
     },
-    {
-        "role": "assistant",
-        "content": "Sure! Here are some ways to eat bananas and dragonfruits together: 1. Banana and dragonfruit smoothie: Blend bananas and dragonfruits together with some milk and honey. 2. Banana and dragonfruit salad: Mix sliced bananas and dragonfruits together with some lemon juice and honey.",
-    },
-    {"role": "user", "content": "What about solving an 2x + 3 = 7 equation?"},
 ]
 
-# Create a text generation pipeline
-pipe = pipeline(
-    "text-generation",
-    model=model,
-    tokenizer=tokenizer,
+prompt = tokenizer.apply_chat_template(
+    messages, tokenize=False, add_generation_prompt=True
 )
-generation_args = {
-    "max_new_tokens": 500,
-    "return_full_text": False,
-    "temperature": 0.0,
-    "do_sample": False,
-}
-output = pipe(messages, **generation_args)
 
-print(output)
+inputs = tokenizer(prompt, return_tensors="pt").input_ids
 
-print(output[0]["generated_text"])  # type: ignore
+# %% Inference
+top_k = 50
+outputs = model.generate(
+    inputs,
+    max_new_tokens=100,
+    do_sample=True,
+    temperature=1.0,
+    top_k=top_k,
+    top_p=0.98,
+    return_dict_in_generate=True,
+    output_scores=True,
+)
+
+# %% Sequence probabilities
+scores = outputs.scores
+logits = torch.stack(scores, dim=1)
+
+# %% Get the top k tokens with their probabilities
+probabilities = F.softmax(logits, dim=-1)
+top_k_probabilities, top_k_indices = torch.topk(probabilities, top_k)
+
+# %% Convert indices to tokens and sort them by probability
+top_k_probabilities_shape = top_k_probabilities.size()
+
+batch_token_probs = []  # [batch_size][sequence_length][top_k]
+for i in range(top_k_probabilities_shape[0]):
+    sequence_token_probs = []
+    for j in range(top_k_probabilities_shape[1]):
+        token_probs = []
+        for k in range(top_k_probabilities_shape[2]):
+            probability = top_k_probabilities[i][j][k].item()
+            token_index = top_k_indices[i][j][k].item()
+            token = tokenizer.decode(token_index)
+
+            token_probs.append((token, probability))
+        sequence_token_probs.append(token_probs)
+    batch_token_probs.append(sequence_token_probs)
+
+
+# %% Generated sequence
+sequences = outputs.sequences
+generated_text = tokenizer.batch_decode(sequences)

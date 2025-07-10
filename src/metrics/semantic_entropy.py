@@ -1,5 +1,6 @@
 from transformers import PreTrainedModel, PreTrainedTokenizer
-from src.utils import inference
+
+# from src.utils import inference
 
 
 def semantic_entropy(
