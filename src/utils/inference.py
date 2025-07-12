@@ -1,6 +1,18 @@
-from .types import InferenceOutput
 import torch.nn.functional as F
+from dataclasses import dataclass
 import torch
+
+
+@dataclass
+class InferenceOutput:
+    # [batch_size]
+    generated_text: list[str]
+
+    # [batch_size][sequence_length][top_k]
+    token_distribution: torch.Tensor
+
+    # [batch_size][sequence_length]
+    token_probabilities: torch.Tensor
 
 
 def inference(
@@ -22,7 +34,7 @@ def inference(
     top_k = 50
     outputs = model.generate(
         inputs,
-        max_new_tokens=100,
+        max_new_tokens=1000,
         do_sample=True,
         temperature=1.0,
         top_k=top_k,
