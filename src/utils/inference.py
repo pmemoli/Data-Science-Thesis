@@ -1,41 +1,24 @@
-from dataclasses import dataclass
+from .types import InferenceOutput
 import torch.nn.functional as F
 import torch
-
-
-@dataclass
-class InferenceOutput:
-    # [batch_size]
-    generated_text: list[str]
-
-    # [batch_size][sequence_length][top_k]
-    token_probabilities: list[list[tuple[str, float]]]
 
 
 def inference(
     model,
     tokenizer,
-    system_prompt: str,
-    user_prompt: str,
+    messages: list[dict],
     seed: int = 42,
 ) -> InferenceOutput:
     torch.manual_seed(seed)
 
-    messages = [
-        {"role": "system", "content": system_prompt},
-        {
-            "role": "user",
-            "content": user_prompt,
-        },
-    ]
-
+    # Input
     prompt = tokenizer.apply_chat_template(
         messages, tokenize=False, add_generation_prompt=True
     )
 
     inputs = tokenizer(prompt, return_tensors="pt").input_ids
 
-    # Inference
+    # Output generation
     top_k = 50
     outputs = model.generate(
         inputs,
@@ -48,36 +31,28 @@ def inference(
         output_scores=True,
     )
 
-    # Sequence probabilities
+    # Token distribution
     scores = outputs.scores
     logits = torch.stack(scores, dim=1)
-
-    # Get the top k tokens with their probabilities
     probabilities = F.softmax(logits, dim=-1)
-    top_k_probabilities, top_k_indices = torch.topk(probabilities, top_k)
 
-    # Convert indices to tokens and sort them by probability
-    top_k_probabilities_shape = top_k_probabilities.size()
-
-    batch_token_probs = []  # [batch_size][sequence_length][top_k]
-    for i in range(top_k_probabilities_shape[0]):
-        sequence_token_probs = []
-        for j in range(top_k_probabilities_shape[1]):
-            token_probs = []
-            for k in range(top_k_probabilities_shape[2]):
-                probability = top_k_probabilities[i][j][k].item()
-                token_index = top_k_indices[i][j][k].item()
-                token = tokenizer.decode(token_index)
-
-                token_probs.append((token, probability))
-            sequence_token_probs.append(token_probs)
-        batch_token_probs.append(sequence_token_probs)
-
-    # Generated sequence
+    # Selected token probabilities
     sequences = outputs.sequences
-    generated_text = tokenizer.batch_decode(sequences)
+
+    prompt_length = inputs.shape[1]
+    generated_ids = sequences[:, prompt_length:]
+
+    indices = generated_ids.unsqueeze(-1)
+
+    token_probabilities = torch.gather(probabilities, 2, indices).squeeze(-1)
+
+    # Generated sequence text
+    generated_text = tokenizer.batch_decode(
+        generated_ids, skip_special_tokens=True
+    )
 
     return InferenceOutput(
         generated_text=generated_text,
-        token_probabilities=batch_token_probs,
+        token_distribution=probabilities,
+        token_probabilities=token_probabilities,
     )

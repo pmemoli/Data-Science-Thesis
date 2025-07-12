@@ -150,3 +150,26 @@ I think i'm sticking math datasets as a first approach. The accuracy evaluation 
 I'm continuing developing the code to compute different metrics in a modular way. The idea is to be able to easily plug in different metrics and datasets, and compare them easily.
 
 The transformers library is SO bad and undocumented. Nevertheless I was able to write a cute inference function that returns the sequence probabilities and generated text. From that I can calculate a bunch of entropy based metrics.
+
+## July 12th 2025:
+
+Today i'm starting to experiment with different entropy metrics based exclusively on the token output probabilities. I have 4 metrics to test:
+
+### Predictive entropy:
+
+This is defined as the normalized surprisal of the generated sequence. Normalization is done by dividing the entropy by the sequence length.
+
+$$PE(S, X) = -log(P(S|X)) / N = -\sum_i log(P(S_i | S_{< i, x})) / N$$
+
+The definition comes from the Kadvath (2022) paper.
+
+### Shannon entropy:
+
+This is the average shannon entropy of the next token probabilities for each token in the sequence. I haven't seen this anywhere, but it feels like a natural metric to compute.
+
+### More sofisticated metrics:
+
+- Semantic entropy: https://www.nature.com/articles/s41586-024-07421-0
+- Word-Sequence Entropy: https://arxiv.org/html/2402.14259v1
+
+Today I practiced some pytorch and implemented the first 2 since they are super simple to compute. The next steps are computing the AUROC on the GSM8K and MATH datasets, and then comparing the results.
