@@ -175,3 +175,7 @@ This is the average shannon entropy of the next token probabilities for each tok
 Today I practiced some pytorch and implemented the first 2 since they are super simple to compute. I also wrote a simple function to evaluate a llms performance on the gsm8k dataset, while computing all the relevant metrics. The function is pretty modular, so extending it to more metrics or models should be easy.
 
 The next steps are finishing the details of that function and trying it on one of Lucianos GPUS.
+
+## July 14th 2025:
+
+I finished the analizer function to test a bunch of metrics on the gsm8k dataset, and debugged some issues with the metrics on batches. The next step is to actually run it on a GPU and compute the AUROC and whatever for the different metrics.

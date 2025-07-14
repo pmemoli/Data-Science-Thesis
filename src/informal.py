@@ -1,6 +1,12 @@
 # %%
+%reload_ext autoreload
+%autoreload 2
+
+import torch.nn.functional as F
 from transformers import AutoModelForCausalLM, AutoTokenizer
+from src.experiments.evaluations.gsm8k import gsm8k
 from src.utils.inference import inference
+from src.metrics.entropy import predictive_entropy, shannon_entropy
 from datasets import load_dataset
 import torch
 
@@ -17,34 +23,15 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 tokenizer = AutoTokenizer.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
 
-# %% Testing inference function
-system_prompt = "Be concise and answer the question directly. Do not provide any additional information."
-user_prompt = "What is 2+2?"
-
-messages = [
-    {"role": "system", "content": system_prompt},
-    {"role": "user", "content": user_prompt},
-]
-
-prompt = tokenizer.apply_chat_template(
-    messages, tokenize=False, add_generation_prompt=True
-)
-inputs = tokenizer(prompt, return_tensors="pt").input_ids
-
-# %%
-output = inference(
+#%%
+test_results = gsm8k(
     model=model,
     tokenizer=tokenizer,
-    messages=messages,
-    seed=42,
+    metrics=["predictive_entropy", "shannon_entropy"],
+    batch_size=4,
+    indexes=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
 )
 
-# %%
-epsilon = 1e-9
-token_distribution = output.token_distribution
-token_log_distribution = (output.token_distribution + epsilon).log()
-
-token_entropy = -torch.sum(token_distribution * token_log_distribution, dim=-1)
-sequence_entropy = torch.mean(token_entropy, dim=-1)
-
-sequence_entropy
+#%%
+print(test_results.incorrect_answers)
+print(test_results.metrics["predictive_entropy"])
