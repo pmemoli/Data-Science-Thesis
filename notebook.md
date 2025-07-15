@@ -179,3 +179,7 @@ The next steps are finishing the details of that function and trying it on one o
 ## July 14th 2025:
 
 I finished the analizer function to test a bunch of metrics on the gsm8k dataset, and debugged some issues with the metrics on batches. The next step is to actually run it on a GPU and compute the AUROC and whatever for the different metrics.
+
+## July 15th 2025:
+
+I have everything ready to run the experiments on the gsm8k dataset. But I had trouble with actually connecting to a GPU. It's probably a good idea to spend some time learning how to ssh to a machine and run stuff on it. I also wasn't able to get into the machines with teamviewer...

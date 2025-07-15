@@ -1,20 +1,6 @@
+from src.utils.types import InferenceOutput
 import torch.nn.functional as F
-from dataclasses import dataclass
 import torch
-
-
-@dataclass
-class InferenceOutput:
-    # [batch_size]
-    generated_ids: torch.Tensor
-    sequence_length: torch.Tensor
-    generated_text: list[str]
-
-    # [batch_size][sequence_length][top_k]
-    token_distribution: torch.Tensor
-
-    # [batch_size][sequence_length]
-    token_probabilities: torch.Tensor
 
 
 def inference(

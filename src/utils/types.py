@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from typing import Literal
+from torch import Tensor
 
 Metric = Literal["predictive_entropy", "shannon_entropy"]
 
@@ -11,3 +12,17 @@ class DatasetResult:
     metrics: dict[Metric, list[float]]
     model_answers: list[str]
     correct_answers: list[str]
+
+
+@dataclass
+class InferenceOutput:
+    # [batch_size]
+    generated_ids: Tensor
+    sequence_length: Tensor
+    generated_text: list[str]
+
+    # [batch_size][sequence_length][top_k]
+    token_distribution: Tensor
+
+    # [batch_size][sequence_length]
+    token_probabilities: Tensor

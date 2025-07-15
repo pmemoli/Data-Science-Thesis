@@ -1,3 +1,5 @@
+# Informal notebook to test stuff
+
 # %%
 %reload_ext autoreload
 %autoreload 2
@@ -24,7 +26,7 @@ model = AutoModelForCausalLM.from_pretrained(
 tokenizer = AutoTokenizer.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
 
 #%%
-test_results = gsm8k(
+test_results = gsm8k_evaluation(
     model=model,
     tokenizer=tokenizer,
     metrics=["predictive_entropy", "shannon_entropy"],
