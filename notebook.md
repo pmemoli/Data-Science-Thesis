@@ -183,3 +183,11 @@ I finished the analizer function to test a bunch of metrics on the gsm8k dataset
 ## July 15th 2025:
 
 I have everything ready to run the experiments on the gsm8k dataset. But I had trouble with actually connecting to a GPU. It's probably a good idea to spend some time learning how to ssh to a machine and run stuff on it. I also wasn't able to get into the machines with teamviewer...
+
+## July 16th 2025:
+
+Still can't connect! But to make the most of the time, I begun thinking about possible metrics and functionalities that are going to be useful for the thesis. One thing we talked about with my director there may be merit into estimating the distributions, but with the embeddings from the different attention blocks, rather than just the last one.
+
+I played a bit with the hidden states from each attention layer, computing the probabilities based on the corresponding logits. I imagine that maybe I can get a more sophisticated measure of uncertainty by working with how the probabilities change across the layers...
+
+I extended the inference funtion to compute the probabilities distribution of [batch_size, layers, sequence_length, vocab_size]. The metrics have to be adapted to work with this new shape, but it should be super easy. This provides me a LOT of data to experiment with different metrics.

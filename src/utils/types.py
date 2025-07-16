@@ -16,13 +16,12 @@ class DatasetResult:
 
 @dataclass
 class InferenceOutput:
-    # [batch_size]
+    # [batch_size][sequence_length]
     generated_ids: Tensor
     sequence_length: Tensor
+
+    # [batch_size]
     generated_text: list[str]
 
-    # [batch_size][sequence_length][top_k]
+    # [batch_size][layers][sequence_length][top_k]
     token_distribution: Tensor
-
-    # [batch_size][sequence_length]
-    token_probabilities: Tensor

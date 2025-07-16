@@ -30,6 +30,7 @@ def inference(
         return_dict_in_generate=True,
         output_scores=True,
         pad_token_id=tokenizer.eos_token_id,
+        output_hidden_states=True,
     )
 
     # Generated sequence text and ids
@@ -41,14 +42,27 @@ def inference(
         generated_ids, skip_special_tokens=True
     )
 
-    # Token distribution
-    scores = outputs.scores
-    logits = torch.stack(scores, dim=1)
-    probabilities = F.softmax(logits, dim=-1)
+    # Token distribution (for all hidden states)
+    generatation_probabilities = []
+    for step, layer_outputs in enumerate(outputs.hidden_states):
+        step_probabilities = []
 
-    # Selected token probabilities
-    indices = generated_ids.unsqueeze(-1)
-    token_probabilities = torch.gather(probabilities, 2, indices).squeeze(-1)
+        for layer in range(len(outputs.hidden_states[step])):
+            if step != 0:
+                layer_hidden = layer_outputs[layer].squeeze(1)
+            else:
+                layer_hidden = layer_outputs[layer][:, -1, :]
+
+            logits = model.lm_head(layer_hidden)
+            probabilities = F.softmax(logits, dim=-1)
+
+            step_probabilities.append(probabilities)
+
+        step_tensor = torch.stack(step_probabilities, dim=1)
+        generatation_probabilities.append(step_tensor)
+
+    # [batch_size, layers, sequence_length, vocab_size]
+    token_distribution = torch.stack(generatation_probabilities, dim=2)
 
     # Generated sequence lengths
     eos_id = tokenizer.eos_token_id
@@ -59,6 +73,5 @@ def inference(
         generated_ids=generated_ids,
         sequence_length=sequence_length,
         generated_text=generated_text,
-        token_distribution=probabilities,
-        token_probabilities=token_probabilities,
+        token_distribution=token_distribution,
     )
