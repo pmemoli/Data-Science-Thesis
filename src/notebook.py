@@ -1,10 +1,9 @@
 # Informal notebook to test stuff
 
 # %%
-# %reload_ext autoreload
-# %autoreload 2
-#
 import torch.nn.functional as F
+
+# %%
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from src.metrics.entropy import shannon_entropy
 from datasets import load_dataset

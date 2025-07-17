@@ -191,3 +191,13 @@ Still can't connect! But to make the most of the time, I begun thinking about po
 I played a bit with the hidden states from each attention layer, computing the probabilities based on the corresponding logits. I imagine that maybe I can get a more sophisticated measure of uncertainty by working with how the probabilities change across the layers...
 
 I extended the inference funtion to compute the probabilities distribution of [batch_size, layers, sequence_length, vocab_size]. The metrics have to be adapted to work with this new shape, but it should be super easy. This provides me a LOT of data to experiment with different metrics.
+
+## July 17th 2025:
+
+I finally was able to ssh into the GPU machine! But there are still tinynthings to make the development experience seamless. Nevertheless, good progress!
+
+To sync the code, I used rsync. The command is:
+
+```
+rsync -avz --delete --exclude=".git" --exclude="venv/" --exclude="__pycache__/" /home/pedro/academy/master_thesis/data_science/ luciano@100.84.211.46:/home/luciano/Documents/Tesis_Pedro
+```
