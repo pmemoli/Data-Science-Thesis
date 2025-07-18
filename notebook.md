@@ -196,8 +196,15 @@ I extended the inference funtion to compute the probabilities distribution of [b
 
 I finally was able to ssh into the GPU machine! But there are still tinynthings to make the development experience seamless. Nevertheless, good progress!
 
-To sync the code, I used rsync. The command is:
+## July 18th 2025:
 
-```
-rsync -avz --delete --exclude=".git" --exclude="venv/" --exclude="__pycache__/" /home/pedro/academy/master_thesis/data_science/ luciano@100.84.211.46:/home/luciano/Documents/Tesis_Pedro
-```
+Today I'm finally running the experiments on the gsm8k dataset.
+
+After debugging some issues relating to huge memory sizes form the inference outputs, I was able to compute the AUROC for 20 elements of the gsm8k dataset (not really representative, but I just wanted to test the code). I got the following results:
+
+Predictive Entropy AUROC: 0.7467
+Shannon Entropy AUROC: 0.7667
+
+Which is very promising! Nevertheless I need to run on more elements to get an actual idea of the performance.
+
+The next steps are running this on like 1000 elements, and trying some other metrics.

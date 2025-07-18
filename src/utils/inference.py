@@ -7,16 +7,20 @@ def inference(
     model,
     tokenizer,
     messages: list[list[dict]],
+    device: str = "auto",
     seed: int = 42,
 ) -> InferenceOutput:
     torch.manual_seed(seed)
+    model.to(device)
 
     # Input
     prompt = tokenizer.apply_chat_template(
         messages, tokenize=False, add_generation_prompt=True
     )
 
-    inputs = tokenizer(prompt, return_tensors="pt", padding=True).input_ids
+    inputs = tokenizer(prompt, return_tensors="pt", padding=True).input_ids.to(
+        device
+    )
 
     # Output generation
     top_k = 50
@@ -44,8 +48,10 @@ def inference(
 
     # Token distribution (for all hidden states)
     generatation_probabilities = []
+    generation_ids = []
     for step, layer_outputs in enumerate(outputs.hidden_states):
         step_probabilities = []
+        step_ids = []
 
         for layer in range(len(outputs.hidden_states[step])):
             if step != 0:
@@ -56,13 +62,31 @@ def inference(
             logits = model.lm_head(layer_hidden)
             probabilities = F.softmax(logits, dim=-1)
 
-            step_probabilities.append(probabilities)
+            top_k_probabilities, top_k_ids = torch.topk(
+                probabilities, top_k, dim=-1
+            )
+
+            step_probabilities.append(top_k_probabilities)
+            step_ids.append(top_k_ids)
 
         step_tensor = torch.stack(step_probabilities, dim=1)
-        generatation_probabilities.append(step_tensor)
 
-    # [batch_size, layers, sequence_length, vocab_size]
+        generatation_probabilities.append(step_tensor)
+        generation_ids.append(torch.stack(step_ids, dim=1))
+
+    # [batch_size, layers, sequence_length, top_k]
     token_distribution = torch.stack(generatation_probabilities, dim=2)
+    token_distribution_ids = torch.stack(generation_ids, dim=2)
+
+    # Token probabilities for the generated sequence
+    logits = torch.stack(outputs.scores, dim=1)
+    probabilities = F.softmax(logits, dim=-1)
+
+    token_probabilities = torch.gather(
+        probabilities,
+        -1,
+        generated_ids.unsqueeze(-1),
+    ).squeeze(-1)
 
     # Generated sequence lengths
     eos_id = tokenizer.eos_token_id
@@ -74,4 +98,6 @@ def inference(
         sequence_length=sequence_length,
         generated_text=generated_text,
         token_distribution=token_distribution,
+        token_distribution_ids=token_distribution_ids,
+        token_probabilities=token_probabilities,
     )

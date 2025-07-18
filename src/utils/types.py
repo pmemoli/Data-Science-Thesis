@@ -19,9 +19,11 @@ class InferenceOutput:
     # [batch_size][sequence_length]
     generated_ids: Tensor
     sequence_length: Tensor
+    token_probabilities: Tensor
+
+    # [batch_size][layer_amount][sequence_length][top_k]
+    token_distribution: Tensor
+    token_distribution_ids: Tensor
 
     # [batch_size]
     generated_text: list[str]
-
-    # [batch_size][layers][sequence_length][top_k]
-    token_distribution: Tensor

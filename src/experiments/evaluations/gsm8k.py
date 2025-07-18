@@ -10,6 +10,7 @@ def gsm8k_evaluation(
     metrics: list[Metric],
     indexes: list[int],
     batch_size: int = 1,
+    device: str = "auto",
 ) -> DatasetResult:
     results = DatasetResult(
         indexes=indexes,
@@ -43,18 +44,24 @@ def gsm8k_evaluation(
             model=model,
             tokenizer=tokenizer,
             messages=batch_messages,
+            device=device,
         )
 
         # Extract metrics for each item in batch
         if "predictive_entropy" in metrics:
             entropies = predictive_entropy(
-                output.token_probabilities, output.sequence_length
+                output.token_probabilities,
+                output.sequence_length,
+                device=device,
             )
             results.metrics["predictive_entropy"].extend(entropies.tolist())
 
         if "shannon_entropy" in metrics:
             entropies = shannon_entropy(
-                output.token_distribution, output.sequence_length
+                output.token_distribution,
+                output.sequence_length,
+                layer=-1,
+                device=device,
             )
             results.metrics["shannon_entropy"].extend(entropies.tolist())
 
