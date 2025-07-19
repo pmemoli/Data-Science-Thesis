@@ -22,7 +22,6 @@ from src.metrics.entropy import shannon_entropy, predictive_entropy
 #%%
 device = "cuda:0" 
 
-# %%
 model = AutoModelForCausalLM.from_pretrained(
     "microsoft/Phi-3-mini-4k-instruct",
     device_map=device,
@@ -33,39 +32,7 @@ tokenizer = AutoTokenizer.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
 gsm8k_ds = load_dataset("openai/gsm8k", "main", split="train")
 
 # %%
-messages = [
-    [
-        {
-            "role": "system",
-            "content": "You are a helpful assistant who answers concisely",
-        },
-        {
-            "role": "user",
-            "content": "Solve the following math problem: What is 2 + 2?",
-        },
-    ],
-    [
-        {
-            "role": "system",
-            "content": "You are a helpful assistant who answers concisely",
-        },
-        {
-            "role": "user",
-            "content": "Solve the following math problem: What is 2 + 5",
-        },
-    ],
-]
-
-# %%
-output = inference(
-    model=model,
-    tokenizer=tokenizer,
-    messages=messages,
-    device=device,
-)
-
-# %%
-indexes = [i for i in range(100)] 
+indexes = [i for i in range(1000)] 
 results = gsm8k_evaluation(
     model=model,
     tokenizer=tokenizer,
@@ -76,8 +43,8 @@ results = gsm8k_evaluation(
     device=device,
 )
 
-# %%
+#%%
 store_results_as_csv(
     result=results,
-    csv_name="gsm8k_train_evaluation_results",
+    csv_name="gsm8k_1000_train_evaluation_results",
 )

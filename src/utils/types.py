@@ -21,7 +21,7 @@ class InferenceOutput:
     sequence_length: Tensor
     token_probabilities: Tensor
 
-    # [batch_size][layer_amount][sequence_length][top_k]
+    # [batch_size][layers][sequence_length][top_k]
     token_distribution: Tensor
     token_distribution_ids: Tensor
 

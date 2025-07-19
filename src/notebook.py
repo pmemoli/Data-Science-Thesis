@@ -43,8 +43,12 @@ output = inference(
     model=model,
     tokenizer=tokenizer,
     messages=messages,
-    device="cpu"
+    device="cpu",
+    on_hidden_states=True,
 )
+
+#%%
+output.token_distribution.size()
 
 
 # %%

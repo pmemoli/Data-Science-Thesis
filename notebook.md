@@ -208,3 +208,14 @@ Shannon Entropy AUROC: 0.7667
 Which is very promising! Nevertheless I need to run on more elements to get an actual idea of the performance.
 
 The next steps are running this on like 1000 elements, and trying some other metrics.
+
+## July 19th 2025:
+
+I made the inference function much more memory efficient, especially when not the hidden state outputs are not required. The previous implementation ran out of memory very frecuently.
+
+The results on the first 1000 elements of the gsm8k dataset (train) are:
+
+Predictive Entropy AUROC: 0.7400
+Shannon Entropy AUROC: 0.7528
+
+The results are pretty good! The next step is trying some other metrics. Word-Sequence Entropy is the next one on the list: https://arxiv.org/html/2402.14259v1#bib.bib19

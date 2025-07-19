@@ -9,13 +9,14 @@ def predictive_entropy(
     device: str = "cpu",
 ) -> torch.Tensor:
     """
-    Computes the normalized negative log likelihood of a sampled sequence of tokens.
+    Computes the normalized negative log likelihood of a sampled sequence of tokens:
+    - log(P(S | X)) / sequence_length
 
     token_probabilities must be of dimension [batch_size, sequence_length].
 
     sequence_length must be of dimension [batch_size].
     """
-    # This tensor is derived from an input, so it's already on the correct device
+
     token_nll = -(token_probabilities + epsilon).log()
 
     # Mask to ignore the padded tokens

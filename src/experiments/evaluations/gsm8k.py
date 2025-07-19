@@ -1,6 +1,9 @@
 from src.metrics.entropy import predictive_entropy, shannon_entropy
 from src.utils.types import Metric, DatasetResult
 from src.utils.inference import inference
+import torch
+import gc
+import re
 
 
 def gsm8k_evaluation(
@@ -12,6 +15,7 @@ def gsm8k_evaluation(
     batch_size: int = 1,
     device: str = "auto",
 ) -> DatasetResult:
+
     results = DatasetResult(
         indexes=indexes,
         incorrect_answers=[],
@@ -45,9 +49,12 @@ def gsm8k_evaluation(
             tokenizer=tokenizer,
             messages=batch_messages,
             device=device,
+            on_hidden_states=False,
         )
 
         # Extract metrics for each item in batch
+        entropies = None
+
         if "predictive_entropy" in metrics:
             entropies = predictive_entropy(
                 output.token_probabilities,
@@ -67,42 +74,90 @@ def gsm8k_evaluation(
 
         # Check answers for each item in batch
         for j, idx in enumerate(batch_indexes):
-            model_answer = output.generated_text[j].split()[-1].strip(". ,$")
-            correct_answer = dataset[idx]["answer"].split()[-1].strip(". ,$")  # type: ignore
+            pattern = r"-?\d+(?:\.\d+)?"
+
+            numbers = re.findall(pattern, output.generated_text[j])
+            model_answer = numbers[-1] if numbers else "0"
+
+            numbers = re.findall(pattern, dataset[idx]["answer"])
+            correct_answer = numbers[-1] if numbers else "1"
 
             results.incorrect_answers.append(correct_answer != model_answer)
 
             results.model_answers.append(output.generated_text[j])
             results.correct_answers.append(dataset[idx]["answer"])  # type: ignore
 
+        # Clear memory
+        del output
+        del entropies
+        gc.collect()
+        torch.cuda.empty_cache()
+
     return results
 
 
 system_prompt = "You are a brilliant mathematician. Your task is to solve the following math problem by showing a step-by-step chain of thought. After your reasoning, state the final numerical answer clearly."
 
-user_prompt = """Q: There are 15 trees in the grove. Grove workers will plant trees in the grove today. After they are done, there will be 21 trees. How many trees did the grove workers plant today?
-A: There are 15 trees originally. Then there were 21 trees after some more were planted. So there must have been 21 - 15 = 6. The answer is 6.
+user_prompt = """Solve the following math problems. Show your reasoning step-by-step and then write the final answer in the format `#### <number>`.
 
-Q: If there are 3 cars in the parking lot and 2 more cars arrive, how many cars are in the parking lot?
-A: There are originally 3 cars. 2 more cars arrive. 3 + 2 = 5. The answer is 5.
+---
 
-Q: Leah had 32 chocolates and her sister had 42. If they ate 35, how many pieces do they have left in total?
-A: Originally, Leah had 32 chocolates. Her sister had 42. So in total they had 32 + 42 = 74. After eating 35, they had 74 - 35 = 39. The answer is 39.
+Question: Natalia sold 48 liters of milk in the morning. In the afternoon, she sold 22 liters less than in the morning. How many liters of milk did she sell in total?
 
-Q: Jason had 20 lollipops. He gave Denny some lollipops. Now Jason has 12 lollipops. How many lollipops did Jason give to Denny?
-A: Jason started with 20 lollipops. Then he had 12 after giving some to Denny. So he gave Denny 20 - 12 = 8. The answer is 8.
+Answer: In the morning, Natalia sold 48 liters of milk. In the afternoon, she sold 22 liters less than in the morning, so she sold 48 - 22 = 26 liters. In total, she sold 48 + 26 = 74 liters.
+#### 74
 
-Q: Shawn has five toys. For Christmas, he got two toys each from his mom and dad. How many toys does he have now?
-A: Shawn started with 5 toys. If he got 2 toys each from his mom and dad, then that is 4 more toys. 5 + 4 = 9. The answer is 9.
+---
 
-Q: There were nine computers in the server room. Five more computers were installed each day, from monday to thursday. How many computers are now in the server room?
-A: There were originally 9 computers. For each of 4 days, 5 more computers were added. So 5 * 4 = 20 computers were added. 9 + 20 is 29. The answer is 29.
+Question: A restaurant has 15 tables, and each table has 4 chairs. If 50 customers arrive, how many empty chairs will there be?
 
-Q: Michael had 58 golf balls. On tuesday, he lost 23 golf balls. On wednesday, he lost 2 more. How many golf balls did he have at the end of wednesday?
-A: Michael started with 58 golf balls. After losing 23 on tuesday, he had 58 - 23 = 35. After losing 2 more, he had 35 - 2 = 33 golf balls. The answer is 33.
+Answer: The restaurant has 15 tables * 4 chairs/table = 60 chairs in total. If 50 customers arrive, they will occupy 50 chairs. The number of empty chairs is 60 - 50 = 10.
+#### 10
 
-Q: Olivia has $23. She bought five bagels for $3 each. How much money does she have left?
-A: Olivia had 23 dollars. 5 bagels for $3 dollars each will be 5 x 3 = 15 dollars. So she has 23 - 15 dollars left. 23 - 15 is 8. The answer is 8.
+---
 
-Q: {question}
-A: """
+Question: John is reading a book with 300 pages. He reads 25 pages every day. After 7 days, how many pages are left for him to read?
+
+Answer: John reads 25 pages/day * 7 days = 175 pages in 7 days. The book has 300 pages, so the number of pages left to read is 300 - 175 = 125.
+#### 125
+
+---
+
+Question: A farmer collects 120 eggs. He packs them into cartons that hold a dozen eggs each. If he sells each carton for $3, how much money does he make?
+
+Answer: A dozen is 12 eggs. The farmer has 120 eggs, so he can make 120 / 12 = 10 cartons. He sells each carton for $3, so he makes 10 cartons * $3/carton = $30.
+#### 30
+
+---
+
+Question: The school library has 280 books. 3/7 of the books are fiction. How many non-fiction books are there?
+
+Answer: The number of fiction books is (3/7) * 280. We can calculate this as (280 / 7) * 3 = 40 * 3 = 120 fiction books. The total number of books is 280, so the number of non-fiction books is 280 - 120 = 160.
+#### 160
+
+---
+
+Question: A car travels at a speed of 60 km per hour. How many kilometers will it travel in 2 hours and 30 minutes?
+
+Answer: 30 minutes is half an hour, or 0.5 hours. So, 2 hours and 30 minutes is 2.5 hours. The car travels at 60 km/h. The total distance traveled is 60 km/h * 2.5 hours = 150 km.
+#### 150
+
+---
+
+Question: Lisa wants to buy a dress that costs $120. She has a coupon for a 20% discount. How much does she have to pay for the dress?
+
+Answer: The discount is 20% of $120. We calculate the discount amount as 0.20 * 120 = $24. The final price is the original price minus the discount, which is $120 - $24 = $96.
+#### 96
+
+---
+
+Question: A bakery uses 250 grams of flour for every loaf of bread. If they bake 15 loaves of bread, how many kilograms of flour do they use in total?
+
+Answer: The bakery uses 250 grams of flour per loaf. For 15 loaves, they use 250 * 15 = 3750 grams of flour. The question asks for the answer in kilograms. Since 1 kilogram = 1000 grams, we convert grams to kilograms by dividing by 1000. So, 3750 grams / 1000 = 3.75 kilograms.
+#### 3.75
+
+---
+
+Question: {question}
+
+Answer: """

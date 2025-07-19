@@ -5,7 +5,7 @@ import pandas as pd
 # %%
 """AUROC using entropy based metrics to detect failures on the gsm8k dataset"""
 entropy_df = pd.read_csv(
-    "src/experiments/results/gsm8k_train_evaluation_results.csv"
+    "src/experiments/results/gsm8k_1000_train_evaluation_results.csv"
 )
 
 # %%
