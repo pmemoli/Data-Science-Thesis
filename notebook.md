@@ -219,3 +219,73 @@ Predictive Entropy AUROC: 0.7400
 Shannon Entropy AUROC: 0.7528
 
 The results are pretty good! The next step is trying some other metrics. Word-Sequence Entropy is the next one on the list: https://arxiv.org/html/2402.14259v1#bib.bib19
+
+## July 23th 2025:
+
+Took a break to focus on work and exams. Didn't do much today either, but I found some really cool papers that I want to read:
+
+- https://www.researchgate.net/publication/389315584_Entropy-Lens_The_Information_Signature_of_Transformer_Computations
+
+Shows how the entropy distribution of the logits can be used to understand the model's behavior. Nice results and its very relevant!.
+
+- https://arxiv.org/pdf/2410.22685
+
+Provides a computationally efficient way to compute uncertainty, while avoiding the need to sample from the model. The only thing is that it requires fine-tuning the model according to some output distribution. It also compares the AUROC of PE entropy against their version, which is exactly the same thing i am doing!
+
+I think its probably a good idea to read these papers and see if I can get a cool method from them. I am in the mood of trying a bunch of different metrics (from papers and invented) and see what works best. From the second paper, it appears that the best result is going to come from training of some sort.
+
+## July 25th 2025:
+
+Today I'm reading "Entropy-Lens: The Information Signature of Transformer Computations" to get a better intuition about the entropy based metrics.
+
+---
+
+They analize the evolutoin of the shannon entropy of the generated tokens after each intermediate block in the residual stream (output of attention layers?). Based on this they find that:
+
+- The evolution identifies the model family
+- Identifies the task type
+- Is correlated with the model's performance
+
+They define the "entropy profile" as a matrix $M$ where $M_{i,j}$ is the entropy of the $i$-th token after the $j$-th block $H_i^j$ (mimics form of the transformer horizontally). After that they train a KNN to classify the task type and accuracy for multiple choice tasks, based on the entropy profile.
+
+I imagine they use a fix amount of output tokens to make the matrix a fixed size, possibly padding with 0 entropy.
+
+They also find that the average entropy within a block has a unique geometry when plotted in a graph (avg entropy vs layer). That is super interesting! especially since the form is identifiable regardless of the model size.
+
+One really cool observation is that entropy is highest in the middle layers. They hypothesize that this is because the model is "exploring" the space of possible outputs, and then "converging" to a more certain output in the last layers.
+
+---
+
+Overall I found the paper pretty badly written and pretentious with notation. Nevertheless its interesting! I also already wrote the code to compute the entropy profile. It remains to be seen what I can do with it...
+
+One thing is certain, I WANT a metric based on the entire entropy profile, not just the output of the last layer. I also think that there may be some merit in training something on that profile. Just computing a single number with an average or whatever without training anything seems overly simplistic.
+
+Since that took little time i'm also going to read the second paper I mentioned on the 23rd.
+
+- IMPROVING UNCERTAINTY QUANTIFICATION IN LARGE LANGUAGE MODELS VIA SEMANTIC EMBEDDINGS
+
+The paper proposes a novel method to measure uncertainty based on the embeddings, rather than the sequence likelihood and bi-directional entailment criteria (see later what that is). The results show a considerable improvement in the AUROC compared to the PE and semantic similarity entropy. Also, they propose a computationally efficient version!
+
+Intruction:
+
+Raw entropy metrics mix the uncertainty from sintax and semantics, making the metrics less reliable to measure uncertainty of meaning. Semantic entropy is a distinct measure which aims to isolate sematnic uncertainty. The issue is that they require sampling from an input by varying the seed, which is computationally expensive.
+
+They introduce:
+
+- Semantic Embedding Uncertainty (SEU): Levarage average pairwise cosine similarity (sampling many outputs???)
+
+- Amortized Semantic Embedding Uncertainty (ASEU): A computationally efficient version of SEU that models semantics as latent variables (requires training?).
+
+## Semantic Embedding Uncertainty (SEU):
+
+They sample $N$ output sequences and obtain an embedding (from another model) for each sequence. After that they compute the pairwise cosine similarity between the embeddings and define the SEU as:
+
+SEU(x) = 1 - 2 / M(M-1) \* \sum*{i=1}^{M} \sum*{j=1}^{M} cos(emb_i, emb_j)
+
+Where $M$ is the number of sampled sequences.
+
+They experiment wiht M = 5 and temperature as 0.5 (from a previour work on SE) on small models like Phi-3.5-instruct. They use AUROC as a metric to measure performance. SEU greatly outperforms PE and SE, with an AUROC of like 0.85 on the TRIVIAQA dataset! Where as PE scores like 0.5-65.
+
+## Amortized Semantic Embedding Uncertainty (ASEU):
+
+Kinda tired. On monday I'm continuint reading about ASEU.
