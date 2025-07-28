@@ -289,3 +289,53 @@ They experiment wiht M = 5 and temperature as 0.5 (from a previour work on SE) o
 ## Amortized Semantic Embedding Uncertainty (ASEU):
 
 Kinda tired. On monday I'm continuint reading about ASEU.
+
+## July 28th 2025:
+
+Today i'm continuing reading the ASEU paper. They introduce a latent variable model for this, so it makes sense reviewing basic bayesian inference.
+
+### Bayesian Inference
+
+In bayesian statistics, the parameters are modeled as random variables, so it makes sense conditioning by the parameters:
+
+- Posterior: P(\theta | x) (probability of the parameters given the data)
+- Prior: P(\theta) (probability of the parameters before seeing the data)
+- Likelihood: P(x | \theta) (probability of the data given the parameters)
+
+They relate through Bayes' theorem:
+
+P(\theta | x) = P(x | \theta) \* P(\theta) / P(x)
+
+And hence the Posterior is proportional to the likelihood \* prior.
+
+Bayesian parameter estimation works by starting from a reasonable prior, and updating it with the data to obtain the posterior. The posterior is then used to make predictions about new data.
+
+### Latent Variable Models
+
+Latent variables are variables that are not directly observed, but are inferred from the data. The joint distribution of the observed data and the latent variables is given by:
+
+- P(x, z) = P(x | z) \* P(z)
+
+Where $x$ is the observed data and $z$ is the latent variable we can't directly observe.
+
+The goal is computing the posterior P(z | x).
+
+### ASEU
+
+Each output sequence of t tokens is modeled as a latent variable $z_t$.
+
+The posterior is approximated as:
+
+P(z_t | x_t, w) ~ N(\mu_t, \sigma_t)
+
+x_t consists of the hidden states of the input sequence plus tokens generated, and \mu_t and \sigma_t are the outputs of a small feed forward network that takes the hidden states as input. Sigma is also assumed to be diagonal for simplicity.
+
+For each value of the output sequence, the model samples a couple of values and computes the pairwise cosine similarity between the latent variables. The ASEU is then defined as:
+
+ASEU = 1 - median{S_1, ..., S_N}
+
+### Results
+
+ASEU is comparable to SEU and considerably better than SE! In the context of the fundamental idea of providing a robust metric for LLM performance, ASEU is very promising! Even if it does require training, it is a neglegible amount of training compared to the model itself.
+
+Cool!
