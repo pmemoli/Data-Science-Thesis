@@ -338,4 +338,34 @@ ASEU = 1 - median{S_1, ..., S_N}
 
 ASEU is comparable to SEU and considerably better than SE! In the context of the fundamental idea of providing a robust metric for LLM performance, ASEU is very promising! Even if it does require training, it is a neglegible amount of training compared to the model itself.
 
-Cool!
+Cool! I also prompted gemini deepsearch for other relevant papers. These are the ones it suggested:
+
+- The Bayesian Lens on Textual Parameters
+- Semantic Volume and the Duality of Uncertainty
+- LM-Polygraph framework
+
+The first two seem computationally costly compared to ASEU, and the third one is just a benchmark for measuring uncertainty. I feel toying with ASEU-similar ideas is the way to go.
+
+One thing I notice is that ASEU is simply a function of the models last hidden state, but maybe I could also use the entropy signature from the Entropy-Lens paper to compute a more robust ASEU... Cool!
+
+## August 1st 2025:
+
+I found a really cool paper involving "attention entopy", which is increadibly cheap to compute (unlike shannon entropy, which requires a lot of memory).
+
+https://arxiv.org/pdf/2412.16545
+
+I have barely read it, but one key point is that "attention entropy is heavily correlated with the performance of the model in the lm task".
+
+I can try and analize if attention entropy also provides some sort of "signature" like shannon entropy does. That can heavily enrich the ASEU metric in some way.
+
+No more reading and thinking, its probably a good idea to start coding some of these ideas and see what works and what doesn't.
+
+TODO (pretty long list lol):
+
+- Test how good attention entropy is at predicting performance (just looking at the last layer).
+
+- Train a generative latent variable model just looking at the last hidden state, and using it to compute ASEU.
+
+- Think of how I could enrich the input for the latent variable model with some information signature.
+
+- Probably do some qualitative analysis on how shannon and attention entropy evolve across the layers.
