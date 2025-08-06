@@ -350,7 +350,7 @@ One thing I notice is that ASEU is simply a function of the models last hidden s
 
 ## August 1st 2025:
 
-I found a really cool paper involving "attention entopy", which is increadibly cheap to compute (unlike shannon entropy, which requires a lot of memory).
+I found a really cool paper involving "attention entropy", which is increadibly cheap to compute (unlike shannon entropy, which requires a lot of memory).
 
 https://arxiv.org/pdf/2412.16545
 
@@ -369,3 +369,7 @@ TODO (pretty long list lol):
 - Think of how I could enrich the input for the latent variable model with some information signature.
 
 - Probably do some qualitative analysis on how shannon and attention entropy evolve across the layers.
+
+## August 6th 2025:
+
+I made the inference function return the attention values for each attention head on the last layer. I also computed the "attention entropy" in the informal.py script, I have yet to write the corresponding metric function on entropy.py, and test it on gsm8k. Probably tomorrow...

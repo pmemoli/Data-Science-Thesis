@@ -10,7 +10,8 @@ def inference(
     device: str = "auto",
     seed: int = 42,
     top_k: int = 30,
-    on_hidden_states: bool = False,
+    hidden_states: bool = False,
+    attentions: bool = False,
 ) -> InferenceOutput:
 
     torch.manual_seed(seed)
@@ -27,8 +28,10 @@ def inference(
 
     # Output generation
     extra_kwargs = {}
-    if on_hidden_states:
+    if hidden_states:
         extra_kwargs["output_hidden_states"] = True
+    if attentions:
+        extra_kwargs["output_attentions"] = True
 
     outputs = model.generate(
         inputs,
@@ -63,7 +66,7 @@ def inference(
     ).squeeze(-1)
 
     # Token distribution (for all layers if specified)
-    if on_hidden_states:
+    if hidden_states:
         layers_idx = range(len(outputs.hidden_states[0]))  # type: ignore
 
         generatation_probabilities = []
@@ -109,6 +112,14 @@ def inference(
         token_distribution = top_k_probabilities
         token_distribution_ids = top_k_ids.unsqueeze(1)
 
+    # Attention
+    decode_attentions = None
+    if attentions:
+        # List of tensors, each tensor is of shape [batch_size, heads, seq_length]
+        decode_attentions = [
+            step_att[-1].squeeze(dim=2) for step_att in outputs.attentions[1:]
+        ]
+
     # Generated sequence lengths
     eos_id = tokenizer.eos_token_id
     generated_tokens = torch.where(generated_ids != eos_id, 1, 0)
@@ -121,4 +132,5 @@ def inference(
         token_probabilities=token_probabilities,
         token_distribution=token_distribution,
         token_distribution_ids=token_distribution_ids,
+        attentions=decode_attentions,
     )

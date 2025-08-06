@@ -42,7 +42,7 @@ def shannon_entropy(
     Computes the average Shannon entropy for each generated token distribution.
 
     token_distribution must be of dimension:
-        [batch_size, layer_amount, sequence_length, vocab_size].
+        [batch_size, layer, sequence_length, top_k].
 
     sequence_length must be of dimension [batch_size].
     """
@@ -67,3 +67,31 @@ def shannon_entropy(
     sequence_entropy = torch.nanmean(token_entropy, dim=-1)
 
     return sequence_entropy
+
+
+def attention_entropy(attentions: torch.Tensor) -> torch.Tensor:
+    """
+    Computes the average attention entropy for each token and head
+
+    attentions must be of type:
+        [batch_size, layer, sequence_length, top_k].
+
+    sequence_length must be of dimension [batch_size].
+
+    I am not taking into account the variable generated sequence length between batches!
+    """
+
+    token_entropy_list = []  # list of seq_len tensors [batch_size]
+    for token_attention in attentions:
+        token_attention_log = -token_attention.log()
+        token_head_entropy = (token_attention_log * token_attention).mean(
+            dim=2
+        )
+        token_mean_entropy = token_head_entropy.mean(dim=1)
+
+        token_entropy_list.append(token_mean_entropy)
+
+    head_attention_entropy = torch.stack(token_entropy_list, dim=1)
+    attention_entropy = torch.mean(head_attention_entropy, dim=1)
+
+    return attention_entropy
