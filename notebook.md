@@ -373,3 +373,55 @@ TODO (pretty long list lol):
 ## August 6th 2025:
 
 I made the inference function return the attention values for each attention head on the last layer. I also computed the "attention entropy" in the informal.py script, I have yet to write the corresponding metric function on entropy.py, and test it on gsm8k. Probably tomorrow...
+
+## August 7th 2025:
+
+Had the meeting with my director! Really good meeting. He mentioned the following evaluation framework which can heavily simplify the process https://github.com/EleutherAI/lm-evaluation-harness.
+
+The TODO for the week is to:
+
+- Modify the lm-evaluation-harness to store the hidden states and attention values for each layer, so I can compute the attention entropy and ASEU metrics after evaluation!
+
+- Test on gsm8k and math datasets
+
+- Implement the attention entropy metric
+
+I'm writing a subclass of HFLM from lm-evaluation-harness to store the hidden states and attention values as tensors. After that i'm going to need to merge them somehow.
+
+Basic script to run evaluations with lm-evaluation-harness:
+
+```
+lm_eval --model hf \
+    --model_args pretrained=microsoft/Phi-3-mini-4k-instruct,dtype=float16,trust_remote_code=True \
+    --apply_chat_template \
+    --tasks gsm8k \
+    --device cuda:0 \
+    --output_path src/data/benchmark_results/gsm8k/gsm8k-phi-3-mini.json \
+    --batch_size auto \
+    --log_samples \
+    --limit 10
+```
+
+I tested it and it works!
+
+For running the subclass, I have to replace the --model hf with my custom model (say state_hf). I still have to figure out how to register the custom model and probably debug it.
+
+Possible fix:
+
+```
+PYTHONPATH=src \
+lm_eval \
+    --model state_hf \
+    --model_args pretrained=microsoft/Phi-3-mini-4k-instruct,dtype=float16,trust_remote_code=True \
+    --apply_chat_template \
+    --tasks gsm8k \
+    --device cuda:0 \
+    --output_path src/data/benchmark_results/gsm8k/gsm8k-phi-3-mini.json \
+    --batch_size auto \
+    --log_samples \
+    --limit 10
+```
+
+And i'd have to register state_hf directly, which is fine honestly.
+
+Good progress today! Tomorrow I'm going to see if I can store the LAST LAYER hidden states and attention values.
