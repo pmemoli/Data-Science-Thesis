@@ -388,16 +388,16 @@ The TODO for the week is to:
 
 I'm writing a subclass of HFLM from lm-evaluation-harness to store the hidden states and attention values as tensors. After that i'm going to need to merge them somehow.
 
-Basic script to run evaluations with lm-evaluation-harness:
+Basic script to run test evaluations with lm-evaluation-harness:
 
 ```
 lm_eval --model hf \
-    --model_args pretrained=microsoft/Phi-3-mini-4k-instruct,dtype=float16,trust_remote_code=True \
+    --model_args pretrained=microsoft/Phi-3-mini-4k-instruct,dtype=float16,trust_remote_code=False \
     --apply_chat_template \
     --tasks gsm8k \
     --device cuda:0 \
     --output_path src/data/benchmark_results/gsm8k/gsm8k-phi-3-mini.json \
-    --batch_size auto \
+    --batch_size 1 \
     --log_samples \
     --limit 10
 ```
@@ -412,7 +412,7 @@ Possible fix:
 PYTHONPATH=src \
 lm_eval \
     --model state_hf \
-    --model_args pretrained=microsoft/Phi-3-mini-4k-instruct,dtype=float16,trust_remote_code=True \
+    --model_args pretrained=microsoft/Phi-3-mini-4k-instruct,dtype=float16,trust_remote_code=False \
     --apply_chat_template \
     --tasks gsm8k \
     --device cuda:0 \
@@ -425,3 +425,9 @@ lm_eval \
 And i'd have to register state_hf directly, which is fine honestly.
 
 Good progress today! Tomorrow I'm going to see if I can store the LAST LAYER hidden states and attention values.
+
+## August 8th 2025:
+
+I installed lm-evaluation-harness on the virtual environment. Today i'm going to try and write the custom model.
+
+The computer with the gpus has no memory on the ssd xddd. I just forked the repository and added the custom model on lm_eval/models/huggingface_eval.py. I'm continuing when the memory issue is solved.
