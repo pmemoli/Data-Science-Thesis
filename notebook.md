@@ -399,7 +399,7 @@ lm_eval --model hf \
     --output_path src/data/benchmark_results/gsm8k/gsm8k-phi-3-mini.json \
     --batch_size 1 \
     --log_samples \
-    --limit 10
+    --limit 1
 ```
 
 I tested it and it works!
@@ -409,20 +409,18 @@ For running the subclass, I have to replace the --model hf with my custom model 
 Possible fix:
 
 ```
-PYTHONPATH=src \
 lm_eval \
-    --model state_hf \
-    --model_args pretrained=microsoft/Phi-3-mini-4k-instruct,dtype=float16,trust_remote_code=False \
-    --apply_chat_template \
+    --model hf \
+    --model_args pretrained=gpt2,dtype=float16 \
     --tasks gsm8k \
     --device cuda:0 \
-    --output_path src/data/benchmark_results/gsm8k/gsm8k-phi-3-mini.json \
-    --batch_size auto \
+    --output_path src/data/benchmark_results/gsm8k/gpt_2.json \
+    --batch_size 1 \
     --log_samples \
-    --limit 10
+    --limit 1
 ```
 
-And i'd have to register state_hf directly, which is fine honestly.
+And i'd have to register hf-state directly, which is fine honestly.
 
 Good progress today! Tomorrow I'm going to see if I can store the LAST LAYER hidden states and attention values.
 
@@ -431,3 +429,7 @@ Good progress today! Tomorrow I'm going to see if I can store the LAST LAYER hid
 I installed lm-evaluation-harness on the virtual environment. Today i'm going to try and write the custom model.
 
 The computer with the gpus has no memory on the ssd xddd. I just forked the repository and added the custom model on lm_eval/models/huggingface_eval.py. I'm continuing when the memory issue is solved.
+
+## August 11th 2025:
+
+I begun heavily modifying the hugginface model directly. To optimize memory usage and inference time, i am modifying the model_generate method directly. Its going to be a good idea to modularize it after it runs correctly.
