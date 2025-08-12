@@ -392,7 +392,7 @@ Basic script to run test evaluations with lm-evaluation-harness:
 
 ```
 lm_eval --model hf \
-    --model_args pretrained=microsoft/Phi-3-mini-4k-instruct,dtype=float16,trust_remote_code=False \
+    --model_args pretrained=microsoft/Phi-3-mini-4k-instruct,dtype=float16 \
     --apply_chat_template \
     --tasks gsm8k \
     --device cuda:0 \
@@ -411,7 +411,7 @@ Possible fix:
 ```
 lm_eval \
     --model hf \
-    --model_args pretrained=gpt2,dtype=float16 \
+    --model_args pretrained=gpt2,dtype=float16,trust_remote_code=True \
     --tasks gsm8k \
     --device cuda:0 \
     --output_path src/data/benchmark_results/gsm8k/gpt_2.json \
@@ -433,3 +433,5 @@ The computer with the gpus has no memory on the ssd xddd. I just forked the repo
 ## August 11th 2025:
 
 I begun heavily modifying the hugginface model directly. To optimize memory usage and inference time, i am modifying the model_generate method directly. Its going to be a good idea to modularize it after it runs correctly.
+
+At night I was able to run the custom hugginface model and it succesfully stores the relevant hidden states and attention values. All thats left is writing the metrics and computing the results (AUROC and average value for each dataset).

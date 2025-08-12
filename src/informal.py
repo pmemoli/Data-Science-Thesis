@@ -6,21 +6,14 @@
 
 import torch.nn.functional as F
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from src.metrics.entropy import shannon_entropy, predictive_entropy
-from datasets import load_dataset
-from src.utils.inference import inference
 import torch
-
-# %%
-math_ds = load_dataset("nlile/hendrycks-MATH-benchmark", split="train")
-gsm8k_ds = load_dataset("openai/gsm8k", "main", split="train")
 
 # %%
 model = AutoModelForCausalLM.from_pretrained(
     "microsoft/Phi-3-mini-4k-instruct",
     device_map="auto",
     torch_dtype="auto",
-    trust_remote_code=True,
+    attn_implementation="eager",
 )
 tokenizer = AutoTokenizer.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
 
@@ -33,7 +26,7 @@ messages = [
         },
         {
             "role": "user",
-            "content": "What is the integral of log(x) dx?",
+            "content": "What is 2+2?",
         },
     ],
 ]
@@ -52,33 +45,92 @@ outputs = model.generate(
     temperature=1.0,
     top_k=30,
     top_p=0.98,
+    pad_token_id=tokenizer.pad_token_id,
+    eos_token_id=tokenizer.eos_token_id,
     return_dict_in_generate=True,
     output_scores=True,
-    pad_token_id=tokenizer.eos_token_id,
     output_attentions=True,
+    output_hidden_states=True,
+    use_cache=True,
 )
 
 #%%
-# [tokens, layers, batch_size, heads, gen_length, seq_length]
-attentions = outputs.attentions 
+outputs.attentions
 
-# [batch_size, heads, input_seq_length, input_seq_length]
-prefill_attention = outputs.attentions[0][-1]  
+#%%
+def _process_outputs(self, outputs, prompt_length, top_k=20):
+    # Obtain the probability distribution of the generated tokens
+    generated_ids = outputs.sequences[:, prompt_length:]
 
-# list of tensors, each tensor is of shape [batch_size, heads, seq_length]
+    logits = torch.stack(outputs.scores, dim=1)
+    token_distribution = F.softmax(logits, dim=-1)
+
+    topk_probs, topk_indices = torch.topk(
+        token_distribution, k=top_k, dim=-1
+    )
+
+    # Obtain sequence probabilities
+    sequence_probabilities = torch.gather(
+        token_distribution,
+        -1,
+        generated_ids.unsqueeze(-1),
+    ).squeeze(-1)
+
+    # Obtain attention
+    decode_attentions = [step_att[-1].squeeze(dim=2) for step_att in outputs.attentions[1:]]
+
+    max_seq_length = max(att.size(-1) for att in decode_attentions)
+    attention_tensor = torch.stack(
+        [F.pad(att, (0, max_seq_length - att.size(-1))) for att in decode_attentions],
+        dim=-2
+    )
+
+    # Obtain hidden states
+    decode_hidden_states = [step_hidden[-1].squeeze(dim=1) for step_hidden in outputs.hidden_states[1:]]
+
+    hidden_states_tensor = torch.stack(
+        decode_hidden_states, dim=1
+    )
+
+    return {
+        "hidden_states": hidden_states_tensor,
+        "attentions": attention_tensor,
+        "token_distribution": topk_probs,
+        "token_distribution_ids": topk_indices,
+        "sequence_probabilities": sequence_probabilities,
+    }
+
+#%%
+result = _process_outputs(model, outputs, inputs.shape[1], top_k=50)
+
+#%%
+outputs.attentions
+
+# %% Attention
 decode_attentions = [step_att[-1].squeeze(dim=2) for step_att in outputs.attentions[1:]]
 
-token_entropy_list = [] # list of seq_len tensors [batch_size] 
-for token_attention in decode_attentions:
-    token_attention_log = -token_attention.log()
-    token_head_entropy = (token_attention_log * token_attention).mean(dim=2)  
-    token_mean_entropy = token_head_entropy.mean(dim=1)
+max_seq_length = max(att.size(-1) for att in decode_attentions)
+attention_tensor = torch.stack(
+    [F.pad(att, (0, max_seq_length - att.size(-1))) for att in decode_attentions],
+    dim=-2
+)
 
-    token_entropy_list.append(token_mean_entropy)
+attention_tensor.shape
 
-token_entropy = torch.stack(token_entropy_list, dim=1)  
+outputs.attentions[0][-1].shape
 
-attention_entropy = torch.mean(token_entropy, dim=1)  
+inputs.shape
+
+#%%
+generated_ids = outputs.sequences[:, inputs.shape[1]:]
+generated_ids.shape
+
+# decode
+decoded_text = tokenizer.batch_decode(
+    generated_ids
+)
+
+print(decoded_text)
 
 #%%
 generated_text = tokenizer.batch_decode(
