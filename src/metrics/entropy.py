@@ -1,3 +1,5 @@
+# These only really work with batch_size 1, but they are silly inexpensive so its fine
+
 import torch
 
 epsilon = 1e-9
@@ -30,11 +32,11 @@ def shannon_entropy(
         [batch_size, sequence_length, top_k].
     """
 
-    token_log_distribution = (token_distribution + epsilon).log()
-    token_entropy = -torch.sum(
+    token_log_distribution = -(token_distribution + epsilon).log()
+    token_entropy = torch.sum(
         token_distribution * token_log_distribution, dim=-1
     )
-    sequence_entropy = torch.nanmean(token_entropy, dim=-1)
+    sequence_entropy = torch.mean(token_entropy, dim=-1)
 
     return sequence_entropy
 
@@ -46,18 +48,22 @@ def attention_entropy(attentions: torch.Tensor) -> torch.Tensor:
     attentions must be of type:
         [batch_size, num_heads, output_sequence_length, full_sequence_length].
     """
-
-    token_entropy_list = []  # list of seq_len tensors [batch_size]
-    for token_attention in attentions:
-        token_attention_log = -token_attention.log()
-        token_head_entropy = (token_attention_log * token_attention).mean(
-            dim=2
+    attention_entropy = torch.zeros(attentions.size(0))
+    for i in range(attentions.size(2)):
+        token_attentions = attentions[
+            :, :, i, : attentions.size(3) - attentions.size(2) + i + 1
+        ]
+        nlog_token_attentions = -(token_attentions + 1e-7).log()
+        token_attention_entropy = torch.sum(
+            nlog_token_attentions * token_attentions, dim=-1
         )
-        token_mean_entropy = token_head_entropy.mean(dim=1)
+        mean_token_attention_entropy = torch.mean(
+            token_attention_entropy, dim=1
+        )
 
-        token_entropy_list.append(token_mean_entropy)
+        normalized_token_ae = mean_token_attention_entropy
+        attention_entropy += normalized_token_ae
 
-    head_attention_entropy = torch.stack(token_entropy_list, dim=1)
-    attention_entropy = torch.mean(head_attention_entropy, dim=1)
+    attention_entropy = attention_entropy / attentions.size(2)
 
     return attention_entropy

@@ -435,3 +435,13 @@ The computer with the gpus has no memory on the ssd xddd. I just forked the repo
 I begun heavily modifying the hugginface model directly. To optimize memory usage and inference time, i am modifying the model_generate method directly. Its going to be a good idea to modularize it after it runs correctly.
 
 At night I was able to run the custom hugginface model and it succesfully stores the relevant hidden states and attention values. All thats left is writing the metrics and computing the results (AUROC and average value for each dataset).
+
+## August 12th 2025:
+
+Wrote the code to compute the metrics based on lm-evaluation-harness results! All that is left is running the evaluations on whatever datasets I want, and computing the metrics.
+
+I was thinking of presenting the results in a table, with the following columns:
+
+DATASET, BENCHMARK, PE, PE_AUROC, SE, SE_AUROC, AE, AE_AUROC
+
+I can then just extend the table with more metrics as I compute them!
