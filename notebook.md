@@ -545,3 +545,11 @@ Today I did this manually, but to do this for all the datasets, I should write a
 I also read this paper: https://arxiv.org/pdf/2305.14802 (Estimating LLM capabilities without labeled data) uses NLL as a metric to estimate performance. They grab a dataset and use a "NLL vector" that represents the confidence within the dataset. This NLL vector is feed into a model like xgboost to predict the performance of the model on the dataset. The results look a bit underwhelming, with the average train accuracy sometimes beating the meta models lol.
 
 Its honestly quite relevant to what we are doing. I just don't really like the idea of training a model that directly predicts performance based on the NLL. The features seem to provide a huge intrinsic error, and I feel like training through datasets is not very robust (like no data). I would rather measure something like uncertainty or some other more directly related metric, and based on that estimate performance.
+
+TODO:
+
+1. Choose ~10-15 datasets from the phi 3.5 mini paper
+2. Write the proper parser for the results in the compute metric script
+3. Write a shell script that runs the evaluations and deletes the tensors
+4. Present the results in a cute way
+5. Run the evaluations on the gpt 20b model
