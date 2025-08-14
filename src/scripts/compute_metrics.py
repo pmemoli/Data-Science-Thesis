@@ -14,7 +14,7 @@ benchmark_src_path = "src/data/evaluation_results"
 tensor_src_path = "src/data/tensor_states"
 metrics_src_path = "src/data/metric_results"
 
-datasets = ["gsm8k", "math"]
+datasets = ["gsm8k", "hendrycks_math"]
 
 for dataset in datasets:
     print(f"Dataset: {dataset}")
@@ -24,26 +24,31 @@ for dataset in datasets:
     sample_files = [
         file for file in files if file.startswith(f"samples_{dataset}")
     ]
+
     if not sample_files:
-        print(f"No sample files found for dataset {dataset}, skipping...")
         continue
 
-    file = max(
-        sample_files,
-        key=lambda f: os.path.getctime(os.path.join(benchmark_src_path, f)),
-    )
+    results = []
 
-    with jsonlines.open(
-        f"{benchmark_src_path}/{dataset}/{file}",
-        mode="r",
-    ) as reader:
-        results = [item for item in reader]
-        results = list(
-            filter(
-                lambda x: x["filter"] == "flexible-extract",
-                results,
-            )
-        )
+    for file in sample_files:
+        with jsonlines.open(
+            f"{benchmark_src_path}/{file}",
+            mode="r",
+        ) as reader:
+            file_items = [item for item in reader]
+
+            if dataset == "gsm8k":
+                file_items = list(
+                    filter(
+                        lambda x: x["filter"] == "flexible-extract",
+                        file_items,
+                    )
+                )
+                results.extend(file_items)
+
+            elif dataset == "hendrycks_math":
+                # The exact match simply doesn't work, some manual parsing should be done
+                results.extend(file_items)
 
     # Benchmark score
     benchmark_score = sum(
@@ -72,7 +77,14 @@ for dataset in datasets:
     incorrect_results = []
     for result in results:
         unique_id = result["prompt_hash"]
-        tensor_data = load_tensor(unique_id)
+
+        try:
+            tensor_data = load_tensor(unique_id)
+        except:
+            print(f"Tensor data for {unique_id} not found, skipping.")
+            continue
+
+        print(f"Processing {unique_id}...")
 
         sequence_probabilities = tensor_data["sequence_probabilities"]
         token_distribution = tensor_data["token_distribution"]
@@ -80,9 +92,13 @@ for dataset in datasets:
 
         incorrect_results.append(result["exact_match"] == 0)
 
-        pe_values.append(predictive_entropy(sequence_probabilities).item())
-        se_values.append(shannon_entropy(token_distribution).item())
-        ae_values.append(attention_entropy(attentions).item())
+        pe = predictive_entropy(sequence_probabilities)
+        se = shannon_entropy(token_distribution)
+        ae = attention_entropy(attentions)
+
+        pe_values.append(pe[0].item())
+        se_values.append(se[0].item())
+        ae_values.append(ae[0].item())
 
     metrics["pe"] = sum(pe_values) / len(pe_values)
     metrics["se"] = sum(se_values) / len(se_values)
