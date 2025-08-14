@@ -445,3 +445,82 @@ I was thinking of presenting the results in a table, with the following columns:
 DATASET, BENCHMARK, PE, PE_AUROC, SE, SE_AUROC, AE, AE_AUROC
 
 I can then just extend the table with more metrics as I compute them!
+
+## August 13th 2025:
+
+Not much to do today. I'm going to make the most of the time and read some fundamental papers. Probably the attention and original gpt paper.
+
+I read and understood in depth these 2 papers:
+
+- Attention is all you need: https://arxiv.org/abs/1706.03762
+
+- Improving language understanding by generative pre-training: https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf
+
+I'd like to also read in depth the gpt-2, gpt-3 and instructGPT papers. Its crazy how instructGPT came in 2022.
+
+Tomorrow i'm probably reading:
+
+gpt-2 paper: Language Models are Unsupervised Multitask Learners, https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf
+
+and (maybe) gpt-3 paper: Language Models are Few-Shot Learners, https://arxiv.org/abs/2005.14165
+
+One key takaway is that language modeling is sometimes enough for actual tasks. And LM is trained on minimizing negative log likelihood (predictive entropy), which is also heavily correlated with attention entropy. This is probably why PE, despite being super simple, works decently well as a performance predictor.
+
+It's going to be interesting to see how rlhf interacts with this minimizing nll objective. I may just be able to extract some better cheap metric.
+
+Late at night I ended up reading the gpt-2 paper. Super interesting! They basically show that scaling the architecture x10 and training on the lm-task leads to the model being able to perform tasks that it was not trained on, such as question answering, summarization, etc. GPT-2 has 1.5 billion parameters.
+
+Current timeline:
+
+Attention is all you need (June 2017) -> GPT-1 (2018) -> GPT-2 (2019)
+
+The gpt 3 paper is looong. I can probably just skim it and go to the instructGPT paper, which is much more important to the thesis.
+
+## August 14th 2025:
+
+My director suggested these papers to read:
+
+Estimating LLM capabilities without labeled data (Findings EMNLP’23)
+Predicting performance drop under domain shift w/o target labels (Elsahar et al., 2019)
+Uncertainty Estimation & Quantification for LLMs (2024 survey)
+Task Calibration (ACL’25 Findings + arXiv’24)
+CUE (ACL’25) — harmonized uncertainty scoring that normalizes disparate estimators
+Nature (2024) “Larger & more instructable LLMs may be less reliable”
+Automated Capability Discovery (NeurIPS’24)
+
+We also fixed the issue with no memory on the ssd. I'm running this for gsm8k and possibly math:
+
+lm_eval --model hf-store \
+ --model_args pretrained=microsoft/Phi-3-mini-4k-instruct,dtype=float16 \
+ --apply_chat_template \
+ --tasks gsm8k \
+ --device cuda:0 \
+ --output_path src/data/evaluation_results/gsm8k-phi-3-mini.json \
+ --batch_size 1 \
+ --log_samples \
+
+Got this:
+
+```json
+{
+  "dataset": "gsm8k",
+  "benchmark_score": 0.7664897649734648,
+  "se": 0.17119616851029837,
+  "se_auroc": 0.6737510758282272,
+  "pe": 0.08058323320269675,
+  "pe_auroc": 0.6659505183244055,
+  "ae": 2.5742901016854263,
+  "ae_auroc": 0.5934043701106015
+}
+```
+
+lm_eval --model hf-store \
+ --model_args pretrained=microsoft/Phi-3-mini-4k-instruct,dtype=float16 \
+ --apply_chat_template \
+ --tasks hendrycks_math \
+ --device cuda:0 \
+ --output_path src/data/evaluation_results/math-phi-3-mini.json \
+ --batch_size 1 \
+ --log_samples \
+
+Today I did this manually, but to do this for all the datasets, I should write a shell script that runs the evaluations and deletes the tensors.
