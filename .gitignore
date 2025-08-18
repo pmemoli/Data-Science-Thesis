@@ -1,4 +1,5 @@
 .teamviewer
+src/data/
 sync.sh
 download_results.sh
 venv
