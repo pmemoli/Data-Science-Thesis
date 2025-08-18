@@ -1,0 +1,115 @@
+{
+  "adapter_spec": {
+    "method": "multiple_choice_joint",
+    "global_prefix": "",
+    "global_suffix": "",
+    "instructions": "The following are multiple choice questions (with answers) about anatomy.\n",
+    "input_prefix": "Question: ",
+    "input_suffix": "\n",
+    "reference_prefix": "A. ",
+    "reference_suffix": "\n",
+    "chain_of_thought_prefix": "",
+    "chain_of_thought_suffix": "\n",
+    "output_prefix": "Answer: ",
+    "output_suffix": "\n",
+    "instance_prefix": "\n",
+    "substitutions": [],
+    "max_train_instances": 5,
+    "max_eval_instances": 1,
+    "num_outputs": 5,
+    "num_train_trials": 1,
+    "num_trials": 1,
+    "sample_train": true,
+    "model_deployment": "huggingface/gpt2",
+    "model": "openai/gpt2",
+    "temperature": 0.0,
+    "max_tokens": 1,
+    "stop_sequences": [
+      "\n"
+    ],
+    "multi_label": false
+  },
+  "request_states": [
+    {
+      "instance": {
+        "input": {
+          "text": "Which one of the following brain areas is supplied by branches of the subclavian arteries?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "The frontal lobe"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "The parietal lobe"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "The hypothalamus"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "The cerebellum"
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id138"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "The frontal lobe",
+        "B": "The parietal lobe",
+        "C": "The hypothalamus",
+        "D": "The cerebellum"
+      },
+      "request": {
+        "model_deployment": "huggingface/gpt2",
+        "model": "openai/gpt2",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers) about anatomy.\n\nQuestion: What is the embryological origin of the hyoid bone?\nA. The first pharyngeal arch\nB. The first and second pharyngeal arches\nC. The second pharyngeal arch\nD. The second and third pharyngeal arches\nAnswer: D\n\nQuestion: Which of these branches of the trigeminal nerve contain somatic motor processes?\nA. The supraorbital nerve\nB. The infraorbital nerve\nC. The mental nerve\nD. None of the above\nAnswer: D\n\nQuestion: Which of the following is the body cavity that contains the pituitary gland?\nA. Abdominal\nB. Cranial\nC. Pleural\nD. Spinal\nAnswer: B\n\nQuestion: The pleura\nA. have no sensory innervation.\nB. are separated by a 2 mm space.\nC. extend into the neck.\nD. are composed of respiratory epithelium.\nAnswer: C\n\nQuestion: In Angle's Class II Div 2 occlusion there is\nA. excess overbite of the upper lateral incisors.\nB. negative overjet of the upper central incisors.\nC. excess overjet of the upper lateral incisors.\nD. excess overjet of the upper central incisors.\nAnswer: C\n\nQuestion: Which one of the following brain areas is supplied by branches of the subclavian arteries?\nA. The frontal lobe\nB. The parietal lobe\nC. The hypothalamus\nD. The cerebellum\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": " D",
+            "logprob": 0.0,
+            "tokens": [
+              {
+                "text": " D",
+                "logprob": 0.0
+              }
+            ]
+          }
+        ],
+        "cached": true,
+        "request_time": 0.3137369155883789,
+        "request_datetime": 1755536661
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    }
+  ]
+}

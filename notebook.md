@@ -552,4 +552,32 @@ TODO:
 2. Write the proper parser for the results in the compute metric script
 3. Write a shell script that runs the evaluations and deletes the tensors
 4. Present the results in a cute way
-5. Run the evaluations on the gpt 20b model
+
+After that:
+
+. Propose a bunch of other metrics (ASEU for sure!)
+. Run the evaluations on the gpt 20b model
+. Propose some clustering algorithm to find ill-performing domains
+
+## August 18th 2025:
+
+Modifying the loglikelihood method from the library is a huge pain. It is horribly implemented and impossible to understand what each thign does. For this reason I am migrating to standford helm:
+
+https://github.com/stanford-crfm/helm/
+
+Which seems to be much better documented and the code base looks clean. It also already provides the logprobabilities, which is what I want.
+
+Based on the previous results, i am also simply ignoring the attention and shannon entropies. The "naive" metric is the normalized negative log likelihood. ASEU is going to be the "non-naive" metric, which couples nicely with domain clustering since they can use the same embedding model.
+
+TODO: fork helm and compute the NLL on each dataset
+
+helm-run --run-entries mmlu:subject=anatomy,model=openai/gpt2 \
+ --suite test \
+ --output-path src/data/helm-results/ \
+ --max-eval-instances 1
+
+helm-summarize --suite my-suite --o src/data/helm-results/
+
+helm-server --o src/data/helm-results/
+
+It would be a good idea to have a "run metrics" method on the hugginface client that stores the likelihood metrics. It would also be a good idea to add a "metric" parameter to the run command.
