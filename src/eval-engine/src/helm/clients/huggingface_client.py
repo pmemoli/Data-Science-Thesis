@@ -1,5 +1,6 @@
 from copy import deepcopy
 import torch
+import torch.nn.functional as F
 from transformers import AutoModelForCausalLM
 from transformers.generation.stopping_criteria import (
     StoppingCriteria,
@@ -107,7 +108,7 @@ class HuggingFaceServer:
         # We retain this temporarily to maintain reverse compatibility.
         # TODO: Delete if-else and don't set trust_remote_code=True
         if "trust_remote_code" not in kwargs:
-            kwargs["trust_remote_code"] = True
+            kwargs["trust_remote_code"] = False
 
         with htrack_block(
             f"Loading Hugging Face model {pretrained_model_name_or_path}"
@@ -117,13 +118,78 @@ class HuggingFaceServer:
                 # kwargs contains device_map=auto
                 # Do not call to() because accelerate will take care of model device placement.
                 self.model = AutoModelForCausalLM.from_pretrained(
-                    pretrained_model_name_or_path, **kwargs
+                    pretrained_model_name_or_path,
+                    **kwargs,
+                    torch_dtype=torch.float16,
                 )
             else:
                 self.model = AutoModelForCausalLM.from_pretrained(
-                    pretrained_model_name_or_path, **kwargs
+                    pretrained_model_name_or_path,
+                    **kwargs,
+                    torch_dtype=torch.float16,
                 ).to(self.device)
         self.wrapped_tokenizer = wrapped_tokenizer
+
+    def compute_metrics(
+        self,
+        input: torch.Tensor,
+        sequences: torch.Tensor,
+        scores: tuple[torch.Tensor],
+        pad_token_id: int,
+    ) -> list[dict[str, float]]:
+        """
+        Computes the normalized negative log likelihood (predictive entropy) and average shannon entropy
+        """
+
+        prompt_length = input.shape[1]
+
+        eps = 1e-8
+
+        amount_of_batches = sequences.shape[0]
+        metrics = []
+        for batch_idx in range(amount_of_batches):
+            nll = 0
+            predictive_entropy = 0
+            shannon_entropy = 0
+
+            sequence_length = 0
+            for gen_token_idx in range(len(scores)):
+                token_logits = scores[gen_token_idx][batch_idx]
+
+                selected_token = sequences[
+                    batch_idx, prompt_length + gen_token_idx
+                ]
+
+                token_probs = F.softmax(token_logits, dim=-1)
+                token_logprobs = torch.log(token_probs + eps)
+
+                nll += -token_logprobs[selected_token].item()
+                predictive_entropy += (
+                    -token_probs[selected_token]
+                    * token_logprobs[selected_token]
+                ).item()
+                shannon_entropy += torch.sum(
+                    -token_probs * token_logprobs
+                ).item()
+
+                sequence_length += 1
+
+                if selected_token == pad_token_id:
+                    break
+
+            nll /= sequence_length
+            predictive_entropy /= sequence_length
+            shannon_entropy /= sequence_length
+
+            metrics.append(
+                {
+                    "negative_log_likelihood": nll,
+                    "predictive_entropy": predictive_entropy,
+                    "shannon_entropy": shannon_entropy,
+                }
+            )
+
+        return metrics
 
     def serve_request(self, raw_request: HuggingFaceRequest) -> Dict:
         with self.wrapped_tokenizer as tokenizer:
@@ -132,6 +198,8 @@ class HuggingFaceServer:
                 return_tensors="pt",
                 return_token_type_ids=False,
             ).to(0 if self.device is None else self.device)
+
+            pad_token_id = tokenizer.pad_token_id
 
         stopping_criteria: Optional[StoppingCriteriaList] = None
         optional_args = {}
@@ -172,22 +240,34 @@ class HuggingFaceServer:
 
             sequences = encoded_input["input_ids"]
             scores = output.logits
+            metric_scores = [scores[:, i, :] for i in range(scores.shape[1])]
+
         else:
             output = self.model.generate(
                 **encoded_input,
-                temperature=raw_request["temperature"],
+                temperature=1,  # raw_request["temperature"],
                 num_return_sequences=raw_request["num_return_sequences"],
                 max_new_tokens=raw_request["max_new_tokens"],
                 top_p=raw_request["top_p"],
                 do_sample=True,
-                return_dict_in_generate=True,
-                output_scores=True,
                 **optional_args,
                 stopping_criteria=stopping_criteria,
+                return_dict_in_generate=True,
+                output_scores=True,
             )
 
             sequences = output.sequences
             scores = output.scores
+            metric_scores = scores
+
+        metric_sequences = sequences
+        metric_input = encoded_input["input_ids"]
+
+        output_metrics = self.compute_metrics(
+            metric_input, metric_sequences, metric_scores, pad_token_id  # type: ignore
+        )
+
+        print(output_metrics)
 
         prompt_tokens_logprobs = []
         if compute_logprobs_only:
@@ -237,8 +317,11 @@ class HuggingFaceServer:
             all_decoded_text = tokenizer.batch_decode(sequences)
 
         completions = []
-        for decoded_text, tokens, generated_tokens_logprobs in zip(
-            all_decoded_text, all_tokens, all_generated_tokens_logprobs
+        for decoded_text, tokens, generated_tokens_logprobs, metrics in zip(
+            all_decoded_text,
+            all_tokens,
+            all_generated_tokens_logprobs,
+            output_metrics,
         ):
 
             completions.append(
@@ -247,6 +330,7 @@ class HuggingFaceServer:
                     "tokens": tokens,
                     "logprobs": generated_tokens_logprobs,
                     "prompt_logprobs": prompt_tokens_logprobs,
+                    "metrics": metrics,
                 }
             )
 
@@ -425,10 +509,15 @@ class HuggingFaceClient(CachingClient):
             def do_it() -> Dict[str, Any]:
                 return huggingface_model.serve_request(raw_request)
 
-            cache_key = CachingClient.make_cache_key(raw_request, request)
-            response, cached = self.cache.get(
-                cache_key, wrap_request_time(do_it)
-            )
+            # Disable cache
+            # cache_key = CachingClient.make_cache_key(raw_request, request)
+            # response, cached = self.cache.get(
+            #     cache_key, wrap_request_time(do_it)
+            # )
+
+            cached = False
+            response = wrap_request_time(do_it)()
+
         except Exception as e:  # Do something if error is encountered.
             error: str = f"HuggingFace error: {e}"
             return RequestResult(
@@ -438,8 +527,6 @@ class HuggingFaceClient(CachingClient):
                 completions=[],
                 embedding=[],
             )
-
-        print(response)
 
         completions = []
         for raw_completion in response["completions"]:
@@ -478,6 +565,7 @@ class HuggingFaceClient(CachingClient):
 
             completion = GeneratedOutput(
                 text=raw_completion["text"],
+                metrics=raw_completion.get("metrics", {}),
                 logprob=sequence_logprob,
                 tokens=tokens,
             )

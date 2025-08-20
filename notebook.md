@@ -571,9 +571,9 @@ Based on the previous results, i am also simply ignoring the attention and shann
 
 TODO: fork helm and compute the NLL on each dataset
 
-helm-run --run-entries mmlu:subject=anatomy,model=openai/gpt2 \
+helm-run --run-entries mmlu:subject=anatomy,model=openai/gpt2\
  --suite test \
- --output-path src/data/helm-results/ \
+ --output-path src/data/helm/ \
  --max-eval-instances 1
 
 helm-summarize --suite my-suite --o src/data/helm-results/
@@ -581,3 +581,36 @@ helm-summarize --suite my-suite --o src/data/helm-results/
 helm-server --o src/data/helm-results/
 
 It would be a good idea to have a "run metrics" method on the hugginface client that stores the likelihood metrics. It would also be a good idea to add a "metric" parameter to the run command.
+
+Succesfully added a "compute metric" method that stores something in the response! Just have to add PE and SE now (hidden state based metrics in the future, but that is going to be so simple).
+
+## August 19th 2025:
+
+I understand now how multiple choice benchmarks are performed. They feed the question and possible answer to the model, and then just compare the logprobs (normalized ofc). Its not as easy to get metrics ignoring the question like with COT benchmarks, since the hugginface clients don't distinguish between them. I'd have to modify the method which calls the client, and a "question length" parameter to everything...
+
+I'm going to focus on COT benchmarks and only then pass to multiple choice. The context on which this may be useful is on lm-tasks, which are closer to COT than MC benchmarks.
+
+Was able to run gsm with:
+
+helm-run --run-entries gsm:model=openai/gpt2 \
+ --suite test \
+ --output-path src/data/helm/ \
+ --max-eval-instances 1
+
+But the metrics return 0. There is an error somewhere i can't find... Too tired, tomorrow i'm testing this with better models and seeing if it this fixes by itself.
+
+helm-run --run-entries gsm:model=microsoft/phi-3.5-mini-instruct \
+ --suite test \
+ --output-path src/data/helm/ \
+ --max-eval-instances 1
+
+## August 20th 2025:
+
+Succesfully ran:
+
+helm-run --run-entries gsm:model=microsoft/phi-3.5-mini-instruct \
+ --suite test \
+ --output-path src/data/helm/ \
+ --max-eval-instances 1
+
+With the three entropy based metrics. All that's left is running it on all the relevant datasets and computing the results.
