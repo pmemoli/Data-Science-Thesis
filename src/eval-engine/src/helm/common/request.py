@@ -161,6 +161,9 @@ class GeneratedOutput:
     # The tokens
     tokens: List[Token]
 
+    # Metrics
+    metrics: Optional[Dict[str, float]] = None
+
     # Why did the sequence finish?
     finish_reason: Optional[Dict[str, Any]] = None
 

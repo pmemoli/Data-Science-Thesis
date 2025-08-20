@@ -563,15 +563,17 @@ class HuggingFaceClient(CachingClient):
                 tokens.append(Token(text=token_text, logprob=logprob))
                 sequence_logprob += logprob
 
+            print(raw_completion["metrics"])
+
             completion = GeneratedOutput(
                 text=raw_completion["text"],
                 metrics=raw_completion.get("metrics", {}),
                 logprob=sequence_logprob,
                 tokens=tokens,
             )
-            completion = truncate_sequence(
-                completion, request, end_of_text_token=self._end_of_text_token
-            )
+            # completion = truncate_sequence(
+            #     completion, request, end_of_text_token=self._end_of_text_token
+            # )
             completions.append(completion)
 
         return RequestResult(

@@ -1,38 +1,36 @@
 {
-  "name": "mmlu:subject=philosophy,method=multiple_choice_joint,model=openai_gpt2",
+  "name": "gsm:model=microsoft_phi-3.5-mini-instruct",
   "scenario_spec": {
-    "class_name": "helm.benchmark.scenarios.mmlu_scenario.MMLUScenario",
-    "args": {
-      "subject": "philosophy"
-    }
+    "class_name": "helm.benchmark.scenarios.gsm_scenario.GSM8KScenario",
+    "args": {}
   },
   "adapter_spec": {
-    "method": "multiple_choice_joint",
+    "method": "generation",
     "global_prefix": "",
     "global_suffix": "",
-    "instructions": "The following are multiple choice questions (with answers) about philosophy.\n",
-    "input_prefix": "Question: ",
+    "instructions": "",
+    "input_prefix": "Q: ",
     "input_suffix": "\n",
     "reference_prefix": "A. ",
     "reference_suffix": "\n",
     "chain_of_thought_prefix": "",
     "chain_of_thought_suffix": "\n",
-    "output_prefix": "Answer: ",
+    "output_prefix": "A: ",
     "output_suffix": "\n",
     "instance_prefix": "\n",
     "substitutions": [],
     "max_train_instances": 5,
-    "max_eval_instances": 2,
-    "num_outputs": 5,
+    "max_eval_instances": 5,
+    "num_outputs": 1,
     "num_train_trials": 1,
     "num_trials": 1,
     "sample_train": true,
-    "model_deployment": "huggingface/gpt2",
-    "model": "openai/gpt2",
+    "model_deployment": "huggingface/phi-3.5-mini-instruct",
+    "model": "microsoft/phi-3.5-mini-instruct",
     "temperature": 0.0,
-    "max_tokens": 1,
+    "max_tokens": 400,
     "stop_sequences": [
-      "\n"
+      "\n\n"
     ],
     "multi_label": false
   },
@@ -41,16 +39,10 @@
       "class_name": "helm.benchmark.metrics.basic_metrics.BasicGenerationMetric",
       "args": {
         "names": [
-          "exact_match",
-          "quasi_exact_match",
-          "prefix_exact_match",
-          "quasi_prefix_exact_match"
+          "exact_match_indicator",
+          "final_number_exact_match"
         ]
       }
-    },
-    {
-      "class_name": "helm.benchmark.metrics.basic_metrics.BasicReferenceMetric",
-      "args": {}
     },
     {
       "class_name": "helm.benchmark.metrics.basic_metrics.InstancesPerSplitMetric",
@@ -68,6 +60,6 @@
     "seeds_per_instance": 1
   },
   "groups": [
-    "mmlu"
+    "gsm"
   ]
 }

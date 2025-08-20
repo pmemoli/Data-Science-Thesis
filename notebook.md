@@ -614,3 +614,5 @@ helm-run --run-entries gsm:model=microsoft/phi-3.5-mini-instruct \
  --max-eval-instances 1
 
 With the three entropy based metrics. All that's left is running it on all the relevant datasets and computing the results.
+
+TODO: Run the evaluations and present them in a cute way.

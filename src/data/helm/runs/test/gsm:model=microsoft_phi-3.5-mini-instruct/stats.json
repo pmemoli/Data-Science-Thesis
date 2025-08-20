@@ -5,11 +5,11 @@
       "split": "test"
     },
     "count": 1,
-    "sum": 4.0,
-    "sum_squared": 16.0,
-    "min": 4.0,
-    "max": 4.0,
-    "mean": 4.0,
+    "sum": 1.0,
+    "sum_squared": 1.0,
+    "min": 1.0,
+    "max": 1.0,
+    "mean": 1.0,
     "variance": 0.0,
     "stddev": 0.0
   },
@@ -33,11 +33,11 @@
       "split": "test"
     },
     "count": 1,
-    "sum": 356.0,
-    "sum_squared": 126736.0,
-    "min": 356.0,
-    "max": 356.0,
-    "mean": 356.0,
+    "sum": 1208.6,
+    "sum_squared": 1460713.9599999997,
+    "min": 1208.6,
+    "max": 1208.6,
+    "mean": 1208.6,
     "variance": 0.0,
     "stddev": 0.0
   },
@@ -47,11 +47,11 @@
       "split": "test"
     },
     "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
+    "sum": 232.2,
+    "sum_squared": 53916.84,
+    "min": 232.2,
+    "max": 232.2,
+    "mean": 232.2,
     "variance": 0.0,
     "stddev": 0.0
   },
@@ -61,11 +61,11 @@
       "split": "test"
     },
     "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
+    "sum": 232.2,
+    "sum_squared": 53916.84,
+    "min": 232.2,
+    "max": 232.2,
+    "mean": 232.2,
     "variance": 0.0,
     "stddev": 0.0
   },
@@ -93,11 +93,11 @@
       "split": "test"
     },
     "count": 1,
-    "sum": 0.3137369155883789,
-    "sum_squared": 0.09843085220290959,
-    "min": 0.3137369155883789,
-    "max": 0.3137369155883789,
-    "mean": 0.3137369155883789,
+    "sum": 23.020600605010987,
+    "sum_squared": 529.9480522154322,
+    "min": 23.020600605010987,
+    "max": 23.020600605010987,
+    "mean": 23.020600605010987,
     "variance": 0.0,
     "stddev": 0.0
   },
@@ -205,129 +205,17 @@
       "split": "test"
     },
     "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
+    "sum": 6.100034112962034e-09,
+    "sum_squared": 3.72104161793005e-17,
+    "min": 6.100034112962034e-09,
+    "max": 6.100034112962034e-09,
+    "mean": 6.100034112962034e-09,
     "variance": 0.0,
     "stddev": 0.0
   },
   {
     "name": {
-      "name": "exact_match",
-      "split": "test"
-    },
-    "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
-    "variance": 0.0,
-    "stddev": 0.0
-  },
-  {
-    "name": {
-      "name": "exact_match@5",
-      "split": "test"
-    },
-    "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
-    "variance": 0.0,
-    "stddev": 0.0
-  },
-  {
-    "name": {
-      "name": "quasi_exact_match",
-      "split": "test"
-    },
-    "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
-    "variance": 0.0,
-    "stddev": 0.0
-  },
-  {
-    "name": {
-      "name": "quasi_exact_match@5",
-      "split": "test"
-    },
-    "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
-    "variance": 0.0,
-    "stddev": 0.0
-  },
-  {
-    "name": {
-      "name": "prefix_exact_match",
-      "split": "test"
-    },
-    "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
-    "variance": 0.0,
-    "stddev": 0.0
-  },
-  {
-    "name": {
-      "name": "prefix_exact_match@5",
-      "split": "test"
-    },
-    "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
-    "variance": 0.0,
-    "stddev": 0.0
-  },
-  {
-    "name": {
-      "name": "quasi_prefix_exact_match",
-      "split": "test"
-    },
-    "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
-    "variance": 0.0,
-    "stddev": 0.0
-  },
-  {
-    "name": {
-      "name": "quasi_prefix_exact_match@5",
-      "split": "test"
-    },
-    "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
-    "variance": 0.0,
-    "stddev": 0.0
-  },
-  {
-    "name": {
-      "name": "logprob",
+      "name": "exact_match_indicator",
       "split": "test"
     },
     "count": 1,
@@ -341,15 +229,43 @@
   },
   {
     "name": {
+      "name": "final_number_exact_match",
+      "split": "test"
+    },
+    "count": 1,
+    "sum": 0.8,
+    "sum_squared": 0.6400000000000001,
+    "min": 0.8,
+    "max": 0.8,
+    "mean": 0.8,
+    "variance": 0.0,
+    "stddev": 0.0
+  },
+  {
+    "name": {
+      "name": "logprob",
+      "split": "test"
+    },
+    "count": 1,
+    "sum": -33.40442566552538,
+    "sum_squared": 1115.8556540436107,
+    "min": -33.40442566552538,
+    "max": -33.40442566552538,
+    "mean": -33.40442566552538,
+    "variance": 0.0,
+    "stddev": 0.0
+  },
+  {
+    "name": {
       "name": "num_perplexity_tokens",
       "split": "test"
     },
     "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
+    "sum": 232.2,
+    "sum_squared": 53916.84,
+    "min": 232.2,
+    "max": 232.2,
+    "mean": 232.2,
     "variance": 0.0,
     "stddev": 0.0
   },
@@ -359,11 +275,11 @@
       "split": "test"
     },
     "count": 1,
-    "sum": 2.0,
-    "sum_squared": 4.0,
-    "min": 2.0,
-    "max": 2.0,
-    "mean": 2.0,
+    "sum": 522.0,
+    "sum_squared": 272484.0,
+    "min": 522.0,
+    "max": 522.0,
+    "mean": 522.0,
     "variance": 0.0,
     "stddev": 0.0
   },
@@ -373,11 +289,11 @@
       "split": "test"
     },
     "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
+    "sum": 1.1547231007812058,
+    "sum_squared": 1.3333854394777627,
+    "min": 1.1547231007812058,
+    "max": 1.1547231007812058,
+    "mean": 1.1547231007812058,
     "variance": 0.0,
     "stddev": 0.0
   },
@@ -387,11 +303,11 @@
       "split": "test"
     },
     "count": 1,
-    "sum": 0.0,
-    "sum_squared": 0.0,
-    "min": 0.0,
-    "max": 0.0,
-    "mean": 0.0,
+    "sum": 0.09232260392988023,
+    "sum_squared": 0.008523463196393537,
+    "min": 0.09232260392988023,
+    "max": 0.09232260392988023,
+    "mean": 0.09232260392988023,
     "variance": 0.0,
     "stddev": 0.0
   },
@@ -401,11 +317,11 @@
       "split": "test"
     },
     "count": 1,
-    "sum": 0.0,
-    "sum_squared": 0.0,
-    "min": 0.0,
-    "max": 0.0,
-    "mean": 0.0,
+    "sum": -0.06399315261594901,
+    "sum_squared": 0.004095123581728142,
+    "min": -0.06399315261594901,
+    "max": -0.06399315261594901,
+    "mean": -0.06399315261594901,
     "variance": 0.0,
     "stddev": 0.0
   },
@@ -421,11 +337,11 @@
       }
     },
     "count": 1,
-    "sum": 4.0,
-    "sum_squared": 16.0,
-    "min": 4.0,
-    "max": 4.0,
-    "mean": 4.0,
+    "sum": 1.0,
+    "sum_squared": 1.0,
+    "min": 1.0,
+    "max": 1.0,
+    "mean": 1.0,
     "variance": 0.0,
     "stddev": 0.0
   },
@@ -441,11 +357,11 @@
       }
     },
     "count": 1,
-    "sum": 4.0,
-    "sum_squared": 16.0,
-    "min": 4.0,
-    "max": 4.0,
-    "mean": 4.0,
+    "sum": 1.0,
+    "sum_squared": 1.0,
+    "min": 1.0,
+    "max": 1.0,
+    "mean": 1.0,
     "variance": 0.0,
     "stddev": 0.0
   },
@@ -501,11 +417,11 @@
       }
     },
     "count": 1,
-    "sum": 356.0,
-    "sum_squared": 126736.0,
-    "min": 356.0,
-    "max": 356.0,
-    "mean": 356.0,
+    "sum": 1208.6,
+    "sum_squared": 1460713.9599999997,
+    "min": 1208.6,
+    "max": 1208.6,
+    "mean": 1208.6,
     "variance": 0.0,
     "stddev": 0.0
   },
@@ -521,11 +437,11 @@
       }
     },
     "count": 1,
-    "sum": 356.0,
-    "sum_squared": 126736.0,
-    "min": 356.0,
-    "max": 356.0,
-    "mean": 356.0,
+    "sum": 1208.6,
+    "sum_squared": 1460713.9599999997,
+    "min": 1208.6,
+    "max": 1208.6,
+    "mean": 1208.6,
     "variance": 0.0,
     "stddev": 0.0
   },
@@ -541,11 +457,11 @@
       }
     },
     "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
+    "sum": 232.2,
+    "sum_squared": 53916.84,
+    "min": 232.2,
+    "max": 232.2,
+    "mean": 232.2,
     "variance": 0.0,
     "stddev": 0.0
   },
@@ -561,11 +477,11 @@
       }
     },
     "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
+    "sum": 232.2,
+    "sum_squared": 53916.84,
+    "min": 232.2,
+    "max": 232.2,
+    "mean": 232.2,
     "variance": 0.0,
     "stddev": 0.0
   },
@@ -581,11 +497,11 @@
       }
     },
     "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
+    "sum": 232.2,
+    "sum_squared": 53916.84,
+    "min": 232.2,
+    "max": 232.2,
+    "mean": 232.2,
     "variance": 0.0,
     "stddev": 0.0
   },
@@ -601,11 +517,11 @@
       }
     },
     "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
+    "sum": 232.2,
+    "sum_squared": 53916.84,
+    "min": 232.2,
+    "max": 232.2,
+    "mean": 232.2,
     "variance": 0.0,
     "stddev": 0.0
   },
@@ -621,11 +537,11 @@
       }
     },
     "count": 1,
-    "sum": 0.3137369155883789,
-    "sum_squared": 0.09843085220290959,
-    "min": 0.3137369155883789,
-    "max": 0.3137369155883789,
-    "mean": 0.3137369155883789,
+    "sum": 23.020600605010987,
+    "sum_squared": 529.9480522154322,
+    "min": 23.020600605010987,
+    "max": 23.020600605010987,
+    "mean": 23.020600605010987,
     "variance": 0.0,
     "stddev": 0.0
   },
@@ -641,11 +557,11 @@
       }
     },
     "count": 1,
-    "sum": 0.3137369155883789,
-    "sum_squared": 0.09843085220290959,
-    "min": 0.3137369155883789,
-    "max": 0.3137369155883789,
-    "mean": 0.3137369155883789,
+    "sum": 23.020600605010987,
+    "sum_squared": 529.9480522154322,
+    "min": 23.020600605010987,
+    "max": 23.020600605010987,
+    "mean": 23.020600605010987,
     "variance": 0.0,
     "stddev": 0.0
   },
@@ -941,11 +857,11 @@
       }
     },
     "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
+    "sum": 6.100034112962034e-09,
+    "sum_squared": 3.72104161793005e-17,
+    "min": 6.100034112962034e-09,
+    "max": 6.100034112962034e-09,
+    "mean": 6.100034112962034e-09,
     "variance": 0.0,
     "stddev": 0.0
   },
@@ -961,337 +877,17 @@
       }
     },
     "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
+    "sum": 6.100034112962034e-09,
+    "sum_squared": 3.72104161793005e-17,
+    "min": 6.100034112962034e-09,
+    "max": 6.100034112962034e-09,
+    "mean": 6.100034112962034e-09,
     "variance": 0.0,
     "stddev": 0.0
   },
   {
     "name": {
-      "name": "exact_match",
-      "split": "test",
-      "perturbation": {
-        "name": "robustness",
-        "robustness": true,
-        "fairness": false,
-        "computed_on": "worst"
-      }
-    },
-    "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
-    "variance": 0.0,
-    "stddev": 0.0
-  },
-  {
-    "name": {
-      "name": "exact_match",
-      "split": "test",
-      "perturbation": {
-        "name": "fairness",
-        "robustness": false,
-        "fairness": true,
-        "computed_on": "worst"
-      }
-    },
-    "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
-    "variance": 0.0,
-    "stddev": 0.0
-  },
-  {
-    "name": {
-      "name": "exact_match@5",
-      "split": "test",
-      "perturbation": {
-        "name": "robustness",
-        "robustness": true,
-        "fairness": false,
-        "computed_on": "worst"
-      }
-    },
-    "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
-    "variance": 0.0,
-    "stddev": 0.0
-  },
-  {
-    "name": {
-      "name": "exact_match@5",
-      "split": "test",
-      "perturbation": {
-        "name": "fairness",
-        "robustness": false,
-        "fairness": true,
-        "computed_on": "worst"
-      }
-    },
-    "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
-    "variance": 0.0,
-    "stddev": 0.0
-  },
-  {
-    "name": {
-      "name": "quasi_exact_match",
-      "split": "test",
-      "perturbation": {
-        "name": "robustness",
-        "robustness": true,
-        "fairness": false,
-        "computed_on": "worst"
-      }
-    },
-    "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
-    "variance": 0.0,
-    "stddev": 0.0
-  },
-  {
-    "name": {
-      "name": "quasi_exact_match",
-      "split": "test",
-      "perturbation": {
-        "name": "fairness",
-        "robustness": false,
-        "fairness": true,
-        "computed_on": "worst"
-      }
-    },
-    "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
-    "variance": 0.0,
-    "stddev": 0.0
-  },
-  {
-    "name": {
-      "name": "quasi_exact_match@5",
-      "split": "test",
-      "perturbation": {
-        "name": "robustness",
-        "robustness": true,
-        "fairness": false,
-        "computed_on": "worst"
-      }
-    },
-    "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
-    "variance": 0.0,
-    "stddev": 0.0
-  },
-  {
-    "name": {
-      "name": "quasi_exact_match@5",
-      "split": "test",
-      "perturbation": {
-        "name": "fairness",
-        "robustness": false,
-        "fairness": true,
-        "computed_on": "worst"
-      }
-    },
-    "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
-    "variance": 0.0,
-    "stddev": 0.0
-  },
-  {
-    "name": {
-      "name": "prefix_exact_match",
-      "split": "test",
-      "perturbation": {
-        "name": "robustness",
-        "robustness": true,
-        "fairness": false,
-        "computed_on": "worst"
-      }
-    },
-    "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
-    "variance": 0.0,
-    "stddev": 0.0
-  },
-  {
-    "name": {
-      "name": "prefix_exact_match",
-      "split": "test",
-      "perturbation": {
-        "name": "fairness",
-        "robustness": false,
-        "fairness": true,
-        "computed_on": "worst"
-      }
-    },
-    "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
-    "variance": 0.0,
-    "stddev": 0.0
-  },
-  {
-    "name": {
-      "name": "prefix_exact_match@5",
-      "split": "test",
-      "perturbation": {
-        "name": "robustness",
-        "robustness": true,
-        "fairness": false,
-        "computed_on": "worst"
-      }
-    },
-    "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
-    "variance": 0.0,
-    "stddev": 0.0
-  },
-  {
-    "name": {
-      "name": "prefix_exact_match@5",
-      "split": "test",
-      "perturbation": {
-        "name": "fairness",
-        "robustness": false,
-        "fairness": true,
-        "computed_on": "worst"
-      }
-    },
-    "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
-    "variance": 0.0,
-    "stddev": 0.0
-  },
-  {
-    "name": {
-      "name": "quasi_prefix_exact_match",
-      "split": "test",
-      "perturbation": {
-        "name": "robustness",
-        "robustness": true,
-        "fairness": false,
-        "computed_on": "worst"
-      }
-    },
-    "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
-    "variance": 0.0,
-    "stddev": 0.0
-  },
-  {
-    "name": {
-      "name": "quasi_prefix_exact_match",
-      "split": "test",
-      "perturbation": {
-        "name": "fairness",
-        "robustness": false,
-        "fairness": true,
-        "computed_on": "worst"
-      }
-    },
-    "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
-    "variance": 0.0,
-    "stddev": 0.0
-  },
-  {
-    "name": {
-      "name": "quasi_prefix_exact_match@5",
-      "split": "test",
-      "perturbation": {
-        "name": "robustness",
-        "robustness": true,
-        "fairness": false,
-        "computed_on": "worst"
-      }
-    },
-    "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
-    "variance": 0.0,
-    "stddev": 0.0
-  },
-  {
-    "name": {
-      "name": "quasi_prefix_exact_match@5",
-      "split": "test",
-      "perturbation": {
-        "name": "fairness",
-        "robustness": false,
-        "fairness": true,
-        "computed_on": "worst"
-      }
-    },
-    "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
-    "variance": 0.0,
-    "stddev": 0.0
-  },
-  {
-    "name": {
-      "name": "logprob",
+      "name": "exact_match_indicator",
       "split": "test",
       "perturbation": {
         "name": "robustness",
@@ -1311,7 +907,7 @@
   },
   {
     "name": {
-      "name": "logprob",
+      "name": "exact_match_indicator",
       "split": "test",
       "perturbation": {
         "name": "fairness",
@@ -1331,6 +927,86 @@
   },
   {
     "name": {
+      "name": "final_number_exact_match",
+      "split": "test",
+      "perturbation": {
+        "name": "robustness",
+        "robustness": true,
+        "fairness": false,
+        "computed_on": "worst"
+      }
+    },
+    "count": 1,
+    "sum": 0.8,
+    "sum_squared": 0.6400000000000001,
+    "min": 0.8,
+    "max": 0.8,
+    "mean": 0.8,
+    "variance": 0.0,
+    "stddev": 0.0
+  },
+  {
+    "name": {
+      "name": "final_number_exact_match",
+      "split": "test",
+      "perturbation": {
+        "name": "fairness",
+        "robustness": false,
+        "fairness": true,
+        "computed_on": "worst"
+      }
+    },
+    "count": 1,
+    "sum": 0.8,
+    "sum_squared": 0.6400000000000001,
+    "min": 0.8,
+    "max": 0.8,
+    "mean": 0.8,
+    "variance": 0.0,
+    "stddev": 0.0
+  },
+  {
+    "name": {
+      "name": "logprob",
+      "split": "test",
+      "perturbation": {
+        "name": "robustness",
+        "robustness": true,
+        "fairness": false,
+        "computed_on": "worst"
+      }
+    },
+    "count": 1,
+    "sum": -33.40442566552538,
+    "sum_squared": 1115.8556540436107,
+    "min": -33.40442566552538,
+    "max": -33.40442566552538,
+    "mean": -33.40442566552538,
+    "variance": 0.0,
+    "stddev": 0.0
+  },
+  {
+    "name": {
+      "name": "logprob",
+      "split": "test",
+      "perturbation": {
+        "name": "fairness",
+        "robustness": false,
+        "fairness": true,
+        "computed_on": "worst"
+      }
+    },
+    "count": 1,
+    "sum": -33.40442566552538,
+    "sum_squared": 1115.8556540436107,
+    "min": -33.40442566552538,
+    "max": -33.40442566552538,
+    "mean": -33.40442566552538,
+    "variance": 0.0,
+    "stddev": 0.0
+  },
+  {
+    "name": {
       "name": "num_perplexity_tokens",
       "split": "test",
       "perturbation": {
@@ -1341,11 +1017,11 @@
       }
     },
     "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
+    "sum": 232.2,
+    "sum_squared": 53916.84,
+    "min": 232.2,
+    "max": 232.2,
+    "mean": 232.2,
     "variance": 0.0,
     "stddev": 0.0
   },
@@ -1361,11 +1037,11 @@
       }
     },
     "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
+    "sum": 232.2,
+    "sum_squared": 53916.84,
+    "min": 232.2,
+    "max": 232.2,
+    "mean": 232.2,
     "variance": 0.0,
     "stddev": 0.0
   },
@@ -1381,11 +1057,11 @@
       }
     },
     "count": 1,
-    "sum": 2.0,
-    "sum_squared": 4.0,
-    "min": 2.0,
-    "max": 2.0,
-    "mean": 2.0,
+    "sum": 522.0,
+    "sum_squared": 272484.0,
+    "min": 522.0,
+    "max": 522.0,
+    "mean": 522.0,
     "variance": 0.0,
     "stddev": 0.0
   },
@@ -1401,11 +1077,11 @@
       }
     },
     "count": 1,
-    "sum": 2.0,
-    "sum_squared": 4.0,
-    "min": 2.0,
-    "max": 2.0,
-    "mean": 2.0,
+    "sum": 522.0,
+    "sum_squared": 272484.0,
+    "min": 522.0,
+    "max": 522.0,
+    "mean": 522.0,
     "variance": 0.0,
     "stddev": 0.0
   },
@@ -1415,11 +1091,11 @@
       "split": "test"
     },
     "count": 1,
-    "sum": 1.0,
-    "sum_squared": 1.0,
-    "min": 1.0,
-    "max": 1.0,
-    "mean": 1.0,
+    "sum": 5.0,
+    "sum_squared": 25.0,
+    "min": 5.0,
+    "max": 5.0,
+    "mean": 5.0,
     "variance": 0.0,
     "stddev": 0.0
   }

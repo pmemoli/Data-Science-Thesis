@@ -93,23 +93,24 @@
         "embedding": [],
         "completions": [
           {
-            "text": " D",
-            "logprob": 0.0,
+            "text": " B",
+            "logprob": -1.3183627128601074,
             "tokens": [
               {
-                "text": " D",
-                "logprob": 0.0
+                "text": " B",
+                "logprob": -1.3183627128601074
               }
             ],
             "metrics": {
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 0.0
+              "negative_log_likelihood": 1.318362832069397,
+              "predictive_entropy": 0.3527582883834839,
+              "shannon_entropy": 1.6707416772842407
             }
           }
         ],
         "cached": false,
-        "request_time": 0.5109677314758301,
-        "request_datetime": 1755703039
+        "request_time": 0.520176887512207,
+        "request_datetime": 1755709092
       },
       "num_train_instances": 5,
       "prompt_truncated": false,

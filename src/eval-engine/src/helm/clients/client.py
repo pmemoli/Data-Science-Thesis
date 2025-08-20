@@ -63,9 +63,13 @@ def truncate_sequence(
     # know how many tokens the prompt takes up.
     # In the benchmark, usually echo_prompt is only used for language modeling,
     # where max_tokens = 0, so there's nothing to truncate.
+    metrics = sequence.metrics
+
     if request.echo_prompt:
         if request.max_tokens != 0:
-            hwarn("don't know how to handle echo_prompt and max_tokens > 0, not truncating")
+            hwarn(
+                "don't know how to handle echo_prompt and max_tokens > 0, not truncating"
+            )
         return sequence
 
     if end_of_text_token:
@@ -89,7 +93,9 @@ def truncate_sequence(
                 break
             new_tokens.append(token)
 
-        if len(new_text) < len(sequence.text) and len(new_tokens) == len(sequence.tokens):
+        if len(new_text) < len(sequence.text) and len(new_tokens) == len(
+            sequence.tokens
+        ):
             hwarn(
                 f"Stripped characters from text ({len(sequence.text)} -> {len(new_text)}), "
                 f"but wasn't able to strip the tokens"
@@ -101,12 +107,19 @@ def truncate_sequence(
         if print_warning:
             hwarn(f"truncate_sequence needs to strip {json.dumps(stop)}")
 
-        sequence = GeneratedOutput(text=new_text, logprob=new_logprob, tokens=new_tokens)
+        sequence = GeneratedOutput(
+            text=new_text,
+            logprob=new_logprob,
+            tokens=new_tokens,
+            metrics=metrics,
+        )
 
     # Truncate based on the max number of tokens.
     if len(sequence.tokens) > request.max_tokens:
         if print_warning:
-            hwarn(f"truncate_sequence needs to truncate {len(sequence.tokens)} down to {request.max_tokens}")
+            hwarn(
+                f"truncate_sequence needs to truncate {len(sequence.tokens)} down to {request.max_tokens}"
+            )
         new_tokens = sequence.tokens[: request.max_tokens]
 
         # This is imperfect stitching together of tokens, so just to make sure this is okay
@@ -114,11 +127,18 @@ def truncate_sequence(
         # Usually, in our benchmark, max_tokens is active when it's 1, so hopefully this isn't an issue.
         new_text = "".join(token.text for token in new_tokens)
         if not sequence.text.startswith(new_text):
-            hwarn(f"{json.dumps(sequence.text)} does not start with truncated text {json.dumps(new_text)}")
+            hwarn(
+                f"{json.dumps(sequence.text)} does not start with truncated text {json.dumps(new_text)}"
+            )
 
         new_logprob = sum(token.logprob for token in new_tokens)
 
-        sequence = GeneratedOutput(text=new_text, logprob=new_logprob, tokens=new_tokens)
+        sequence = GeneratedOutput(
+            text=new_text,
+            logprob=new_logprob,
+            tokens=new_tokens,
+            metrics=metrics,
+        )
 
     return sequence
 
@@ -146,11 +166,14 @@ def truncate_and_tokenize_response_text(
     This method is safer than truncate_sequence() and should be preferred if the above conditions are met.
     Unlike truncate_sequence(), this method will not produce warnings or incorrect results.
     This is because the the tokens are derived from the truncated text using the tokenizer,
-    so the text and the tokens in the resulting result are guranteed to match."""
+    so the text and the tokens in the resulting result are guranteed to match.
+    """
     # Finish reason strings are token from basic_metrics._compute_finish_reason_metrics()
     finish_reason: str = original_finish_reason
     if request.echo_prompt:
-        raise Exception("truncate_and_tokenize_response_text() does not support requests with echo_prompt = True")
+        raise Exception(
+            "truncate_and_tokenize_response_text() does not support requests with echo_prompt = True"
+        )
 
     if end_of_text_token:
         stop_sequences = request.stop_sequences + [end_of_text_token]
@@ -164,24 +187,43 @@ def truncate_and_tokenize_response_text(
             pass
 
     token_strings = cast(
-        List[str], tokenizer.tokenize(TokenizationRequest(text=text, tokenizer=tokenizer_name)).raw_tokens
+        List[str],
+        tokenizer.tokenize(
+            TokenizationRequest(text=text, tokenizer=tokenizer_name)
+        ).raw_tokens,
     )
     if len(token_strings) > request.max_tokens:
         encoded_ints = cast(
             List[int],
             tokenizer.tokenize(
                 TokenizationRequest(
-                    text=text, tokenizer=tokenizer_name, encode=True, truncation=True, max_length=request.max_tokens
+                    text=text,
+                    tokenizer=tokenizer_name,
+                    encode=True,
+                    truncation=True,
+                    max_length=request.max_tokens,
                 )
             ).raw_tokens,
         )
-        text = tokenizer.decode(DecodeRequest(encoded_ints, tokenizer_name)).text
+        text = tokenizer.decode(
+            DecodeRequest(encoded_ints, tokenizer_name)
+        ).text
         token_strings = cast(
-            List[str], tokenizer.tokenize(TokenizationRequest(text=text, tokenizer=tokenizer_name)).raw_tokens
+            List[str],
+            tokenizer.tokenize(
+                TokenizationRequest(text=text, tokenizer=tokenizer_name)
+            ).raw_tokens,
         )
         finish_reason = "length"
-    tokens = [Token(text=token_string, logprob=0.0) for token_string in token_strings]
-    return GeneratedOutput(text=text, logprob=0.0, tokens=tokens, finish_reason={"reason": finish_reason})
+    tokens = [
+        Token(text=token_string, logprob=0.0) for token_string in token_strings
+    ]
+    return GeneratedOutput(
+        text=text,
+        logprob=0.0,
+        tokens=tokens,
+        finish_reason={"reason": finish_reason},
+    )
 
 
 def cleanup_str(token: str, tokenizer_name: Optional[str] = None) -> str:
@@ -200,12 +242,17 @@ def cleanup_str(token: str, tokenizer_name: Optional[str] = None) -> str:
         "together",
     ]:
         return token.replace("▁", " ")
-    elif tokenizer_name is not None and (tokenizer_name.startswith("huggingface") or tokenizer_name.endswith("gpt2")):
+    elif tokenizer_name is not None and (
+        tokenizer_name.startswith("huggingface")
+        or tokenizer_name.endswith("gpt2")
+    ):
         return token.replace("Ġ", " ")
     return token
 
 
-def cleanup_tokens(tokens: List[str], tokenizer_name: Optional[str] = None) -> List[str]:
+def cleanup_tokens(
+    tokens: List[str], tokenizer_name: Optional[str] = None
+) -> List[str]:
     """
     Applies `cleanup_str` to each token in `tokens`.
     """
@@ -216,7 +263,11 @@ def generate_uid_for_multimodal_prompt(prompt: MultimediaObject) -> str:
     """Generates a unique identifier for a given multimodal prompt."""
     return "".join(
         [
-            media_object.text if media_object.is_type(TEXT_TYPE) and media_object.text else str(media_object.location)
+            (
+                media_object.text
+                if media_object.is_type(TEXT_TYPE) and media_object.text
+                else str(media_object.location)
+            )
             for media_object in prompt.media_objects
         ]
     )
