@@ -1,0 +1,9 @@
+{
+  "name": "openbookqa",
+  "description": "Benchmark from https://aclanthology.org/D18-1260.pdf.",
+  "tags": [
+    "knowledge",
+    "multiple_choice"
+  ],
+  "definition_path": "https://github.com/stanford-crfm/helm/blob/main/src/helm/benchmark/scenarios/commonsense_scenario.py"
+}

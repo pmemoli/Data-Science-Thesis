@@ -616,3 +616,67 @@ helm-run --run-entries gsm:model=microsoft/phi-3.5-mini-instruct \
 With the three entropy based metrics. All that's left is running it on all the relevant datasets and computing the results.
 
 TODO: Run the evaluations and present them in a cute way.
+
+## August 21th 2025:
+
+I'm running helm lite with 100 instances per dataset on the phi 3.5 model.
+
+helm-run --conf-paths src/eval-engine/src/helm/benchmark/presentation/run_entries_lite.conf \
+ --models-to-run microsoft/phi-3.5-mini-instruct \
+ --suite helm-lite-naive \
+ --output-path src/data/helm/ \
+ --max-eval-instances 100
+
+And also introduced a "max nll" metric that is just the maximum NLL across the generated sequence.
+
+I'm gonna need to use an external VERY SMALL llm agent to parse the results, I can just use whatever is reported as a placeholder in the meanwhile.
+
+Successfully ran everything except for math, raft, quac and natural_qa.
+
+To test math:
+
+helm-run --run-entries math:model=microsoft/phi-3.5-mini-instruct,subject=number_theory,level=1,use_chain_of_thought=True \
+ --suite test \
+ --output-path src/data/helm/ \
+ --max-eval-instances 10
+
+To test natural_qa:
+
+helm-run --run-entries natural_qa:model=microsoft/phi-3.5-mini-instruct,mode=openbook_longans,output_format_instructions=natural_qa \
+ --suite test \
+ --output-path src/data/helm/ \
+ --max-eval-instances 10
+
+Cool, fixed! Now running everything on a differnent config file for instruct models:
+
+helm-run --conf-paths src/eval-engine/src/helm/benchmark/presentation/run_entries_lite_20240424_instruct.conf \
+ --models-to-run microsoft/phi-3.5-mini-instruct \
+ --suite helm-lite-instruct \
+ --output-path src/data/helm/ \
+ --max-eval-instances 100
+
+Tomorrow I want to have an actual table of results. The work is most likely going to just be presenting the results from today and possibly re-running on some scenarios that were not able to run.
+
+After that: Either implement ASEU or the domain clustering algorithm. Gonna talk it with my director.
+
+Had errors on:
+
+natural_qa:mode=openbook_longans,model=microsoft_phi-3.5-mini-instruct
+med_qa:model=microsoft_phi-3.5-mini-instruct
+
+Trying to run them with:
+
+helm-run --run-entries natural_qa:mode=openbook_longans,model=microsoft/phi-3.5-mini-instruct \
+ --suite helm-lite-instruct \
+ --output-path src/data/helm/ \
+ --num-threads 1 \
+ --max-eval-instances 100
+
+Which was unsuccesful...
+
+helm-run --run-entries med_qa:model=microsoft/phi-3.5-mini-instruct \
+ --suite helm-lite-instruct \
+ --output-path src/data/helm/ \
+ --max-eval-instances 100
+
+Which worked! I have enough to process the results.

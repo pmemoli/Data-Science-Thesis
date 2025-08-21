@@ -372,10 +372,9 @@ class MATHScenario(Scenario):
             typing.cast(
                 DatasetDict,
                 load_dataset(
-                    "hendrycks/competition_math",
+                    "nlile/hendrycks-MATH-benchmark",
                     trust_remote_code=True,
                     cache_dir=cache_dir,
-                    revision="71b758ecc688b2822d07ffa7f8393299f1dc7cac",
                 ),
             )
             .sort("problem")
@@ -422,14 +421,14 @@ class MATHScenario(Scenario):
 
             else:
                 examples: List[Dict[str, str]] = [example for example in data[split_name]]  # Filter by split
-                examples = group_by_key(examples, "type")[self.subject]  # Filter by type or subject
+                examples = group_by_key(examples, "subject")[self.subject]  # Filter by subject
                 examples = group_by_key(examples, "level")[self.level]  # Filter by level
                 dataset[split] = examples
 
                 for example in dataset[split]:
                     # Sanity check that we filtered correctly
                     assert (
-                        example["type"] == self.subject and example["level"] == self.level
+                        example["subject"] == self.subject and example["level"] == self.level
                     ), f"Wrong example was included after filtering: {example}"
 
                     if self.use_chain_of_thought:

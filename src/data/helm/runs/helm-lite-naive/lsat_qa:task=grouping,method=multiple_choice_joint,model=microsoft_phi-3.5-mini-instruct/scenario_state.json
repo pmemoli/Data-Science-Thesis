@@ -1,0 +1,1632 @@
+{
+  "adapter_spec": {
+    "method": "multiple_choice_joint",
+    "global_prefix": "",
+    "global_suffix": "",
+    "instructions": "The following are multiple choice questions (with answers).\n",
+    "input_prefix": "Passage: ",
+    "input_suffix": "\n",
+    "reference_prefix": "A. ",
+    "reference_suffix": "\n",
+    "chain_of_thought_prefix": "",
+    "chain_of_thought_suffix": "\n",
+    "output_prefix": "Answer: ",
+    "output_suffix": "\n",
+    "instance_prefix": "\n",
+    "substitutions": [],
+    "max_train_instances": 5,
+    "max_eval_instances": 100,
+    "num_outputs": 5,
+    "num_train_trials": 1,
+    "num_trials": 1,
+    "sample_train": true,
+    "model_deployment": "huggingface/phi-3.5-mini-instruct",
+    "model": "microsoft/phi-3.5-mini-instruct",
+    "temperature": 0.0,
+    "max_tokens": 1,
+    "stop_sequences": [
+      "\n"
+    ],
+    "multi_label": false
+  },
+  "request_states": [
+    {
+      "instance": {
+        "input": {
+          "text": "A music store carries exactly ten types of CDs\u2014both new and used of each of jazz, opera, pop, rap, and soul. The store is having a sale on some of these types of CDs. The following conditions must apply: Used pop is on sale; new opera is not. If both types of pop are on sale, then all soul is. If both types of jazz are on sale, then no rap is. If neither type of jazz is on sale, then new pop is. If either type of rap is on sale, then no soul is.\nQuestion: Which one of the following could be a complete and accurate list of the types of CDs that are on sale?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "new jazz, used jazz, used opera, used pop, new rap"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "new jazz, used pop, used rap, new soul"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "used opera, used pop, new rap, used rap"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "used opera, new pop, used pop, new soul"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "used jazz, used pop, new soul, used soul"
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "valid",
+        "id": "id271"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "new jazz, used jazz, used opera, used pop, new rap",
+        "B": "new jazz, used pop, used rap, new soul",
+        "C": "used opera, used pop, new rap, used rap",
+        "D": "used opera, new pop, used pop, new soul",
+        "E": "used jazz, used pop, new soul, used soul"
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: An album contains photographs picturing seven friends: Raimundo, Selma, Ty, Umiko, Wendy, Yakira, Zack. The friends appear either alone or in groups with one another, in accordance with the following: Wendy appears in every photograph that Selma appears in. Selma appears in every photograph that Umiko appears in. Raimundo appears in every photograph that Yakira does not appear in. Neither Ty nor Raimundo appears in any photograph that Wendy appears in.\nQuestion: If Umiko and Zack appear together in a photograph, then exactly how many of the other friends must also appear in that photograph?\nA. four\nB. three\nC. two\nD. one\nE. zero\nAnswer: B\n\nPassage: Barbara is shopping at a pet store to select fish for her new aquarium from among the following species: J, K, L, M, N, O, and P. For each of the seven species, the store has several fish available. Barbara makes her selection in a manner consistent with the following conditions: If she selects one or more K, then she does not select any O. If she selects one or more M, then she does not select any N. If she selects one or more M, then she selects at least one O. If she selects one or more N, then she selects at least one O. If she selects one or more O, then she selects at least one P. If she selects one or more P, then she selects at least one O. If she selects any O at all, then she selects at least two O.\nQuestion: If Barbara selects fish of as many species as possible, then she cannot select any fish of which one of the following species?\nA. K\nB. L\nC. M\nD. N\nE. P\nAnswer: A\n\nPassage: A student is choosing courses to take during a summer school session. Each summer school student must take at least three courses from among the following seven: history, linguistics, music, physics, statistics, theater, and writing. The summer school schedule restricts the courses a student can take in the following ways: If history is taken, then neither statistics nor music can be taken. If music is taken, then neither physics nor theater can be taken. If writing is taken, then neither physics nor statistics can be taken.\nQuestion: What is the maximum number of courses the student could take during the summer school session?\nA. seven\nB. six\nC. five\nD. four\nE. three\nAnswer: D\n\nPassage: The members of a five-person committee will be selected from among three parents\u2014F, G, and H\u2014three students\u2014K, L, and M\u2014and four teachers\u2014U, W, X, and Z. The selection of committee members will meet the following conditions: The committee must include exactly one student. F and H cannot both be selected. M and Z cannot both be selected. U and W cannot both be selected. F cannot be selected unless Z is also selected. W cannot be selected unless H is also selected.\nQuestion: If the committee is to include exactly one parent, which one of the following is a person who must also be selected?\nA. K\nB. L\nC. M\nD. U\nE. X\nAnswer: E\n\nPassage: Five performers\u2014Traugott, West, Xavier, Young, and Zinser\u2014are recruited by three talent agencies\u2014Fame Agency, Premier Agency, and Star Agency. Each performer signs with exactly one of the agencies and each agency signs at least one of the performers. The performers' signing with the agencies is in accord with the following: Xavier signs with Fame Agency. Xavier and Young do not sign with the same agency as each other. Zinser signs with the same agency as Young. If Traugott signs with Star Agency, West also signs with Star Agency.\nQuestion: The agency with which each of the performers signs is completely determined if which one of the following is true?\nA. Traugott signs with Fame Agency.\nB. Traugott signs with Star Agency.\nC. West signs with Premier Agency.\nD. Xavier signs with Fame Agency.\nE. Zinser signs with Premier Agency.\nAnswer: B\n\nPassage: A music store carries exactly ten types of CDs\u2014both new and used of each of jazz, opera, pop, rap, and soul. The store is having a sale on some of these types of CDs. The following conditions must apply: Used pop is on sale; new opera is not. If both types of pop are on sale, then all soul is. If both types of jazz are on sale, then no rap is. If neither type of jazz is on sale, then new pop is. If either type of rap is on sale, then no soul is.\nQuestion: Which one of the following could be a complete and accurate list of the types of CDs that are on sale?\nA. new jazz, used jazz, used opera, used pop, new rap\nB. new jazz, used pop, used rap, new soul\nC. used opera, used pop, new rap, used rap\nD. used opera, new pop, used pop, new soul\nE. used jazz, used pop, new soul, used soul\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "D",
+            "logprob": -0.01059136725962162,
+            "tokens": [
+              {
+                "text": "D",
+                "logprob": -0.01059136725962162
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.010591370053589344,
+              "max_token_negative_log_likelihood": 0.010591370053589344,
+              "predictive_entropy": 0.010479784570634365,
+              "shannon_entropy": 0.059683430939912796
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.18199467658996582,
+        "request_datetime": 1755804669
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "A music store carries exactly ten types of CDs\u2014both new and used of each of jazz, opera, pop, rap, and soul. The store is having a sale on some of these types of CDs. The following conditions must apply: Used pop is on sale; new opera is not. If both types of pop are on sale, then all soul is. If both types of jazz are on sale, then no rap is. If neither type of jazz is on sale, then new pop is. If either type of rap is on sale, then no soul is.\nQuestion: If new soul is not on sale, then which one of the following must be true?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "New rap is not on sale."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "New rap is on sale."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Used opera is not on sale."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "At least one type of jazz is not on sale."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "At least one type of pop is not on sale."
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "valid",
+        "id": "id272"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "New rap is not on sale.",
+        "B": "New rap is on sale.",
+        "C": "Used opera is not on sale.",
+        "D": "At least one type of jazz is not on sale.",
+        "E": "At least one type of pop is not on sale."
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: An album contains photographs picturing seven friends: Raimundo, Selma, Ty, Umiko, Wendy, Yakira, Zack. The friends appear either alone or in groups with one another, in accordance with the following: Wendy appears in every photograph that Selma appears in. Selma appears in every photograph that Umiko appears in. Raimundo appears in every photograph that Yakira does not appear in. Neither Ty nor Raimundo appears in any photograph that Wendy appears in.\nQuestion: If Umiko and Zack appear together in a photograph, then exactly how many of the other friends must also appear in that photograph?\nA. four\nB. three\nC. two\nD. one\nE. zero\nAnswer: B\n\nPassage: Barbara is shopping at a pet store to select fish for her new aquarium from among the following species: J, K, L, M, N, O, and P. For each of the seven species, the store has several fish available. Barbara makes her selection in a manner consistent with the following conditions: If she selects one or more K, then she does not select any O. If she selects one or more M, then she does not select any N. If she selects one or more M, then she selects at least one O. If she selects one or more N, then she selects at least one O. If she selects one or more O, then she selects at least one P. If she selects one or more P, then she selects at least one O. If she selects any O at all, then she selects at least two O.\nQuestion: If Barbara selects fish of as many species as possible, then she cannot select any fish of which one of the following species?\nA. K\nB. L\nC. M\nD. N\nE. P\nAnswer: A\n\nPassage: A student is choosing courses to take during a summer school session. Each summer school student must take at least three courses from among the following seven: history, linguistics, music, physics, statistics, theater, and writing. The summer school schedule restricts the courses a student can take in the following ways: If history is taken, then neither statistics nor music can be taken. If music is taken, then neither physics nor theater can be taken. If writing is taken, then neither physics nor statistics can be taken.\nQuestion: What is the maximum number of courses the student could take during the summer school session?\nA. seven\nB. six\nC. five\nD. four\nE. three\nAnswer: D\n\nPassage: The members of a five-person committee will be selected from among three parents\u2014F, G, and H\u2014three students\u2014K, L, and M\u2014and four teachers\u2014U, W, X, and Z. The selection of committee members will meet the following conditions: The committee must include exactly one student. F and H cannot both be selected. M and Z cannot both be selected. U and W cannot both be selected. F cannot be selected unless Z is also selected. W cannot be selected unless H is also selected.\nQuestion: If the committee is to include exactly one parent, which one of the following is a person who must also be selected?\nA. K\nB. L\nC. M\nD. U\nE. X\nAnswer: E\n\nPassage: Five performers\u2014Traugott, West, Xavier, Young, and Zinser\u2014are recruited by three talent agencies\u2014Fame Agency, Premier Agency, and Star Agency. Each performer signs with exactly one of the agencies and each agency signs at least one of the performers. The performers' signing with the agencies is in accord with the following: Xavier signs with Fame Agency. Xavier and Young do not sign with the same agency as each other. Zinser signs with the same agency as Young. If Traugott signs with Star Agency, West also signs with Star Agency.\nQuestion: The agency with which each of the performers signs is completely determined if which one of the following is true?\nA. Traugott signs with Fame Agency.\nB. Traugott signs with Star Agency.\nC. West signs with Premier Agency.\nD. Xavier signs with Fame Agency.\nE. Zinser signs with Premier Agency.\nAnswer: B\n\nPassage: A music store carries exactly ten types of CDs\u2014both new and used of each of jazz, opera, pop, rap, and soul. The store is having a sale on some of these types of CDs. The following conditions must apply: Used pop is on sale; new opera is not. If both types of pop are on sale, then all soul is. If both types of jazz are on sale, then no rap is. If neither type of jazz is on sale, then new pop is. If either type of rap is on sale, then no soul is.\nQuestion: If new soul is not on sale, then which one of the following must be true?\nA. New rap is not on sale.\nB. New rap is on sale.\nC. Used opera is not on sale.\nD. At least one type of jazz is not on sale.\nE. At least one type of pop is not on sale.\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "D",
+            "logprob": -0.0036899829283356667,
+            "tokens": [
+              {
+                "text": "D",
+                "logprob": -0.0036899829283356667
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.0036900092381983995,
+              "max_token_negative_log_likelihood": 0.0036900092381983995,
+              "predictive_entropy": 0.003676418215036392,
+              "shannon_entropy": 0.024739930406212807
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.7086422443389893,
+        "request_datetime": 1755804669
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "A music store carries exactly ten types of CDs\u2014both new and used of each of jazz, opera, pop, rap, and soul. The store is having a sale on some of these types of CDs. The following conditions must apply: Used pop is on sale; new opera is not. If both types of pop are on sale, then all soul is. If both types of jazz are on sale, then no rap is. If neither type of jazz is on sale, then new pop is. If either type of rap is on sale, then no soul is.\nQuestion: If both types of jazz are on sale, then which one of the following is the minimum number of types of new CDs that could be included in the sale?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "one"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "two"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "three"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "four"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "five"
+            },
+            "tags": []
+          }
+        ],
+        "split": "valid",
+        "id": "id273"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "one",
+        "B": "two",
+        "C": "three",
+        "D": "four",
+        "E": "five"
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: An album contains photographs picturing seven friends: Raimundo, Selma, Ty, Umiko, Wendy, Yakira, Zack. The friends appear either alone or in groups with one another, in accordance with the following: Wendy appears in every photograph that Selma appears in. Selma appears in every photograph that Umiko appears in. Raimundo appears in every photograph that Yakira does not appear in. Neither Ty nor Raimundo appears in any photograph that Wendy appears in.\nQuestion: If Umiko and Zack appear together in a photograph, then exactly how many of the other friends must also appear in that photograph?\nA. four\nB. three\nC. two\nD. one\nE. zero\nAnswer: B\n\nPassage: Barbara is shopping at a pet store to select fish for her new aquarium from among the following species: J, K, L, M, N, O, and P. For each of the seven species, the store has several fish available. Barbara makes her selection in a manner consistent with the following conditions: If she selects one or more K, then she does not select any O. If she selects one or more M, then she does not select any N. If she selects one or more M, then she selects at least one O. If she selects one or more N, then she selects at least one O. If she selects one or more O, then she selects at least one P. If she selects one or more P, then she selects at least one O. If she selects any O at all, then she selects at least two O.\nQuestion: If Barbara selects fish of as many species as possible, then she cannot select any fish of which one of the following species?\nA. K\nB. L\nC. M\nD. N\nE. P\nAnswer: A\n\nPassage: A student is choosing courses to take during a summer school session. Each summer school student must take at least three courses from among the following seven: history, linguistics, music, physics, statistics, theater, and writing. The summer school schedule restricts the courses a student can take in the following ways: If history is taken, then neither statistics nor music can be taken. If music is taken, then neither physics nor theater can be taken. If writing is taken, then neither physics nor statistics can be taken.\nQuestion: What is the maximum number of courses the student could take during the summer school session?\nA. seven\nB. six\nC. five\nD. four\nE. three\nAnswer: D\n\nPassage: The members of a five-person committee will be selected from among three parents\u2014F, G, and H\u2014three students\u2014K, L, and M\u2014and four teachers\u2014U, W, X, and Z. The selection of committee members will meet the following conditions: The committee must include exactly one student. F and H cannot both be selected. M and Z cannot both be selected. U and W cannot both be selected. F cannot be selected unless Z is also selected. W cannot be selected unless H is also selected.\nQuestion: If the committee is to include exactly one parent, which one of the following is a person who must also be selected?\nA. K\nB. L\nC. M\nD. U\nE. X\nAnswer: E\n\nPassage: Five performers\u2014Traugott, West, Xavier, Young, and Zinser\u2014are recruited by three talent agencies\u2014Fame Agency, Premier Agency, and Star Agency. Each performer signs with exactly one of the agencies and each agency signs at least one of the performers. The performers' signing with the agencies is in accord with the following: Xavier signs with Fame Agency. Xavier and Young do not sign with the same agency as each other. Zinser signs with the same agency as Young. If Traugott signs with Star Agency, West also signs with Star Agency.\nQuestion: The agency with which each of the performers signs is completely determined if which one of the following is true?\nA. Traugott signs with Fame Agency.\nB. Traugott signs with Star Agency.\nC. West signs with Premier Agency.\nD. Xavier signs with Fame Agency.\nE. Zinser signs with Premier Agency.\nAnswer: B\n\nPassage: A music store carries exactly ten types of CDs\u2014both new and used of each of jazz, opera, pop, rap, and soul. The store is having a sale on some of these types of CDs. The following conditions must apply: Used pop is on sale; new opera is not. If both types of pop are on sale, then all soul is. If both types of jazz are on sale, then no rap is. If neither type of jazz is on sale, then new pop is. If either type of rap is on sale, then no soul is.\nQuestion: If both types of jazz are on sale, then which one of the following is the minimum number of types of new CDs that could be included in the sale?\nA. one\nB. two\nC. three\nD. four\nE. five\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "A",
+            "logprob": -4.27423095703125,
+            "tokens": [
+              {
+                "text": "A",
+                "logprob": -4.27423095703125
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 4.274230480194092,
+              "max_token_negative_log_likelihood": 4.274230480194092,
+              "predictive_entropy": 0.0595090389251709,
+              "shannon_entropy": 0.13111016154289246
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.7079956531524658,
+        "request_datetime": 1755804669
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "A music store carries exactly ten types of CDs\u2014both new and used of each of jazz, opera, pop, rap, and soul. The store is having a sale on some of these types of CDs. The following conditions must apply: Used pop is on sale; new opera is not. If both types of pop are on sale, then all soul is. If both types of jazz are on sale, then no rap is. If neither type of jazz is on sale, then new pop is. If either type of rap is on sale, then no soul is.\nQuestion: Which one of the following CANNOT be true?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Neither type of opera and neither type of rap is on sale."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Neither type of jazz and neither type of opera is on sale."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Neither type of opera and neither type of soul is on sale."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Neither type of jazz and neither type of soul is on sale."
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "Neither type of jazz and neither type of rap is on sale."
+            },
+            "tags": []
+          }
+        ],
+        "split": "valid",
+        "id": "id274"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "Neither type of opera and neither type of rap is on sale.",
+        "B": "Neither type of jazz and neither type of opera is on sale.",
+        "C": "Neither type of opera and neither type of soul is on sale.",
+        "D": "Neither type of jazz and neither type of soul is on sale.",
+        "E": "Neither type of jazz and neither type of rap is on sale."
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: An album contains photographs picturing seven friends: Raimundo, Selma, Ty, Umiko, Wendy, Yakira, Zack. The friends appear either alone or in groups with one another, in accordance with the following: Wendy appears in every photograph that Selma appears in. Selma appears in every photograph that Umiko appears in. Raimundo appears in every photograph that Yakira does not appear in. Neither Ty nor Raimundo appears in any photograph that Wendy appears in.\nQuestion: If Umiko and Zack appear together in a photograph, then exactly how many of the other friends must also appear in that photograph?\nA. four\nB. three\nC. two\nD. one\nE. zero\nAnswer: B\n\nPassage: Barbara is shopping at a pet store to select fish for her new aquarium from among the following species: J, K, L, M, N, O, and P. For each of the seven species, the store has several fish available. Barbara makes her selection in a manner consistent with the following conditions: If she selects one or more K, then she does not select any O. If she selects one or more M, then she does not select any N. If she selects one or more M, then she selects at least one O. If she selects one or more N, then she selects at least one O. If she selects one or more O, then she selects at least one P. If she selects one or more P, then she selects at least one O. If she selects any O at all, then she selects at least two O.\nQuestion: If Barbara selects fish of as many species as possible, then she cannot select any fish of which one of the following species?\nA. K\nB. L\nC. M\nD. N\nE. P\nAnswer: A\n\nPassage: A student is choosing courses to take during a summer school session. Each summer school student must take at least three courses from among the following seven: history, linguistics, music, physics, statistics, theater, and writing. The summer school schedule restricts the courses a student can take in the following ways: If history is taken, then neither statistics nor music can be taken. If music is taken, then neither physics nor theater can be taken. If writing is taken, then neither physics nor statistics can be taken.\nQuestion: What is the maximum number of courses the student could take during the summer school session?\nA. seven\nB. six\nC. five\nD. four\nE. three\nAnswer: D\n\nPassage: The members of a five-person committee will be selected from among three parents\u2014F, G, and H\u2014three students\u2014K, L, and M\u2014and four teachers\u2014U, W, X, and Z. The selection of committee members will meet the following conditions: The committee must include exactly one student. F and H cannot both be selected. M and Z cannot both be selected. U and W cannot both be selected. F cannot be selected unless Z is also selected. W cannot be selected unless H is also selected.\nQuestion: If the committee is to include exactly one parent, which one of the following is a person who must also be selected?\nA. K\nB. L\nC. M\nD. U\nE. X\nAnswer: E\n\nPassage: Five performers\u2014Traugott, West, Xavier, Young, and Zinser\u2014are recruited by three talent agencies\u2014Fame Agency, Premier Agency, and Star Agency. Each performer signs with exactly one of the agencies and each agency signs at least one of the performers. The performers' signing with the agencies is in accord with the following: Xavier signs with Fame Agency. Xavier and Young do not sign with the same agency as each other. Zinser signs with the same agency as Young. If Traugott signs with Star Agency, West also signs with Star Agency.\nQuestion: The agency with which each of the performers signs is completely determined if which one of the following is true?\nA. Traugott signs with Fame Agency.\nB. Traugott signs with Star Agency.\nC. West signs with Premier Agency.\nD. Xavier signs with Fame Agency.\nE. Zinser signs with Premier Agency.\nAnswer: B\n\nPassage: A music store carries exactly ten types of CDs\u2014both new and used of each of jazz, opera, pop, rap, and soul. The store is having a sale on some of these types of CDs. The following conditions must apply: Used pop is on sale; new opera is not. If both types of pop are on sale, then all soul is. If both types of jazz are on sale, then no rap is. If neither type of jazz is on sale, then new pop is. If either type of rap is on sale, then no soul is.\nQuestion: Which one of the following CANNOT be true?\nA. Neither type of opera and neither type of rap is on sale.\nB. Neither type of jazz and neither type of opera is on sale.\nC. Neither type of opera and neither type of soul is on sale.\nD. Neither type of jazz and neither type of soul is on sale.\nE. Neither type of jazz and neither type of rap is on sale.\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "A",
+            "logprob": -1.7298884391784668,
+            "tokens": [
+              {
+                "text": "A",
+                "logprob": -1.7298884391784668
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 1.7298884391784668,
+              "max_token_negative_log_likelihood": 1.7298884391784668,
+              "predictive_entropy": 0.3067164421081543,
+              "shannon_entropy": 0.6185367703437805
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.707571268081665,
+        "request_datetime": 1755804669
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "A music store carries exactly ten types of CDs\u2014both new and used of each of jazz, opera, pop, rap, and soul. The store is having a sale on some of these types of CDs. The following conditions must apply: Used pop is on sale; new opera is not. If both types of pop are on sale, then all soul is. If both types of jazz are on sale, then no rap is. If neither type of jazz is on sale, then new pop is. If either type of rap is on sale, then no soul is.\nQuestion: If neither type of jazz is on sale, then each of the following must be true EXCEPT:"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Used opera is on sale."
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "New rap is not on sale."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Used rap is not on sale."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "New soul is on sale."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Used soul is on sale."
+            },
+            "tags": []
+          }
+        ],
+        "split": "valid",
+        "id": "id275"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "Used opera is on sale.",
+        "B": "New rap is not on sale.",
+        "C": "Used rap is not on sale.",
+        "D": "New soul is on sale.",
+        "E": "Used soul is on sale."
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: An album contains photographs picturing seven friends: Raimundo, Selma, Ty, Umiko, Wendy, Yakira, Zack. The friends appear either alone or in groups with one another, in accordance with the following: Wendy appears in every photograph that Selma appears in. Selma appears in every photograph that Umiko appears in. Raimundo appears in every photograph that Yakira does not appear in. Neither Ty nor Raimundo appears in any photograph that Wendy appears in.\nQuestion: If Umiko and Zack appear together in a photograph, then exactly how many of the other friends must also appear in that photograph?\nA. four\nB. three\nC. two\nD. one\nE. zero\nAnswer: B\n\nPassage: Barbara is shopping at a pet store to select fish for her new aquarium from among the following species: J, K, L, M, N, O, and P. For each of the seven species, the store has several fish available. Barbara makes her selection in a manner consistent with the following conditions: If she selects one or more K, then she does not select any O. If she selects one or more M, then she does not select any N. If she selects one or more M, then she selects at least one O. If she selects one or more N, then she selects at least one O. If she selects one or more O, then she selects at least one P. If she selects one or more P, then she selects at least one O. If she selects any O at all, then she selects at least two O.\nQuestion: If Barbara selects fish of as many species as possible, then she cannot select any fish of which one of the following species?\nA. K\nB. L\nC. M\nD. N\nE. P\nAnswer: A\n\nPassage: A student is choosing courses to take during a summer school session. Each summer school student must take at least three courses from among the following seven: history, linguistics, music, physics, statistics, theater, and writing. The summer school schedule restricts the courses a student can take in the following ways: If history is taken, then neither statistics nor music can be taken. If music is taken, then neither physics nor theater can be taken. If writing is taken, then neither physics nor statistics can be taken.\nQuestion: What is the maximum number of courses the student could take during the summer school session?\nA. seven\nB. six\nC. five\nD. four\nE. three\nAnswer: D\n\nPassage: The members of a five-person committee will be selected from among three parents\u2014F, G, and H\u2014three students\u2014K, L, and M\u2014and four teachers\u2014U, W, X, and Z. The selection of committee members will meet the following conditions: The committee must include exactly one student. F and H cannot both be selected. M and Z cannot both be selected. U and W cannot both be selected. F cannot be selected unless Z is also selected. W cannot be selected unless H is also selected.\nQuestion: If the committee is to include exactly one parent, which one of the following is a person who must also be selected?\nA. K\nB. L\nC. M\nD. U\nE. X\nAnswer: E\n\nPassage: Five performers\u2014Traugott, West, Xavier, Young, and Zinser\u2014are recruited by three talent agencies\u2014Fame Agency, Premier Agency, and Star Agency. Each performer signs with exactly one of the agencies and each agency signs at least one of the performers. The performers' signing with the agencies is in accord with the following: Xavier signs with Fame Agency. Xavier and Young do not sign with the same agency as each other. Zinser signs with the same agency as Young. If Traugott signs with Star Agency, West also signs with Star Agency.\nQuestion: The agency with which each of the performers signs is completely determined if which one of the following is true?\nA. Traugott signs with Fame Agency.\nB. Traugott signs with Star Agency.\nC. West signs with Premier Agency.\nD. Xavier signs with Fame Agency.\nE. Zinser signs with Premier Agency.\nAnswer: B\n\nPassage: A music store carries exactly ten types of CDs\u2014both new and used of each of jazz, opera, pop, rap, and soul. The store is having a sale on some of these types of CDs. The following conditions must apply: Used pop is on sale; new opera is not. If both types of pop are on sale, then all soul is. If both types of jazz are on sale, then no rap is. If neither type of jazz is on sale, then new pop is. If either type of rap is on sale, then no soul is.\nQuestion: If neither type of jazz is on sale, then each of the following must be true EXCEPT:\nA. Used opera is on sale.\nB. New rap is not on sale.\nC. Used rap is not on sale.\nD. New soul is on sale.\nE. Used soul is on sale.\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "D",
+            "logprob": -0.08645854145288467,
+            "tokens": [
+              {
+                "text": "D",
+                "logprob": -0.08645854145288467
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.08645854890346527,
+              "max_token_negative_log_likelihood": 0.08645854890346527,
+              "predictive_entropy": 0.0792974978685379,
+              "shannon_entropy": 0.34577280282974243
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.8431553840637207,
+        "request_datetime": 1755804670
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "A music store carries exactly ten types of CDs\u2014both new and used of each of jazz, opera, pop, rap, and soul. The store is having a sale on some of these types of CDs. The following conditions must apply: Used pop is on sale; new opera is not. If both types of pop are on sale, then all soul is. If both types of jazz are on sale, then no rap is. If neither type of jazz is on sale, then new pop is. If either type of rap is on sale, then no soul is.\nQuestion: If new soul is the only type of new CD on sale, then which one of the following CANNOT be true?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Used jazz is not on sale."
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "Used opera is not on sale."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Used rap is not on sale."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Used soul is on sale."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Used soul is not on sale."
+            },
+            "tags": []
+          }
+        ],
+        "split": "valid",
+        "id": "id276"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "Used jazz is not on sale.",
+        "B": "Used opera is not on sale.",
+        "C": "Used rap is not on sale.",
+        "D": "Used soul is on sale.",
+        "E": "Used soul is not on sale."
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: An album contains photographs picturing seven friends: Raimundo, Selma, Ty, Umiko, Wendy, Yakira, Zack. The friends appear either alone or in groups with one another, in accordance with the following: Wendy appears in every photograph that Selma appears in. Selma appears in every photograph that Umiko appears in. Raimundo appears in every photograph that Yakira does not appear in. Neither Ty nor Raimundo appears in any photograph that Wendy appears in.\nQuestion: If Umiko and Zack appear together in a photograph, then exactly how many of the other friends must also appear in that photograph?\nA. four\nB. three\nC. two\nD. one\nE. zero\nAnswer: B\n\nPassage: Barbara is shopping at a pet store to select fish for her new aquarium from among the following species: J, K, L, M, N, O, and P. For each of the seven species, the store has several fish available. Barbara makes her selection in a manner consistent with the following conditions: If she selects one or more K, then she does not select any O. If she selects one or more M, then she does not select any N. If she selects one or more M, then she selects at least one O. If she selects one or more N, then she selects at least one O. If she selects one or more O, then she selects at least one P. If she selects one or more P, then she selects at least one O. If she selects any O at all, then she selects at least two O.\nQuestion: If Barbara selects fish of as many species as possible, then she cannot select any fish of which one of the following species?\nA. K\nB. L\nC. M\nD. N\nE. P\nAnswer: A\n\nPassage: A student is choosing courses to take during a summer school session. Each summer school student must take at least three courses from among the following seven: history, linguistics, music, physics, statistics, theater, and writing. The summer school schedule restricts the courses a student can take in the following ways: If history is taken, then neither statistics nor music can be taken. If music is taken, then neither physics nor theater can be taken. If writing is taken, then neither physics nor statistics can be taken.\nQuestion: What is the maximum number of courses the student could take during the summer school session?\nA. seven\nB. six\nC. five\nD. four\nE. three\nAnswer: D\n\nPassage: The members of a five-person committee will be selected from among three parents\u2014F, G, and H\u2014three students\u2014K, L, and M\u2014and four teachers\u2014U, W, X, and Z. The selection of committee members will meet the following conditions: The committee must include exactly one student. F and H cannot both be selected. M and Z cannot both be selected. U and W cannot both be selected. F cannot be selected unless Z is also selected. W cannot be selected unless H is also selected.\nQuestion: If the committee is to include exactly one parent, which one of the following is a person who must also be selected?\nA. K\nB. L\nC. M\nD. U\nE. X\nAnswer: E\n\nPassage: Five performers\u2014Traugott, West, Xavier, Young, and Zinser\u2014are recruited by three talent agencies\u2014Fame Agency, Premier Agency, and Star Agency. Each performer signs with exactly one of the agencies and each agency signs at least one of the performers. The performers' signing with the agencies is in accord with the following: Xavier signs with Fame Agency. Xavier and Young do not sign with the same agency as each other. Zinser signs with the same agency as Young. If Traugott signs with Star Agency, West also signs with Star Agency.\nQuestion: The agency with which each of the performers signs is completely determined if which one of the following is true?\nA. Traugott signs with Fame Agency.\nB. Traugott signs with Star Agency.\nC. West signs with Premier Agency.\nD. Xavier signs with Fame Agency.\nE. Zinser signs with Premier Agency.\nAnswer: B\n\nPassage: A music store carries exactly ten types of CDs\u2014both new and used of each of jazz, opera, pop, rap, and soul. The store is having a sale on some of these types of CDs. The following conditions must apply: Used pop is on sale; new opera is not. If both types of pop are on sale, then all soul is. If both types of jazz are on sale, then no rap is. If neither type of jazz is on sale, then new pop is. If either type of rap is on sale, then no soul is.\nQuestion: If new soul is the only type of new CD on sale, then which one of the following CANNOT be true?\nA. Used jazz is not on sale.\nB. Used opera is not on sale.\nC. Used rap is not on sale.\nD. Used soul is on sale.\nE. Used soul is not on sale.\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "D",
+            "logprob": -0.024355141445994377,
+            "tokens": [
+              {
+                "text": "D",
+                "logprob": -0.024355141445994377
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.02435515820980072,
+              "max_token_negative_log_likelihood": 0.02435515820980072,
+              "predictive_entropy": 0.02376914955675602,
+              "shannon_entropy": 0.11865337193012238
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.5378994941711426,
+        "request_datetime": 1755804670
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "A music store carries exactly ten types of CDs\u2014both new and used of each of jazz, opera, pop, rap, and soul. The store is having a sale on some of these types of CDs. The following conditions must apply: Used pop is on sale; new opera is not. If both types of pop are on sale, then all soul is. If both types of jazz are on sale, then no rap is. If neither type of jazz is on sale, then new pop is. If either type of rap is on sale, then no soul is.\nQuestion: If exactly four of the five types of used CDs are the only CDs on sale, then which one of the following could be true?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Used jazz is not on sale."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Used opera is not on sale."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Used rap is not on sale."
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "Neither type of jazz is on sale."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Neither type of rap and neither type of soul is on sale."
+            },
+            "tags": []
+          }
+        ],
+        "split": "valid",
+        "id": "id277"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "Used jazz is not on sale.",
+        "B": "Used opera is not on sale.",
+        "C": "Used rap is not on sale.",
+        "D": "Neither type of jazz is on sale.",
+        "E": "Neither type of rap and neither type of soul is on sale."
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: An album contains photographs picturing seven friends: Raimundo, Selma, Ty, Umiko, Wendy, Yakira, Zack. The friends appear either alone or in groups with one another, in accordance with the following: Wendy appears in every photograph that Selma appears in. Selma appears in every photograph that Umiko appears in. Raimundo appears in every photograph that Yakira does not appear in. Neither Ty nor Raimundo appears in any photograph that Wendy appears in.\nQuestion: If Umiko and Zack appear together in a photograph, then exactly how many of the other friends must also appear in that photograph?\nA. four\nB. three\nC. two\nD. one\nE. zero\nAnswer: B\n\nPassage: Barbara is shopping at a pet store to select fish for her new aquarium from among the following species: J, K, L, M, N, O, and P. For each of the seven species, the store has several fish available. Barbara makes her selection in a manner consistent with the following conditions: If she selects one or more K, then she does not select any O. If she selects one or more M, then she does not select any N. If she selects one or more M, then she selects at least one O. If she selects one or more N, then she selects at least one O. If she selects one or more O, then she selects at least one P. If she selects one or more P, then she selects at least one O. If she selects any O at all, then she selects at least two O.\nQuestion: If Barbara selects fish of as many species as possible, then she cannot select any fish of which one of the following species?\nA. K\nB. L\nC. M\nD. N\nE. P\nAnswer: A\n\nPassage: A student is choosing courses to take during a summer school session. Each summer school student must take at least three courses from among the following seven: history, linguistics, music, physics, statistics, theater, and writing. The summer school schedule restricts the courses a student can take in the following ways: If history is taken, then neither statistics nor music can be taken. If music is taken, then neither physics nor theater can be taken. If writing is taken, then neither physics nor statistics can be taken.\nQuestion: What is the maximum number of courses the student could take during the summer school session?\nA. seven\nB. six\nC. five\nD. four\nE. three\nAnswer: D\n\nPassage: The members of a five-person committee will be selected from among three parents\u2014F, G, and H\u2014three students\u2014K, L, and M\u2014and four teachers\u2014U, W, X, and Z. The selection of committee members will meet the following conditions: The committee must include exactly one student. F and H cannot both be selected. M and Z cannot both be selected. U and W cannot both be selected. F cannot be selected unless Z is also selected. W cannot be selected unless H is also selected.\nQuestion: If the committee is to include exactly one parent, which one of the following is a person who must also be selected?\nA. K\nB. L\nC. M\nD. U\nE. X\nAnswer: E\n\nPassage: Five performers\u2014Traugott, West, Xavier, Young, and Zinser\u2014are recruited by three talent agencies\u2014Fame Agency, Premier Agency, and Star Agency. Each performer signs with exactly one of the agencies and each agency signs at least one of the performers. The performers' signing with the agencies is in accord with the following: Xavier signs with Fame Agency. Xavier and Young do not sign with the same agency as each other. Zinser signs with the same agency as Young. If Traugott signs with Star Agency, West also signs with Star Agency.\nQuestion: The agency with which each of the performers signs is completely determined if which one of the following is true?\nA. Traugott signs with Fame Agency.\nB. Traugott signs with Star Agency.\nC. West signs with Premier Agency.\nD. Xavier signs with Fame Agency.\nE. Zinser signs with Premier Agency.\nAnswer: B\n\nPassage: A music store carries exactly ten types of CDs\u2014both new and used of each of jazz, opera, pop, rap, and soul. The store is having a sale on some of these types of CDs. The following conditions must apply: Used pop is on sale; new opera is not. If both types of pop are on sale, then all soul is. If both types of jazz are on sale, then no rap is. If neither type of jazz is on sale, then new pop is. If either type of rap is on sale, then no soul is.\nQuestion: If exactly four of the five types of used CDs are the only CDs on sale, then which one of the following could be true?\nA. Used jazz is not on sale.\nB. Used opera is not on sale.\nC. Used rap is not on sale.\nD. Neither type of jazz is on sale.\nE. Neither type of rap and neither type of soul is on sale.\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "E",
+            "logprob": -0.07517299801111221,
+            "tokens": [
+              {
+                "text": "E",
+                "logprob": -0.07517299801111221
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.075173020362854,
+              "max_token_negative_log_likelihood": 0.075173020362854,
+              "predictive_entropy": 0.06972921639680862,
+              "shannon_entropy": 0.280701220035553
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.5162479877471924,
+        "request_datetime": 1755804670
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "Each of the seven members of the board of directors\u2014Guzman, Hawking, Lepp, Miyauchi, Upchurch, Wharton, and Zhu\u2014serves on exactly one of two committees\u2014the finance committee or the incentives committee. Only board members serve on these committees. Committee membership is consistent with the following conditions: If Guzman serves on the finance committee, then Hawking serves on the incentives committee. If Lepp serves on the finance committee, then Miyauchi and Upchurch both serve on the incentives committee. Wharton serves on a different committee from the one on which Zhu serves. Upchurch serves on a different committee from the one on which Guzman serves. If Zhu serves on the finance committee, so does Hawking.\nQuestion: Which one of the following could be a complete and accurate list of the members of the finance committee?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Guzman, Hawking, Miyauchi, Wharton"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Guzman, Lepp, Zhu"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Hawking, Miyauchi, Zhu"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Hawking, Upchurch, Wharton, Zhu"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Miyauchi, Upchurch, Wharton"
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "valid",
+        "id": "id278"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "Guzman, Hawking, Miyauchi, Wharton",
+        "B": "Guzman, Lepp, Zhu",
+        "C": "Hawking, Miyauchi, Zhu",
+        "D": "Hawking, Upchurch, Wharton, Zhu",
+        "E": "Miyauchi, Upchurch, Wharton"
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: An album contains photographs picturing seven friends: Raimundo, Selma, Ty, Umiko, Wendy, Yakira, Zack. The friends appear either alone or in groups with one another, in accordance with the following: Wendy appears in every photograph that Selma appears in. Selma appears in every photograph that Umiko appears in. Raimundo appears in every photograph that Yakira does not appear in. Neither Ty nor Raimundo appears in any photograph that Wendy appears in.\nQuestion: If Umiko and Zack appear together in a photograph, then exactly how many of the other friends must also appear in that photograph?\nA. four\nB. three\nC. two\nD. one\nE. zero\nAnswer: B\n\nPassage: Barbara is shopping at a pet store to select fish for her new aquarium from among the following species: J, K, L, M, N, O, and P. For each of the seven species, the store has several fish available. Barbara makes her selection in a manner consistent with the following conditions: If she selects one or more K, then she does not select any O. If she selects one or more M, then she does not select any N. If she selects one or more M, then she selects at least one O. If she selects one or more N, then she selects at least one O. If she selects one or more O, then she selects at least one P. If she selects one or more P, then she selects at least one O. If she selects any O at all, then she selects at least two O.\nQuestion: If Barbara selects fish of as many species as possible, then she cannot select any fish of which one of the following species?\nA. K\nB. L\nC. M\nD. N\nE. P\nAnswer: A\n\nPassage: A student is choosing courses to take during a summer school session. Each summer school student must take at least three courses from among the following seven: history, linguistics, music, physics, statistics, theater, and writing. The summer school schedule restricts the courses a student can take in the following ways: If history is taken, then neither statistics nor music can be taken. If music is taken, then neither physics nor theater can be taken. If writing is taken, then neither physics nor statistics can be taken.\nQuestion: What is the maximum number of courses the student could take during the summer school session?\nA. seven\nB. six\nC. five\nD. four\nE. three\nAnswer: D\n\nPassage: The members of a five-person committee will be selected from among three parents\u2014F, G, and H\u2014three students\u2014K, L, and M\u2014and four teachers\u2014U, W, X, and Z. The selection of committee members will meet the following conditions: The committee must include exactly one student. F and H cannot both be selected. M and Z cannot both be selected. U and W cannot both be selected. F cannot be selected unless Z is also selected. W cannot be selected unless H is also selected.\nQuestion: If the committee is to include exactly one parent, which one of the following is a person who must also be selected?\nA. K\nB. L\nC. M\nD. U\nE. X\nAnswer: E\n\nPassage: Five performers\u2014Traugott, West, Xavier, Young, and Zinser\u2014are recruited by three talent agencies\u2014Fame Agency, Premier Agency, and Star Agency. Each performer signs with exactly one of the agencies and each agency signs at least one of the performers. The performers' signing with the agencies is in accord with the following: Xavier signs with Fame Agency. Xavier and Young do not sign with the same agency as each other. Zinser signs with the same agency as Young. If Traugott signs with Star Agency, West also signs with Star Agency.\nQuestion: The agency with which each of the performers signs is completely determined if which one of the following is true?\nA. Traugott signs with Fame Agency.\nB. Traugott signs with Star Agency.\nC. West signs with Premier Agency.\nD. Xavier signs with Fame Agency.\nE. Zinser signs with Premier Agency.\nAnswer: B\n\nPassage: Each of the seven members of the board of directors\u2014Guzman, Hawking, Lepp, Miyauchi, Upchurch, Wharton, and Zhu\u2014serves on exactly one of two committees\u2014the finance committee or the incentives committee. Only board members serve on these committees. Committee membership is consistent with the following conditions: If Guzman serves on the finance committee, then Hawking serves on the incentives committee. If Lepp serves on the finance committee, then Miyauchi and Upchurch both serve on the incentives committee. Wharton serves on a different committee from the one on which Zhu serves. Upchurch serves on a different committee from the one on which Guzman serves. If Zhu serves on the finance committee, so does Hawking.\nQuestion: Which one of the following could be a complete and accurate list of the members of the finance committee?\nA. Guzman, Hawking, Miyauchi, Wharton\nB. Guzman, Lepp, Zhu\nC. Hawking, Miyauchi, Zhu\nD. Hawking, Upchurch, Wharton, Zhu\nE. Miyauchi, Upchurch, Wharton\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "C",
+            "logprob": -0.045436423271894455,
+            "tokens": [
+              {
+                "text": "C",
+                "logprob": -0.045436423271894455
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.045436423271894455,
+              "max_token_negative_log_likelihood": 0.045436423271894455,
+              "predictive_entropy": 0.04341815412044525,
+              "shannon_entropy": 0.22162939608097076
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.8698141574859619,
+        "request_datetime": 1755804670
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "Each of the seven members of the board of directors\u2014Guzman, Hawking, Lepp, Miyauchi, Upchurch, Wharton, and Zhu\u2014serves on exactly one of two committees\u2014the finance committee or the incentives committee. Only board members serve on these committees. Committee membership is consistent with the following conditions: If Guzman serves on the finance committee, then Hawking serves on the incentives committee. If Lepp serves on the finance committee, then Miyauchi and Upchurch both serve on the incentives committee. Wharton serves on a different committee from the one on which Zhu serves. Upchurch serves on a different committee from the one on which Guzman serves. If Zhu serves on the finance committee, so does Hawking.\nQuestion: Which one of the following pairs of board members CANNOT both serve on the incentives committee?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Guzman and Hawking"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Guzman and Wharton"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Hawking and Wharton"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "Miyauchi and Upchurch"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Miyauchi and Wharton"
+            },
+            "tags": []
+          }
+        ],
+        "split": "valid",
+        "id": "id279"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "Guzman and Hawking",
+        "B": "Guzman and Wharton",
+        "C": "Hawking and Wharton",
+        "D": "Miyauchi and Upchurch",
+        "E": "Miyauchi and Wharton"
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: An album contains photographs picturing seven friends: Raimundo, Selma, Ty, Umiko, Wendy, Yakira, Zack. The friends appear either alone or in groups with one another, in accordance with the following: Wendy appears in every photograph that Selma appears in. Selma appears in every photograph that Umiko appears in. Raimundo appears in every photograph that Yakira does not appear in. Neither Ty nor Raimundo appears in any photograph that Wendy appears in.\nQuestion: If Umiko and Zack appear together in a photograph, then exactly how many of the other friends must also appear in that photograph?\nA. four\nB. three\nC. two\nD. one\nE. zero\nAnswer: B\n\nPassage: Barbara is shopping at a pet store to select fish for her new aquarium from among the following species: J, K, L, M, N, O, and P. For each of the seven species, the store has several fish available. Barbara makes her selection in a manner consistent with the following conditions: If she selects one or more K, then she does not select any O. If she selects one or more M, then she does not select any N. If she selects one or more M, then she selects at least one O. If she selects one or more N, then she selects at least one O. If she selects one or more O, then she selects at least one P. If she selects one or more P, then she selects at least one O. If she selects any O at all, then she selects at least two O.\nQuestion: If Barbara selects fish of as many species as possible, then she cannot select any fish of which one of the following species?\nA. K\nB. L\nC. M\nD. N\nE. P\nAnswer: A\n\nPassage: A student is choosing courses to take during a summer school session. Each summer school student must take at least three courses from among the following seven: history, linguistics, music, physics, statistics, theater, and writing. The summer school schedule restricts the courses a student can take in the following ways: If history is taken, then neither statistics nor music can be taken. If music is taken, then neither physics nor theater can be taken. If writing is taken, then neither physics nor statistics can be taken.\nQuestion: What is the maximum number of courses the student could take during the summer school session?\nA. seven\nB. six\nC. five\nD. four\nE. three\nAnswer: D\n\nPassage: The members of a five-person committee will be selected from among three parents\u2014F, G, and H\u2014three students\u2014K, L, and M\u2014and four teachers\u2014U, W, X, and Z. The selection of committee members will meet the following conditions: The committee must include exactly one student. F and H cannot both be selected. M and Z cannot both be selected. U and W cannot both be selected. F cannot be selected unless Z is also selected. W cannot be selected unless H is also selected.\nQuestion: If the committee is to include exactly one parent, which one of the following is a person who must also be selected?\nA. K\nB. L\nC. M\nD. U\nE. X\nAnswer: E\n\nPassage: Five performers\u2014Traugott, West, Xavier, Young, and Zinser\u2014are recruited by three talent agencies\u2014Fame Agency, Premier Agency, and Star Agency. Each performer signs with exactly one of the agencies and each agency signs at least one of the performers. The performers' signing with the agencies is in accord with the following: Xavier signs with Fame Agency. Xavier and Young do not sign with the same agency as each other. Zinser signs with the same agency as Young. If Traugott signs with Star Agency, West also signs with Star Agency.\nQuestion: The agency with which each of the performers signs is completely determined if which one of the following is true?\nA. Traugott signs with Fame Agency.\nB. Traugott signs with Star Agency.\nC. West signs with Premier Agency.\nD. Xavier signs with Fame Agency.\nE. Zinser signs with Premier Agency.\nAnswer: B\n\nPassage: Each of the seven members of the board of directors\u2014Guzman, Hawking, Lepp, Miyauchi, Upchurch, Wharton, and Zhu\u2014serves on exactly one of two committees\u2014the finance committee or the incentives committee. Only board members serve on these committees. Committee membership is consistent with the following conditions: If Guzman serves on the finance committee, then Hawking serves on the incentives committee. If Lepp serves on the finance committee, then Miyauchi and Upchurch both serve on the incentives committee. Wharton serves on a different committee from the one on which Zhu serves. Upchurch serves on a different committee from the one on which Guzman serves. If Zhu serves on the finance committee, so does Hawking.\nQuestion: Which one of the following pairs of board members CANNOT both serve on the incentives committee?\nA. Guzman and Hawking\nB. Guzman and Wharton\nC. Hawking and Wharton\nD. Miyauchi and Upchurch\nE. Miyauchi and Wharton\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "C",
+            "logprob": -0.4114453196525574,
+            "tokens": [
+              {
+                "text": "C",
+                "logprob": -0.4114453196525574
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.411445289850235,
+              "max_token_negative_log_likelihood": 0.411445289850235,
+              "predictive_entropy": 0.272661417722702,
+              "shannon_entropy": 1.0002634525299072
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.5759086608886719,
+        "request_datetime": 1755804670
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "Each of the seven members of the board of directors\u2014Guzman, Hawking, Lepp, Miyauchi, Upchurch, Wharton, and Zhu\u2014serves on exactly one of two committees\u2014the finance committee or the incentives committee. Only board members serve on these committees. Committee membership is consistent with the following conditions: If Guzman serves on the finance committee, then Hawking serves on the incentives committee. If Lepp serves on the finance committee, then Miyauchi and Upchurch both serve on the incentives committee. Wharton serves on a different committee from the one on which Zhu serves. Upchurch serves on a different committee from the one on which Guzman serves. If Zhu serves on the finance committee, so does Hawking.\nQuestion: What is the maximum number of members on the finance committee?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "two"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "three"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "four"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "five"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "six"
+            },
+            "tags": []
+          }
+        ],
+        "split": "valid",
+        "id": "id280"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "two",
+        "B": "three",
+        "C": "four",
+        "D": "five",
+        "E": "six"
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: An album contains photographs picturing seven friends: Raimundo, Selma, Ty, Umiko, Wendy, Yakira, Zack. The friends appear either alone or in groups with one another, in accordance with the following: Wendy appears in every photograph that Selma appears in. Selma appears in every photograph that Umiko appears in. Raimundo appears in every photograph that Yakira does not appear in. Neither Ty nor Raimundo appears in any photograph that Wendy appears in.\nQuestion: If Umiko and Zack appear together in a photograph, then exactly how many of the other friends must also appear in that photograph?\nA. four\nB. three\nC. two\nD. one\nE. zero\nAnswer: B\n\nPassage: Barbara is shopping at a pet store to select fish for her new aquarium from among the following species: J, K, L, M, N, O, and P. For each of the seven species, the store has several fish available. Barbara makes her selection in a manner consistent with the following conditions: If she selects one or more K, then she does not select any O. If she selects one or more M, then she does not select any N. If she selects one or more M, then she selects at least one O. If she selects one or more N, then she selects at least one O. If she selects one or more O, then she selects at least one P. If she selects one or more P, then she selects at least one O. If she selects any O at all, then she selects at least two O.\nQuestion: If Barbara selects fish of as many species as possible, then she cannot select any fish of which one of the following species?\nA. K\nB. L\nC. M\nD. N\nE. P\nAnswer: A\n\nPassage: A student is choosing courses to take during a summer school session. Each summer school student must take at least three courses from among the following seven: history, linguistics, music, physics, statistics, theater, and writing. The summer school schedule restricts the courses a student can take in the following ways: If history is taken, then neither statistics nor music can be taken. If music is taken, then neither physics nor theater can be taken. If writing is taken, then neither physics nor statistics can be taken.\nQuestion: What is the maximum number of courses the student could take during the summer school session?\nA. seven\nB. six\nC. five\nD. four\nE. three\nAnswer: D\n\nPassage: The members of a five-person committee will be selected from among three parents\u2014F, G, and H\u2014three students\u2014K, L, and M\u2014and four teachers\u2014U, W, X, and Z. The selection of committee members will meet the following conditions: The committee must include exactly one student. F and H cannot both be selected. M and Z cannot both be selected. U and W cannot both be selected. F cannot be selected unless Z is also selected. W cannot be selected unless H is also selected.\nQuestion: If the committee is to include exactly one parent, which one of the following is a person who must also be selected?\nA. K\nB. L\nC. M\nD. U\nE. X\nAnswer: E\n\nPassage: Five performers\u2014Traugott, West, Xavier, Young, and Zinser\u2014are recruited by three talent agencies\u2014Fame Agency, Premier Agency, and Star Agency. Each performer signs with exactly one of the agencies and each agency signs at least one of the performers. The performers' signing with the agencies is in accord with the following: Xavier signs with Fame Agency. Xavier and Young do not sign with the same agency as each other. Zinser signs with the same agency as Young. If Traugott signs with Star Agency, West also signs with Star Agency.\nQuestion: The agency with which each of the performers signs is completely determined if which one of the following is true?\nA. Traugott signs with Fame Agency.\nB. Traugott signs with Star Agency.\nC. West signs with Premier Agency.\nD. Xavier signs with Fame Agency.\nE. Zinser signs with Premier Agency.\nAnswer: B\n\nPassage: Each of the seven members of the board of directors\u2014Guzman, Hawking, Lepp, Miyauchi, Upchurch, Wharton, and Zhu\u2014serves on exactly one of two committees\u2014the finance committee or the incentives committee. Only board members serve on these committees. Committee membership is consistent with the following conditions: If Guzman serves on the finance committee, then Hawking serves on the incentives committee. If Lepp serves on the finance committee, then Miyauchi and Upchurch both serve on the incentives committee. Wharton serves on a different committee from the one on which Zhu serves. Upchurch serves on a different committee from the one on which Guzman serves. If Zhu serves on the finance committee, so does Hawking.\nQuestion: What is the maximum number of members on the finance committee?\nA. two\nB. three\nC. four\nD. five\nE. six\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "C",
+            "logprob": -2.4244279861450195,
+            "tokens": [
+              {
+                "text": "C",
+                "logprob": -2.4244279861450195
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 2.4244279861450195,
+              "max_token_negative_log_likelihood": 2.4244279861450195,
+              "predictive_entropy": 0.21463152766227722,
+              "shannon_entropy": 0.9547562003135681
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.7171359062194824,
+        "request_datetime": 1755804671
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "Each of the seven members of the board of directors\u2014Guzman, Hawking, Lepp, Miyauchi, Upchurch, Wharton, and Zhu\u2014serves on exactly one of two committees\u2014the finance committee or the incentives committee. Only board members serve on these committees. Committee membership is consistent with the following conditions: If Guzman serves on the finance committee, then Hawking serves on the incentives committee. If Lepp serves on the finance committee, then Miyauchi and Upchurch both serve on the incentives committee. Wharton serves on a different committee from the one on which Zhu serves. Upchurch serves on a different committee from the one on which Guzman serves. If Zhu serves on the finance committee, so does Hawking.\nQuestion: If Miyauchi and Wharton both serve on the finance committee, then which one of the following could be true?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Guzman and Lepp both serve on the finance committee."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Guzman and Upchurch both serve on the incentives committee."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Hawking and Zhu both serve on the finance committee."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Lepp and Upchurch both serve on the incentives committee."
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "Zhu and Upchurch both serve on the finance committee."
+            },
+            "tags": []
+          }
+        ],
+        "split": "valid",
+        "id": "id281"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "Guzman and Lepp both serve on the finance committee.",
+        "B": "Guzman and Upchurch both serve on the incentives committee.",
+        "C": "Hawking and Zhu both serve on the finance committee.",
+        "D": "Lepp and Upchurch both serve on the incentives committee.",
+        "E": "Zhu and Upchurch both serve on the finance committee."
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: An album contains photographs picturing seven friends: Raimundo, Selma, Ty, Umiko, Wendy, Yakira, Zack. The friends appear either alone or in groups with one another, in accordance with the following: Wendy appears in every photograph that Selma appears in. Selma appears in every photograph that Umiko appears in. Raimundo appears in every photograph that Yakira does not appear in. Neither Ty nor Raimundo appears in any photograph that Wendy appears in.\nQuestion: If Umiko and Zack appear together in a photograph, then exactly how many of the other friends must also appear in that photograph?\nA. four\nB. three\nC. two\nD. one\nE. zero\nAnswer: B\n\nPassage: Barbara is shopping at a pet store to select fish for her new aquarium from among the following species: J, K, L, M, N, O, and P. For each of the seven species, the store has several fish available. Barbara makes her selection in a manner consistent with the following conditions: If she selects one or more K, then she does not select any O. If she selects one or more M, then she does not select any N. If she selects one or more M, then she selects at least one O. If she selects one or more N, then she selects at least one O. If she selects one or more O, then she selects at least one P. If she selects one or more P, then she selects at least one O. If she selects any O at all, then she selects at least two O.\nQuestion: If Barbara selects fish of as many species as possible, then she cannot select any fish of which one of the following species?\nA. K\nB. L\nC. M\nD. N\nE. P\nAnswer: A\n\nPassage: A student is choosing courses to take during a summer school session. Each summer school student must take at least three courses from among the following seven: history, linguistics, music, physics, statistics, theater, and writing. The summer school schedule restricts the courses a student can take in the following ways: If history is taken, then neither statistics nor music can be taken. If music is taken, then neither physics nor theater can be taken. If writing is taken, then neither physics nor statistics can be taken.\nQuestion: What is the maximum number of courses the student could take during the summer school session?\nA. seven\nB. six\nC. five\nD. four\nE. three\nAnswer: D\n\nPassage: The members of a five-person committee will be selected from among three parents\u2014F, G, and H\u2014three students\u2014K, L, and M\u2014and four teachers\u2014U, W, X, and Z. The selection of committee members will meet the following conditions: The committee must include exactly one student. F and H cannot both be selected. M and Z cannot both be selected. U and W cannot both be selected. F cannot be selected unless Z is also selected. W cannot be selected unless H is also selected.\nQuestion: If the committee is to include exactly one parent, which one of the following is a person who must also be selected?\nA. K\nB. L\nC. M\nD. U\nE. X\nAnswer: E\n\nPassage: Five performers\u2014Traugott, West, Xavier, Young, and Zinser\u2014are recruited by three talent agencies\u2014Fame Agency, Premier Agency, and Star Agency. Each performer signs with exactly one of the agencies and each agency signs at least one of the performers. The performers' signing with the agencies is in accord with the following: Xavier signs with Fame Agency. Xavier and Young do not sign with the same agency as each other. Zinser signs with the same agency as Young. If Traugott signs with Star Agency, West also signs with Star Agency.\nQuestion: The agency with which each of the performers signs is completely determined if which one of the following is true?\nA. Traugott signs with Fame Agency.\nB. Traugott signs with Star Agency.\nC. West signs with Premier Agency.\nD. Xavier signs with Fame Agency.\nE. Zinser signs with Premier Agency.\nAnswer: B\n\nPassage: Each of the seven members of the board of directors\u2014Guzman, Hawking, Lepp, Miyauchi, Upchurch, Wharton, and Zhu\u2014serves on exactly one of two committees\u2014the finance committee or the incentives committee. Only board members serve on these committees. Committee membership is consistent with the following conditions: If Guzman serves on the finance committee, then Hawking serves on the incentives committee. If Lepp serves on the finance committee, then Miyauchi and Upchurch both serve on the incentives committee. Wharton serves on a different committee from the one on which Zhu serves. Upchurch serves on a different committee from the one on which Guzman serves. If Zhu serves on the finance committee, so does Hawking.\nQuestion: If Miyauchi and Wharton both serve on the finance committee, then which one of the following could be true?\nA. Guzman and Lepp both serve on the finance committee.\nB. Guzman and Upchurch both serve on the incentives committee.\nC. Hawking and Zhu both serve on the finance committee.\nD. Lepp and Upchurch both serve on the incentives committee.\nE. Zhu and Upchurch both serve on the finance committee.\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "C",
+            "logprob": -0.8790644407272339,
+            "tokens": [
+              {
+                "text": "C",
+                "logprob": -0.8790644407272339
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.8790644407272339,
+              "max_token_negative_log_likelihood": 0.8790644407272339,
+              "predictive_entropy": 0.3649621903896332,
+              "shannon_entropy": 0.9581704139709473
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.6765596866607666,
+        "request_datetime": 1755804671
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "Each of the seven members of the board of directors\u2014Guzman, Hawking, Lepp, Miyauchi, Upchurch, Wharton, and Zhu\u2014serves on exactly one of two committees\u2014the finance committee or the incentives committee. Only board members serve on these committees. Committee membership is consistent with the following conditions: If Guzman serves on the finance committee, then Hawking serves on the incentives committee. If Lepp serves on the finance committee, then Miyauchi and Upchurch both serve on the incentives committee. Wharton serves on a different committee from the one on which Zhu serves. Upchurch serves on a different committee from the one on which Guzman serves. If Zhu serves on the finance committee, so does Hawking.\nQuestion: If Guzman serves on the incentives committee, then which one of the following must be true?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Hawking serves on the finance committee."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Lepp serves on the incentives committee."
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "Miyauchi serves on the finance committee."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Wharton serves on the incentives committee."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Zhu serves on the finance committee."
+            },
+            "tags": []
+          }
+        ],
+        "split": "valid",
+        "id": "id282"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "Hawking serves on the finance committee.",
+        "B": "Lepp serves on the incentives committee.",
+        "C": "Miyauchi serves on the finance committee.",
+        "D": "Wharton serves on the incentives committee.",
+        "E": "Zhu serves on the finance committee."
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: An album contains photographs picturing seven friends: Raimundo, Selma, Ty, Umiko, Wendy, Yakira, Zack. The friends appear either alone or in groups with one another, in accordance with the following: Wendy appears in every photograph that Selma appears in. Selma appears in every photograph that Umiko appears in. Raimundo appears in every photograph that Yakira does not appear in. Neither Ty nor Raimundo appears in any photograph that Wendy appears in.\nQuestion: If Umiko and Zack appear together in a photograph, then exactly how many of the other friends must also appear in that photograph?\nA. four\nB. three\nC. two\nD. one\nE. zero\nAnswer: B\n\nPassage: Barbara is shopping at a pet store to select fish for her new aquarium from among the following species: J, K, L, M, N, O, and P. For each of the seven species, the store has several fish available. Barbara makes her selection in a manner consistent with the following conditions: If she selects one or more K, then she does not select any O. If she selects one or more M, then she does not select any N. If she selects one or more M, then she selects at least one O. If she selects one or more N, then she selects at least one O. If she selects one or more O, then she selects at least one P. If she selects one or more P, then she selects at least one O. If she selects any O at all, then she selects at least two O.\nQuestion: If Barbara selects fish of as many species as possible, then she cannot select any fish of which one of the following species?\nA. K\nB. L\nC. M\nD. N\nE. P\nAnswer: A\n\nPassage: A student is choosing courses to take during a summer school session. Each summer school student must take at least three courses from among the following seven: history, linguistics, music, physics, statistics, theater, and writing. The summer school schedule restricts the courses a student can take in the following ways: If history is taken, then neither statistics nor music can be taken. If music is taken, then neither physics nor theater can be taken. If writing is taken, then neither physics nor statistics can be taken.\nQuestion: What is the maximum number of courses the student could take during the summer school session?\nA. seven\nB. six\nC. five\nD. four\nE. three\nAnswer: D\n\nPassage: The members of a five-person committee will be selected from among three parents\u2014F, G, and H\u2014three students\u2014K, L, and M\u2014and four teachers\u2014U, W, X, and Z. The selection of committee members will meet the following conditions: The committee must include exactly one student. F and H cannot both be selected. M and Z cannot both be selected. U and W cannot both be selected. F cannot be selected unless Z is also selected. W cannot be selected unless H is also selected.\nQuestion: If the committee is to include exactly one parent, which one of the following is a person who must also be selected?\nA. K\nB. L\nC. M\nD. U\nE. X\nAnswer: E\n\nPassage: Five performers\u2014Traugott, West, Xavier, Young, and Zinser\u2014are recruited by three talent agencies\u2014Fame Agency, Premier Agency, and Star Agency. Each performer signs with exactly one of the agencies and each agency signs at least one of the performers. The performers' signing with the agencies is in accord with the following: Xavier signs with Fame Agency. Xavier and Young do not sign with the same agency as each other. Zinser signs with the same agency as Young. If Traugott signs with Star Agency, West also signs with Star Agency.\nQuestion: The agency with which each of the performers signs is completely determined if which one of the following is true?\nA. Traugott signs with Fame Agency.\nB. Traugott signs with Star Agency.\nC. West signs with Premier Agency.\nD. Xavier signs with Fame Agency.\nE. Zinser signs with Premier Agency.\nAnswer: B\n\nPassage: Each of the seven members of the board of directors\u2014Guzman, Hawking, Lepp, Miyauchi, Upchurch, Wharton, and Zhu\u2014serves on exactly one of two committees\u2014the finance committee or the incentives committee. Only board members serve on these committees. Committee membership is consistent with the following conditions: If Guzman serves on the finance committee, then Hawking serves on the incentives committee. If Lepp serves on the finance committee, then Miyauchi and Upchurch both serve on the incentives committee. Wharton serves on a different committee from the one on which Zhu serves. Upchurch serves on a different committee from the one on which Guzman serves. If Zhu serves on the finance committee, so does Hawking.\nQuestion: If Guzman serves on the incentives committee, then which one of the following must be true?\nA. Hawking serves on the finance committee.\nB. Lepp serves on the incentives committee.\nC. Miyauchi serves on the finance committee.\nD. Wharton serves on the incentives committee.\nE. Zhu serves on the finance committee.\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "E",
+            "logprob": -1.5620779991149902,
+            "tokens": [
+              {
+                "text": "E",
+                "logprob": -1.5620779991149902
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 1.5620778799057007,
+              "max_token_negative_log_likelihood": 1.5620778799057007,
+              "predictive_entropy": 0.32756751775741577,
+              "shannon_entropy": 0.581465482711792
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.7167856693267822,
+        "request_datetime": 1755804671
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "A panel of five scientists will be formed. The panelists will be selected from among three botanists\u2014F, G, and H\u2014three chemists\u2014K, L, and M\u2014and three zoologists\u2014P, Q, and R. Selection is governed by the following conditions: The panel must include at least one scientist of each of the three types. If more than one botanist is selected, then at most one zoologist is selected. F and K cannot both be selected. K and M cannot both be selected. If M is selected, both P and R must be selected.\nQuestion: Which one of the following is an acceptable selection of scientists for the panel?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "F, G, K, P, Q"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "G, H, K, L, M"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "G, H, K, L, R"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "H, K, M, P, R"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "H, L, M, P, Q"
+            },
+            "tags": []
+          }
+        ],
+        "split": "test",
+        "id": "id283"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "F, G, K, P, Q",
+        "B": "G, H, K, L, M",
+        "C": "G, H, K, L, R",
+        "D": "H, K, M, P, R",
+        "E": "H, L, M, P, Q"
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: An album contains photographs picturing seven friends: Raimundo, Selma, Ty, Umiko, Wendy, Yakira, Zack. The friends appear either alone or in groups with one another, in accordance with the following: Wendy appears in every photograph that Selma appears in. Selma appears in every photograph that Umiko appears in. Raimundo appears in every photograph that Yakira does not appear in. Neither Ty nor Raimundo appears in any photograph that Wendy appears in.\nQuestion: If Umiko and Zack appear together in a photograph, then exactly how many of the other friends must also appear in that photograph?\nA. four\nB. three\nC. two\nD. one\nE. zero\nAnswer: B\n\nPassage: Barbara is shopping at a pet store to select fish for her new aquarium from among the following species: J, K, L, M, N, O, and P. For each of the seven species, the store has several fish available. Barbara makes her selection in a manner consistent with the following conditions: If she selects one or more K, then she does not select any O. If she selects one or more M, then she does not select any N. If she selects one or more M, then she selects at least one O. If she selects one or more N, then she selects at least one O. If she selects one or more O, then she selects at least one P. If she selects one or more P, then she selects at least one O. If she selects any O at all, then she selects at least two O.\nQuestion: If Barbara selects fish of as many species as possible, then she cannot select any fish of which one of the following species?\nA. K\nB. L\nC. M\nD. N\nE. P\nAnswer: A\n\nPassage: A student is choosing courses to take during a summer school session. Each summer school student must take at least three courses from among the following seven: history, linguistics, music, physics, statistics, theater, and writing. The summer school schedule restricts the courses a student can take in the following ways: If history is taken, then neither statistics nor music can be taken. If music is taken, then neither physics nor theater can be taken. If writing is taken, then neither physics nor statistics can be taken.\nQuestion: What is the maximum number of courses the student could take during the summer school session?\nA. seven\nB. six\nC. five\nD. four\nE. three\nAnswer: D\n\nPassage: The members of a five-person committee will be selected from among three parents\u2014F, G, and H\u2014three students\u2014K, L, and M\u2014and four teachers\u2014U, W, X, and Z. The selection of committee members will meet the following conditions: The committee must include exactly one student. F and H cannot both be selected. M and Z cannot both be selected. U and W cannot both be selected. F cannot be selected unless Z is also selected. W cannot be selected unless H is also selected.\nQuestion: If the committee is to include exactly one parent, which one of the following is a person who must also be selected?\nA. K\nB. L\nC. M\nD. U\nE. X\nAnswer: E\n\nPassage: Five performers\u2014Traugott, West, Xavier, Young, and Zinser\u2014are recruited by three talent agencies\u2014Fame Agency, Premier Agency, and Star Agency. Each performer signs with exactly one of the agencies and each agency signs at least one of the performers. The performers' signing with the agencies is in accord with the following: Xavier signs with Fame Agency. Xavier and Young do not sign with the same agency as each other. Zinser signs with the same agency as Young. If Traugott signs with Star Agency, West also signs with Star Agency.\nQuestion: The agency with which each of the performers signs is completely determined if which one of the following is true?\nA. Traugott signs with Fame Agency.\nB. Traugott signs with Star Agency.\nC. West signs with Premier Agency.\nD. Xavier signs with Fame Agency.\nE. Zinser signs with Premier Agency.\nAnswer: B\n\nPassage: A panel of five scientists will be formed. The panelists will be selected from among three botanists\u2014F, G, and H\u2014three chemists\u2014K, L, and M\u2014and three zoologists\u2014P, Q, and R. Selection is governed by the following conditions: The panel must include at least one scientist of each of the three types. If more than one botanist is selected, then at most one zoologist is selected. F and K cannot both be selected. K and M cannot both be selected. If M is selected, both P and R must be selected.\nQuestion: Which one of the following is an acceptable selection of scientists for the panel?\nA. F, G, K, P, Q\nB. G, H, K, L, M\nC. G, H, K, L, R\nD. H, K, M, P, R\nE. H, L, M, P, Q\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "D",
+            "logprob": -0.02661472000181675,
+            "tokens": [
+              {
+                "text": "D",
+                "logprob": -0.02661472000181675
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.026614705100655556,
+              "max_token_negative_log_likelihood": 0.026614705100655556,
+              "predictive_entropy": 0.025915706530213356,
+              "shannon_entropy": 0.12324664741754532
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.6801910400390625,
+        "request_datetime": 1755804671
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "A panel of five scientists will be formed. The panelists will be selected from among three botanists\u2014F, G, and H\u2014three chemists\u2014K, L, and M\u2014and three zoologists\u2014P, Q, and R. Selection is governed by the following conditions: The panel must include at least one scientist of each of the three types. If more than one botanist is selected, then at most one zoologist is selected. F and K cannot both be selected. K and M cannot both be selected. If M is selected, both P and R must be selected.\nQuestion: If M is the only chemist selected for the panel, which one of the following must be true?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "F and G are both selected."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "G and H are both selected."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "H and P are both selected."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "F, G, and H are all selected."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "P, Q, and R are all selected."
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id284"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "F and G are both selected.",
+        "B": "G and H are both selected.",
+        "C": "H and P are both selected.",
+        "D": "F, G, and H are all selected.",
+        "E": "P, Q, and R are all selected."
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: An album contains photographs picturing seven friends: Raimundo, Selma, Ty, Umiko, Wendy, Yakira, Zack. The friends appear either alone or in groups with one another, in accordance with the following: Wendy appears in every photograph that Selma appears in. Selma appears in every photograph that Umiko appears in. Raimundo appears in every photograph that Yakira does not appear in. Neither Ty nor Raimundo appears in any photograph that Wendy appears in.\nQuestion: If Umiko and Zack appear together in a photograph, then exactly how many of the other friends must also appear in that photograph?\nA. four\nB. three\nC. two\nD. one\nE. zero\nAnswer: B\n\nPassage: Barbara is shopping at a pet store to select fish for her new aquarium from among the following species: J, K, L, M, N, O, and P. For each of the seven species, the store has several fish available. Barbara makes her selection in a manner consistent with the following conditions: If she selects one or more K, then she does not select any O. If she selects one or more M, then she does not select any N. If she selects one or more M, then she selects at least one O. If she selects one or more N, then she selects at least one O. If she selects one or more O, then she selects at least one P. If she selects one or more P, then she selects at least one O. If she selects any O at all, then she selects at least two O.\nQuestion: If Barbara selects fish of as many species as possible, then she cannot select any fish of which one of the following species?\nA. K\nB. L\nC. M\nD. N\nE. P\nAnswer: A\n\nPassage: A student is choosing courses to take during a summer school session. Each summer school student must take at least three courses from among the following seven: history, linguistics, music, physics, statistics, theater, and writing. The summer school schedule restricts the courses a student can take in the following ways: If history is taken, then neither statistics nor music can be taken. If music is taken, then neither physics nor theater can be taken. If writing is taken, then neither physics nor statistics can be taken.\nQuestion: What is the maximum number of courses the student could take during the summer school session?\nA. seven\nB. six\nC. five\nD. four\nE. three\nAnswer: D\n\nPassage: The members of a five-person committee will be selected from among three parents\u2014F, G, and H\u2014three students\u2014K, L, and M\u2014and four teachers\u2014U, W, X, and Z. The selection of committee members will meet the following conditions: The committee must include exactly one student. F and H cannot both be selected. M and Z cannot both be selected. U and W cannot both be selected. F cannot be selected unless Z is also selected. W cannot be selected unless H is also selected.\nQuestion: If the committee is to include exactly one parent, which one of the following is a person who must also be selected?\nA. K\nB. L\nC. M\nD. U\nE. X\nAnswer: E\n\nPassage: Five performers\u2014Traugott, West, Xavier, Young, and Zinser\u2014are recruited by three talent agencies\u2014Fame Agency, Premier Agency, and Star Agency. Each performer signs with exactly one of the agencies and each agency signs at least one of the performers. The performers' signing with the agencies is in accord with the following: Xavier signs with Fame Agency. Xavier and Young do not sign with the same agency as each other. Zinser signs with the same agency as Young. If Traugott signs with Star Agency, West also signs with Star Agency.\nQuestion: The agency with which each of the performers signs is completely determined if which one of the following is true?\nA. Traugott signs with Fame Agency.\nB. Traugott signs with Star Agency.\nC. West signs with Premier Agency.\nD. Xavier signs with Fame Agency.\nE. Zinser signs with Premier Agency.\nAnswer: B\n\nPassage: A panel of five scientists will be formed. The panelists will be selected from among three botanists\u2014F, G, and H\u2014three chemists\u2014K, L, and M\u2014and three zoologists\u2014P, Q, and R. Selection is governed by the following conditions: The panel must include at least one scientist of each of the three types. If more than one botanist is selected, then at most one zoologist is selected. F and K cannot both be selected. K and M cannot both be selected. If M is selected, both P and R must be selected.\nQuestion: If M is the only chemist selected for the panel, which one of the following must be true?\nA. F and G are both selected.\nB. G and H are both selected.\nC. H and P are both selected.\nD. F, G, and H are all selected.\nE. P, Q, and R are all selected.\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "E",
+            "logprob": -0.00013207517622504383,
+            "tokens": [
+              {
+                "text": "E",
+                "logprob": -0.00013207517622504383
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.00013209260941948742,
+              "max_token_negative_log_likelihood": 0.00013209260941948742,
+              "predictive_entropy": 0.0001320751616731286,
+              "shannon_entropy": 0.001316678593866527
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.7010383605957031,
+        "request_datetime": 1755804671
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "A panel of five scientists will be formed. The panelists will be selected from among three botanists\u2014F, G, and H\u2014three chemists\u2014K, L, and M\u2014and three zoologists\u2014P, Q, and R. Selection is governed by the following conditions: The panel must include at least one scientist of each of the three types. If more than one botanist is selected, then at most one zoologist is selected. F and K cannot both be selected. K and M cannot both be selected. If M is selected, both P and R must be selected.\nQuestion: If four of the scientists selected are F, L, Q, and R, which one of the following must be the fifth scientist selected?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "G"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "H"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "K"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "M"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "P"
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id285"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "G",
+        "B": "H",
+        "C": "K",
+        "D": "M",
+        "E": "P"
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: An album contains photographs picturing seven friends: Raimundo, Selma, Ty, Umiko, Wendy, Yakira, Zack. The friends appear either alone or in groups with one another, in accordance with the following: Wendy appears in every photograph that Selma appears in. Selma appears in every photograph that Umiko appears in. Raimundo appears in every photograph that Yakira does not appear in. Neither Ty nor Raimundo appears in any photograph that Wendy appears in.\nQuestion: If Umiko and Zack appear together in a photograph, then exactly how many of the other friends must also appear in that photograph?\nA. four\nB. three\nC. two\nD. one\nE. zero\nAnswer: B\n\nPassage: Barbara is shopping at a pet store to select fish for her new aquarium from among the following species: J, K, L, M, N, O, and P. For each of the seven species, the store has several fish available. Barbara makes her selection in a manner consistent with the following conditions: If she selects one or more K, then she does not select any O. If she selects one or more M, then she does not select any N. If she selects one or more M, then she selects at least one O. If she selects one or more N, then she selects at least one O. If she selects one or more O, then she selects at least one P. If she selects one or more P, then she selects at least one O. If she selects any O at all, then she selects at least two O.\nQuestion: If Barbara selects fish of as many species as possible, then she cannot select any fish of which one of the following species?\nA. K\nB. L\nC. M\nD. N\nE. P\nAnswer: A\n\nPassage: A student is choosing courses to take during a summer school session. Each summer school student must take at least three courses from among the following seven: history, linguistics, music, physics, statistics, theater, and writing. The summer school schedule restricts the courses a student can take in the following ways: If history is taken, then neither statistics nor music can be taken. If music is taken, then neither physics nor theater can be taken. If writing is taken, then neither physics nor statistics can be taken.\nQuestion: What is the maximum number of courses the student could take during the summer school session?\nA. seven\nB. six\nC. five\nD. four\nE. three\nAnswer: D\n\nPassage: The members of a five-person committee will be selected from among three parents\u2014F, G, and H\u2014three students\u2014K, L, and M\u2014and four teachers\u2014U, W, X, and Z. The selection of committee members will meet the following conditions: The committee must include exactly one student. F and H cannot both be selected. M and Z cannot both be selected. U and W cannot both be selected. F cannot be selected unless Z is also selected. W cannot be selected unless H is also selected.\nQuestion: If the committee is to include exactly one parent, which one of the following is a person who must also be selected?\nA. K\nB. L\nC. M\nD. U\nE. X\nAnswer: E\n\nPassage: Five performers\u2014Traugott, West, Xavier, Young, and Zinser\u2014are recruited by three talent agencies\u2014Fame Agency, Premier Agency, and Star Agency. Each performer signs with exactly one of the agencies and each agency signs at least one of the performers. The performers' signing with the agencies is in accord with the following: Xavier signs with Fame Agency. Xavier and Young do not sign with the same agency as each other. Zinser signs with the same agency as Young. If Traugott signs with Star Agency, West also signs with Star Agency.\nQuestion: The agency with which each of the performers signs is completely determined if which one of the following is true?\nA. Traugott signs with Fame Agency.\nB. Traugott signs with Star Agency.\nC. West signs with Premier Agency.\nD. Xavier signs with Fame Agency.\nE. Zinser signs with Premier Agency.\nAnswer: B\n\nPassage: A panel of five scientists will be formed. The panelists will be selected from among three botanists\u2014F, G, and H\u2014three chemists\u2014K, L, and M\u2014and three zoologists\u2014P, Q, and R. Selection is governed by the following conditions: The panel must include at least one scientist of each of the three types. If more than one botanist is selected, then at most one zoologist is selected. F and K cannot both be selected. K and M cannot both be selected. If M is selected, both P and R must be selected.\nQuestion: If four of the scientists selected are F, L, Q, and R, which one of the following must be the fifth scientist selected?\nA. G\nB. H\nC. K\nD. M\nE. P\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "B",
+            "logprob": -0.6976572871208191,
+            "tokens": [
+              {
+                "text": "B",
+                "logprob": -0.6976572871208191
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.6976572871208191,
+              "max_token_negative_log_likelihood": 0.6976572871208191,
+              "predictive_entropy": 0.34725892543792725,
+              "shannon_entropy": 1.0509910583496094
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.6205637454986572,
+        "request_datetime": 1755804671
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "A panel of five scientists will be formed. The panelists will be selected from among three botanists\u2014F, G, and H\u2014three chemists\u2014K, L, and M\u2014and three zoologists\u2014P, Q, and R. Selection is governed by the following conditions: The panel must include at least one scientist of each of the three types. If more than one botanist is selected, then at most one zoologist is selected. F and K cannot both be selected. K and M cannot both be selected. If M is selected, both P and R must be selected.\nQuestion: If P is the only zoologist selected, which one of the following must be true?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "If K is selected, G cannot be selected."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "If L is selected, F cannot be selected."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "If exactly one chemist is selected, it must be K."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "If exactly two chemists are selected, F cannot be selected."
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "If exactly two chemists are selected, G cannot be selected."
+            },
+            "tags": []
+          }
+        ],
+        "split": "test",
+        "id": "id286"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "If K is selected, G cannot be selected.",
+        "B": "If L is selected, F cannot be selected.",
+        "C": "If exactly one chemist is selected, it must be K.",
+        "D": "If exactly two chemists are selected, F cannot be selected.",
+        "E": "If exactly two chemists are selected, G cannot be selected."
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: An album contains photographs picturing seven friends: Raimundo, Selma, Ty, Umiko, Wendy, Yakira, Zack. The friends appear either alone or in groups with one another, in accordance with the following: Wendy appears in every photograph that Selma appears in. Selma appears in every photograph that Umiko appears in. Raimundo appears in every photograph that Yakira does not appear in. Neither Ty nor Raimundo appears in any photograph that Wendy appears in.\nQuestion: If Umiko and Zack appear together in a photograph, then exactly how many of the other friends must also appear in that photograph?\nA. four\nB. three\nC. two\nD. one\nE. zero\nAnswer: B\n\nPassage: Barbara is shopping at a pet store to select fish for her new aquarium from among the following species: J, K, L, M, N, O, and P. For each of the seven species, the store has several fish available. Barbara makes her selection in a manner consistent with the following conditions: If she selects one or more K, then she does not select any O. If she selects one or more M, then she does not select any N. If she selects one or more M, then she selects at least one O. If she selects one or more N, then she selects at least one O. If she selects one or more O, then she selects at least one P. If she selects one or more P, then she selects at least one O. If she selects any O at all, then she selects at least two O.\nQuestion: If Barbara selects fish of as many species as possible, then she cannot select any fish of which one of the following species?\nA. K\nB. L\nC. M\nD. N\nE. P\nAnswer: A\n\nPassage: A student is choosing courses to take during a summer school session. Each summer school student must take at least three courses from among the following seven: history, linguistics, music, physics, statistics, theater, and writing. The summer school schedule restricts the courses a student can take in the following ways: If history is taken, then neither statistics nor music can be taken. If music is taken, then neither physics nor theater can be taken. If writing is taken, then neither physics nor statistics can be taken.\nQuestion: What is the maximum number of courses the student could take during the summer school session?\nA. seven\nB. six\nC. five\nD. four\nE. three\nAnswer: D\n\nPassage: The members of a five-person committee will be selected from among three parents\u2014F, G, and H\u2014three students\u2014K, L, and M\u2014and four teachers\u2014U, W, X, and Z. The selection of committee members will meet the following conditions: The committee must include exactly one student. F and H cannot both be selected. M and Z cannot both be selected. U and W cannot both be selected. F cannot be selected unless Z is also selected. W cannot be selected unless H is also selected.\nQuestion: If the committee is to include exactly one parent, which one of the following is a person who must also be selected?\nA. K\nB. L\nC. M\nD. U\nE. X\nAnswer: E\n\nPassage: Five performers\u2014Traugott, West, Xavier, Young, and Zinser\u2014are recruited by three talent agencies\u2014Fame Agency, Premier Agency, and Star Agency. Each performer signs with exactly one of the agencies and each agency signs at least one of the performers. The performers' signing with the agencies is in accord with the following: Xavier signs with Fame Agency. Xavier and Young do not sign with the same agency as each other. Zinser signs with the same agency as Young. If Traugott signs with Star Agency, West also signs with Star Agency.\nQuestion: The agency with which each of the performers signs is completely determined if which one of the following is true?\nA. Traugott signs with Fame Agency.\nB. Traugott signs with Star Agency.\nC. West signs with Premier Agency.\nD. Xavier signs with Fame Agency.\nE. Zinser signs with Premier Agency.\nAnswer: B\n\nPassage: A panel of five scientists will be formed. The panelists will be selected from among three botanists\u2014F, G, and H\u2014three chemists\u2014K, L, and M\u2014and three zoologists\u2014P, Q, and R. Selection is governed by the following conditions: The panel must include at least one scientist of each of the three types. If more than one botanist is selected, then at most one zoologist is selected. F and K cannot both be selected. K and M cannot both be selected. If M is selected, both P and R must be selected.\nQuestion: If P is the only zoologist selected, which one of the following must be true?\nA. If K is selected, G cannot be selected.\nB. If L is selected, F cannot be selected.\nC. If exactly one chemist is selected, it must be K.\nD. If exactly two chemists are selected, F cannot be selected.\nE. If exactly two chemists are selected, G cannot be selected.\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "D",
+            "logprob": -0.40758025646209717,
+            "tokens": [
+              {
+                "text": "D",
+                "logprob": -0.40758025646209717
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.40758028626441956,
+              "max_token_negative_log_likelihood": 0.40758028626441956,
+              "predictive_entropy": 0.2711460590362549,
+              "shannon_entropy": 0.7293605208396912
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.6926751136779785,
+        "request_datetime": 1755804672
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "A panel of five scientists will be formed. The panelists will be selected from among three botanists\u2014F, G, and H\u2014three chemists\u2014K, L, and M\u2014and three zoologists\u2014P, Q, and R. Selection is governed by the following conditions: The panel must include at least one scientist of each of the three types. If more than one botanist is selected, then at most one zoologist is selected. F and K cannot both be selected. K and M cannot both be selected. If M is selected, both P and R must be selected.\nQuestion: If both G and H are among the scientists selected, then the panel must include either"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "F or else K"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "F or else M"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "K or else M"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "M or else Q"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "P or else Q"
+            },
+            "tags": []
+          }
+        ],
+        "split": "test",
+        "id": "id287"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "F or else K",
+        "B": "F or else M",
+        "C": "K or else M",
+        "D": "M or else Q",
+        "E": "P or else Q"
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: An album contains photographs picturing seven friends: Raimundo, Selma, Ty, Umiko, Wendy, Yakira, Zack. The friends appear either alone or in groups with one another, in accordance with the following: Wendy appears in every photograph that Selma appears in. Selma appears in every photograph that Umiko appears in. Raimundo appears in every photograph that Yakira does not appear in. Neither Ty nor Raimundo appears in any photograph that Wendy appears in.\nQuestion: If Umiko and Zack appear together in a photograph, then exactly how many of the other friends must also appear in that photograph?\nA. four\nB. three\nC. two\nD. one\nE. zero\nAnswer: B\n\nPassage: Barbara is shopping at a pet store to select fish for her new aquarium from among the following species: J, K, L, M, N, O, and P. For each of the seven species, the store has several fish available. Barbara makes her selection in a manner consistent with the following conditions: If she selects one or more K, then she does not select any O. If she selects one or more M, then she does not select any N. If she selects one or more M, then she selects at least one O. If she selects one or more N, then she selects at least one O. If she selects one or more O, then she selects at least one P. If she selects one or more P, then she selects at least one O. If she selects any O at all, then she selects at least two O.\nQuestion: If Barbara selects fish of as many species as possible, then she cannot select any fish of which one of the following species?\nA. K\nB. L\nC. M\nD. N\nE. P\nAnswer: A\n\nPassage: A student is choosing courses to take during a summer school session. Each summer school student must take at least three courses from among the following seven: history, linguistics, music, physics, statistics, theater, and writing. The summer school schedule restricts the courses a student can take in the following ways: If history is taken, then neither statistics nor music can be taken. If music is taken, then neither physics nor theater can be taken. If writing is taken, then neither physics nor statistics can be taken.\nQuestion: What is the maximum number of courses the student could take during the summer school session?\nA. seven\nB. six\nC. five\nD. four\nE. three\nAnswer: D\n\nPassage: The members of a five-person committee will be selected from among three parents\u2014F, G, and H\u2014three students\u2014K, L, and M\u2014and four teachers\u2014U, W, X, and Z. The selection of committee members will meet the following conditions: The committee must include exactly one student. F and H cannot both be selected. M and Z cannot both be selected. U and W cannot both be selected. F cannot be selected unless Z is also selected. W cannot be selected unless H is also selected.\nQuestion: If the committee is to include exactly one parent, which one of the following is a person who must also be selected?\nA. K\nB. L\nC. M\nD. U\nE. X\nAnswer: E\n\nPassage: Five performers\u2014Traugott, West, Xavier, Young, and Zinser\u2014are recruited by three talent agencies\u2014Fame Agency, Premier Agency, and Star Agency. Each performer signs with exactly one of the agencies and each agency signs at least one of the performers. The performers' signing with the agencies is in accord with the following: Xavier signs with Fame Agency. Xavier and Young do not sign with the same agency as each other. Zinser signs with the same agency as Young. If Traugott signs with Star Agency, West also signs with Star Agency.\nQuestion: The agency with which each of the performers signs is completely determined if which one of the following is true?\nA. Traugott signs with Fame Agency.\nB. Traugott signs with Star Agency.\nC. West signs with Premier Agency.\nD. Xavier signs with Fame Agency.\nE. Zinser signs with Premier Agency.\nAnswer: B\n\nPassage: A panel of five scientists will be formed. The panelists will be selected from among three botanists\u2014F, G, and H\u2014three chemists\u2014K, L, and M\u2014and three zoologists\u2014P, Q, and R. Selection is governed by the following conditions: The panel must include at least one scientist of each of the three types. If more than one botanist is selected, then at most one zoologist is selected. F and K cannot both be selected. K and M cannot both be selected. If M is selected, both P and R must be selected.\nQuestion: If both G and H are among the scientists selected, then the panel must include either\nA. F or else K\nB. F or else M\nC. K or else M\nD. M or else Q\nE. P or else Q\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "B",
+            "logprob": -0.20973697304725647,
+            "tokens": [
+              {
+                "text": "B",
+                "logprob": -0.20973697304725647
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.20973700284957886,
+              "max_token_negative_log_likelihood": 0.20973700284957886,
+              "predictive_entropy": 0.17005422711372375,
+              "shannon_entropy": 0.56716388463974
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.6134049892425537,
+        "request_datetime": 1755804672
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    }
+  ]
+}

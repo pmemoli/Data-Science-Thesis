@@ -1,0 +1,9 @@
+{
+  "name": "entity_data_imputation",
+  "description": "Missing cell value generation task from a structured row.",
+  "tags": [
+    "entity_data_imputation",
+    "structured_reasoning"
+  ],
+  "definition_path": "https://github.com/stanford-crfm/helm/blob/main/src/helm/benchmark/scenarios/entity_data_imputation_scenario.py"
+}

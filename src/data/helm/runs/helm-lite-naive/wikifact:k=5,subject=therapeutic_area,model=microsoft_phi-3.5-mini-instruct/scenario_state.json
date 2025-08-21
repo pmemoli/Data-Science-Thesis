@@ -1,0 +1,1475 @@
+{
+  "adapter_spec": {
+    "method": "generation",
+    "global_prefix": "",
+    "global_suffix": "",
+    "instructions": "",
+    "input_prefix": "",
+    "input_suffix": "",
+    "reference_prefix": "A. ",
+    "reference_suffix": "\n",
+    "chain_of_thought_prefix": "",
+    "chain_of_thought_suffix": "\n",
+    "output_prefix": " ",
+    "output_suffix": "\n",
+    "instance_prefix": "\n",
+    "substitutions": [],
+    "max_train_instances": 5,
+    "max_eval_instances": 100,
+    "num_outputs": 5,
+    "num_train_trials": 1,
+    "num_trials": 1,
+    "sample_train": true,
+    "model_deployment": "huggingface/phi-3.5-mini-instruct",
+    "model": "microsoft/phi-3.5-mini-instruct",
+    "temperature": 1.0,
+    "max_tokens": 8,
+    "stop_sequences": [
+      "\n"
+    ],
+    "multi_label": false
+  },
+  "request_states": [
+    {
+      "instance": {
+        "input": {
+          "text": "TA-NIC cures diseases such as"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "smoking cessation"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "quitting smoking"
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id1"
+      },
+      "train_trial_index": 0,
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "ozone therapy cures diseases such as rheumatology\n\nTA-NIC cures diseases such as",
+        "temperature": 1.0,
+        "num_completions": 5,
+        "top_k_per_token": 1,
+        "max_tokens": 8,
+        "stop_sequences": [
+          "\n"
+        ],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "Ozone therapy is an alternative treatment",
+            "logprob": -1.3949895649939208,
+            "tokens": [
+              {
+                "text": "O",
+                "logprob": -0.06960537284612656
+              },
+              {
+                "text": "zone",
+                "logprob": -3.933898824470816e-06
+              },
+              {
+                "text": "ther",
+                "logprob": -5.125986263010418e-06
+              },
+              {
+                "text": "apy",
+                "logprob": 0.0
+              },
+              {
+                "text": "is",
+                "logprob": -0.0773913562297821
+              },
+              {
+                "text": "an",
+                "logprob": -0.8748669028282166
+              },
+              {
+                "text": "alternative",
+                "logprob": -0.0653308555483818
+              },
+              {
+                "text": "treatment",
+                "logprob": -0.3077860176563263
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.17437368724756652,
+              "max_token_negative_log_likelihood": 0.8748669028282166,
+              "predictive_entropy": 0.09859420312307066,
+              "shannon_entropy": 0.29352134928555695
+            }
+          },
+          {
+            "text": "Ozone therapy is an alternative treatment",
+            "logprob": -1.3949895649939208,
+            "tokens": [
+              {
+                "text": "O",
+                "logprob": -0.06960537284612656
+              },
+              {
+                "text": "zone",
+                "logprob": -3.933898824470816e-06
+              },
+              {
+                "text": "ther",
+                "logprob": -5.125986263010418e-06
+              },
+              {
+                "text": "apy",
+                "logprob": 0.0
+              },
+              {
+                "text": "is",
+                "logprob": -0.0773913562297821
+              },
+              {
+                "text": "an",
+                "logprob": -0.8748669028282166
+              },
+              {
+                "text": "alternative",
+                "logprob": -0.0653308555483818
+              },
+              {
+                "text": "treatment",
+                "logprob": -0.3077860176563263
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.17437368724756652,
+              "max_token_negative_log_likelihood": 0.8748669028282166,
+              "predictive_entropy": 0.09859420312307066,
+              "shannon_entropy": 0.29352134928555695
+            }
+          },
+          {
+            "text": "Ozone therapy is a form of",
+            "logprob": -1.059859178939405,
+            "tokens": [
+              {
+                "text": "O",
+                "logprob": -0.06960537284612656
+              },
+              {
+                "text": "zone",
+                "logprob": -3.933898824470816e-06
+              },
+              {
+                "text": "ther",
+                "logprob": -5.125986263010418e-06
+              },
+              {
+                "text": "apy",
+                "logprob": 0.0
+              },
+              {
+                "text": "is",
+                "logprob": -0.0773913562297821
+              },
+              {
+                "text": "a",
+                "logprob": -0.5623669028282166
+              },
+              {
+                "text": "form",
+                "logprob": -0.35048648715019226
+              },
+              {
+                "text": "of",
+                "logprob": 0.0
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.13248239644133264,
+              "max_token_negative_log_likelihood": 0.5623669028282166,
+              "predictive_entropy": 0.08798691257572955,
+              "shannon_entropy": 0.29471364569383407
+            }
+          },
+          {
+            "text": "Ozone therapy has been explored",
+            "logprob": -3.3051590434997706,
+            "tokens": [
+              {
+                "text": "O",
+                "logprob": -0.06960537284612656
+              },
+              {
+                "text": "zone",
+                "logprob": -3.933898824470816e-06
+              },
+              {
+                "text": "ther",
+                "logprob": -5.125986263010418e-06
+              },
+              {
+                "text": "apy",
+                "logprob": 0.0
+              },
+              {
+                "text": "has",
+                "logprob": -3.0148913860321045
+              },
+              {
+                "text": "been",
+                "logprob": -0.00905207172036171
+              },
+              {
+                "text": "expl",
+                "logprob": -0.2116011530160904
+              },
+              {
+                "text": "ored",
+                "logprob": 0.0
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.41314484586735034,
+              "max_token_negative_log_likelihood": 3.0148911476135254,
+              "predictive_entropy": 0.0491293549977172,
+              "shannon_entropy": 0.20422908729346992
+            }
+          },
+          {
+            "text": "Ozone therapy is an alternative treatment",
+            "logprob": -1.3949895649939208,
+            "tokens": [
+              {
+                "text": "O",
+                "logprob": -0.06960537284612656
+              },
+              {
+                "text": "zone",
+                "logprob": -3.933898824470816e-06
+              },
+              {
+                "text": "ther",
+                "logprob": -5.125986263010418e-06
+              },
+              {
+                "text": "apy",
+                "logprob": 0.0
+              },
+              {
+                "text": "is",
+                "logprob": -0.0773913562297821
+              },
+              {
+                "text": "an",
+                "logprob": -0.8748669028282166
+              },
+              {
+                "text": "alternative",
+                "logprob": -0.0653308555483818
+              },
+              {
+                "text": "treatment",
+                "logprob": -0.3077860176563263
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.17437368724756652,
+              "max_token_negative_log_likelihood": 0.8748669028282166,
+              "predictive_entropy": 0.09859420312307066,
+              "shannon_entropy": 0.29352134928555695
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.8564941883087158,
+        "request_datetime": 1755802650
+      },
+      "num_train_instances": 1,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "simethicone cures diseases such as"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "functional gastrointestinal disorder"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "Gastrointestinal Diseases"
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id2"
+      },
+      "train_trial_index": 0,
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "ozone therapy cures diseases such as rheumatology\n\nsimethicone cures diseases such as",
+        "temperature": 1.0,
+        "num_completions": 5,
+        "top_k_per_token": 1,
+        "max_tokens": 8,
+        "stop_sequences": [
+          "\n"
+        ],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "Simethicone is not recognized as",
+            "logprob": -4.59358575567466,
+            "tokens": [
+              {
+                "text": "Sim",
+                "logprob": -0.1321202963590622
+              },
+              {
+                "text": "eth",
+                "logprob": 0.0
+              },
+              {
+                "text": "ic",
+                "logprob": -1.6689286894688848e-06
+              },
+              {
+                "text": "one",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "is",
+                "logprob": -0.2024843543767929
+              },
+              {
+                "text": "not",
+                "logprob": -0.0872369259595871
+              },
+              {
+                "text": "recognized",
+                "logprob": -4.158228874206543
+              },
+              {
+                "text": "as",
+                "logprob": -0.013513516634702682
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.574198157526725,
+              "max_token_negative_log_likelihood": 4.158228397369385,
+              "predictive_entropy": 0.054929402423837814,
+              "shannon_entropy": 0.27450261336667303
+            }
+          },
+          {
+            "text": "Simethicone is not a c",
+            "logprob": -0.7217506840811367,
+            "tokens": [
+              {
+                "text": "Sim",
+                "logprob": -0.1321202963590622
+              },
+              {
+                "text": "eth",
+                "logprob": 0.0
+              },
+              {
+                "text": "ic",
+                "logprob": -1.6689286894688848e-06
+              },
+              {
+                "text": "one",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "is",
+                "logprob": -0.2024843543767929
+              },
+              {
+                "text": "not",
+                "logprob": -0.0872369259595871
+              },
+              {
+                "text": "a",
+                "logprob": -0.18947887420654297
+              },
+              {
+                "text": "c",
+                "logprob": -0.11042844504117966
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.0902188327165181,
+              "max_token_negative_log_likelihood": 0.2024843543767929,
+              "predictive_entropy": 0.07709304988365773,
+              "shannon_entropy": 0.32429941535843376
+            }
+          },
+          {
+            "text": "Simethicone is not a c",
+            "logprob": -0.7217506840811367,
+            "tokens": [
+              {
+                "text": "Sim",
+                "logprob": -0.1321202963590622
+              },
+              {
+                "text": "eth",
+                "logprob": 0.0
+              },
+              {
+                "text": "ic",
+                "logprob": -1.6689286894688848e-06
+              },
+              {
+                "text": "one",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "is",
+                "logprob": -0.2024843543767929
+              },
+              {
+                "text": "not",
+                "logprob": -0.0872369259595871
+              },
+              {
+                "text": "a",
+                "logprob": -0.18947887420654297
+              },
+              {
+                "text": "c",
+                "logprob": -0.11042844504117966
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.0902188327165181,
+              "max_token_negative_log_likelihood": 0.2024843543767929,
+              "predictive_entropy": 0.07709304988365773,
+              "shannon_entropy": 0.32429941535843376
+            }
+          },
+          {
+            "text": "Simethicone, commonly found in",
+            "logprob": -3.253423757616922,
+            "tokens": [
+              {
+                "text": "Sim",
+                "logprob": -0.1321202963590622
+              },
+              {
+                "text": "eth",
+                "logprob": 0.0
+              },
+              {
+                "text": "ic",
+                "logprob": -1.6689286894688848e-06
+              },
+              {
+                "text": "one",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": ",",
+                "logprob": -1.952484369277954
+              },
+              {
+                "text": "commonly",
+                "logprob": -1.146966576576233
+              },
+              {
+                "text": "found",
+                "logprob": -0.02034100890159607
+              },
+              {
+                "text": "in",
+                "logprob": -0.0015097183641046286
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.40667796730139294,
+              "max_token_negative_log_likelihood": 1.952484369277954,
+              "predictive_entropy": 0.09732286371563248,
+              "shannon_entropy": 0.355406308215203
+            }
+          },
+          {
+            "text": "Simethicone is not directly pres",
+            "logprob": -12.568544700740397,
+            "tokens": [
+              {
+                "text": "Sim",
+                "logprob": -0.1321202963590622
+              },
+              {
+                "text": "eth",
+                "logprob": 0.0
+              },
+              {
+                "text": "ic",
+                "logprob": -1.6689286894688848e-06
+              },
+              {
+                "text": "one",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "is",
+                "logprob": -0.2024843543767929
+              },
+              {
+                "text": "not",
+                "logprob": -0.0872369259595871
+              },
+              {
+                "text": "directly",
+                "logprob": -4.845728874206543
+              },
+              {
+                "text": "pres",
+                "logprob": -7.3009724617004395
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 1.5710660004990036,
+              "max_token_negative_log_likelihood": 7.300957202911377,
+              "predictive_entropy": 0.05051401280779544,
+              "shannon_entropy": 0.33594654292715553
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.8520810604095459,
+        "request_datetime": 1755802650
+      },
+      "num_train_instances": 1,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "nicotine replacement therapy cures diseases such as"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "smoking cessation"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "quitting smoking"
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id3"
+      },
+      "train_trial_index": 0,
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "ozone therapy cures diseases such as rheumatology\n\nnicotine replacement therapy cures diseases such as",
+        "temperature": 1.0,
+        "num_completions": 5,
+        "top_k_per_token": 1,
+        "max_tokens": 8,
+        "stop_sequences": [
+          "\n"
+        ],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "Nicotine replacement therapy (N",
+            "logprob": -0.06570417282635788,
+            "tokens": [
+              {
+                "text": "Nic",
+                "logprob": -0.02115868777036667
+              },
+              {
+                "text": "ot",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "ine",
+                "logprob": 0.0
+              },
+              {
+                "text": "replacement",
+                "logprob": -0.03364565595984459
+              },
+              {
+                "text": "ther",
+                "logprob": 0.0
+              },
+              {
+                "text": "apy",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "(",
+                "logprob": -0.009581885300576687
+              },
+              {
+                "text": "N",
+                "logprob": -0.0013177053770050406
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.008213028399044475,
+              "max_token_negative_log_likelihood": 0.033645663410425186,
+              "predictive_entropy": 0.008006866395589896,
+              "shannon_entropy": 0.04081911648496028
+            }
+          },
+          {
+            "text": "Nicotine replacement therapy (N",
+            "logprob": -0.06570417282635788,
+            "tokens": [
+              {
+                "text": "Nic",
+                "logprob": -0.02115868777036667
+              },
+              {
+                "text": "ot",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "ine",
+                "logprob": 0.0
+              },
+              {
+                "text": "replacement",
+                "logprob": -0.03364565595984459
+              },
+              {
+                "text": "ther",
+                "logprob": 0.0
+              },
+              {
+                "text": "apy",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "(",
+                "logprob": -0.009581885300576687
+              },
+              {
+                "text": "N",
+                "logprob": -0.0013177053770050406
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.008213028399044475,
+              "max_token_negative_log_likelihood": 0.033645663410425186,
+              "predictive_entropy": 0.008006866395589896,
+              "shannon_entropy": 0.04081911648496028
+            }
+          },
+          {
+            "text": "Nicotine replacement therapy (N",
+            "logprob": -0.06570417282635788,
+            "tokens": [
+              {
+                "text": "Nic",
+                "logprob": -0.02115868777036667
+              },
+              {
+                "text": "ot",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "ine",
+                "logprob": 0.0
+              },
+              {
+                "text": "replacement",
+                "logprob": -0.03364565595984459
+              },
+              {
+                "text": "ther",
+                "logprob": 0.0
+              },
+              {
+                "text": "apy",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "(",
+                "logprob": -0.009581885300576687
+              },
+              {
+                "text": "N",
+                "logprob": -0.0013177053770050406
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.008213028399044475,
+              "max_token_negative_log_likelihood": 0.033645663410425186,
+              "predictive_entropy": 0.008006866395589896,
+              "shannon_entropy": 0.04081911648496028
+            }
+          },
+          {
+            "text": "Nicotine replacement therapy (N",
+            "logprob": -0.06570417282635788,
+            "tokens": [
+              {
+                "text": "Nic",
+                "logprob": -0.02115868777036667
+              },
+              {
+                "text": "ot",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "ine",
+                "logprob": 0.0
+              },
+              {
+                "text": "replacement",
+                "logprob": -0.03364565595984459
+              },
+              {
+                "text": "ther",
+                "logprob": 0.0
+              },
+              {
+                "text": "apy",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "(",
+                "logprob": -0.009581885300576687
+              },
+              {
+                "text": "N",
+                "logprob": -0.0013177053770050406
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.008213028399044475,
+              "max_token_negative_log_likelihood": 0.033645663410425186,
+              "predictive_entropy": 0.008006866395589896,
+              "shannon_entropy": 0.04081911648496028
+            }
+          },
+          {
+            "text": "Nicotine replacement therapy (N",
+            "logprob": -0.06570417282635788,
+            "tokens": [
+              {
+                "text": "Nic",
+                "logprob": -0.02115868777036667
+              },
+              {
+                "text": "ot",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "ine",
+                "logprob": 0.0
+              },
+              {
+                "text": "replacement",
+                "logprob": -0.03364565595984459
+              },
+              {
+                "text": "ther",
+                "logprob": 0.0
+              },
+              {
+                "text": "apy",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "(",
+                "logprob": -0.009581885300576687
+              },
+              {
+                "text": "N",
+                "logprob": -0.0013177053770050406
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.008213028399044475,
+              "max_token_negative_log_likelihood": 0.033645663410425186,
+              "predictive_entropy": 0.008006866395589896,
+              "shannon_entropy": 0.04081911648496028
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.857550859451294,
+        "request_datetime": 1755802650
+      },
+      "num_train_instances": 1,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "REGN-EB3 cures diseases such as"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Ebola hemorrhagic fever"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "EVD"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "EHF"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "Ebola"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "Ebola fever"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "Ebola disease"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "Hemorrhagic Fever, Ebola"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "Ebola virus disease"
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id4"
+      },
+      "train_trial_index": 0,
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "ozone therapy cures diseases such as rheumatology\n\nREGN-EB3 cures diseases such as",
+        "temperature": 1.0,
+        "num_completions": 5,
+        "top_k_per_token": 1,
+        "max_tokens": 8,
+        "stop_sequences": [
+          "\n"
+        ],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "Ozone therapy has been explored",
+            "logprob": -3.7905366051018063,
+            "tokens": [
+              {
+                "text": "O",
+                "logprob": -0.38720041513442993
+              },
+              {
+                "text": "zone",
+                "logprob": -5.364403477869928e-06
+              },
+              {
+                "text": "ther",
+                "logprob": -5.602679812000133e-05
+              },
+              {
+                "text": "apy",
+                "logprob": 0.0
+              },
+              {
+                "text": "has",
+                "logprob": -3.063457489013672
+              },
+              {
+                "text": "been",
+                "logprob": -0.020948464050889015
+              },
+              {
+                "text": "expl",
+                "logprob": -0.31886884570121765
+              },
+              {
+                "text": "ored",
+                "logprob": 0.0
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.47381704064309815,
+              "max_token_negative_log_likelihood": 3.0634572505950928,
+              "predictive_entropy": 0.08230228143480645,
+              "shannon_entropy": 0.369196510849334
+            }
+          },
+          {
+            "text": "Ozone therapy is an alternative medical",
+            "logprob": -2.7505708619028155,
+            "tokens": [
+              {
+                "text": "O",
+                "logprob": -0.38720041513442993
+              },
+              {
+                "text": "zone",
+                "logprob": -5.364403477869928e-06
+              },
+              {
+                "text": "ther",
+                "logprob": -5.602679812000133e-05
+              },
+              {
+                "text": "apy",
+                "logprob": 0.0
+              },
+              {
+                "text": "is",
+                "logprob": -0.18845750391483307
+              },
+              {
+                "text": "an",
+                "logprob": -0.8380594849586487
+              },
+              {
+                "text": "alternative",
+                "logprob": -0.13278503715991974
+              },
+              {
+                "text": "medical",
+                "logprob": -1.2040070295333862
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.3438213488202564,
+              "max_token_negative_log_likelihood": 1.2040070295333862,
+              "predictive_entropy": 0.15737568846640215,
+              "shannon_entropy": 0.436556192536556
+            }
+          },
+          {
+            "text": "REGN-EB3 is not a",
+            "logprob": -5.0372428607443,
+            "tokens": [
+              {
+                "text": "RE",
+                "logprob": -1.3247003555297852
+              },
+              {
+                "text": "GN",
+                "logprob": -0.0002914242504630238
+              },
+              {
+                "text": "-",
+                "logprob": 0.0
+              },
+              {
+                "text": "EB",
+                "logprob": -4.684815212385729e-05
+              },
+              {
+                "text": "3",
+                "logprob": 0.0
+              },
+              {
+                "text": "is",
+                "logprob": -0.16075299680233002
+              },
+              {
+                "text": "not",
+                "logprob": -3.23860502243042
+              },
+              {
+                "text": "a",
+                "logprob": -0.31284621357917786
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.6296553144666177,
+              "max_token_negative_log_likelihood": 3.2386045455932617,
+              "predictive_entropy": 0.105656493598417,
+              "shannon_entropy": 0.43171782431620453
+            }
+          },
+          {
+            "text": "Ozone therapy is an alternative treatment",
+            "logprob": -1.938070891705138,
+            "tokens": [
+              {
+                "text": "O",
+                "logprob": -0.38720041513442993
+              },
+              {
+                "text": "zone",
+                "logprob": -5.364403477869928e-06
+              },
+              {
+                "text": "ther",
+                "logprob": -5.602679812000133e-05
+              },
+              {
+                "text": "apy",
+                "logprob": 0.0
+              },
+              {
+                "text": "is",
+                "logprob": -0.18845750391483307
+              },
+              {
+                "text": "an",
+                "logprob": -0.8380594849586487
+              },
+              {
+                "text": "alternative",
+                "logprob": -0.13278503715991974
+              },
+              {
+                "text": "treatment",
+                "logprob": -0.3915070593357086
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.2422588488202564,
+              "max_token_negative_log_likelihood": 0.8380594253540039,
+              "predictive_entropy": 0.14531113839444743,
+              "shannon_entropy": 0.436556192536556
+            }
+          },
+          {
+            "text": "Ozone therapy is a form of",
+            "logprob": -1.5385299160152428,
+            "tokens": [
+              {
+                "text": "O",
+                "logprob": -0.38720041513442993
+              },
+              {
+                "text": "zone",
+                "logprob": -5.364403477869928e-06
+              },
+              {
+                "text": "ther",
+                "logprob": -5.602679812000133e-05
+              },
+              {
+                "text": "apy",
+                "logprob": 0.0
+              },
+              {
+                "text": "is",
+                "logprob": -0.18845750391483307
+              },
+              {
+                "text": "a",
+                "logprob": -0.5880594849586487
+              },
+              {
+                "text": "form",
+                "logprob": -0.3747510015964508
+              },
+              {
+                "text": "of",
+                "logprob": -1.1920928244535389e-07
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.19231624548547366,
+              "max_token_negative_log_likelihood": 0.5880594849586487,
+              "predictive_entropy": 0.12540968860236035,
+              "shannon_entropy": 0.41363268829849087
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.8431234359741211,
+        "request_datetime": 1755802650
+      },
+      "num_train_instances": 1,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "TA-CD cures diseases such as"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "cocaine dependence"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "cocaine addiction"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "cocaine dependent"
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id5"
+      },
+      "train_trial_index": 0,
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "ozone therapy cures diseases such as rheumatology\n\nTA-CD cures diseases such as",
+        "temperature": 1.0,
+        "num_completions": 5,
+        "top_k_per_token": 1,
+        "max_tokens": 8,
+        "stop_sequences": [
+          "\n"
+        ],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "Ozone therapy has been used in",
+            "logprob": -6.951677394064973,
+            "tokens": [
+              {
+                "text": "O",
+                "logprob": -0.10241889953613281
+              },
+              {
+                "text": "zone",
+                "logprob": -4.0531076592742465e-06
+              },
+              {
+                "text": "ther",
+                "logprob": -7.271740287251305e-06
+              },
+              {
+                "text": "apy",
+                "logprob": 0.0
+              },
+              {
+                "text": "has",
+                "logprob": -2.7273919582366943
+              },
+              {
+                "text": "been",
+                "logprob": -0.008273494429886341
+              },
+              {
+                "text": "used",
+                "logprob": -3.5320146083831787
+              },
+              {
+                "text": "in",
+                "logprob": -0.581567108631134
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.8689596224619436,
+              "max_token_negative_log_likelihood": 3.5320141315460205,
+              "predictive_entropy": 0.08842674782067661,
+              "shannon_entropy": 0.40142794126623804
+            }
+          },
+          {
+            "text": "Ozone therapy is an alternative treatment",
+            "logprob": -1.6310517489564518,
+            "tokens": [
+              {
+                "text": "O",
+                "logprob": -0.10241889953613281
+              },
+              {
+                "text": "zone",
+                "logprob": -4.0531076592742465e-06
+              },
+              {
+                "text": "ther",
+                "logprob": -7.271740287251305e-06
+              },
+              {
+                "text": "apy",
+                "logprob": 0.0
+              },
+              {
+                "text": "is",
+                "logprob": -0.10239199548959732
+              },
+              {
+                "text": "an",
+                "logprob": -1.026611566543579
+              },
+              {
+                "text": "alternative",
+                "logprob": -0.0674610361456871
+              },
+              {
+                "text": "treatment",
+                "logprob": -0.3321569263935089
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.20388146583422895,
+              "max_token_negative_log_likelihood": 1.026611566543579,
+              "predictive_entropy": 0.1067474028052402,
+              "shannon_entropy": 0.3134184990634912
+            }
+          },
+          {
+            "text": "The claim that ozone therapy or",
+            "logprob": -12.066854423738278,
+            "tokens": [
+              {
+                "text": "The",
+                "logprob": -5.289918899536133
+              },
+              {
+                "text": "claim",
+                "logprob": -1.7603334188461304
+              },
+              {
+                "text": "that",
+                "logprob": -0.006659812293946743
+              },
+              {
+                "text": "o",
+                "logprob": -0.7000995874404907
+              },
+              {
+                "text": "zone",
+                "logprob": -1.4305012882687151e-05
+              },
+              {
+                "text": "ther",
+                "logprob": -2.50339189733495e-06
+              },
+              {
+                "text": "apy",
+                "logprob": 0.0
+              },
+              {
+                "text": "or",
+                "logprob": -4.309825897216797
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 1.508356446297114,
+              "max_token_negative_log_likelihood": 5.2899169921875,
+              "predictive_entropy": 0.0926989178856843,
+              "shannon_entropy": 0.4449544462839148
+            }
+          },
+          {
+            "text": "It's important to clarify that while",
+            "logprob": -4.0944941799971275,
+            "tokens": [
+              {
+                "text": "It",
+                "logprob": -2.477418899536133
+              },
+              {
+                "text": "'",
+                "logprob": -0.1677209734916687
+              },
+              {
+                "text": "s",
+                "logprob": 0.0
+              },
+              {
+                "text": "important",
+                "logprob": -0.2623406648635864
+              },
+              {
+                "text": "to",
+                "logprob": -0.00052998325554654
+              },
+              {
+                "text": "clarify",
+                "logprob": -0.08891753107309341
+              },
+              {
+                "text": "that",
+                "logprob": -0.07449460029602051
+              },
+              {
+                "text": "while",
+                "logprob": -1.023071527481079
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.5118117722158786,
+              "max_token_negative_log_likelihood": 2.477418899536133,
+              "predictive_entropy": 0.13380546137341298,
+              "shannon_entropy": 0.5261448703252094
+            }
+          },
+          {
+            "text": "Ozone therapy is an alternative medical",
+            "logprob": -2.6310517191541294,
+            "tokens": [
+              {
+                "text": "O",
+                "logprob": -0.10241889953613281
+              },
+              {
+                "text": "zone",
+                "logprob": -4.0531076592742465e-06
+              },
+              {
+                "text": "ther",
+                "logprob": -7.271740287251305e-06
+              },
+              {
+                "text": "apy",
+                "logprob": 0.0
+              },
+              {
+                "text": "is",
+                "logprob": -0.10239199548959732
+              },
+              {
+                "text": "an",
+                "logprob": -1.026611566543579
+              },
+              {
+                "text": "alternative",
+                "logprob": -0.0674610361456871
+              },
+              {
+                "text": "medical",
+                "logprob": -1.3321568965911865
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.32888144720777746,
+              "max_token_negative_log_likelihood": 1.332156777381897,
+              "predictive_entropy": 0.12090804148033385,
+              "shannon_entropy": 0.3134184990634912
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.1954193115234375,
+        "request_datetime": 1755802651
+      },
+      "num_train_instances": 1,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    }
+  ]
+}

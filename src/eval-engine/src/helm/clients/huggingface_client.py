@@ -148,7 +148,8 @@ class HuggingFaceServer:
         amount_of_batches = sequences.shape[0]
         metrics = []
         for batch_idx in range(amount_of_batches):
-            nll = 0
+            sequence_nll = 0
+            max_nll = 0
             predictive_entropy = 0
             shannon_entropy = 0
 
@@ -163,11 +164,21 @@ class HuggingFaceServer:
                 token_probs = F.softmax(token_logits, dim=-1)
                 token_logprobs = torch.log(token_probs + eps)
 
-                nll += -token_logprobs[selected_token].item()
+                # Minimum NLL of the sequence
+                token_nll = -token_logprobs[selected_token].item()
+                if token_nll > max_nll:
+                    max_nll = token_nll
+
+                # NLL of the sequence
+                sequence_nll += token_nll
+
+                # Predictive entropy
                 predictive_entropy += (
                     -token_probs[selected_token]
                     * token_logprobs[selected_token]
                 ).item()
+
+                # Shannon entropy
                 shannon_entropy += torch.sum(
                     -token_probs * token_logprobs
                 ).item()
@@ -177,13 +188,14 @@ class HuggingFaceServer:
                 if selected_token == pad_token_id:
                     break
 
-            nll /= sequence_length
+            sequence_nll /= sequence_length
             predictive_entropy /= sequence_length
             shannon_entropy /= sequence_length
 
             metrics.append(
                 {
-                    "negative_log_likelihood": nll,
+                    "sequence_negative_log_likelihood": sequence_nll,
+                    "max_token_negative_log_likelihood": max_nll,
                     "predictive_entropy": predictive_entropy,
                     "shannon_entropy": shannon_entropy,
                 }
@@ -563,17 +575,13 @@ class HuggingFaceClient(CachingClient):
                 tokens.append(Token(text=token_text, logprob=logprob))
                 sequence_logprob += logprob
 
-            print(raw_completion["metrics"])
-
             completion = GeneratedOutput(
                 text=raw_completion["text"],
                 metrics=raw_completion.get("metrics", {}),
                 logprob=sequence_logprob,
                 tokens=tokens,
             )
-            # completion = truncate_sequence(
-            #     completion, request, end_of_text_token=self._end_of_text_token
-            # )
+
             completions.append(completion)
 
         return RequestResult(

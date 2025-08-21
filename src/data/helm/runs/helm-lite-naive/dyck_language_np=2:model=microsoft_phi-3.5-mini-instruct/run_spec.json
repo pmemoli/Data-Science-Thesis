@@ -1,0 +1,66 @@
+{
+  "name": "dyck_language_np=2:model=microsoft_phi-3.5-mini-instruct",
+  "scenario_spec": {
+    "class_name": "helm.benchmark.scenarios.dyck_language_scenario.DyckLanguageScenario",
+    "args": {
+      "num_parenthesis_pairs": 2
+    }
+  },
+  "adapter_spec": {
+    "method": "generation",
+    "global_prefix": "",
+    "global_suffix": "",
+    "instructions": "Please complete the rest of the following Dyck sequences, making sure that the parentheses are closed properly.\n",
+    "input_prefix": "Input: ",
+    "input_suffix": "",
+    "reference_prefix": "A. ",
+    "reference_suffix": "\n",
+    "chain_of_thought_prefix": "",
+    "chain_of_thought_suffix": "\n",
+    "output_prefix": "",
+    "output_suffix": "",
+    "instance_prefix": "\n",
+    "substitutions": [],
+    "max_train_instances": 3,
+    "max_eval_instances": 100,
+    "num_outputs": 1,
+    "num_train_trials": 1,
+    "num_trials": 1,
+    "sample_train": true,
+    "model_deployment": "huggingface/phi-3.5-mini-instruct",
+    "model": "microsoft/phi-3.5-mini-instruct",
+    "temperature": 0.0,
+    "max_tokens": 5,
+    "stop_sequences": [
+      "\n"
+    ],
+    "multi_label": false
+  },
+  "metric_specs": [
+    {
+      "class_name": "helm.benchmark.metrics.basic_metrics.BasicGenerationMetric",
+      "args": {
+        "names": [
+          "exact_match_indicator"
+        ]
+      }
+    },
+    {
+      "class_name": "helm.benchmark.metrics.basic_metrics.InstancesPerSplitMetric",
+      "args": {}
+    }
+  ],
+  "data_augmenter_spec": {
+    "perturbation_specs": [],
+    "should_augment_train_instances": false,
+    "should_include_original_train": false,
+    "should_skip_unchanged_train": false,
+    "should_augment_eval_instances": false,
+    "should_include_original_eval": false,
+    "should_skip_unchanged_eval": false,
+    "seeds_per_instance": 1
+  },
+  "groups": [
+    "dyck_language"
+  ]
+}

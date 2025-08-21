@@ -3,15 +3,34 @@
 export HF_ALLOW_CODE_EVAL="1"
 
 tasks=(
-  "mbpp"
+  "arena-hard"
+  "bbh"
+  "mmlu_college_math"
+  "mmlu_hs_math"
+  "mmlu_pro"
+  "arc_challenge"
+  "boolq"
+  "gpqa"
+  "hellaswag"
+  "openbookqa"
+  "piqa"
+  "social_i_qa"
+  "truthfulqa_mc2"
+  "winogrande"
+  "mmlu_multilingual"
+  "mgsm"
   "gsm8k"
+  "math"
   "qasper"
   "squality"
   "humaneval"
+  "mbpp"
 )
 
-model="microsoft/Phi-3.5-mini-instruct"
-model_name="Phi-3.5-mini-instruct"
+declare -A bench_signature
+
+model="microsoft/phi-3.5-mini-instruct"
+model_name="phi-3.5-mini-instruct"
 
 # Prompt user for task
 read -p "Enter a task to run (press Enter to run all tasks): " input_task
@@ -27,20 +46,8 @@ for item in "${selected_tasks[@]}"; do
     echo "Running evaluation for task: $item with model: $model_name"
 
     # run lm_eval with the specified model and task
-    lm_eval --model hf-store \
-     --model_args pretrained="$model",dtype=float16,trust_remote_code=False \
-     --apply_chat_template \
-     --tasks "$item" \
-     --confirm_run_unsafe_code \
-     --device cuda:0 \
-     --output_path src/data/evaluation_results/"$item"-"$model_name".json \
-     --batch_size 1 \
-     --log_samples \
-     --limit 1
-
-    # update sample metrics with the internal values from tensors
-    python -m src.scripts.update_samples_metrics
-
-    # delete all files in src/data/tensor_states
-    rm -rf src/data/tensor_states/*
+    helm-run --run-entries gsm:model=microsoft/phi-3.5-mini-instruct \
+     --suite naive-eval \
+     --output-path src/data/helm/ \
+     --max-eval-instances 100
 done

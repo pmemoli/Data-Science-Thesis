@@ -1,0 +1,9 @@
+{
+  "name": "entity_matching",
+  "description": "T/F generation task for determining if two structured rows refer to the same entity.",
+  "tags": [
+    "entity_matching",
+    "structured_reasoning"
+  ],
+  "definition_path": "https://github.com/stanford-crfm/helm/blob/main/src/helm/benchmark/scenarios/entity_matching_scenario.py"
+}

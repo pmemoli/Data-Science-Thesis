@@ -1,0 +1,2102 @@
+{
+  "adapter_spec": {
+    "method": "multiple_choice_joint",
+    "global_prefix": "",
+    "global_suffix": "",
+    "instructions": "The following are multiple choice questions (with answers).\n",
+    "input_prefix": "Passage: ",
+    "input_suffix": "\n",
+    "reference_prefix": "A. ",
+    "reference_suffix": "\n",
+    "chain_of_thought_prefix": "",
+    "chain_of_thought_suffix": "\n",
+    "output_prefix": "Answer: ",
+    "output_suffix": "\n",
+    "instance_prefix": "\n",
+    "substitutions": [],
+    "max_train_instances": 5,
+    "max_eval_instances": 100,
+    "num_outputs": 5,
+    "num_train_trials": 1,
+    "num_trials": 1,
+    "sample_train": true,
+    "model_deployment": "huggingface/phi-3.5-mini-instruct",
+    "model": "microsoft/phi-3.5-mini-instruct",
+    "temperature": 0.0,
+    "max_tokens": 1,
+    "stop_sequences": [
+      "\n"
+    ],
+    "multi_label": false
+  },
+  "request_states": [
+    {
+      "instance": {
+        "input": {
+          "text": "Of the eight students\u2014George, Helen, Irving, Kyle, Lenore, Nina, Olivia, and Robert\u2014in a seminar, exactly six will give individual oral reports during three consecutive days\u2014Monday, Tuesday, and Wednesday. Exactly two reports will be given each day\u2014one in the morning and one in the afternoon\u2014according to the following conditions: Tuesday is the only day on which George can give a report. Neither Olivia nor Robert can give an afternoon report. If Nina gives a report, then on the next day Helen and Irving must both give reports, unless Nina's report is given on Wednesday.\nQuestion: Which one of the following could be the schedule of the students' reports?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Mon. morning: Helen; Mon. afternoon: Robert Tues. morning: Olivia; Tues. afternoon: Irving Wed. morning: Lenore; Wed. afternoon: Kyle"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Mon. morning: Irving; Mon. afternoon: Olivia Tues. morning: Helen; Tues. afternoon: Kyle Wed. morning: Nina; Wed. afternoon: Lenore"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Mon. morning: Lenore; Mon. afternoon: Helen Tues. morning: George; Tues. afternoon: Kyle Wed. morning: Robert; Wed. afternoon: Irving"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "Mon. morning: Nina; Mon. afternoon: Helen Tues. morning: Robert; Tues. afternoon: Irving Wed. morning: Olivia; Wed. afternoon: Lenore"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Mon. morning: Olivia; Mon. afternoon: Nina Tues. morning: Irving; Tues. afternoon: Helen Wed. morning: Kyle; Wed. afternoon: George"
+            },
+            "tags": []
+          }
+        ],
+        "split": "test",
+        "id": "id423"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "Mon. morning: Helen; Mon. afternoon: Robert Tues. morning: Olivia; Tues. afternoon: Irving Wed. morning: Lenore; Wed. afternoon: Kyle",
+        "B": "Mon. morning: Irving; Mon. afternoon: Olivia Tues. morning: Helen; Tues. afternoon: Kyle Wed. morning: Nina; Wed. afternoon: Lenore",
+        "C": "Mon. morning: Lenore; Mon. afternoon: Helen Tues. morning: George; Tues. afternoon: Kyle Wed. morning: Robert; Wed. afternoon: Irving",
+        "D": "Mon. morning: Nina; Mon. afternoon: Helen Tues. morning: Robert; Tues. afternoon: Irving Wed. morning: Olivia; Wed. afternoon: Lenore",
+        "E": "Mon. morning: Olivia; Mon. afternoon: Nina Tues. morning: Irving; Tues. afternoon: Helen Wed. morning: Kyle; Wed. afternoon: George"
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: Doctor Yamata works only on Mondays, Tuesdays, Wednesdays, Fridays, and Saturdays. She performs four different activities\u2014lecturing, operating, treating patients, and conducting research. Each working day she performs exactly one activity in the morning and exactly one activity in the afternoon. During each week her work schedule must satisfy the following restrictions: She performs operations on exactly three mornings. If she operates on Monday, she does not operate on Tuesday. She lectures in the afternoon on exactly two consecutive calendar days. She treats patients on exactly one morning and exactly three afternoons. She conducts research on exactly one morning. On Saturday she neither lectures nor performs operations.\nQuestion: Which one of the following must be a day on which Doctor Yamata lectures?\nA. Monday\nB. Tuesday\nC. Wednesday\nD. Friday\nE. Saturday\nAnswer: B\n\nPassage: Exactly six tourists\u2014Harry, Irene, Klaus, Laura, Michael, Norma\u2014are to be assigned to four guides: Valois, Xerxes, Yossarian, Zalamea. Each tourist is assigned to exactly one guide, with at least one tourist assigned to each guide. Valois speaks only French. Xerxes speaks only Turkish and Spanish. Yossarian speaks only French and Turkish. Zalamea speaks only Spanish and Russian. Each tourist speaks exactly one of the languages spoken by his or her guide and speaks no other language. The following rules govern the assignment of the tourists to the guides: At least Harry and Irene are assigned to Yossarian. At least Laura is assigned to Zalamea. If Klaus is assigned to Xerxes, then Michael speaks French.\nQuestion: If Laura and Norma speak the same language as each other, then the maximum number of the tourists who could speak Turkish is\nA. two\nB. three\nC. four\nD. five\nE. six\nAnswer: B\n\nPassage: The members of two committees, a planting committee and a trails committee, are to be selected from among seven volunteers\u2014F, G, H, J, K, L, and M. The following conditions govern the composition of the committees: Each committee must have at least three members. F cannot be on the same committee as K. If K is on a committee, J must also be on that committee. M must be on at least one of the committees. The two committees must have at least one member in common.\nQuestion: The largest number of members that the planting committee and the trails committee could have in common is\nA. three\nB. four\nC. five\nD. six\nE. seven\nAnswer: D\n\nPassage: There are exactly six law students\u2014Gambini, Little, Mitchum, Richardson, Saito, and Veracruz\u2014in a trial advocacy class. The class is divided into three trial teams\u2014team 1, team 2, and team 3\u2014of exactly two students each. Each student is on exactly one of the teams. Each student prepares exactly one of either the opening argument or the final argument for his or her team. The teams must be formed according to the following specifications: Mitchum is on the same team as either Gambini or Veracruz. Little prepares an opening argument. Either Gambini or Richardson, but not both, prepares a final argument.\nQuestion: If Richardson is on the same team as Veracruz, then for exactly how many of the students can it be determined which of the arguments he or she prepares?\nA. one\nB. two\nC. three\nD. four\nE. five\nAnswer: B\n\nPassage: Three folk groups\u2014Glenside, Hilltopper, Levon\u2014and three rock groups\u2014Peasant, Query, Tinhead\u2014each perform on one of two stages, north or south. Each stage has three two-hour performances: north at 6, 8, and 10; south at 8, 10, and 12. Each group performs individually and exactly once, consistent with the following conditions: Peasant performs at 6 or 12. Glenside performs at some time before Hilltopper. If any rock group performs at 10, no folk group does. Levon and Tinhead perform on different stages. Query performs immediately after a folk group, though not necessarily on the same stage.\nQuestion: Which one of the following groups could perform at 6?\nA. Glenside\nB. Hilltopper\nC. Levon\nD. Query\nE. Tinhead\nAnswer: A\n\nPassage: Of the eight students\u2014George, Helen, Irving, Kyle, Lenore, Nina, Olivia, and Robert\u2014in a seminar, exactly six will give individual oral reports during three consecutive days\u2014Monday, Tuesday, and Wednesday. Exactly two reports will be given each day\u2014one in the morning and one in the afternoon\u2014according to the following conditions: Tuesday is the only day on which George can give a report. Neither Olivia nor Robert can give an afternoon report. If Nina gives a report, then on the next day Helen and Irving must both give reports, unless Nina's report is given on Wednesday.\nQuestion: Which one of the following could be the schedule of the students' reports?\nA. Mon. morning: Helen; Mon. afternoon: Robert Tues. morning: Olivia; Tues. afternoon: Irving Wed. morning: Lenore; Wed. afternoon: Kyle\nB. Mon. morning: Irving; Mon. afternoon: Olivia Tues. morning: Helen; Tues. afternoon: Kyle Wed. morning: Nina; Wed. afternoon: Lenore\nC. Mon. morning: Lenore; Mon. afternoon: Helen Tues. morning: George; Tues. afternoon: Kyle Wed. morning: Robert; Wed. afternoon: Irving\nD. Mon. morning: Nina; Mon. afternoon: Helen Tues. morning: Robert; Tues. afternoon: Irving Wed. morning: Olivia; Wed. afternoon: Lenore\nE. Mon. morning: Olivia; Mon. afternoon: Nina Tues. morning: Irving; Tues. afternoon: Helen Wed. morning: Kyle; Wed. afternoon: George\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "E",
+            "logprob": -3.384319543838501,
+            "tokens": [
+              {
+                "text": "E",
+                "logprob": -3.384319543838501
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 3.3843190670013428,
+              "max_token_negative_log_likelihood": 3.3843190670013428,
+              "predictive_entropy": 0.11473081260919571,
+              "shannon_entropy": 0.31873756647109985
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.20893621444702148,
+        "request_datetime": 1755804682
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "Of the eight students\u2014George, Helen, Irving, Kyle, Lenore, Nina, Olivia, and Robert\u2014in a seminar, exactly six will give individual oral reports during three consecutive days\u2014Monday, Tuesday, and Wednesday. Exactly two reports will be given each day\u2014one in the morning and one in the afternoon\u2014according to the following conditions: Tuesday is the only day on which George can give a report. Neither Olivia nor Robert can give an afternoon report. If Nina gives a report, then on the next day Helen and Irving must both give reports, unless Nina's report is given on Wednesday.\nQuestion: If Kyle and Lenore do not give reports, then the morning reports on Monday, Tuesday, and Wednesday, respectively, could be given by"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Helen, George, and Nina"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Irving, Robert, and Helen"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Nina, Helen, and Olivia"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Olivia, Robert, and Irving"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "Robert, George, and Helen"
+            },
+            "tags": []
+          }
+        ],
+        "split": "test",
+        "id": "id424"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "Helen, George, and Nina",
+        "B": "Irving, Robert, and Helen",
+        "C": "Nina, Helen, and Olivia",
+        "D": "Olivia, Robert, and Irving",
+        "E": "Robert, George, and Helen"
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: Doctor Yamata works only on Mondays, Tuesdays, Wednesdays, Fridays, and Saturdays. She performs four different activities\u2014lecturing, operating, treating patients, and conducting research. Each working day she performs exactly one activity in the morning and exactly one activity in the afternoon. During each week her work schedule must satisfy the following restrictions: She performs operations on exactly three mornings. If she operates on Monday, she does not operate on Tuesday. She lectures in the afternoon on exactly two consecutive calendar days. She treats patients on exactly one morning and exactly three afternoons. She conducts research on exactly one morning. On Saturday she neither lectures nor performs operations.\nQuestion: Which one of the following must be a day on which Doctor Yamata lectures?\nA. Monday\nB. Tuesday\nC. Wednesday\nD. Friday\nE. Saturday\nAnswer: B\n\nPassage: Exactly six tourists\u2014Harry, Irene, Klaus, Laura, Michael, Norma\u2014are to be assigned to four guides: Valois, Xerxes, Yossarian, Zalamea. Each tourist is assigned to exactly one guide, with at least one tourist assigned to each guide. Valois speaks only French. Xerxes speaks only Turkish and Spanish. Yossarian speaks only French and Turkish. Zalamea speaks only Spanish and Russian. Each tourist speaks exactly one of the languages spoken by his or her guide and speaks no other language. The following rules govern the assignment of the tourists to the guides: At least Harry and Irene are assigned to Yossarian. At least Laura is assigned to Zalamea. If Klaus is assigned to Xerxes, then Michael speaks French.\nQuestion: If Laura and Norma speak the same language as each other, then the maximum number of the tourists who could speak Turkish is\nA. two\nB. three\nC. four\nD. five\nE. six\nAnswer: B\n\nPassage: The members of two committees, a planting committee and a trails committee, are to be selected from among seven volunteers\u2014F, G, H, J, K, L, and M. The following conditions govern the composition of the committees: Each committee must have at least three members. F cannot be on the same committee as K. If K is on a committee, J must also be on that committee. M must be on at least one of the committees. The two committees must have at least one member in common.\nQuestion: The largest number of members that the planting committee and the trails committee could have in common is\nA. three\nB. four\nC. five\nD. six\nE. seven\nAnswer: D\n\nPassage: There are exactly six law students\u2014Gambini, Little, Mitchum, Richardson, Saito, and Veracruz\u2014in a trial advocacy class. The class is divided into three trial teams\u2014team 1, team 2, and team 3\u2014of exactly two students each. Each student is on exactly one of the teams. Each student prepares exactly one of either the opening argument or the final argument for his or her team. The teams must be formed according to the following specifications: Mitchum is on the same team as either Gambini or Veracruz. Little prepares an opening argument. Either Gambini or Richardson, but not both, prepares a final argument.\nQuestion: If Richardson is on the same team as Veracruz, then for exactly how many of the students can it be determined which of the arguments he or she prepares?\nA. one\nB. two\nC. three\nD. four\nE. five\nAnswer: B\n\nPassage: Three folk groups\u2014Glenside, Hilltopper, Levon\u2014and three rock groups\u2014Peasant, Query, Tinhead\u2014each perform on one of two stages, north or south. Each stage has three two-hour performances: north at 6, 8, and 10; south at 8, 10, and 12. Each group performs individually and exactly once, consistent with the following conditions: Peasant performs at 6 or 12. Glenside performs at some time before Hilltopper. If any rock group performs at 10, no folk group does. Levon and Tinhead perform on different stages. Query performs immediately after a folk group, though not necessarily on the same stage.\nQuestion: Which one of the following groups could perform at 6?\nA. Glenside\nB. Hilltopper\nC. Levon\nD. Query\nE. Tinhead\nAnswer: A\n\nPassage: Of the eight students\u2014George, Helen, Irving, Kyle, Lenore, Nina, Olivia, and Robert\u2014in a seminar, exactly six will give individual oral reports during three consecutive days\u2014Monday, Tuesday, and Wednesday. Exactly two reports will be given each day\u2014one in the morning and one in the afternoon\u2014according to the following conditions: Tuesday is the only day on which George can give a report. Neither Olivia nor Robert can give an afternoon report. If Nina gives a report, then on the next day Helen and Irving must both give reports, unless Nina's report is given on Wednesday.\nQuestion: If Kyle and Lenore do not give reports, then the morning reports on Monday, Tuesday, and Wednesday, respectively, could be given by\nA. Helen, George, and Nina\nB. Irving, Robert, and Helen\nC. Nina, Helen, and Olivia\nD. Olivia, Robert, and Irving\nE. Robert, George, and Helen\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "B",
+            "logprob": -1.0906856060028076,
+            "tokens": [
+              {
+                "text": "B",
+                "logprob": -1.0906856060028076
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 1.0906856060028076,
+              "max_token_negative_log_likelihood": 1.0906856060028076,
+              "predictive_entropy": 0.3664551377296448,
+              "shannon_entropy": 0.8106439113616943
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.7815020084381104,
+        "request_datetime": 1755804682
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "Of the eight students\u2014George, Helen, Irving, Kyle, Lenore, Nina, Olivia, and Robert\u2014in a seminar, exactly six will give individual oral reports during three consecutive days\u2014Monday, Tuesday, and Wednesday. Exactly two reports will be given each day\u2014one in the morning and one in the afternoon\u2014according to the following conditions: Tuesday is the only day on which George can give a report. Neither Olivia nor Robert can give an afternoon report. If Nina gives a report, then on the next day Helen and Irving must both give reports, unless Nina's report is given on Wednesday.\nQuestion: Which one of the following is a pair of students who, if they give reports on the same day as each other, must give reports on Wednesday?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "George and Lenore"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Helen and Nina"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "Irving and Robert"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Kyle and Nina"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Olivia and Kyle"
+            },
+            "tags": []
+          }
+        ],
+        "split": "test",
+        "id": "id425"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "George and Lenore",
+        "B": "Helen and Nina",
+        "C": "Irving and Robert",
+        "D": "Kyle and Nina",
+        "E": "Olivia and Kyle"
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: Doctor Yamata works only on Mondays, Tuesdays, Wednesdays, Fridays, and Saturdays. She performs four different activities\u2014lecturing, operating, treating patients, and conducting research. Each working day she performs exactly one activity in the morning and exactly one activity in the afternoon. During each week her work schedule must satisfy the following restrictions: She performs operations on exactly three mornings. If she operates on Monday, she does not operate on Tuesday. She lectures in the afternoon on exactly two consecutive calendar days. She treats patients on exactly one morning and exactly three afternoons. She conducts research on exactly one morning. On Saturday she neither lectures nor performs operations.\nQuestion: Which one of the following must be a day on which Doctor Yamata lectures?\nA. Monday\nB. Tuesday\nC. Wednesday\nD. Friday\nE. Saturday\nAnswer: B\n\nPassage: Exactly six tourists\u2014Harry, Irene, Klaus, Laura, Michael, Norma\u2014are to be assigned to four guides: Valois, Xerxes, Yossarian, Zalamea. Each tourist is assigned to exactly one guide, with at least one tourist assigned to each guide. Valois speaks only French. Xerxes speaks only Turkish and Spanish. Yossarian speaks only French and Turkish. Zalamea speaks only Spanish and Russian. Each tourist speaks exactly one of the languages spoken by his or her guide and speaks no other language. The following rules govern the assignment of the tourists to the guides: At least Harry and Irene are assigned to Yossarian. At least Laura is assigned to Zalamea. If Klaus is assigned to Xerxes, then Michael speaks French.\nQuestion: If Laura and Norma speak the same language as each other, then the maximum number of the tourists who could speak Turkish is\nA. two\nB. three\nC. four\nD. five\nE. six\nAnswer: B\n\nPassage: The members of two committees, a planting committee and a trails committee, are to be selected from among seven volunteers\u2014F, G, H, J, K, L, and M. The following conditions govern the composition of the committees: Each committee must have at least three members. F cannot be on the same committee as K. If K is on a committee, J must also be on that committee. M must be on at least one of the committees. The two committees must have at least one member in common.\nQuestion: The largest number of members that the planting committee and the trails committee could have in common is\nA. three\nB. four\nC. five\nD. six\nE. seven\nAnswer: D\n\nPassage: There are exactly six law students\u2014Gambini, Little, Mitchum, Richardson, Saito, and Veracruz\u2014in a trial advocacy class. The class is divided into three trial teams\u2014team 1, team 2, and team 3\u2014of exactly two students each. Each student is on exactly one of the teams. Each student prepares exactly one of either the opening argument or the final argument for his or her team. The teams must be formed according to the following specifications: Mitchum is on the same team as either Gambini or Veracruz. Little prepares an opening argument. Either Gambini or Richardson, but not both, prepares a final argument.\nQuestion: If Richardson is on the same team as Veracruz, then for exactly how many of the students can it be determined which of the arguments he or she prepares?\nA. one\nB. two\nC. three\nD. four\nE. five\nAnswer: B\n\nPassage: Three folk groups\u2014Glenside, Hilltopper, Levon\u2014and three rock groups\u2014Peasant, Query, Tinhead\u2014each perform on one of two stages, north or south. Each stage has three two-hour performances: north at 6, 8, and 10; south at 8, 10, and 12. Each group performs individually and exactly once, consistent with the following conditions: Peasant performs at 6 or 12. Glenside performs at some time before Hilltopper. If any rock group performs at 10, no folk group does. Levon and Tinhead perform on different stages. Query performs immediately after a folk group, though not necessarily on the same stage.\nQuestion: Which one of the following groups could perform at 6?\nA. Glenside\nB. Hilltopper\nC. Levon\nD. Query\nE. Tinhead\nAnswer: A\n\nPassage: Of the eight students\u2014George, Helen, Irving, Kyle, Lenore, Nina, Olivia, and Robert\u2014in a seminar, exactly six will give individual oral reports during three consecutive days\u2014Monday, Tuesday, and Wednesday. Exactly two reports will be given each day\u2014one in the morning and one in the afternoon\u2014according to the following conditions: Tuesday is the only day on which George can give a report. Neither Olivia nor Robert can give an afternoon report. If Nina gives a report, then on the next day Helen and Irving must both give reports, unless Nina's report is given on Wednesday.\nQuestion: Which one of the following is a pair of students who, if they give reports on the same day as each other, must give reports on Wednesday?\nA. George and Lenore\nB. Helen and Nina\nC. Irving and Robert\nD. Kyle and Nina\nE. Olivia and Kyle\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "B",
+            "logprob": -7.510157047363464e-06,
+            "tokens": [
+              {
+                "text": "B",
+                "logprob": -7.510157047363464e-06
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 7.510213436034974e-06,
+              "max_token_negative_log_likelihood": 7.510213436034974e-06,
+              "predictive_entropy": 7.510157047363464e-06,
+              "shannon_entropy": 0.00010117659985553473
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.7818005084991455,
+        "request_datetime": 1755804682
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "Of the eight students\u2014George, Helen, Irving, Kyle, Lenore, Nina, Olivia, and Robert\u2014in a seminar, exactly six will give individual oral reports during three consecutive days\u2014Monday, Tuesday, and Wednesday. Exactly two reports will be given each day\u2014one in the morning and one in the afternoon\u2014according to the following conditions: Tuesday is the only day on which George can give a report. Neither Olivia nor Robert can give an afternoon report. If Nina gives a report, then on the next day Helen and Irving must both give reports, unless Nina's report is given on Wednesday.\nQuestion: If George, Nina, and Robert give reports and they do so on different days from one another, which one of the following could be true?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Helen gives a report on Wednesday."
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "Nina gives a report on Monday."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Nina gives a report on Tuesday."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Olivia gives a report on Monday."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Robert gives a report on Wednesday."
+            },
+            "tags": []
+          }
+        ],
+        "split": "test",
+        "id": "id426"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "Helen gives a report on Wednesday.",
+        "B": "Nina gives a report on Monday.",
+        "C": "Nina gives a report on Tuesday.",
+        "D": "Olivia gives a report on Monday.",
+        "E": "Robert gives a report on Wednesday."
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: Doctor Yamata works only on Mondays, Tuesdays, Wednesdays, Fridays, and Saturdays. She performs four different activities\u2014lecturing, operating, treating patients, and conducting research. Each working day she performs exactly one activity in the morning and exactly one activity in the afternoon. During each week her work schedule must satisfy the following restrictions: She performs operations on exactly three mornings. If she operates on Monday, she does not operate on Tuesday. She lectures in the afternoon on exactly two consecutive calendar days. She treats patients on exactly one morning and exactly three afternoons. She conducts research on exactly one morning. On Saturday she neither lectures nor performs operations.\nQuestion: Which one of the following must be a day on which Doctor Yamata lectures?\nA. Monday\nB. Tuesday\nC. Wednesday\nD. Friday\nE. Saturday\nAnswer: B\n\nPassage: Exactly six tourists\u2014Harry, Irene, Klaus, Laura, Michael, Norma\u2014are to be assigned to four guides: Valois, Xerxes, Yossarian, Zalamea. Each tourist is assigned to exactly one guide, with at least one tourist assigned to each guide. Valois speaks only French. Xerxes speaks only Turkish and Spanish. Yossarian speaks only French and Turkish. Zalamea speaks only Spanish and Russian. Each tourist speaks exactly one of the languages spoken by his or her guide and speaks no other language. The following rules govern the assignment of the tourists to the guides: At least Harry and Irene are assigned to Yossarian. At least Laura is assigned to Zalamea. If Klaus is assigned to Xerxes, then Michael speaks French.\nQuestion: If Laura and Norma speak the same language as each other, then the maximum number of the tourists who could speak Turkish is\nA. two\nB. three\nC. four\nD. five\nE. six\nAnswer: B\n\nPassage: The members of two committees, a planting committee and a trails committee, are to be selected from among seven volunteers\u2014F, G, H, J, K, L, and M. The following conditions govern the composition of the committees: Each committee must have at least three members. F cannot be on the same committee as K. If K is on a committee, J must also be on that committee. M must be on at least one of the committees. The two committees must have at least one member in common.\nQuestion: The largest number of members that the planting committee and the trails committee could have in common is\nA. three\nB. four\nC. five\nD. six\nE. seven\nAnswer: D\n\nPassage: There are exactly six law students\u2014Gambini, Little, Mitchum, Richardson, Saito, and Veracruz\u2014in a trial advocacy class. The class is divided into three trial teams\u2014team 1, team 2, and team 3\u2014of exactly two students each. Each student is on exactly one of the teams. Each student prepares exactly one of either the opening argument or the final argument for his or her team. The teams must be formed according to the following specifications: Mitchum is on the same team as either Gambini or Veracruz. Little prepares an opening argument. Either Gambini or Richardson, but not both, prepares a final argument.\nQuestion: If Richardson is on the same team as Veracruz, then for exactly how many of the students can it be determined which of the arguments he or she prepares?\nA. one\nB. two\nC. three\nD. four\nE. five\nAnswer: B\n\nPassage: Three folk groups\u2014Glenside, Hilltopper, Levon\u2014and three rock groups\u2014Peasant, Query, Tinhead\u2014each perform on one of two stages, north or south. Each stage has three two-hour performances: north at 6, 8, and 10; south at 8, 10, and 12. Each group performs individually and exactly once, consistent with the following conditions: Peasant performs at 6 or 12. Glenside performs at some time before Hilltopper. If any rock group performs at 10, no folk group does. Levon and Tinhead perform on different stages. Query performs immediately after a folk group, though not necessarily on the same stage.\nQuestion: Which one of the following groups could perform at 6?\nA. Glenside\nB. Hilltopper\nC. Levon\nD. Query\nE. Tinhead\nAnswer: A\n\nPassage: Of the eight students\u2014George, Helen, Irving, Kyle, Lenore, Nina, Olivia, and Robert\u2014in a seminar, exactly six will give individual oral reports during three consecutive days\u2014Monday, Tuesday, and Wednesday. Exactly two reports will be given each day\u2014one in the morning and one in the afternoon\u2014according to the following conditions: Tuesday is the only day on which George can give a report. Neither Olivia nor Robert can give an afternoon report. If Nina gives a report, then on the next day Helen and Irving must both give reports, unless Nina's report is given on Wednesday.\nQuestion: If George, Nina, and Robert give reports and they do so on different days from one another, which one of the following could be true?\nA. Helen gives a report on Wednesday.\nB. Nina gives a report on Monday.\nC. Nina gives a report on Tuesday.\nD. Olivia gives a report on Monday.\nE. Robert gives a report on Wednesday.\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "C",
+            "logprob": -0.009911371394991875,
+            "tokens": [
+              {
+                "text": "C",
+                "logprob": -0.009911371394991875
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.009911378845572472,
+              "max_token_negative_log_likelihood": 0.009911378845572472,
+              "predictive_entropy": 0.00981362909078598,
+              "shannon_entropy": 0.06254233419895172
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.780754804611206,
+        "request_datetime": 1755804682
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "Of the eight students\u2014George, Helen, Irving, Kyle, Lenore, Nina, Olivia, and Robert\u2014in a seminar, exactly six will give individual oral reports during three consecutive days\u2014Monday, Tuesday, and Wednesday. Exactly two reports will be given each day\u2014one in the morning and one in the afternoon\u2014according to the following conditions: Tuesday is the only day on which George can give a report. Neither Olivia nor Robert can give an afternoon report. If Nina gives a report, then on the next day Helen and Irving must both give reports, unless Nina's report is given on Wednesday.\nQuestion: If Kyle gives the afternoon report on Tuesday, and Helen gives the afternoon report on Wednesday, which one of the following could be the list of the students who give the morning reports on Monday, Tuesday, and Wednesday, respectively?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Irving, Lenore, and Nina"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Lenore, George, and Irving"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Nina, Irving, and Lenore"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Robert, George, and Irving"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "Robert, Irving, and Lenore"
+            },
+            "tags": []
+          }
+        ],
+        "split": "test",
+        "id": "id427"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "Irving, Lenore, and Nina",
+        "B": "Lenore, George, and Irving",
+        "C": "Nina, Irving, and Lenore",
+        "D": "Robert, George, and Irving",
+        "E": "Robert, Irving, and Lenore"
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: Doctor Yamata works only on Mondays, Tuesdays, Wednesdays, Fridays, and Saturdays. She performs four different activities\u2014lecturing, operating, treating patients, and conducting research. Each working day she performs exactly one activity in the morning and exactly one activity in the afternoon. During each week her work schedule must satisfy the following restrictions: She performs operations on exactly three mornings. If she operates on Monday, she does not operate on Tuesday. She lectures in the afternoon on exactly two consecutive calendar days. She treats patients on exactly one morning and exactly three afternoons. She conducts research on exactly one morning. On Saturday she neither lectures nor performs operations.\nQuestion: Which one of the following must be a day on which Doctor Yamata lectures?\nA. Monday\nB. Tuesday\nC. Wednesday\nD. Friday\nE. Saturday\nAnswer: B\n\nPassage: Exactly six tourists\u2014Harry, Irene, Klaus, Laura, Michael, Norma\u2014are to be assigned to four guides: Valois, Xerxes, Yossarian, Zalamea. Each tourist is assigned to exactly one guide, with at least one tourist assigned to each guide. Valois speaks only French. Xerxes speaks only Turkish and Spanish. Yossarian speaks only French and Turkish. Zalamea speaks only Spanish and Russian. Each tourist speaks exactly one of the languages spoken by his or her guide and speaks no other language. The following rules govern the assignment of the tourists to the guides: At least Harry and Irene are assigned to Yossarian. At least Laura is assigned to Zalamea. If Klaus is assigned to Xerxes, then Michael speaks French.\nQuestion: If Laura and Norma speak the same language as each other, then the maximum number of the tourists who could speak Turkish is\nA. two\nB. three\nC. four\nD. five\nE. six\nAnswer: B\n\nPassage: The members of two committees, a planting committee and a trails committee, are to be selected from among seven volunteers\u2014F, G, H, J, K, L, and M. The following conditions govern the composition of the committees: Each committee must have at least three members. F cannot be on the same committee as K. If K is on a committee, J must also be on that committee. M must be on at least one of the committees. The two committees must have at least one member in common.\nQuestion: The largest number of members that the planting committee and the trails committee could have in common is\nA. three\nB. four\nC. five\nD. six\nE. seven\nAnswer: D\n\nPassage: There are exactly six law students\u2014Gambini, Little, Mitchum, Richardson, Saito, and Veracruz\u2014in a trial advocacy class. The class is divided into three trial teams\u2014team 1, team 2, and team 3\u2014of exactly two students each. Each student is on exactly one of the teams. Each student prepares exactly one of either the opening argument or the final argument for his or her team. The teams must be formed according to the following specifications: Mitchum is on the same team as either Gambini or Veracruz. Little prepares an opening argument. Either Gambini or Richardson, but not both, prepares a final argument.\nQuestion: If Richardson is on the same team as Veracruz, then for exactly how many of the students can it be determined which of the arguments he or she prepares?\nA. one\nB. two\nC. three\nD. four\nE. five\nAnswer: B\n\nPassage: Three folk groups\u2014Glenside, Hilltopper, Levon\u2014and three rock groups\u2014Peasant, Query, Tinhead\u2014each perform on one of two stages, north or south. Each stage has three two-hour performances: north at 6, 8, and 10; south at 8, 10, and 12. Each group performs individually and exactly once, consistent with the following conditions: Peasant performs at 6 or 12. Glenside performs at some time before Hilltopper. If any rock group performs at 10, no folk group does. Levon and Tinhead perform on different stages. Query performs immediately after a folk group, though not necessarily on the same stage.\nQuestion: Which one of the following groups could perform at 6?\nA. Glenside\nB. Hilltopper\nC. Levon\nD. Query\nE. Tinhead\nAnswer: A\n\nPassage: Of the eight students\u2014George, Helen, Irving, Kyle, Lenore, Nina, Olivia, and Robert\u2014in a seminar, exactly six will give individual oral reports during three consecutive days\u2014Monday, Tuesday, and Wednesday. Exactly two reports will be given each day\u2014one in the morning and one in the afternoon\u2014according to the following conditions: Tuesday is the only day on which George can give a report. Neither Olivia nor Robert can give an afternoon report. If Nina gives a report, then on the next day Helen and Irving must both give reports, unless Nina's report is given on Wednesday.\nQuestion: If Kyle gives the afternoon report on Tuesday, and Helen gives the afternoon report on Wednesday, which one of the following could be the list of the students who give the morning reports on Monday, Tuesday, and Wednesday, respectively?\nA. Irving, Lenore, and Nina\nB. Lenore, George, and Irving\nC. Nina, Irving, and Lenore\nD. Robert, George, and Irving\nE. Robert, Irving, and Lenore\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "D",
+            "logprob": -2.3413071632385254,
+            "tokens": [
+              {
+                "text": "D",
+                "logprob": -2.3413071632385254
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 2.3413071632385254,
+              "max_token_negative_log_likelihood": 2.3413071632385254,
+              "predictive_entropy": 0.22523795068264008,
+              "shannon_entropy": 0.5401089191436768
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.9282128810882568,
+        "request_datetime": 1755804682
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "Of the eight students\u2014George, Helen, Irving, Kyle, Lenore, Nina, Olivia, and Robert\u2014in a seminar, exactly six will give individual oral reports during three consecutive days\u2014Monday, Tuesday, and Wednesday. Exactly two reports will be given each day\u2014one in the morning and one in the afternoon\u2014according to the following conditions: Tuesday is the only day on which George can give a report. Neither Olivia nor Robert can give an afternoon report. If Nina gives a report, then on the next day Helen and Irving must both give reports, unless Nina's report is given on Wednesday.\nQuestion: If Helen, Kyle, and Lenore, not necessarily in that order, give the three morning reports, which one of the following must be true?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Helen gives a report on Monday."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Irving gives a report on Monday."
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "Irving gives a report on Wednesday."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Kyle gives a report on Tuesday."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Kyle gives a report on Wednesday."
+            },
+            "tags": []
+          }
+        ],
+        "split": "test",
+        "id": "id428"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "Helen gives a report on Monday.",
+        "B": "Irving gives a report on Monday.",
+        "C": "Irving gives a report on Wednesday.",
+        "D": "Kyle gives a report on Tuesday.",
+        "E": "Kyle gives a report on Wednesday."
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: Doctor Yamata works only on Mondays, Tuesdays, Wednesdays, Fridays, and Saturdays. She performs four different activities\u2014lecturing, operating, treating patients, and conducting research. Each working day she performs exactly one activity in the morning and exactly one activity in the afternoon. During each week her work schedule must satisfy the following restrictions: She performs operations on exactly three mornings. If she operates on Monday, she does not operate on Tuesday. She lectures in the afternoon on exactly two consecutive calendar days. She treats patients on exactly one morning and exactly three afternoons. She conducts research on exactly one morning. On Saturday she neither lectures nor performs operations.\nQuestion: Which one of the following must be a day on which Doctor Yamata lectures?\nA. Monday\nB. Tuesday\nC. Wednesday\nD. Friday\nE. Saturday\nAnswer: B\n\nPassage: Exactly six tourists\u2014Harry, Irene, Klaus, Laura, Michael, Norma\u2014are to be assigned to four guides: Valois, Xerxes, Yossarian, Zalamea. Each tourist is assigned to exactly one guide, with at least one tourist assigned to each guide. Valois speaks only French. Xerxes speaks only Turkish and Spanish. Yossarian speaks only French and Turkish. Zalamea speaks only Spanish and Russian. Each tourist speaks exactly one of the languages spoken by his or her guide and speaks no other language. The following rules govern the assignment of the tourists to the guides: At least Harry and Irene are assigned to Yossarian. At least Laura is assigned to Zalamea. If Klaus is assigned to Xerxes, then Michael speaks French.\nQuestion: If Laura and Norma speak the same language as each other, then the maximum number of the tourists who could speak Turkish is\nA. two\nB. three\nC. four\nD. five\nE. six\nAnswer: B\n\nPassage: The members of two committees, a planting committee and a trails committee, are to be selected from among seven volunteers\u2014F, G, H, J, K, L, and M. The following conditions govern the composition of the committees: Each committee must have at least three members. F cannot be on the same committee as K. If K is on a committee, J must also be on that committee. M must be on at least one of the committees. The two committees must have at least one member in common.\nQuestion: The largest number of members that the planting committee and the trails committee could have in common is\nA. three\nB. four\nC. five\nD. six\nE. seven\nAnswer: D\n\nPassage: There are exactly six law students\u2014Gambini, Little, Mitchum, Richardson, Saito, and Veracruz\u2014in a trial advocacy class. The class is divided into three trial teams\u2014team 1, team 2, and team 3\u2014of exactly two students each. Each student is on exactly one of the teams. Each student prepares exactly one of either the opening argument or the final argument for his or her team. The teams must be formed according to the following specifications: Mitchum is on the same team as either Gambini or Veracruz. Little prepares an opening argument. Either Gambini or Richardson, but not both, prepares a final argument.\nQuestion: If Richardson is on the same team as Veracruz, then for exactly how many of the students can it be determined which of the arguments he or she prepares?\nA. one\nB. two\nC. three\nD. four\nE. five\nAnswer: B\n\nPassage: Three folk groups\u2014Glenside, Hilltopper, Levon\u2014and three rock groups\u2014Peasant, Query, Tinhead\u2014each perform on one of two stages, north or south. Each stage has three two-hour performances: north at 6, 8, and 10; south at 8, 10, and 12. Each group performs individually and exactly once, consistent with the following conditions: Peasant performs at 6 or 12. Glenside performs at some time before Hilltopper. If any rock group performs at 10, no folk group does. Levon and Tinhead perform on different stages. Query performs immediately after a folk group, though not necessarily on the same stage.\nQuestion: Which one of the following groups could perform at 6?\nA. Glenside\nB. Hilltopper\nC. Levon\nD. Query\nE. Tinhead\nAnswer: A\n\nPassage: Of the eight students\u2014George, Helen, Irving, Kyle, Lenore, Nina, Olivia, and Robert\u2014in a seminar, exactly six will give individual oral reports during three consecutive days\u2014Monday, Tuesday, and Wednesday. Exactly two reports will be given each day\u2014one in the morning and one in the afternoon\u2014according to the following conditions: Tuesday is the only day on which George can give a report. Neither Olivia nor Robert can give an afternoon report. If Nina gives a report, then on the next day Helen and Irving must both give reports, unless Nina's report is given on Wednesday.\nQuestion: If Helen, Kyle, and Lenore, not necessarily in that order, give the three morning reports, which one of the following must be true?\nA. Helen gives a report on Monday.\nB. Irving gives a report on Monday.\nC. Irving gives a report on Wednesday.\nD. Kyle gives a report on Tuesday.\nE. Kyle gives a report on Wednesday.\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "C",
+            "logprob": -0.2869500517845154,
+            "tokens": [
+              {
+                "text": "C",
+                "logprob": -0.2869500517845154
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.28695008158683777,
+              "max_token_negative_log_likelihood": 0.28695008158683777,
+              "predictive_entropy": 0.21537014842033386,
+              "shannon_entropy": 0.6513161063194275
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.5854830741882324,
+        "request_datetime": 1755804683
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "The organizer of a reading club will select at least five and at most six works from a group of nine works. The group consists of three French novels, three Russian novels, two French plays, and one Russian play. The organizer's selection of works must conform to the following requirements: No more than four French works are selected. At least three but no more than four novels are selected. At least as many French novels as Russian novels are selected. If both French plays are selected, then the Russian play is not selected.\nQuestion: Which one of the following could be the organizer's selection of works?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "one French novel, two Russian novels, one French play, one Russian play"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "two French novels, one Russian novel, two French plays, one Russian play"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "two French novels, two Russian novels, two French plays"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "three French novels, one Russian novel, two French plays"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "three French novels, two Russian novels, one Russian play"
+            },
+            "tags": []
+          }
+        ],
+        "split": "test",
+        "id": "id429"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "one French novel, two Russian novels, one French play, one Russian play",
+        "B": "two French novels, one Russian novel, two French plays, one Russian play",
+        "C": "two French novels, two Russian novels, two French plays",
+        "D": "three French novels, one Russian novel, two French plays",
+        "E": "three French novels, two Russian novels, one Russian play"
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: Doctor Yamata works only on Mondays, Tuesdays, Wednesdays, Fridays, and Saturdays. She performs four different activities\u2014lecturing, operating, treating patients, and conducting research. Each working day she performs exactly one activity in the morning and exactly one activity in the afternoon. During each week her work schedule must satisfy the following restrictions: She performs operations on exactly three mornings. If she operates on Monday, she does not operate on Tuesday. She lectures in the afternoon on exactly two consecutive calendar days. She treats patients on exactly one morning and exactly three afternoons. She conducts research on exactly one morning. On Saturday she neither lectures nor performs operations.\nQuestion: Which one of the following must be a day on which Doctor Yamata lectures?\nA. Monday\nB. Tuesday\nC. Wednesday\nD. Friday\nE. Saturday\nAnswer: B\n\nPassage: Exactly six tourists\u2014Harry, Irene, Klaus, Laura, Michael, Norma\u2014are to be assigned to four guides: Valois, Xerxes, Yossarian, Zalamea. Each tourist is assigned to exactly one guide, with at least one tourist assigned to each guide. Valois speaks only French. Xerxes speaks only Turkish and Spanish. Yossarian speaks only French and Turkish. Zalamea speaks only Spanish and Russian. Each tourist speaks exactly one of the languages spoken by his or her guide and speaks no other language. The following rules govern the assignment of the tourists to the guides: At least Harry and Irene are assigned to Yossarian. At least Laura is assigned to Zalamea. If Klaus is assigned to Xerxes, then Michael speaks French.\nQuestion: If Laura and Norma speak the same language as each other, then the maximum number of the tourists who could speak Turkish is\nA. two\nB. three\nC. four\nD. five\nE. six\nAnswer: B\n\nPassage: The members of two committees, a planting committee and a trails committee, are to be selected from among seven volunteers\u2014F, G, H, J, K, L, and M. The following conditions govern the composition of the committees: Each committee must have at least three members. F cannot be on the same committee as K. If K is on a committee, J must also be on that committee. M must be on at least one of the committees. The two committees must have at least one member in common.\nQuestion: The largest number of members that the planting committee and the trails committee could have in common is\nA. three\nB. four\nC. five\nD. six\nE. seven\nAnswer: D\n\nPassage: There are exactly six law students\u2014Gambini, Little, Mitchum, Richardson, Saito, and Veracruz\u2014in a trial advocacy class. The class is divided into three trial teams\u2014team 1, team 2, and team 3\u2014of exactly two students each. Each student is on exactly one of the teams. Each student prepares exactly one of either the opening argument or the final argument for his or her team. The teams must be formed according to the following specifications: Mitchum is on the same team as either Gambini or Veracruz. Little prepares an opening argument. Either Gambini or Richardson, but not both, prepares a final argument.\nQuestion: If Richardson is on the same team as Veracruz, then for exactly how many of the students can it be determined which of the arguments he or she prepares?\nA. one\nB. two\nC. three\nD. four\nE. five\nAnswer: B\n\nPassage: Three folk groups\u2014Glenside, Hilltopper, Levon\u2014and three rock groups\u2014Peasant, Query, Tinhead\u2014each perform on one of two stages, north or south. Each stage has three two-hour performances: north at 6, 8, and 10; south at 8, 10, and 12. Each group performs individually and exactly once, consistent with the following conditions: Peasant performs at 6 or 12. Glenside performs at some time before Hilltopper. If any rock group performs at 10, no folk group does. Levon and Tinhead perform on different stages. Query performs immediately after a folk group, though not necessarily on the same stage.\nQuestion: Which one of the following groups could perform at 6?\nA. Glenside\nB. Hilltopper\nC. Levon\nD. Query\nE. Tinhead\nAnswer: A\n\nPassage: The organizer of a reading club will select at least five and at most six works from a group of nine works. The group consists of three French novels, three Russian novels, two French plays, and one Russian play. The organizer's selection of works must conform to the following requirements: No more than four French works are selected. At least three but no more than four novels are selected. At least as many French novels as Russian novels are selected. If both French plays are selected, then the Russian play is not selected.\nQuestion: Which one of the following could be the organizer's selection of works?\nA. one French novel, two Russian novels, one French play, one Russian play\nB. two French novels, one Russian novel, two French plays, one Russian play\nC. two French novels, two Russian novels, two French plays\nD. three French novels, one Russian novel, two French plays\nE. three French novels, two Russian novels, one Russian play\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "C",
+            "logprob": -5.806851863861084,
+            "tokens": [
+              {
+                "text": "C",
+                "logprob": -5.806851863861084
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 5.806848526000977,
+              "max_token_negative_log_likelihood": 5.806848526000977,
+              "predictive_entropy": 0.017460504546761513,
+              "shannon_entropy": 0.666499137878418
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.5304427146911621,
+        "request_datetime": 1755804683
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "The organizer of a reading club will select at least five and at most six works from a group of nine works. The group consists of three French novels, three Russian novels, two French plays, and one Russian play. The organizer's selection of works must conform to the following requirements: No more than four French works are selected. At least three but no more than four novels are selected. At least as many French novels as Russian novels are selected. If both French plays are selected, then the Russian play is not selected.\nQuestion: Which one of the following could be true about the organizer's selection of works?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "No Russian novels are selected."
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "Exactly one French novel is selected."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "All three plays are selected."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "All three Russian novels are selected."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "All five French works are selected."
+            },
+            "tags": []
+          }
+        ],
+        "split": "test",
+        "id": "id430"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "No Russian novels are selected.",
+        "B": "Exactly one French novel is selected.",
+        "C": "All three plays are selected.",
+        "D": "All three Russian novels are selected.",
+        "E": "All five French works are selected."
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: Doctor Yamata works only on Mondays, Tuesdays, Wednesdays, Fridays, and Saturdays. She performs four different activities\u2014lecturing, operating, treating patients, and conducting research. Each working day she performs exactly one activity in the morning and exactly one activity in the afternoon. During each week her work schedule must satisfy the following restrictions: She performs operations on exactly three mornings. If she operates on Monday, she does not operate on Tuesday. She lectures in the afternoon on exactly two consecutive calendar days. She treats patients on exactly one morning and exactly three afternoons. She conducts research on exactly one morning. On Saturday she neither lectures nor performs operations.\nQuestion: Which one of the following must be a day on which Doctor Yamata lectures?\nA. Monday\nB. Tuesday\nC. Wednesday\nD. Friday\nE. Saturday\nAnswer: B\n\nPassage: Exactly six tourists\u2014Harry, Irene, Klaus, Laura, Michael, Norma\u2014are to be assigned to four guides: Valois, Xerxes, Yossarian, Zalamea. Each tourist is assigned to exactly one guide, with at least one tourist assigned to each guide. Valois speaks only French. Xerxes speaks only Turkish and Spanish. Yossarian speaks only French and Turkish. Zalamea speaks only Spanish and Russian. Each tourist speaks exactly one of the languages spoken by his or her guide and speaks no other language. The following rules govern the assignment of the tourists to the guides: At least Harry and Irene are assigned to Yossarian. At least Laura is assigned to Zalamea. If Klaus is assigned to Xerxes, then Michael speaks French.\nQuestion: If Laura and Norma speak the same language as each other, then the maximum number of the tourists who could speak Turkish is\nA. two\nB. three\nC. four\nD. five\nE. six\nAnswer: B\n\nPassage: The members of two committees, a planting committee and a trails committee, are to be selected from among seven volunteers\u2014F, G, H, J, K, L, and M. The following conditions govern the composition of the committees: Each committee must have at least three members. F cannot be on the same committee as K. If K is on a committee, J must also be on that committee. M must be on at least one of the committees. The two committees must have at least one member in common.\nQuestion: The largest number of members that the planting committee and the trails committee could have in common is\nA. three\nB. four\nC. five\nD. six\nE. seven\nAnswer: D\n\nPassage: There are exactly six law students\u2014Gambini, Little, Mitchum, Richardson, Saito, and Veracruz\u2014in a trial advocacy class. The class is divided into three trial teams\u2014team 1, team 2, and team 3\u2014of exactly two students each. Each student is on exactly one of the teams. Each student prepares exactly one of either the opening argument or the final argument for his or her team. The teams must be formed according to the following specifications: Mitchum is on the same team as either Gambini or Veracruz. Little prepares an opening argument. Either Gambini or Richardson, but not both, prepares a final argument.\nQuestion: If Richardson is on the same team as Veracruz, then for exactly how many of the students can it be determined which of the arguments he or she prepares?\nA. one\nB. two\nC. three\nD. four\nE. five\nAnswer: B\n\nPassage: Three folk groups\u2014Glenside, Hilltopper, Levon\u2014and three rock groups\u2014Peasant, Query, Tinhead\u2014each perform on one of two stages, north or south. Each stage has three two-hour performances: north at 6, 8, and 10; south at 8, 10, and 12. Each group performs individually and exactly once, consistent with the following conditions: Peasant performs at 6 or 12. Glenside performs at some time before Hilltopper. If any rock group performs at 10, no folk group does. Levon and Tinhead perform on different stages. Query performs immediately after a folk group, though not necessarily on the same stage.\nQuestion: Which one of the following groups could perform at 6?\nA. Glenside\nB. Hilltopper\nC. Levon\nD. Query\nE. Tinhead\nAnswer: A\n\nPassage: The organizer of a reading club will select at least five and at most six works from a group of nine works. The group consists of three French novels, three Russian novels, two French plays, and one Russian play. The organizer's selection of works must conform to the following requirements: No more than four French works are selected. At least three but no more than four novels are selected. At least as many French novels as Russian novels are selected. If both French plays are selected, then the Russian play is not selected.\nQuestion: Which one of the following could be true about the organizer's selection of works?\nA. No Russian novels are selected.\nB. Exactly one French novel is selected.\nC. All three plays are selected.\nD. All three Russian novels are selected.\nE. All five French works are selected.\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "B",
+            "logprob": -1.789331078529358,
+            "tokens": [
+              {
+                "text": "B",
+                "logprob": -1.789331078529358
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 1.7893309593200684,
+              "max_token_negative_log_likelihood": 1.7893309593200684,
+              "predictive_entropy": 0.29894691705703735,
+              "shannon_entropy": 1.2217333316802979
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.8881125450134277,
+        "request_datetime": 1755804683
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "The organizer of a reading club will select at least five and at most six works from a group of nine works. The group consists of three French novels, three Russian novels, two French plays, and one Russian play. The organizer's selection of works must conform to the following requirements: No more than four French works are selected. At least three but no more than four novels are selected. At least as many French novels as Russian novels are selected. If both French plays are selected, then the Russian play is not selected.\nQuestion: If the works selected include three French novels, which one of the following could be a complete and accurate list of the remaining works selected?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "one Russian novel"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "two French plays"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "one Russian novel, one Russian play"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "one Russian novel, two French plays"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "two Russian novels, one French play"
+            },
+            "tags": []
+          }
+        ],
+        "split": "test",
+        "id": "id431"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "one Russian novel",
+        "B": "two French plays",
+        "C": "one Russian novel, one Russian play",
+        "D": "one Russian novel, two French plays",
+        "E": "two Russian novels, one French play"
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: Doctor Yamata works only on Mondays, Tuesdays, Wednesdays, Fridays, and Saturdays. She performs four different activities\u2014lecturing, operating, treating patients, and conducting research. Each working day she performs exactly one activity in the morning and exactly one activity in the afternoon. During each week her work schedule must satisfy the following restrictions: She performs operations on exactly three mornings. If she operates on Monday, she does not operate on Tuesday. She lectures in the afternoon on exactly two consecutive calendar days. She treats patients on exactly one morning and exactly three afternoons. She conducts research on exactly one morning. On Saturday she neither lectures nor performs operations.\nQuestion: Which one of the following must be a day on which Doctor Yamata lectures?\nA. Monday\nB. Tuesday\nC. Wednesday\nD. Friday\nE. Saturday\nAnswer: B\n\nPassage: Exactly six tourists\u2014Harry, Irene, Klaus, Laura, Michael, Norma\u2014are to be assigned to four guides: Valois, Xerxes, Yossarian, Zalamea. Each tourist is assigned to exactly one guide, with at least one tourist assigned to each guide. Valois speaks only French. Xerxes speaks only Turkish and Spanish. Yossarian speaks only French and Turkish. Zalamea speaks only Spanish and Russian. Each tourist speaks exactly one of the languages spoken by his or her guide and speaks no other language. The following rules govern the assignment of the tourists to the guides: At least Harry and Irene are assigned to Yossarian. At least Laura is assigned to Zalamea. If Klaus is assigned to Xerxes, then Michael speaks French.\nQuestion: If Laura and Norma speak the same language as each other, then the maximum number of the tourists who could speak Turkish is\nA. two\nB. three\nC. four\nD. five\nE. six\nAnswer: B\n\nPassage: The members of two committees, a planting committee and a trails committee, are to be selected from among seven volunteers\u2014F, G, H, J, K, L, and M. The following conditions govern the composition of the committees: Each committee must have at least three members. F cannot be on the same committee as K. If K is on a committee, J must also be on that committee. M must be on at least one of the committees. The two committees must have at least one member in common.\nQuestion: The largest number of members that the planting committee and the trails committee could have in common is\nA. three\nB. four\nC. five\nD. six\nE. seven\nAnswer: D\n\nPassage: There are exactly six law students\u2014Gambini, Little, Mitchum, Richardson, Saito, and Veracruz\u2014in a trial advocacy class. The class is divided into three trial teams\u2014team 1, team 2, and team 3\u2014of exactly two students each. Each student is on exactly one of the teams. Each student prepares exactly one of either the opening argument or the final argument for his or her team. The teams must be formed according to the following specifications: Mitchum is on the same team as either Gambini or Veracruz. Little prepares an opening argument. Either Gambini or Richardson, but not both, prepares a final argument.\nQuestion: If Richardson is on the same team as Veracruz, then for exactly how many of the students can it be determined which of the arguments he or she prepares?\nA. one\nB. two\nC. three\nD. four\nE. five\nAnswer: B\n\nPassage: Three folk groups\u2014Glenside, Hilltopper, Levon\u2014and three rock groups\u2014Peasant, Query, Tinhead\u2014each perform on one of two stages, north or south. Each stage has three two-hour performances: north at 6, 8, and 10; south at 8, 10, and 12. Each group performs individually and exactly once, consistent with the following conditions: Peasant performs at 6 or 12. Glenside performs at some time before Hilltopper. If any rock group performs at 10, no folk group does. Levon and Tinhead perform on different stages. Query performs immediately after a folk group, though not necessarily on the same stage.\nQuestion: Which one of the following groups could perform at 6?\nA. Glenside\nB. Hilltopper\nC. Levon\nD. Query\nE. Tinhead\nAnswer: A\n\nPassage: The organizer of a reading club will select at least five and at most six works from a group of nine works. The group consists of three French novels, three Russian novels, two French plays, and one Russian play. The organizer's selection of works must conform to the following requirements: No more than four French works are selected. At least three but no more than four novels are selected. At least as many French novels as Russian novels are selected. If both French plays are selected, then the Russian play is not selected.\nQuestion: If the works selected include three French novels, which one of the following could be a complete and accurate list of the remaining works selected?\nA. one Russian novel\nB. two French plays\nC. one Russian novel, one Russian play\nD. one Russian novel, two French plays\nE. two Russian novels, one French play\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "C",
+            "logprob": -1.5284922122955322,
+            "tokens": [
+              {
+                "text": "C",
+                "logprob": -1.5284922122955322
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 1.5284920930862427,
+              "max_token_negative_log_likelihood": 1.5284920930862427,
+              "predictive_entropy": 0.3314724862575531,
+              "shannon_entropy": 0.6445366144180298
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.5903966426849365,
+        "request_datetime": 1755804683
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "The organizer of a reading club will select at least five and at most six works from a group of nine works. The group consists of three French novels, three Russian novels, two French plays, and one Russian play. The organizer's selection of works must conform to the following requirements: No more than four French works are selected. At least three but no more than four novels are selected. At least as many French novels as Russian novels are selected. If both French plays are selected, then the Russian play is not selected.\nQuestion: The organizer must at least select"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "one French novel and one French play"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "one French novel and one Russian play"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "one Russian novel and one French play"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "two French novels"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "two Russian novels"
+            },
+            "tags": []
+          }
+        ],
+        "split": "test",
+        "id": "id432"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "one French novel and one French play",
+        "B": "one French novel and one Russian play",
+        "C": "one Russian novel and one French play",
+        "D": "two French novels",
+        "E": "two Russian novels"
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: Doctor Yamata works only on Mondays, Tuesdays, Wednesdays, Fridays, and Saturdays. She performs four different activities\u2014lecturing, operating, treating patients, and conducting research. Each working day she performs exactly one activity in the morning and exactly one activity in the afternoon. During each week her work schedule must satisfy the following restrictions: She performs operations on exactly three mornings. If she operates on Monday, she does not operate on Tuesday. She lectures in the afternoon on exactly two consecutive calendar days. She treats patients on exactly one morning and exactly three afternoons. She conducts research on exactly one morning. On Saturday she neither lectures nor performs operations.\nQuestion: Which one of the following must be a day on which Doctor Yamata lectures?\nA. Monday\nB. Tuesday\nC. Wednesday\nD. Friday\nE. Saturday\nAnswer: B\n\nPassage: Exactly six tourists\u2014Harry, Irene, Klaus, Laura, Michael, Norma\u2014are to be assigned to four guides: Valois, Xerxes, Yossarian, Zalamea. Each tourist is assigned to exactly one guide, with at least one tourist assigned to each guide. Valois speaks only French. Xerxes speaks only Turkish and Spanish. Yossarian speaks only French and Turkish. Zalamea speaks only Spanish and Russian. Each tourist speaks exactly one of the languages spoken by his or her guide and speaks no other language. The following rules govern the assignment of the tourists to the guides: At least Harry and Irene are assigned to Yossarian. At least Laura is assigned to Zalamea. If Klaus is assigned to Xerxes, then Michael speaks French.\nQuestion: If Laura and Norma speak the same language as each other, then the maximum number of the tourists who could speak Turkish is\nA. two\nB. three\nC. four\nD. five\nE. six\nAnswer: B\n\nPassage: The members of two committees, a planting committee and a trails committee, are to be selected from among seven volunteers\u2014F, G, H, J, K, L, and M. The following conditions govern the composition of the committees: Each committee must have at least three members. F cannot be on the same committee as K. If K is on a committee, J must also be on that committee. M must be on at least one of the committees. The two committees must have at least one member in common.\nQuestion: The largest number of members that the planting committee and the trails committee could have in common is\nA. three\nB. four\nC. five\nD. six\nE. seven\nAnswer: D\n\nPassage: There are exactly six law students\u2014Gambini, Little, Mitchum, Richardson, Saito, and Veracruz\u2014in a trial advocacy class. The class is divided into three trial teams\u2014team 1, team 2, and team 3\u2014of exactly two students each. Each student is on exactly one of the teams. Each student prepares exactly one of either the opening argument or the final argument for his or her team. The teams must be formed according to the following specifications: Mitchum is on the same team as either Gambini or Veracruz. Little prepares an opening argument. Either Gambini or Richardson, but not both, prepares a final argument.\nQuestion: If Richardson is on the same team as Veracruz, then for exactly how many of the students can it be determined which of the arguments he or she prepares?\nA. one\nB. two\nC. three\nD. four\nE. five\nAnswer: B\n\nPassage: Three folk groups\u2014Glenside, Hilltopper, Levon\u2014and three rock groups\u2014Peasant, Query, Tinhead\u2014each perform on one of two stages, north or south. Each stage has three two-hour performances: north at 6, 8, and 10; south at 8, 10, and 12. Each group performs individually and exactly once, consistent with the following conditions: Peasant performs at 6 or 12. Glenside performs at some time before Hilltopper. If any rock group performs at 10, no folk group does. Levon and Tinhead perform on different stages. Query performs immediately after a folk group, though not necessarily on the same stage.\nQuestion: Which one of the following groups could perform at 6?\nA. Glenside\nB. Hilltopper\nC. Levon\nD. Query\nE. Tinhead\nAnswer: A\n\nPassage: The organizer of a reading club will select at least five and at most six works from a group of nine works. The group consists of three French novels, three Russian novels, two French plays, and one Russian play. The organizer's selection of works must conform to the following requirements: No more than four French works are selected. At least three but no more than four novels are selected. At least as many French novels as Russian novels are selected. If both French plays are selected, then the Russian play is not selected.\nQuestion: The organizer must at least select\nA. one French novel and one French play\nB. one French novel and one Russian play\nC. one Russian novel and one French play\nD. two French novels\nE. two Russian novels\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "D",
+            "logprob": -1.6832077503204346,
+            "tokens": [
+              {
+                "text": "D",
+                "logprob": -1.6832077503204346
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 1.683207631111145,
+              "max_token_negative_log_likelihood": 1.683207631111145,
+              "predictive_entropy": 0.31270143389701843,
+              "shannon_entropy": 0.7793283462524414
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.724618673324585,
+        "request_datetime": 1755804683
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "The organizer of a reading club will select at least five and at most six works from a group of nine works. The group consists of three French novels, three Russian novels, two French plays, and one Russian play. The organizer's selection of works must conform to the following requirements: No more than four French works are selected. At least three but no more than four novels are selected. At least as many French novels as Russian novels are selected. If both French plays are selected, then the Russian play is not selected.\nQuestion: Any one of the following could be true about the organizer's selections of works EXCEPT:"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "No Russian novels and exactly one play are selected."
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "Exactly one Russian novel and both French plays are selected."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Exactly two French novels and the Russian play are selected."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Exactly two French novels and exactly two plays are selected."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Exactly two Russian novels and exactly one play are selected."
+            },
+            "tags": []
+          }
+        ],
+        "split": "test",
+        "id": "id433"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "No Russian novels and exactly one play are selected.",
+        "B": "Exactly one Russian novel and both French plays are selected.",
+        "C": "Exactly two French novels and the Russian play are selected.",
+        "D": "Exactly two French novels and exactly two plays are selected.",
+        "E": "Exactly two Russian novels and exactly one play are selected."
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: Doctor Yamata works only on Mondays, Tuesdays, Wednesdays, Fridays, and Saturdays. She performs four different activities\u2014lecturing, operating, treating patients, and conducting research. Each working day she performs exactly one activity in the morning and exactly one activity in the afternoon. During each week her work schedule must satisfy the following restrictions: She performs operations on exactly three mornings. If she operates on Monday, she does not operate on Tuesday. She lectures in the afternoon on exactly two consecutive calendar days. She treats patients on exactly one morning and exactly three afternoons. She conducts research on exactly one morning. On Saturday she neither lectures nor performs operations.\nQuestion: Which one of the following must be a day on which Doctor Yamata lectures?\nA. Monday\nB. Tuesday\nC. Wednesday\nD. Friday\nE. Saturday\nAnswer: B\n\nPassage: Exactly six tourists\u2014Harry, Irene, Klaus, Laura, Michael, Norma\u2014are to be assigned to four guides: Valois, Xerxes, Yossarian, Zalamea. Each tourist is assigned to exactly one guide, with at least one tourist assigned to each guide. Valois speaks only French. Xerxes speaks only Turkish and Spanish. Yossarian speaks only French and Turkish. Zalamea speaks only Spanish and Russian. Each tourist speaks exactly one of the languages spoken by his or her guide and speaks no other language. The following rules govern the assignment of the tourists to the guides: At least Harry and Irene are assigned to Yossarian. At least Laura is assigned to Zalamea. If Klaus is assigned to Xerxes, then Michael speaks French.\nQuestion: If Laura and Norma speak the same language as each other, then the maximum number of the tourists who could speak Turkish is\nA. two\nB. three\nC. four\nD. five\nE. six\nAnswer: B\n\nPassage: The members of two committees, a planting committee and a trails committee, are to be selected from among seven volunteers\u2014F, G, H, J, K, L, and M. The following conditions govern the composition of the committees: Each committee must have at least three members. F cannot be on the same committee as K. If K is on a committee, J must also be on that committee. M must be on at least one of the committees. The two committees must have at least one member in common.\nQuestion: The largest number of members that the planting committee and the trails committee could have in common is\nA. three\nB. four\nC. five\nD. six\nE. seven\nAnswer: D\n\nPassage: There are exactly six law students\u2014Gambini, Little, Mitchum, Richardson, Saito, and Veracruz\u2014in a trial advocacy class. The class is divided into three trial teams\u2014team 1, team 2, and team 3\u2014of exactly two students each. Each student is on exactly one of the teams. Each student prepares exactly one of either the opening argument or the final argument for his or her team. The teams must be formed according to the following specifications: Mitchum is on the same team as either Gambini or Veracruz. Little prepares an opening argument. Either Gambini or Richardson, but not both, prepares a final argument.\nQuestion: If Richardson is on the same team as Veracruz, then for exactly how many of the students can it be determined which of the arguments he or she prepares?\nA. one\nB. two\nC. three\nD. four\nE. five\nAnswer: B\n\nPassage: Three folk groups\u2014Glenside, Hilltopper, Levon\u2014and three rock groups\u2014Peasant, Query, Tinhead\u2014each perform on one of two stages, north or south. Each stage has three two-hour performances: north at 6, 8, and 10; south at 8, 10, and 12. Each group performs individually and exactly once, consistent with the following conditions: Peasant performs at 6 or 12. Glenside performs at some time before Hilltopper. If any rock group performs at 10, no folk group does. Levon and Tinhead perform on different stages. Query performs immediately after a folk group, though not necessarily on the same stage.\nQuestion: Which one of the following groups could perform at 6?\nA. Glenside\nB. Hilltopper\nC. Levon\nD. Query\nE. Tinhead\nAnswer: A\n\nPassage: The organizer of a reading club will select at least five and at most six works from a group of nine works. The group consists of three French novels, three Russian novels, two French plays, and one Russian play. The organizer's selection of works must conform to the following requirements: No more than four French works are selected. At least three but no more than four novels are selected. At least as many French novels as Russian novels are selected. If both French plays are selected, then the Russian play is not selected.\nQuestion: Any one of the following could be true about the organizer's selections of works EXCEPT:\nA. No Russian novels and exactly one play are selected.\nB. Exactly one Russian novel and both French plays are selected.\nC. Exactly two French novels and the Russian play are selected.\nD. Exactly two French novels and exactly two plays are selected.\nE. Exactly two Russian novels and exactly one play are selected.\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "A",
+            "logprob": -0.06625784188508987,
+            "tokens": [
+              {
+                "text": "A",
+                "logprob": -0.06625784188508987
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.06625781953334808,
+              "max_token_negative_log_likelihood": 0.06625781953334808,
+              "predictive_entropy": 0.06201000139117241,
+              "shannon_entropy": 0.24082930386066437
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.6580164432525635,
+        "request_datetime": 1755804683
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "A bakery makes exactly three kinds of cookie\u2014oatmeal, peanut butter, and sugar. Exactly three batches of each kind of cookie are made each week (Monday through Friday) and each batch is made, from start to finish, on a single day. The following conditions apply: No two batches of the same kind of cookie are made on the same day. At least one batch of cookies is made on Monday. The second batch of oatmeal cookies is made on the same day as the first batch of peanut butter cookies. The second batch of sugar cookies is made on Thursday.\nQuestion: Which one of the following could be a complete and accurate list of the days on which the batches of each kind of cookie are made?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "oatmeal: Monday, Wednesday, Thursday peanut butter: Wednesday, Thursday, Friday sugar: Monday, Thursday, Friday"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "oatmeal: Monday, Tuesday, Thursday peanut butter: Tuesday, Wednesday, Thursday sugar: Monday, Wednesday, Thursday"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "oatmeal: Tuesday, Wednesday, Thursday peanut butter: Wednesday, Thursday, Friday sugar: Tuesday, Thursday, Friday"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "oatmeal: Monday, Tuesday, Thursday peanut butter: Monday, Wednesday, Thursday sugar: Monday, Thursday, Friday"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "oatmeal: Monday, Thursday, Friday peanut butter: Tuesday, Wednesday, Thursday sugar: Monday, Thursday, Friday"
+            },
+            "tags": []
+          }
+        ],
+        "split": "test",
+        "id": "id434"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "oatmeal: Monday, Wednesday, Thursday peanut butter: Wednesday, Thursday, Friday sugar: Monday, Thursday, Friday",
+        "B": "oatmeal: Monday, Tuesday, Thursday peanut butter: Tuesday, Wednesday, Thursday sugar: Monday, Wednesday, Thursday",
+        "C": "oatmeal: Tuesday, Wednesday, Thursday peanut butter: Wednesday, Thursday, Friday sugar: Tuesday, Thursday, Friday",
+        "D": "oatmeal: Monday, Tuesday, Thursday peanut butter: Monday, Wednesday, Thursday sugar: Monday, Thursday, Friday",
+        "E": "oatmeal: Monday, Thursday, Friday peanut butter: Tuesday, Wednesday, Thursday sugar: Monday, Thursday, Friday"
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: Doctor Yamata works only on Mondays, Tuesdays, Wednesdays, Fridays, and Saturdays. She performs four different activities\u2014lecturing, operating, treating patients, and conducting research. Each working day she performs exactly one activity in the morning and exactly one activity in the afternoon. During each week her work schedule must satisfy the following restrictions: She performs operations on exactly three mornings. If she operates on Monday, she does not operate on Tuesday. She lectures in the afternoon on exactly two consecutive calendar days. She treats patients on exactly one morning and exactly three afternoons. She conducts research on exactly one morning. On Saturday she neither lectures nor performs operations.\nQuestion: Which one of the following must be a day on which Doctor Yamata lectures?\nA. Monday\nB. Tuesday\nC. Wednesday\nD. Friday\nE. Saturday\nAnswer: B\n\nPassage: Exactly six tourists\u2014Harry, Irene, Klaus, Laura, Michael, Norma\u2014are to be assigned to four guides: Valois, Xerxes, Yossarian, Zalamea. Each tourist is assigned to exactly one guide, with at least one tourist assigned to each guide. Valois speaks only French. Xerxes speaks only Turkish and Spanish. Yossarian speaks only French and Turkish. Zalamea speaks only Spanish and Russian. Each tourist speaks exactly one of the languages spoken by his or her guide and speaks no other language. The following rules govern the assignment of the tourists to the guides: At least Harry and Irene are assigned to Yossarian. At least Laura is assigned to Zalamea. If Klaus is assigned to Xerxes, then Michael speaks French.\nQuestion: If Laura and Norma speak the same language as each other, then the maximum number of the tourists who could speak Turkish is\nA. two\nB. three\nC. four\nD. five\nE. six\nAnswer: B\n\nPassage: The members of two committees, a planting committee and a trails committee, are to be selected from among seven volunteers\u2014F, G, H, J, K, L, and M. The following conditions govern the composition of the committees: Each committee must have at least three members. F cannot be on the same committee as K. If K is on a committee, J must also be on that committee. M must be on at least one of the committees. The two committees must have at least one member in common.\nQuestion: The largest number of members that the planting committee and the trails committee could have in common is\nA. three\nB. four\nC. five\nD. six\nE. seven\nAnswer: D\n\nPassage: There are exactly six law students\u2014Gambini, Little, Mitchum, Richardson, Saito, and Veracruz\u2014in a trial advocacy class. The class is divided into three trial teams\u2014team 1, team 2, and team 3\u2014of exactly two students each. Each student is on exactly one of the teams. Each student prepares exactly one of either the opening argument or the final argument for his or her team. The teams must be formed according to the following specifications: Mitchum is on the same team as either Gambini or Veracruz. Little prepares an opening argument. Either Gambini or Richardson, but not both, prepares a final argument.\nQuestion: If Richardson is on the same team as Veracruz, then for exactly how many of the students can it be determined which of the arguments he or she prepares?\nA. one\nB. two\nC. three\nD. four\nE. five\nAnswer: B\n\nPassage: Three folk groups\u2014Glenside, Hilltopper, Levon\u2014and three rock groups\u2014Peasant, Query, Tinhead\u2014each perform on one of two stages, north or south. Each stage has three two-hour performances: north at 6, 8, and 10; south at 8, 10, and 12. Each group performs individually and exactly once, consistent with the following conditions: Peasant performs at 6 or 12. Glenside performs at some time before Hilltopper. If any rock group performs at 10, no folk group does. Levon and Tinhead perform on different stages. Query performs immediately after a folk group, though not necessarily on the same stage.\nQuestion: Which one of the following groups could perform at 6?\nA. Glenside\nB. Hilltopper\nC. Levon\nD. Query\nE. Tinhead\nAnswer: A\n\nPassage: A bakery makes exactly three kinds of cookie\u2014oatmeal, peanut butter, and sugar. Exactly three batches of each kind of cookie are made each week (Monday through Friday) and each batch is made, from start to finish, on a single day. The following conditions apply: No two batches of the same kind of cookie are made on the same day. At least one batch of cookies is made on Monday. The second batch of oatmeal cookies is made on the same day as the first batch of peanut butter cookies. The second batch of sugar cookies is made on Thursday.\nQuestion: Which one of the following could be a complete and accurate list of the days on which the batches of each kind of cookie are made?\nA. oatmeal: Monday, Wednesday, Thursday peanut butter: Wednesday, Thursday, Friday sugar: Monday, Thursday, Friday\nB. oatmeal: Monday, Tuesday, Thursday peanut butter: Tuesday, Wednesday, Thursday sugar: Monday, Wednesday, Thursday\nC. oatmeal: Tuesday, Wednesday, Thursday peanut butter: Wednesday, Thursday, Friday sugar: Tuesday, Thursday, Friday\nD. oatmeal: Monday, Tuesday, Thursday peanut butter: Monday, Wednesday, Thursday sugar: Monday, Thursday, Friday\nE. oatmeal: Monday, Thursday, Friday peanut butter: Tuesday, Wednesday, Thursday sugar: Monday, Thursday, Friday\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "D",
+            "logprob": -0.01612655073404312,
+            "tokens": [
+              {
+                "text": "D",
+                "logprob": -0.01612655073404312
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.016126567497849464,
+              "max_token_negative_log_likelihood": 0.016126567497849464,
+              "predictive_entropy": 0.01586858741939068,
+              "shannon_entropy": 0.08269087225198746
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.7491755485534668,
+        "request_datetime": 1755804683
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "A bakery makes exactly three kinds of cookie\u2014oatmeal, peanut butter, and sugar. Exactly three batches of each kind of cookie are made each week (Monday through Friday) and each batch is made, from start to finish, on a single day. The following conditions apply: No two batches of the same kind of cookie are made on the same day. At least one batch of cookies is made on Monday. The second batch of oatmeal cookies is made on the same day as the first batch of peanut butter cookies. The second batch of sugar cookies is made on Thursday.\nQuestion: How many of the days, Monday through Friday, are such that at most two batches of cookies could be made on that day?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "one"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "two"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "three"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "four"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "five"
+            },
+            "tags": []
+          }
+        ],
+        "split": "test",
+        "id": "id435"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "one",
+        "B": "two",
+        "C": "three",
+        "D": "four",
+        "E": "five"
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: Doctor Yamata works only on Mondays, Tuesdays, Wednesdays, Fridays, and Saturdays. She performs four different activities\u2014lecturing, operating, treating patients, and conducting research. Each working day she performs exactly one activity in the morning and exactly one activity in the afternoon. During each week her work schedule must satisfy the following restrictions: She performs operations on exactly three mornings. If she operates on Monday, she does not operate on Tuesday. She lectures in the afternoon on exactly two consecutive calendar days. She treats patients on exactly one morning and exactly three afternoons. She conducts research on exactly one morning. On Saturday she neither lectures nor performs operations.\nQuestion: Which one of the following must be a day on which Doctor Yamata lectures?\nA. Monday\nB. Tuesday\nC. Wednesday\nD. Friday\nE. Saturday\nAnswer: B\n\nPassage: Exactly six tourists\u2014Harry, Irene, Klaus, Laura, Michael, Norma\u2014are to be assigned to four guides: Valois, Xerxes, Yossarian, Zalamea. Each tourist is assigned to exactly one guide, with at least one tourist assigned to each guide. Valois speaks only French. Xerxes speaks only Turkish and Spanish. Yossarian speaks only French and Turkish. Zalamea speaks only Spanish and Russian. Each tourist speaks exactly one of the languages spoken by his or her guide and speaks no other language. The following rules govern the assignment of the tourists to the guides: At least Harry and Irene are assigned to Yossarian. At least Laura is assigned to Zalamea. If Klaus is assigned to Xerxes, then Michael speaks French.\nQuestion: If Laura and Norma speak the same language as each other, then the maximum number of the tourists who could speak Turkish is\nA. two\nB. three\nC. four\nD. five\nE. six\nAnswer: B\n\nPassage: The members of two committees, a planting committee and a trails committee, are to be selected from among seven volunteers\u2014F, G, H, J, K, L, and M. The following conditions govern the composition of the committees: Each committee must have at least three members. F cannot be on the same committee as K. If K is on a committee, J must also be on that committee. M must be on at least one of the committees. The two committees must have at least one member in common.\nQuestion: The largest number of members that the planting committee and the trails committee could have in common is\nA. three\nB. four\nC. five\nD. six\nE. seven\nAnswer: D\n\nPassage: There are exactly six law students\u2014Gambini, Little, Mitchum, Richardson, Saito, and Veracruz\u2014in a trial advocacy class. The class is divided into three trial teams\u2014team 1, team 2, and team 3\u2014of exactly two students each. Each student is on exactly one of the teams. Each student prepares exactly one of either the opening argument or the final argument for his or her team. The teams must be formed according to the following specifications: Mitchum is on the same team as either Gambini or Veracruz. Little prepares an opening argument. Either Gambini or Richardson, but not both, prepares a final argument.\nQuestion: If Richardson is on the same team as Veracruz, then for exactly how many of the students can it be determined which of the arguments he or she prepares?\nA. one\nB. two\nC. three\nD. four\nE. five\nAnswer: B\n\nPassage: Three folk groups\u2014Glenside, Hilltopper, Levon\u2014and three rock groups\u2014Peasant, Query, Tinhead\u2014each perform on one of two stages, north or south. Each stage has three two-hour performances: north at 6, 8, and 10; south at 8, 10, and 12. Each group performs individually and exactly once, consistent with the following conditions: Peasant performs at 6 or 12. Glenside performs at some time before Hilltopper. If any rock group performs at 10, no folk group does. Levon and Tinhead perform on different stages. Query performs immediately after a folk group, though not necessarily on the same stage.\nQuestion: Which one of the following groups could perform at 6?\nA. Glenside\nB. Hilltopper\nC. Levon\nD. Query\nE. Tinhead\nAnswer: A\n\nPassage: A bakery makes exactly three kinds of cookie\u2014oatmeal, peanut butter, and sugar. Exactly three batches of each kind of cookie are made each week (Monday through Friday) and each batch is made, from start to finish, on a single day. The following conditions apply: No two batches of the same kind of cookie are made on the same day. At least one batch of cookies is made on Monday. The second batch of oatmeal cookies is made on the same day as the first batch of peanut butter cookies. The second batch of sugar cookies is made on Thursday.\nQuestion: How many of the days, Monday through Friday, are such that at most two batches of cookies could be made on that day?\nA. one\nB. two\nC. three\nD. four\nE. five\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "C",
+            "logprob": -0.5447342395782471,
+            "tokens": [
+              {
+                "text": "C",
+                "logprob": -0.5447342395782471
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.5447341799736023,
+              "max_token_negative_log_likelihood": 0.5447341799736023,
+              "predictive_entropy": 0.3159435987472534,
+              "shannon_entropy": 0.8423527479171753
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.634422779083252,
+        "request_datetime": 1755804684
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "A bakery makes exactly three kinds of cookie\u2014oatmeal, peanut butter, and sugar. Exactly three batches of each kind of cookie are made each week (Monday through Friday) and each batch is made, from start to finish, on a single day. The following conditions apply: No two batches of the same kind of cookie are made on the same day. At least one batch of cookies is made on Monday. The second batch of oatmeal cookies is made on the same day as the first batch of peanut butter cookies. The second batch of sugar cookies is made on Thursday.\nQuestion: If the first batch of peanut butter cookies is made on Tuesday, then each of the following could be true EXCEPT:"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Two different kinds of cookie have their first batch made on Monday."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Two different kinds of cookie have their first batch made on Tuesday."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Two different kinds of cookie have their second batch made on Wednesday."
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "Two different kinds of cookie have their second batch made on Thursday."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Two different kinds of cookie have their third batch made on Friday."
+            },
+            "tags": []
+          }
+        ],
+        "split": "test",
+        "id": "id436"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "Two different kinds of cookie have their first batch made on Monday.",
+        "B": "Two different kinds of cookie have their first batch made on Tuesday.",
+        "C": "Two different kinds of cookie have their second batch made on Wednesday.",
+        "D": "Two different kinds of cookie have their second batch made on Thursday.",
+        "E": "Two different kinds of cookie have their third batch made on Friday."
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: Doctor Yamata works only on Mondays, Tuesdays, Wednesdays, Fridays, and Saturdays. She performs four different activities\u2014lecturing, operating, treating patients, and conducting research. Each working day she performs exactly one activity in the morning and exactly one activity in the afternoon. During each week her work schedule must satisfy the following restrictions: She performs operations on exactly three mornings. If she operates on Monday, she does not operate on Tuesday. She lectures in the afternoon on exactly two consecutive calendar days. She treats patients on exactly one morning and exactly three afternoons. She conducts research on exactly one morning. On Saturday she neither lectures nor performs operations.\nQuestion: Which one of the following must be a day on which Doctor Yamata lectures?\nA. Monday\nB. Tuesday\nC. Wednesday\nD. Friday\nE. Saturday\nAnswer: B\n\nPassage: Exactly six tourists\u2014Harry, Irene, Klaus, Laura, Michael, Norma\u2014are to be assigned to four guides: Valois, Xerxes, Yossarian, Zalamea. Each tourist is assigned to exactly one guide, with at least one tourist assigned to each guide. Valois speaks only French. Xerxes speaks only Turkish and Spanish. Yossarian speaks only French and Turkish. Zalamea speaks only Spanish and Russian. Each tourist speaks exactly one of the languages spoken by his or her guide and speaks no other language. The following rules govern the assignment of the tourists to the guides: At least Harry and Irene are assigned to Yossarian. At least Laura is assigned to Zalamea. If Klaus is assigned to Xerxes, then Michael speaks French.\nQuestion: If Laura and Norma speak the same language as each other, then the maximum number of the tourists who could speak Turkish is\nA. two\nB. three\nC. four\nD. five\nE. six\nAnswer: B\n\nPassage: The members of two committees, a planting committee and a trails committee, are to be selected from among seven volunteers\u2014F, G, H, J, K, L, and M. The following conditions govern the composition of the committees: Each committee must have at least three members. F cannot be on the same committee as K. If K is on a committee, J must also be on that committee. M must be on at least one of the committees. The two committees must have at least one member in common.\nQuestion: The largest number of members that the planting committee and the trails committee could have in common is\nA. three\nB. four\nC. five\nD. six\nE. seven\nAnswer: D\n\nPassage: There are exactly six law students\u2014Gambini, Little, Mitchum, Richardson, Saito, and Veracruz\u2014in a trial advocacy class. The class is divided into three trial teams\u2014team 1, team 2, and team 3\u2014of exactly two students each. Each student is on exactly one of the teams. Each student prepares exactly one of either the opening argument or the final argument for his or her team. The teams must be formed according to the following specifications: Mitchum is on the same team as either Gambini or Veracruz. Little prepares an opening argument. Either Gambini or Richardson, but not both, prepares a final argument.\nQuestion: If Richardson is on the same team as Veracruz, then for exactly how many of the students can it be determined which of the arguments he or she prepares?\nA. one\nB. two\nC. three\nD. four\nE. five\nAnswer: B\n\nPassage: Three folk groups\u2014Glenside, Hilltopper, Levon\u2014and three rock groups\u2014Peasant, Query, Tinhead\u2014each perform on one of two stages, north or south. Each stage has three two-hour performances: north at 6, 8, and 10; south at 8, 10, and 12. Each group performs individually and exactly once, consistent with the following conditions: Peasant performs at 6 or 12. Glenside performs at some time before Hilltopper. If any rock group performs at 10, no folk group does. Levon and Tinhead perform on different stages. Query performs immediately after a folk group, though not necessarily on the same stage.\nQuestion: Which one of the following groups could perform at 6?\nA. Glenside\nB. Hilltopper\nC. Levon\nD. Query\nE. Tinhead\nAnswer: A\n\nPassage: A bakery makes exactly three kinds of cookie\u2014oatmeal, peanut butter, and sugar. Exactly three batches of each kind of cookie are made each week (Monday through Friday) and each batch is made, from start to finish, on a single day. The following conditions apply: No two batches of the same kind of cookie are made on the same day. At least one batch of cookies is made on Monday. The second batch of oatmeal cookies is made on the same day as the first batch of peanut butter cookies. The second batch of sugar cookies is made on Thursday.\nQuestion: If the first batch of peanut butter cookies is made on Tuesday, then each of the following could be true EXCEPT:\nA. Two different kinds of cookie have their first batch made on Monday.\nB. Two different kinds of cookie have their first batch made on Tuesday.\nC. Two different kinds of cookie have their second batch made on Wednesday.\nD. Two different kinds of cookie have their second batch made on Thursday.\nE. Two different kinds of cookie have their third batch made on Friday.\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "D",
+            "logprob": -0.044373951852321625,
+            "tokens": [
+              {
+                "text": "D",
+                "logprob": -0.044373951852321625
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.044373925775289536,
+              "max_token_negative_log_likelihood": 0.044373925775289536,
+              "predictive_entropy": 0.042447928339242935,
+              "shannon_entropy": 0.21285372972488403
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.7753336429595947,
+        "request_datetime": 1755804684
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "A bakery makes exactly three kinds of cookie\u2014oatmeal, peanut butter, and sugar. Exactly three batches of each kind of cookie are made each week (Monday through Friday) and each batch is made, from start to finish, on a single day. The following conditions apply: No two batches of the same kind of cookie are made on the same day. At least one batch of cookies is made on Monday. The second batch of oatmeal cookies is made on the same day as the first batch of peanut butter cookies. The second batch of sugar cookies is made on Thursday.\nQuestion: If no batch of cookies is made on Wednesday, then which one of the following must be true?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Exactly three batches of cookies are made on Tuesday."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Exactly three batches of cookies are made on Friday."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "At least two batches of cookies are made on Monday."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "At least two batches of cookies are made on Thursday."
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "Fewer batches of cookies are made on Monday than on Tuesday."
+            },
+            "tags": []
+          }
+        ],
+        "split": "test",
+        "id": "id437"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "Exactly three batches of cookies are made on Tuesday.",
+        "B": "Exactly three batches of cookies are made on Friday.",
+        "C": "At least two batches of cookies are made on Monday.",
+        "D": "At least two batches of cookies are made on Thursday.",
+        "E": "Fewer batches of cookies are made on Monday than on Tuesday."
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: Doctor Yamata works only on Mondays, Tuesdays, Wednesdays, Fridays, and Saturdays. She performs four different activities\u2014lecturing, operating, treating patients, and conducting research. Each working day she performs exactly one activity in the morning and exactly one activity in the afternoon. During each week her work schedule must satisfy the following restrictions: She performs operations on exactly three mornings. If she operates on Monday, she does not operate on Tuesday. She lectures in the afternoon on exactly two consecutive calendar days. She treats patients on exactly one morning and exactly three afternoons. She conducts research on exactly one morning. On Saturday she neither lectures nor performs operations.\nQuestion: Which one of the following must be a day on which Doctor Yamata lectures?\nA. Monday\nB. Tuesday\nC. Wednesday\nD. Friday\nE. Saturday\nAnswer: B\n\nPassage: Exactly six tourists\u2014Harry, Irene, Klaus, Laura, Michael, Norma\u2014are to be assigned to four guides: Valois, Xerxes, Yossarian, Zalamea. Each tourist is assigned to exactly one guide, with at least one tourist assigned to each guide. Valois speaks only French. Xerxes speaks only Turkish and Spanish. Yossarian speaks only French and Turkish. Zalamea speaks only Spanish and Russian. Each tourist speaks exactly one of the languages spoken by his or her guide and speaks no other language. The following rules govern the assignment of the tourists to the guides: At least Harry and Irene are assigned to Yossarian. At least Laura is assigned to Zalamea. If Klaus is assigned to Xerxes, then Michael speaks French.\nQuestion: If Laura and Norma speak the same language as each other, then the maximum number of the tourists who could speak Turkish is\nA. two\nB. three\nC. four\nD. five\nE. six\nAnswer: B\n\nPassage: The members of two committees, a planting committee and a trails committee, are to be selected from among seven volunteers\u2014F, G, H, J, K, L, and M. The following conditions govern the composition of the committees: Each committee must have at least three members. F cannot be on the same committee as K. If K is on a committee, J must also be on that committee. M must be on at least one of the committees. The two committees must have at least one member in common.\nQuestion: The largest number of members that the planting committee and the trails committee could have in common is\nA. three\nB. four\nC. five\nD. six\nE. seven\nAnswer: D\n\nPassage: There are exactly six law students\u2014Gambini, Little, Mitchum, Richardson, Saito, and Veracruz\u2014in a trial advocacy class. The class is divided into three trial teams\u2014team 1, team 2, and team 3\u2014of exactly two students each. Each student is on exactly one of the teams. Each student prepares exactly one of either the opening argument or the final argument for his or her team. The teams must be formed according to the following specifications: Mitchum is on the same team as either Gambini or Veracruz. Little prepares an opening argument. Either Gambini or Richardson, but not both, prepares a final argument.\nQuestion: If Richardson is on the same team as Veracruz, then for exactly how many of the students can it be determined which of the arguments he or she prepares?\nA. one\nB. two\nC. three\nD. four\nE. five\nAnswer: B\n\nPassage: Three folk groups\u2014Glenside, Hilltopper, Levon\u2014and three rock groups\u2014Peasant, Query, Tinhead\u2014each perform on one of two stages, north or south. Each stage has three two-hour performances: north at 6, 8, and 10; south at 8, 10, and 12. Each group performs individually and exactly once, consistent with the following conditions: Peasant performs at 6 or 12. Glenside performs at some time before Hilltopper. If any rock group performs at 10, no folk group does. Levon and Tinhead perform on different stages. Query performs immediately after a folk group, though not necessarily on the same stage.\nQuestion: Which one of the following groups could perform at 6?\nA. Glenside\nB. Hilltopper\nC. Levon\nD. Query\nE. Tinhead\nAnswer: A\n\nPassage: A bakery makes exactly three kinds of cookie\u2014oatmeal, peanut butter, and sugar. Exactly three batches of each kind of cookie are made each week (Monday through Friday) and each batch is made, from start to finish, on a single day. The following conditions apply: No two batches of the same kind of cookie are made on the same day. At least one batch of cookies is made on Monday. The second batch of oatmeal cookies is made on the same day as the first batch of peanut butter cookies. The second batch of sugar cookies is made on Thursday.\nQuestion: If no batch of cookies is made on Wednesday, then which one of the following must be true?\nA. Exactly three batches of cookies are made on Tuesday.\nB. Exactly three batches of cookies are made on Friday.\nC. At least two batches of cookies are made on Monday.\nD. At least two batches of cookies are made on Thursday.\nE. Fewer batches of cookies are made on Monday than on Tuesday.\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "C",
+            "logprob": -0.023083657026290894,
+            "tokens": [
+              {
+                "text": "C",
+                "logprob": -0.023083657026290894
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.023083670064806938,
+              "max_token_negative_log_likelihood": 0.023083670064806938,
+              "predictive_entropy": 0.022556917741894722,
+              "shannon_entropy": 0.13202600181102753
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.6636748313903809,
+        "request_datetime": 1755804684
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "A bakery makes exactly three kinds of cookie\u2014oatmeal, peanut butter, and sugar. Exactly three batches of each kind of cookie are made each week (Monday through Friday) and each batch is made, from start to finish, on a single day. The following conditions apply: No two batches of the same kind of cookie are made on the same day. At least one batch of cookies is made on Monday. The second batch of oatmeal cookies is made on the same day as the first batch of peanut butter cookies. The second batch of sugar cookies is made on Thursday.\nQuestion: If the number of batches made on Friday is exactly one, then which one of the following could be true?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "The first batch of sugar cookies is made on Monday."
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "The first batch of oatmeal cookies is made on Tuesday."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "The third batch of oatmeal cookies is made on Friday."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "The first batch of peanut butter cookies is made on Wednesday."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "The second batch of peanut butter cookies is made on Tuesday."
+            },
+            "tags": []
+          }
+        ],
+        "split": "test",
+        "id": "id438"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "The first batch of sugar cookies is made on Monday.",
+        "B": "The first batch of oatmeal cookies is made on Tuesday.",
+        "C": "The third batch of oatmeal cookies is made on Friday.",
+        "D": "The first batch of peanut butter cookies is made on Wednesday.",
+        "E": "The second batch of peanut butter cookies is made on Tuesday."
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: Doctor Yamata works only on Mondays, Tuesdays, Wednesdays, Fridays, and Saturdays. She performs four different activities\u2014lecturing, operating, treating patients, and conducting research. Each working day she performs exactly one activity in the morning and exactly one activity in the afternoon. During each week her work schedule must satisfy the following restrictions: She performs operations on exactly three mornings. If she operates on Monday, she does not operate on Tuesday. She lectures in the afternoon on exactly two consecutive calendar days. She treats patients on exactly one morning and exactly three afternoons. She conducts research on exactly one morning. On Saturday she neither lectures nor performs operations.\nQuestion: Which one of the following must be a day on which Doctor Yamata lectures?\nA. Monday\nB. Tuesday\nC. Wednesday\nD. Friday\nE. Saturday\nAnswer: B\n\nPassage: Exactly six tourists\u2014Harry, Irene, Klaus, Laura, Michael, Norma\u2014are to be assigned to four guides: Valois, Xerxes, Yossarian, Zalamea. Each tourist is assigned to exactly one guide, with at least one tourist assigned to each guide. Valois speaks only French. Xerxes speaks only Turkish and Spanish. Yossarian speaks only French and Turkish. Zalamea speaks only Spanish and Russian. Each tourist speaks exactly one of the languages spoken by his or her guide and speaks no other language. The following rules govern the assignment of the tourists to the guides: At least Harry and Irene are assigned to Yossarian. At least Laura is assigned to Zalamea. If Klaus is assigned to Xerxes, then Michael speaks French.\nQuestion: If Laura and Norma speak the same language as each other, then the maximum number of the tourists who could speak Turkish is\nA. two\nB. three\nC. four\nD. five\nE. six\nAnswer: B\n\nPassage: The members of two committees, a planting committee and a trails committee, are to be selected from among seven volunteers\u2014F, G, H, J, K, L, and M. The following conditions govern the composition of the committees: Each committee must have at least three members. F cannot be on the same committee as K. If K is on a committee, J must also be on that committee. M must be on at least one of the committees. The two committees must have at least one member in common.\nQuestion: The largest number of members that the planting committee and the trails committee could have in common is\nA. three\nB. four\nC. five\nD. six\nE. seven\nAnswer: D\n\nPassage: There are exactly six law students\u2014Gambini, Little, Mitchum, Richardson, Saito, and Veracruz\u2014in a trial advocacy class. The class is divided into three trial teams\u2014team 1, team 2, and team 3\u2014of exactly two students each. Each student is on exactly one of the teams. Each student prepares exactly one of either the opening argument or the final argument for his or her team. The teams must be formed according to the following specifications: Mitchum is on the same team as either Gambini or Veracruz. Little prepares an opening argument. Either Gambini or Richardson, but not both, prepares a final argument.\nQuestion: If Richardson is on the same team as Veracruz, then for exactly how many of the students can it be determined which of the arguments he or she prepares?\nA. one\nB. two\nC. three\nD. four\nE. five\nAnswer: B\n\nPassage: Three folk groups\u2014Glenside, Hilltopper, Levon\u2014and three rock groups\u2014Peasant, Query, Tinhead\u2014each perform on one of two stages, north or south. Each stage has three two-hour performances: north at 6, 8, and 10; south at 8, 10, and 12. Each group performs individually and exactly once, consistent with the following conditions: Peasant performs at 6 or 12. Glenside performs at some time before Hilltopper. If any rock group performs at 10, no folk group does. Levon and Tinhead perform on different stages. Query performs immediately after a folk group, though not necessarily on the same stage.\nQuestion: Which one of the following groups could perform at 6?\nA. Glenside\nB. Hilltopper\nC. Levon\nD. Query\nE. Tinhead\nAnswer: A\n\nPassage: A bakery makes exactly three kinds of cookie\u2014oatmeal, peanut butter, and sugar. Exactly three batches of each kind of cookie are made each week (Monday through Friday) and each batch is made, from start to finish, on a single day. The following conditions apply: No two batches of the same kind of cookie are made on the same day. At least one batch of cookies is made on Monday. The second batch of oatmeal cookies is made on the same day as the first batch of peanut butter cookies. The second batch of sugar cookies is made on Thursday.\nQuestion: If the number of batches made on Friday is exactly one, then which one of the following could be true?\nA. The first batch of sugar cookies is made on Monday.\nB. The first batch of oatmeal cookies is made on Tuesday.\nC. The third batch of oatmeal cookies is made on Friday.\nD. The first batch of peanut butter cookies is made on Wednesday.\nE. The second batch of peanut butter cookies is made on Tuesday.\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "C",
+            "logprob": -2.1998236179351807,
+            "tokens": [
+              {
+                "text": "C",
+                "logprob": -2.1998236179351807
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 2.1998236179351807,
+              "max_token_negative_log_likelihood": 2.1998236179351807,
+              "predictive_entropy": 0.2437903881072998,
+              "shannon_entropy": 0.8278761506080627
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.7871372699737549,
+        "request_datetime": 1755804684
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "A bakery makes exactly three kinds of cookie\u2014oatmeal, peanut butter, and sugar. Exactly three batches of each kind of cookie are made each week (Monday through Friday) and each batch is made, from start to finish, on a single day. The following conditions apply: No two batches of the same kind of cookie are made on the same day. At least one batch of cookies is made on Monday. The second batch of oatmeal cookies is made on the same day as the first batch of peanut butter cookies. The second batch of sugar cookies is made on Thursday.\nQuestion: If one kind of cookie's first batch is made on the same day as another kind of cookie's third batch, then which one of the following could be false?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "At least one batch of cookies is made on each of the five days."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "At least two batches of cookies are made on Wednesday."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Exactly one batch of cookies is made on Monday."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Exactly two batches of cookies are made on Tuesday."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Exactly one batch of cookies is made on Friday."
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id439"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "At least one batch of cookies is made on each of the five days.",
+        "B": "At least two batches of cookies are made on Wednesday.",
+        "C": "Exactly one batch of cookies is made on Monday.",
+        "D": "Exactly two batches of cookies are made on Tuesday.",
+        "E": "Exactly one batch of cookies is made on Friday."
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: Doctor Yamata works only on Mondays, Tuesdays, Wednesdays, Fridays, and Saturdays. She performs four different activities\u2014lecturing, operating, treating patients, and conducting research. Each working day she performs exactly one activity in the morning and exactly one activity in the afternoon. During each week her work schedule must satisfy the following restrictions: She performs operations on exactly three mornings. If she operates on Monday, she does not operate on Tuesday. She lectures in the afternoon on exactly two consecutive calendar days. She treats patients on exactly one morning and exactly three afternoons. She conducts research on exactly one morning. On Saturday she neither lectures nor performs operations.\nQuestion: Which one of the following must be a day on which Doctor Yamata lectures?\nA. Monday\nB. Tuesday\nC. Wednesday\nD. Friday\nE. Saturday\nAnswer: B\n\nPassage: Exactly six tourists\u2014Harry, Irene, Klaus, Laura, Michael, Norma\u2014are to be assigned to four guides: Valois, Xerxes, Yossarian, Zalamea. Each tourist is assigned to exactly one guide, with at least one tourist assigned to each guide. Valois speaks only French. Xerxes speaks only Turkish and Spanish. Yossarian speaks only French and Turkish. Zalamea speaks only Spanish and Russian. Each tourist speaks exactly one of the languages spoken by his or her guide and speaks no other language. The following rules govern the assignment of the tourists to the guides: At least Harry and Irene are assigned to Yossarian. At least Laura is assigned to Zalamea. If Klaus is assigned to Xerxes, then Michael speaks French.\nQuestion: If Laura and Norma speak the same language as each other, then the maximum number of the tourists who could speak Turkish is\nA. two\nB. three\nC. four\nD. five\nE. six\nAnswer: B\n\nPassage: The members of two committees, a planting committee and a trails committee, are to be selected from among seven volunteers\u2014F, G, H, J, K, L, and M. The following conditions govern the composition of the committees: Each committee must have at least three members. F cannot be on the same committee as K. If K is on a committee, J must also be on that committee. M must be on at least one of the committees. The two committees must have at least one member in common.\nQuestion: The largest number of members that the planting committee and the trails committee could have in common is\nA. three\nB. four\nC. five\nD. six\nE. seven\nAnswer: D\n\nPassage: There are exactly six law students\u2014Gambini, Little, Mitchum, Richardson, Saito, and Veracruz\u2014in a trial advocacy class. The class is divided into three trial teams\u2014team 1, team 2, and team 3\u2014of exactly two students each. Each student is on exactly one of the teams. Each student prepares exactly one of either the opening argument or the final argument for his or her team. The teams must be formed according to the following specifications: Mitchum is on the same team as either Gambini or Veracruz. Little prepares an opening argument. Either Gambini or Richardson, but not both, prepares a final argument.\nQuestion: If Richardson is on the same team as Veracruz, then for exactly how many of the students can it be determined which of the arguments he or she prepares?\nA. one\nB. two\nC. three\nD. four\nE. five\nAnswer: B\n\nPassage: Three folk groups\u2014Glenside, Hilltopper, Levon\u2014and three rock groups\u2014Peasant, Query, Tinhead\u2014each perform on one of two stages, north or south. Each stage has three two-hour performances: north at 6, 8, and 10; south at 8, 10, and 12. Each group performs individually and exactly once, consistent with the following conditions: Peasant performs at 6 or 12. Glenside performs at some time before Hilltopper. If any rock group performs at 10, no folk group does. Levon and Tinhead perform on different stages. Query performs immediately after a folk group, though not necessarily on the same stage.\nQuestion: Which one of the following groups could perform at 6?\nA. Glenside\nB. Hilltopper\nC. Levon\nD. Query\nE. Tinhead\nAnswer: A\n\nPassage: A bakery makes exactly three kinds of cookie\u2014oatmeal, peanut butter, and sugar. Exactly three batches of each kind of cookie are made each week (Monday through Friday) and each batch is made, from start to finish, on a single day. The following conditions apply: No two batches of the same kind of cookie are made on the same day. At least one batch of cookies is made on Monday. The second batch of oatmeal cookies is made on the same day as the first batch of peanut butter cookies. The second batch of sugar cookies is made on Thursday.\nQuestion: If one kind of cookie's first batch is made on the same day as another kind of cookie's third batch, then which one of the following could be false?\nA. At least one batch of cookies is made on each of the five days.\nB. At least two batches of cookies are made on Wednesday.\nC. Exactly one batch of cookies is made on Monday.\nD. Exactly two batches of cookies are made on Tuesday.\nE. Exactly one batch of cookies is made on Friday.\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "D",
+            "logprob": -0.037393271923065186,
+            "tokens": [
+              {
+                "text": "D",
+                "logprob": -0.037393271923065186
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.037393245846033096,
+              "max_token_negative_log_likelihood": 0.037393245846033096,
+              "predictive_entropy": 0.03602081164717674,
+              "shannon_entropy": 0.18163755536079407
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.6851456165313721,
+        "request_datetime": 1755804684
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "For the school paper, five students\u2014Jiang, Kramer, Lopez, Megregian, and O'Neill\u2014each review one or more of exactly three plays: Sunset, Tamerlane, and Undulation, but do not review any other plays. The following conditions must apply: Kramer and Lopez each review fewer of the plays than Megregian. Neither Lopez nor Megregian reviews any play Jiang reviews. Kramer and O'Neill both review Tamerlane. Exactly two of the students review exactly the same play or plays as each other.\nQuestion: Which one of the following could be an accurate and complete list of the students who review only Sunset?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Lopez"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "O'Neill"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Jiang, Lopez"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Kramer, O'Neill"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Lopez, Megregian"
+            },
+            "tags": []
+          }
+        ],
+        "split": "test",
+        "id": "id440"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "Lopez",
+        "B": "O'Neill",
+        "C": "Jiang, Lopez",
+        "D": "Kramer, O'Neill",
+        "E": "Lopez, Megregian"
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: Doctor Yamata works only on Mondays, Tuesdays, Wednesdays, Fridays, and Saturdays. She performs four different activities\u2014lecturing, operating, treating patients, and conducting research. Each working day she performs exactly one activity in the morning and exactly one activity in the afternoon. During each week her work schedule must satisfy the following restrictions: She performs operations on exactly three mornings. If she operates on Monday, she does not operate on Tuesday. She lectures in the afternoon on exactly two consecutive calendar days. She treats patients on exactly one morning and exactly three afternoons. She conducts research on exactly one morning. On Saturday she neither lectures nor performs operations.\nQuestion: Which one of the following must be a day on which Doctor Yamata lectures?\nA. Monday\nB. Tuesday\nC. Wednesday\nD. Friday\nE. Saturday\nAnswer: B\n\nPassage: Exactly six tourists\u2014Harry, Irene, Klaus, Laura, Michael, Norma\u2014are to be assigned to four guides: Valois, Xerxes, Yossarian, Zalamea. Each tourist is assigned to exactly one guide, with at least one tourist assigned to each guide. Valois speaks only French. Xerxes speaks only Turkish and Spanish. Yossarian speaks only French and Turkish. Zalamea speaks only Spanish and Russian. Each tourist speaks exactly one of the languages spoken by his or her guide and speaks no other language. The following rules govern the assignment of the tourists to the guides: At least Harry and Irene are assigned to Yossarian. At least Laura is assigned to Zalamea. If Klaus is assigned to Xerxes, then Michael speaks French.\nQuestion: If Laura and Norma speak the same language as each other, then the maximum number of the tourists who could speak Turkish is\nA. two\nB. three\nC. four\nD. five\nE. six\nAnswer: B\n\nPassage: The members of two committees, a planting committee and a trails committee, are to be selected from among seven volunteers\u2014F, G, H, J, K, L, and M. The following conditions govern the composition of the committees: Each committee must have at least three members. F cannot be on the same committee as K. If K is on a committee, J must also be on that committee. M must be on at least one of the committees. The two committees must have at least one member in common.\nQuestion: The largest number of members that the planting committee and the trails committee could have in common is\nA. three\nB. four\nC. five\nD. six\nE. seven\nAnswer: D\n\nPassage: There are exactly six law students\u2014Gambini, Little, Mitchum, Richardson, Saito, and Veracruz\u2014in a trial advocacy class. The class is divided into three trial teams\u2014team 1, team 2, and team 3\u2014of exactly two students each. Each student is on exactly one of the teams. Each student prepares exactly one of either the opening argument or the final argument for his or her team. The teams must be formed according to the following specifications: Mitchum is on the same team as either Gambini or Veracruz. Little prepares an opening argument. Either Gambini or Richardson, but not both, prepares a final argument.\nQuestion: If Richardson is on the same team as Veracruz, then for exactly how many of the students can it be determined which of the arguments he or she prepares?\nA. one\nB. two\nC. three\nD. four\nE. five\nAnswer: B\n\nPassage: Three folk groups\u2014Glenside, Hilltopper, Levon\u2014and three rock groups\u2014Peasant, Query, Tinhead\u2014each perform on one of two stages, north or south. Each stage has three two-hour performances: north at 6, 8, and 10; south at 8, 10, and 12. Each group performs individually and exactly once, consistent with the following conditions: Peasant performs at 6 or 12. Glenside performs at some time before Hilltopper. If any rock group performs at 10, no folk group does. Levon and Tinhead perform on different stages. Query performs immediately after a folk group, though not necessarily on the same stage.\nQuestion: Which one of the following groups could perform at 6?\nA. Glenside\nB. Hilltopper\nC. Levon\nD. Query\nE. Tinhead\nAnswer: A\n\nPassage: For the school paper, five students\u2014Jiang, Kramer, Lopez, Megregian, and O'Neill\u2014each review one or more of exactly three plays: Sunset, Tamerlane, and Undulation, but do not review any other plays. The following conditions must apply: Kramer and Lopez each review fewer of the plays than Megregian. Neither Lopez nor Megregian reviews any play Jiang reviews. Kramer and O'Neill both review Tamerlane. Exactly two of the students review exactly the same play or plays as each other.\nQuestion: Which one of the following could be an accurate and complete list of the students who review only Sunset?\nA. Lopez\nB. O'Neill\nC. Jiang, Lopez\nD. Kramer, O'Neill\nE. Lopez, Megregian\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "C",
+            "logprob": -0.11913961917161942,
+            "tokens": [
+              {
+                "text": "C",
+                "logprob": -0.11913961917161942
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.11913960427045822,
+              "max_token_negative_log_likelihood": 0.11913960427045822,
+              "predictive_entropy": 0.10575830191373825,
+              "shannon_entropy": 0.4331740140914917
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.7786908149719238,
+        "request_datetime": 1755804685
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "For the school paper, five students\u2014Jiang, Kramer, Lopez, Megregian, and O'Neill\u2014each review one or more of exactly three plays: Sunset, Tamerlane, and Undulation, but do not review any other plays. The following conditions must apply: Kramer and Lopez each review fewer of the plays than Megregian. Neither Lopez nor Megregian reviews any play Jiang reviews. Kramer and O'Neill both review Tamerlane. Exactly two of the students review exactly the same play or plays as each other.\nQuestion: Which one of the following must be true?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Jiang reviews more of the plays than Lopez does."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Megregian reviews more of the plays than Jiang does."
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "Megregian reviews more of the plays than O'Neill does."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "O'Neill reviews more of the plays than Jiang does."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "O'Neill reviews more of the plays than Kramer does."
+            },
+            "tags": []
+          }
+        ],
+        "split": "test",
+        "id": "id441"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "Jiang reviews more of the plays than Lopez does.",
+        "B": "Megregian reviews more of the plays than Jiang does.",
+        "C": "Megregian reviews more of the plays than O'Neill does.",
+        "D": "O'Neill reviews more of the plays than Jiang does.",
+        "E": "O'Neill reviews more of the plays than Kramer does."
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: Doctor Yamata works only on Mondays, Tuesdays, Wednesdays, Fridays, and Saturdays. She performs four different activities\u2014lecturing, operating, treating patients, and conducting research. Each working day she performs exactly one activity in the morning and exactly one activity in the afternoon. During each week her work schedule must satisfy the following restrictions: She performs operations on exactly three mornings. If she operates on Monday, she does not operate on Tuesday. She lectures in the afternoon on exactly two consecutive calendar days. She treats patients on exactly one morning and exactly three afternoons. She conducts research on exactly one morning. On Saturday she neither lectures nor performs operations.\nQuestion: Which one of the following must be a day on which Doctor Yamata lectures?\nA. Monday\nB. Tuesday\nC. Wednesday\nD. Friday\nE. Saturday\nAnswer: B\n\nPassage: Exactly six tourists\u2014Harry, Irene, Klaus, Laura, Michael, Norma\u2014are to be assigned to four guides: Valois, Xerxes, Yossarian, Zalamea. Each tourist is assigned to exactly one guide, with at least one tourist assigned to each guide. Valois speaks only French. Xerxes speaks only Turkish and Spanish. Yossarian speaks only French and Turkish. Zalamea speaks only Spanish and Russian. Each tourist speaks exactly one of the languages spoken by his or her guide and speaks no other language. The following rules govern the assignment of the tourists to the guides: At least Harry and Irene are assigned to Yossarian. At least Laura is assigned to Zalamea. If Klaus is assigned to Xerxes, then Michael speaks French.\nQuestion: If Laura and Norma speak the same language as each other, then the maximum number of the tourists who could speak Turkish is\nA. two\nB. three\nC. four\nD. five\nE. six\nAnswer: B\n\nPassage: The members of two committees, a planting committee and a trails committee, are to be selected from among seven volunteers\u2014F, G, H, J, K, L, and M. The following conditions govern the composition of the committees: Each committee must have at least three members. F cannot be on the same committee as K. If K is on a committee, J must also be on that committee. M must be on at least one of the committees. The two committees must have at least one member in common.\nQuestion: The largest number of members that the planting committee and the trails committee could have in common is\nA. three\nB. four\nC. five\nD. six\nE. seven\nAnswer: D\n\nPassage: There are exactly six law students\u2014Gambini, Little, Mitchum, Richardson, Saito, and Veracruz\u2014in a trial advocacy class. The class is divided into three trial teams\u2014team 1, team 2, and team 3\u2014of exactly two students each. Each student is on exactly one of the teams. Each student prepares exactly one of either the opening argument or the final argument for his or her team. The teams must be formed according to the following specifications: Mitchum is on the same team as either Gambini or Veracruz. Little prepares an opening argument. Either Gambini or Richardson, but not both, prepares a final argument.\nQuestion: If Richardson is on the same team as Veracruz, then for exactly how many of the students can it be determined which of the arguments he or she prepares?\nA. one\nB. two\nC. three\nD. four\nE. five\nAnswer: B\n\nPassage: Three folk groups\u2014Glenside, Hilltopper, Levon\u2014and three rock groups\u2014Peasant, Query, Tinhead\u2014each perform on one of two stages, north or south. Each stage has three two-hour performances: north at 6, 8, and 10; south at 8, 10, and 12. Each group performs individually and exactly once, consistent with the following conditions: Peasant performs at 6 or 12. Glenside performs at some time before Hilltopper. If any rock group performs at 10, no folk group does. Levon and Tinhead perform on different stages. Query performs immediately after a folk group, though not necessarily on the same stage.\nQuestion: Which one of the following groups could perform at 6?\nA. Glenside\nB. Hilltopper\nC. Levon\nD. Query\nE. Tinhead\nAnswer: A\n\nPassage: For the school paper, five students\u2014Jiang, Kramer, Lopez, Megregian, and O'Neill\u2014each review one or more of exactly three plays: Sunset, Tamerlane, and Undulation, but do not review any other plays. The following conditions must apply: Kramer and Lopez each review fewer of the plays than Megregian. Neither Lopez nor Megregian reviews any play Jiang reviews. Kramer and O'Neill both review Tamerlane. Exactly two of the students review exactly the same play or plays as each other.\nQuestion: Which one of the following must be true?\nA. Jiang reviews more of the plays than Lopez does.\nB. Megregian reviews more of the plays than Jiang does.\nC. Megregian reviews more of the plays than O'Neill does.\nD. O'Neill reviews more of the plays than Jiang does.\nE. O'Neill reviews more of the plays than Kramer does.\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "C",
+            "logprob": -0.150873601436615,
+            "tokens": [
+              {
+                "text": "C",
+                "logprob": -0.150873601436615
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.150873601436615,
+              "max_token_negative_log_likelihood": 0.150873601436615,
+              "predictive_entropy": 0.1297447234392166,
+              "shannon_entropy": 0.4436996579170227
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.6781573295593262,
+        "request_datetime": 1755804685
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "For the school paper, five students\u2014Jiang, Kramer, Lopez, Megregian, and O'Neill\u2014each review one or more of exactly three plays: Sunset, Tamerlane, and Undulation, but do not review any other plays. The following conditions must apply: Kramer and Lopez each review fewer of the plays than Megregian. Neither Lopez nor Megregian reviews any play Jiang reviews. Kramer and O'Neill both review Tamerlane. Exactly two of the students review exactly the same play or plays as each other.\nQuestion: If exactly three of the students review Undulation, which one of the following could be true?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Megregian does not review Undulation."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "O'Neill does not review Undulation."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Jiang reviews Undulation."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Lopez reviews Tamerlane."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "O'Neill reviews Sunset."
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id442"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "Megregian does not review Undulation.",
+        "B": "O'Neill does not review Undulation.",
+        "C": "Jiang reviews Undulation.",
+        "D": "Lopez reviews Tamerlane.",
+        "E": "O'Neill reviews Sunset."
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: Doctor Yamata works only on Mondays, Tuesdays, Wednesdays, Fridays, and Saturdays. She performs four different activities\u2014lecturing, operating, treating patients, and conducting research. Each working day she performs exactly one activity in the morning and exactly one activity in the afternoon. During each week her work schedule must satisfy the following restrictions: She performs operations on exactly three mornings. If she operates on Monday, she does not operate on Tuesday. She lectures in the afternoon on exactly two consecutive calendar days. She treats patients on exactly one morning and exactly three afternoons. She conducts research on exactly one morning. On Saturday she neither lectures nor performs operations.\nQuestion: Which one of the following must be a day on which Doctor Yamata lectures?\nA. Monday\nB. Tuesday\nC. Wednesday\nD. Friday\nE. Saturday\nAnswer: B\n\nPassage: Exactly six tourists\u2014Harry, Irene, Klaus, Laura, Michael, Norma\u2014are to be assigned to four guides: Valois, Xerxes, Yossarian, Zalamea. Each tourist is assigned to exactly one guide, with at least one tourist assigned to each guide. Valois speaks only French. Xerxes speaks only Turkish and Spanish. Yossarian speaks only French and Turkish. Zalamea speaks only Spanish and Russian. Each tourist speaks exactly one of the languages spoken by his or her guide and speaks no other language. The following rules govern the assignment of the tourists to the guides: At least Harry and Irene are assigned to Yossarian. At least Laura is assigned to Zalamea. If Klaus is assigned to Xerxes, then Michael speaks French.\nQuestion: If Laura and Norma speak the same language as each other, then the maximum number of the tourists who could speak Turkish is\nA. two\nB. three\nC. four\nD. five\nE. six\nAnswer: B\n\nPassage: The members of two committees, a planting committee and a trails committee, are to be selected from among seven volunteers\u2014F, G, H, J, K, L, and M. The following conditions govern the composition of the committees: Each committee must have at least three members. F cannot be on the same committee as K. If K is on a committee, J must also be on that committee. M must be on at least one of the committees. The two committees must have at least one member in common.\nQuestion: The largest number of members that the planting committee and the trails committee could have in common is\nA. three\nB. four\nC. five\nD. six\nE. seven\nAnswer: D\n\nPassage: There are exactly six law students\u2014Gambini, Little, Mitchum, Richardson, Saito, and Veracruz\u2014in a trial advocacy class. The class is divided into three trial teams\u2014team 1, team 2, and team 3\u2014of exactly two students each. Each student is on exactly one of the teams. Each student prepares exactly one of either the opening argument or the final argument for his or her team. The teams must be formed according to the following specifications: Mitchum is on the same team as either Gambini or Veracruz. Little prepares an opening argument. Either Gambini or Richardson, but not both, prepares a final argument.\nQuestion: If Richardson is on the same team as Veracruz, then for exactly how many of the students can it be determined which of the arguments he or she prepares?\nA. one\nB. two\nC. three\nD. four\nE. five\nAnswer: B\n\nPassage: Three folk groups\u2014Glenside, Hilltopper, Levon\u2014and three rock groups\u2014Peasant, Query, Tinhead\u2014each perform on one of two stages, north or south. Each stage has three two-hour performances: north at 6, 8, and 10; south at 8, 10, and 12. Each group performs individually and exactly once, consistent with the following conditions: Peasant performs at 6 or 12. Glenside performs at some time before Hilltopper. If any rock group performs at 10, no folk group does. Levon and Tinhead perform on different stages. Query performs immediately after a folk group, though not necessarily on the same stage.\nQuestion: Which one of the following groups could perform at 6?\nA. Glenside\nB. Hilltopper\nC. Levon\nD. Query\nE. Tinhead\nAnswer: A\n\nPassage: For the school paper, five students\u2014Jiang, Kramer, Lopez, Megregian, and O'Neill\u2014each review one or more of exactly three plays: Sunset, Tamerlane, and Undulation, but do not review any other plays. The following conditions must apply: Kramer and Lopez each review fewer of the plays than Megregian. Neither Lopez nor Megregian reviews any play Jiang reviews. Kramer and O'Neill both review Tamerlane. Exactly two of the students review exactly the same play or plays as each other.\nQuestion: If exactly three of the students review Undulation, which one of the following could be true?\nA. Megregian does not review Undulation.\nB. O'Neill does not review Undulation.\nC. Jiang reviews Undulation.\nD. Lopez reviews Tamerlane.\nE. O'Neill reviews Sunset.\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "C",
+            "logprob": -0.06964117288589478,
+            "tokens": [
+              {
+                "text": "C",
+                "logprob": -0.06964117288589478
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.06964115053415298,
+              "max_token_negative_log_likelihood": 0.06964115053415298,
+              "predictive_entropy": 0.06495628505945206,
+              "shannon_entropy": 0.3018442392349243
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.7584061622619629,
+        "request_datetime": 1755804685
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "For the school paper, five students\u2014Jiang, Kramer, Lopez, Megregian, and O'Neill\u2014each review one or more of exactly three plays: Sunset, Tamerlane, and Undulation, but do not review any other plays. The following conditions must apply: Kramer and Lopez each review fewer of the plays than Megregian. Neither Lopez nor Megregian reviews any play Jiang reviews. Kramer and O'Neill both review Tamerlane. Exactly two of the students review exactly the same play or plays as each other.\nQuestion: Which one of the following could be an accurate and complete list of the students who review Tamerlane?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Jiang, Kramer"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Kramer, O'Neill"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Kramer, Lopez, O'Neill"
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Kramer, Megregian, O'Neill"
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "Lopez, Megregian, O'Neill"
+            },
+            "tags": []
+          }
+        ],
+        "split": "test",
+        "id": "id443"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "Jiang, Kramer",
+        "B": "Kramer, O'Neill",
+        "C": "Kramer, Lopez, O'Neill",
+        "D": "Kramer, Megregian, O'Neill",
+        "E": "Lopez, Megregian, O'Neill"
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: Doctor Yamata works only on Mondays, Tuesdays, Wednesdays, Fridays, and Saturdays. She performs four different activities\u2014lecturing, operating, treating patients, and conducting research. Each working day she performs exactly one activity in the morning and exactly one activity in the afternoon. During each week her work schedule must satisfy the following restrictions: She performs operations on exactly three mornings. If she operates on Monday, she does not operate on Tuesday. She lectures in the afternoon on exactly two consecutive calendar days. She treats patients on exactly one morning and exactly three afternoons. She conducts research on exactly one morning. On Saturday she neither lectures nor performs operations.\nQuestion: Which one of the following must be a day on which Doctor Yamata lectures?\nA. Monday\nB. Tuesday\nC. Wednesday\nD. Friday\nE. Saturday\nAnswer: B\n\nPassage: Exactly six tourists\u2014Harry, Irene, Klaus, Laura, Michael, Norma\u2014are to be assigned to four guides: Valois, Xerxes, Yossarian, Zalamea. Each tourist is assigned to exactly one guide, with at least one tourist assigned to each guide. Valois speaks only French. Xerxes speaks only Turkish and Spanish. Yossarian speaks only French and Turkish. Zalamea speaks only Spanish and Russian. Each tourist speaks exactly one of the languages spoken by his or her guide and speaks no other language. The following rules govern the assignment of the tourists to the guides: At least Harry and Irene are assigned to Yossarian. At least Laura is assigned to Zalamea. If Klaus is assigned to Xerxes, then Michael speaks French.\nQuestion: If Laura and Norma speak the same language as each other, then the maximum number of the tourists who could speak Turkish is\nA. two\nB. three\nC. four\nD. five\nE. six\nAnswer: B\n\nPassage: The members of two committees, a planting committee and a trails committee, are to be selected from among seven volunteers\u2014F, G, H, J, K, L, and M. The following conditions govern the composition of the committees: Each committee must have at least three members. F cannot be on the same committee as K. If K is on a committee, J must also be on that committee. M must be on at least one of the committees. The two committees must have at least one member in common.\nQuestion: The largest number of members that the planting committee and the trails committee could have in common is\nA. three\nB. four\nC. five\nD. six\nE. seven\nAnswer: D\n\nPassage: There are exactly six law students\u2014Gambini, Little, Mitchum, Richardson, Saito, and Veracruz\u2014in a trial advocacy class. The class is divided into three trial teams\u2014team 1, team 2, and team 3\u2014of exactly two students each. Each student is on exactly one of the teams. Each student prepares exactly one of either the opening argument or the final argument for his or her team. The teams must be formed according to the following specifications: Mitchum is on the same team as either Gambini or Veracruz. Little prepares an opening argument. Either Gambini or Richardson, but not both, prepares a final argument.\nQuestion: If Richardson is on the same team as Veracruz, then for exactly how many of the students can it be determined which of the arguments he or she prepares?\nA. one\nB. two\nC. three\nD. four\nE. five\nAnswer: B\n\nPassage: Three folk groups\u2014Glenside, Hilltopper, Levon\u2014and three rock groups\u2014Peasant, Query, Tinhead\u2014each perform on one of two stages, north or south. Each stage has three two-hour performances: north at 6, 8, and 10; south at 8, 10, and 12. Each group performs individually and exactly once, consistent with the following conditions: Peasant performs at 6 or 12. Glenside performs at some time before Hilltopper. If any rock group performs at 10, no folk group does. Levon and Tinhead perform on different stages. Query performs immediately after a folk group, though not necessarily on the same stage.\nQuestion: Which one of the following groups could perform at 6?\nA. Glenside\nB. Hilltopper\nC. Levon\nD. Query\nE. Tinhead\nAnswer: A\n\nPassage: For the school paper, five students\u2014Jiang, Kramer, Lopez, Megregian, and O'Neill\u2014each review one or more of exactly three plays: Sunset, Tamerlane, and Undulation, but do not review any other plays. The following conditions must apply: Kramer and Lopez each review fewer of the plays than Megregian. Neither Lopez nor Megregian reviews any play Jiang reviews. Kramer and O'Neill both review Tamerlane. Exactly two of the students review exactly the same play or plays as each other.\nQuestion: Which one of the following could be an accurate and complete list of the students who review Tamerlane?\nA. Jiang, Kramer\nB. Kramer, O'Neill\nC. Kramer, Lopez, O'Neill\nD. Kramer, Megregian, O'Neill\nE. Lopez, Megregian, O'Neill\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "B",
+            "logprob": -0.2811891734600067,
+            "tokens": [
+              {
+                "text": "B",
+                "logprob": -0.2811891734600067
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.2811892032623291,
+              "max_token_negative_log_likelihood": 0.2811892032623291,
+              "predictive_entropy": 0.21226565539836884,
+              "shannon_entropy": 0.5572848320007324
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.6478204727172852,
+        "request_datetime": 1755804685
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "For the school paper, five students\u2014Jiang, Kramer, Lopez, Megregian, and O'Neill\u2014each review one or more of exactly three plays: Sunset, Tamerlane, and Undulation, but do not review any other plays. The following conditions must apply: Kramer and Lopez each review fewer of the plays than Megregian. Neither Lopez nor Megregian reviews any play Jiang reviews. Kramer and O'Neill both review Tamerlane. Exactly two of the students review exactly the same play or plays as each other.\nQuestion: If Jiang does not review Tamerlane, then which one of the following must be true?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Jiang reviews Sunset."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Lopez reviews Undulation."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Megregian reviews Sunset."
+            },
+            "tags": []
+          },
+          {
+            "output": {
+              "text": "Megregian reviews Tamerlane."
+            },
+            "tags": [
+              "correct"
+            ]
+          },
+          {
+            "output": {
+              "text": "O'Neill reviews Undulation."
+            },
+            "tags": []
+          }
+        ],
+        "split": "test",
+        "id": "id444"
+      },
+      "train_trial_index": 0,
+      "output_mapping": {
+        "A": "Jiang reviews Sunset.",
+        "B": "Lopez reviews Undulation.",
+        "C": "Megregian reviews Sunset.",
+        "D": "Megregian reviews Tamerlane.",
+        "E": "O'Neill reviews Undulation."
+      },
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "The following are multiple choice questions (with answers).\n\nPassage: Doctor Yamata works only on Mondays, Tuesdays, Wednesdays, Fridays, and Saturdays. She performs four different activities\u2014lecturing, operating, treating patients, and conducting research. Each working day she performs exactly one activity in the morning and exactly one activity in the afternoon. During each week her work schedule must satisfy the following restrictions: She performs operations on exactly three mornings. If she operates on Monday, she does not operate on Tuesday. She lectures in the afternoon on exactly two consecutive calendar days. She treats patients on exactly one morning and exactly three afternoons. She conducts research on exactly one morning. On Saturday she neither lectures nor performs operations.\nQuestion: Which one of the following must be a day on which Doctor Yamata lectures?\nA. Monday\nB. Tuesday\nC. Wednesday\nD. Friday\nE. Saturday\nAnswer: B\n\nPassage: Exactly six tourists\u2014Harry, Irene, Klaus, Laura, Michael, Norma\u2014are to be assigned to four guides: Valois, Xerxes, Yossarian, Zalamea. Each tourist is assigned to exactly one guide, with at least one tourist assigned to each guide. Valois speaks only French. Xerxes speaks only Turkish and Spanish. Yossarian speaks only French and Turkish. Zalamea speaks only Spanish and Russian. Each tourist speaks exactly one of the languages spoken by his or her guide and speaks no other language. The following rules govern the assignment of the tourists to the guides: At least Harry and Irene are assigned to Yossarian. At least Laura is assigned to Zalamea. If Klaus is assigned to Xerxes, then Michael speaks French.\nQuestion: If Laura and Norma speak the same language as each other, then the maximum number of the tourists who could speak Turkish is\nA. two\nB. three\nC. four\nD. five\nE. six\nAnswer: B\n\nPassage: The members of two committees, a planting committee and a trails committee, are to be selected from among seven volunteers\u2014F, G, H, J, K, L, and M. The following conditions govern the composition of the committees: Each committee must have at least three members. F cannot be on the same committee as K. If K is on a committee, J must also be on that committee. M must be on at least one of the committees. The two committees must have at least one member in common.\nQuestion: The largest number of members that the planting committee and the trails committee could have in common is\nA. three\nB. four\nC. five\nD. six\nE. seven\nAnswer: D\n\nPassage: There are exactly six law students\u2014Gambini, Little, Mitchum, Richardson, Saito, and Veracruz\u2014in a trial advocacy class. The class is divided into three trial teams\u2014team 1, team 2, and team 3\u2014of exactly two students each. Each student is on exactly one of the teams. Each student prepares exactly one of either the opening argument or the final argument for his or her team. The teams must be formed according to the following specifications: Mitchum is on the same team as either Gambini or Veracruz. Little prepares an opening argument. Either Gambini or Richardson, but not both, prepares a final argument.\nQuestion: If Richardson is on the same team as Veracruz, then for exactly how many of the students can it be determined which of the arguments he or she prepares?\nA. one\nB. two\nC. three\nD. four\nE. five\nAnswer: B\n\nPassage: Three folk groups\u2014Glenside, Hilltopper, Levon\u2014and three rock groups\u2014Peasant, Query, Tinhead\u2014each perform on one of two stages, north or south. Each stage has three two-hour performances: north at 6, 8, and 10; south at 8, 10, and 12. Each group performs individually and exactly once, consistent with the following conditions: Peasant performs at 6 or 12. Glenside performs at some time before Hilltopper. If any rock group performs at 10, no folk group does. Levon and Tinhead perform on different stages. Query performs immediately after a folk group, though not necessarily on the same stage.\nQuestion: Which one of the following groups could perform at 6?\nA. Glenside\nB. Hilltopper\nC. Levon\nD. Query\nE. Tinhead\nAnswer: A\n\nPassage: For the school paper, five students\u2014Jiang, Kramer, Lopez, Megregian, and O'Neill\u2014each review one or more of exactly three plays: Sunset, Tamerlane, and Undulation, but do not review any other plays. The following conditions must apply: Kramer and Lopez each review fewer of the plays than Megregian. Neither Lopez nor Megregian reviews any play Jiang reviews. Kramer and O'Neill both review Tamerlane. Exactly two of the students review exactly the same play or plays as each other.\nQuestion: If Jiang does not review Tamerlane, then which one of the following must be true?\nA. Jiang reviews Sunset.\nB. Lopez reviews Undulation.\nC. Megregian reviews Sunset.\nD. Megregian reviews Tamerlane.\nE. O'Neill reviews Undulation.\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 5,
+        "max_tokens": 1,
+        "stop_sequences": [],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "D",
+            "logprob": -0.2509210407733917,
+            "tokens": [
+              {
+                "text": "D",
+                "logprob": -0.2509210407733917
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.2509210407733917,
+              "max_token_negative_log_likelihood": 0.2509210407733917,
+              "predictive_entropy": 0.19523759186267853,
+              "shannon_entropy": 0.7085869312286377
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 0.5613992214202881,
+        "request_datetime": 1755804685
+      },
+      "num_train_instances": 5,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    }
+  ]
+}
