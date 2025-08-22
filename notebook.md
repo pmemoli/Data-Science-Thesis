@@ -680,3 +680,32 @@ helm-run --run-entries med_qa:model=microsoft/phi-3.5-mini-instruct \
  --max-eval-instances 100
 
 Which worked! I have enough to process the results.
+
+math:subject=precalculus,level=1,use_official_examples=False,use_chain_of_thought=True,model=microsoft_phi-3.5-mini-instruct
+
+helm-run --run-entries math:subject=precalculus,level=1,use_official_examples=False,use_chain_of_thought=True,model=microsoft/phi-3.5-mini-instruct \
+ --suite helm-lite-instruct \
+ --output-path src/data/helm/ \
+ --max-eval-instances 10
+
+I had some errors on the math dataset (so problematic). It appends some tool use at the end of the generated sequence. This heavily distorts the metrics, but whatever, i may just ignore that dataset and focus on the ones that were able to run.
+
+Everything but memory issues was solved! I'm re-running the evaluations on the phi 3.5 mini instruct model with this command:
+
+helm-run --conf-paths src/eval-engine/src/helm/benchmark/presentation/run_entries_lite_20240424_instruct.conf \
+ --models-to-run microsoft/phi-3.5-mini-instruct \
+ --suite helm-lite-instruct \
+ --output-path src/data/helm/ \
+ --max-eval-instances 100
+
+I increased the max tokens by 300 in all instances to ensure responses are not cut off. Nothing else to do but wait!
+
+Everything ran except for:
+
+"natural_qa:mode=openbook_longans,model=microsoft_phi-3.5-mini-instruct"
+
+helm-run --run-entries natural_qa:mode=openbook_longans,model=microsoft/phi-3.5-mini-instruct \
+ --suite helm-lite-instruct \
+ --output-path src/data/helm/ \
+ --num-threads 1 \
+ --max-eval-instances 100

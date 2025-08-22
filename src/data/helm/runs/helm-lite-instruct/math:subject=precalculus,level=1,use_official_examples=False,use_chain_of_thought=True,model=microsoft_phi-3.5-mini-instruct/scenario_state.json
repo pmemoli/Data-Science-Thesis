@@ -23,11 +23,2387 @@
     "model_deployment": "huggingface/phi-3.5-mini-instruct",
     "model": "microsoft/phi-3.5-mini-instruct",
     "temperature": 0.0,
-    "max_tokens": 400,
+    "max_tokens": 700,
     "stop_sequences": [
       "###"
     ],
     "multi_label": false
   },
-  "request_states": []
+  "request_states": [
+    {
+      "instance": {
+        "input": {
+          "text": "Suppose $\\sin D = 0.7$ in the diagram below. What is $DE$? [asy]\npair D,E,F;\nF = (0,0);\nD = (sqrt(51),7);\nE = (0,7);\ndraw(D--E--F--D);\ndraw(rightanglemark(D,E,F,15));\nlabel(\"$D$\",D,NE);\nlabel(\"$E$\",E,NW);\nlabel(\"$F$\",F,SW);\nlabel(\"$7$\",(E+F)/2,W);\n[/asy]"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "The triangle is a right triangle, so $\\sin D = \\frac{EF}{DF}$. Then we have that $\\sin D = 0.7 = \\frac{7}{DF}$, so $DF = 10$.\n\nUsing the Pythagorean Theorem, we find that the length of $DE$ is $\\sqrt{DF^2 - EF^2},$ or $\\sqrt{100 - 49} = \\boxed{\\sqrt{51}}$."
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id118"
+      },
+      "train_trial_index": 0,
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "Given a mathematics problem, determine the answer. Simplify your answer as much as possible.\n###\nProblem: If $\\det \\mathbf{A} = 2$ and $\\det \\mathbf{B} = 12,$ then find $\\det (\\mathbf{A} \\mathbf{B}).$\nAnswer: We have that $\\det (\\mathbf{A} \\mathbf{B}) = (\\det \\mathbf{A})(\\det \\mathbf{B}) = (2)(12) = \\boxed{24}.$\n###\nProblem: Simplify $\\frac{\\csc \\theta}{\\sin \\theta} - \\frac{\\cot \\theta}{\\tan \\theta}.$\nAnswer: We have that\n\\begin{align*}\n\\frac{\\csc \\theta}{\\sin \\theta} - \\frac{\\cot \\theta}{\\tan \\theta} &= \\frac{1/\\sin \\theta}{\\sin \\theta} - \\frac{\\cos \\theta/\\sin \\theta}{\\sin \\theta/\\cos \\theta} \\\\\n&= \\frac{1}{\\sin^2 \\theta} - \\frac{\\cos^2 \\theta}{\\sin^2 \\theta} \\\\\n&= \\frac{1 - \\cos^2 \\theta}{\\sin^2 \\theta} = \\frac{\\sin^2 \\theta}{\\sin^2 \\theta} = \\boxed{1}.\n\\end{align*}\n###\nProblem: Compute $\\begin{pmatrix} 5 \\\\ -4 \\end{pmatrix} + \\begin{pmatrix} -11 \\\\ 10 \\end{pmatrix}$.\nAnswer: We see that\n\\[\\begin{pmatrix} 5 \\\\ -4 \\end{pmatrix} + \\begin{pmatrix} -11 \\\\ 10 \\end{pmatrix} =  \\boxed{\\begin{pmatrix} -6 \\\\ 6 \\end{pmatrix}}.\\]\n###\nProblem: Compute $\\tan \\left (\\operatorname{arccot} \\frac{4}{7} \\right).$\nAnswer: Consider a right triangle where the adjacent side is 4 and the opposite side is 7.\n\n[asy]\nunitsize (0.5 cm);\n\ndraw((0,0)--(4,0)--(4,7)--cycle);\n\nlabel(\"$4$\", (2,0), S);\nlabel(\"$7$\", (4,7/2), E);\nlabel(\"$\\theta$\", (0.8,0.5));\n[/asy]\n\nThen $\\cot \\theta = \\frac{4}{7},$ so $\\theta = \\operatorname{arccot} \\frac{4}{7}.$  Hence, $\\tan \\theta = \\frac{1}{\\cot \\theta} = \\boxed{\\frac{7}{4}}.$\n###\nProblem: Compute $\\operatorname{arccot} (-1).$  Express your answer in radians.\nAnswer: Since $\\cot \\left( \\frac{3 \\pi}{4} \\right) = -1,$ $\\operatorname{arccot} (-1) = \\boxed{\\frac{3 \\pi}{4}}.$\n\nNote: The arccot function is somewhat controversial.  Some define the range of the arccot function as $(0,\\pi)$ (including the AoPS Precalculus textbook), and others define the range as $\\left( -\\frac{\\pi}{2}, 0 \\right) \\cup \\left( 0, \\frac{\\pi}{2} \\right].$\n###\nProblem: Find the phase shift of the graph of $y =  3 \\sin \\left( x - \\frac{\\pi}{5} \\right).$\nAnswer: Since the graph of $y = 3 \\sin \\left( x - \\frac{\\pi}{5} \\right)$ is the same as the graph of $y = 3 \\sin x$ shifted $\\frac{\\pi}{5}$ units to the right, the phase shift is $\\boxed{\\frac{\\pi}{5}}.$\n\n[asy]import TrigMacros;\n\nsize(400);\n\nreal g(real x)\n{\n\treturn 3*sin(x - pi/5);\n}\n\nreal f(real x)\n{\n\treturn 3*sin(x);\n}\n\ndraw(graph(g,-3*pi,3*pi,n=700,join=operator ..),red);\ndraw(graph(f,-3*pi,3*pi,n=700,join=operator ..));\ntrig_axes(-3*pi,3*pi,-4,4,pi/2,1);\nlayer();\nrm_trig_labels(-5, 5, 2);\n[/asy]\n###\nProblem: Below is the graph of $y = a \\sin bx$ for some constants $a < 0$ and $b > 0.$  Find $a.$\n\n[asy]import TrigMacros;\n\nsize(400);\n\nreal g(real x)\n{\n\treturn (-2*sin(x/3));\n}\n\ndraw(graph(g,-3*pi,3*pi,n=700,join=operator ..),red);\ntrig_axes(-3*pi,3*pi,-3,3,pi/2,1);\nlayer();\nrm_trig_labels(-5, 5, 2);\n\nlabel(\"$1$\", (0,1), E);\nlabel(\"$2$\", (0,2), E);\nlabel(\"$-1$\", (0,-1), E);\nlabel(\"$-2$\", (0,-2), E);\n[/asy]\nAnswer: The maximum value of $a \\sin bx$ is $|a|,$ so $a = \\boxed{-2}.$\n###\nProblem: Compute $\\tan 75^\\circ.$\nAnswer: From the angle addition formula,\n\\begin{align*}\n\\tan 75^\\circ &= \\tan (45^\\circ + 30^\\circ) \\\\\n&= \\frac{\\tan 45^\\circ + \\tan 30^\\circ}{1 - \\tan 45^\\circ \\tan 30^\\circ} \\\\\n&= \\frac{1 + \\frac{1}{\\sqrt{3}}}{1 - \\frac{1}{\\sqrt{3}}} \\\\\n&= \\frac{\\sqrt{3} + 1}{\\sqrt{3} - 1} \\\\\n&= \\frac{(\\sqrt{3} + 1)(\\sqrt{3} + 1)}{(\\sqrt{3} - 1)(\\sqrt{3} + 1)} \\\\\n&= \\frac{3 + 2 \\sqrt{3} + 1}{2} \\\\\n&= \\boxed{2 + \\sqrt{3}}.\n\\end{align*}\n###\nProblem: Suppose $\\sin D = 0.7$ in the diagram below. What is $DE$? [asy]\npair D,E,F;\nF = (0,0);\nD = (sqrt(51),7);\nE = (0,7);\ndraw(D--E--F--D);\ndraw(rightanglemark(D,E,F,15));\nlabel(\"$D$\",D,NE);\nlabel(\"$E$\",E,NW);\nlabel(\"$F$\",F,SW);\nlabel(\"$7$\",(E+F)/2,W);\n[/asy]\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 1,
+        "max_tokens": 700,
+        "stop_sequences": [
+          "###"
+        ],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "Since $\\sin D = \\frac{DE}{EF}$ and $\\sin D = 0.7$, we have $\\frac{DE}{EF} = 0.7$.\nWe also know that $EF = DF + FE = 7 + DE$.\nSubstituting this into the equation, we get $\\frac{DE}{7 + DE} = 0.7$.\nCross-multiplying, we have $DE = 0.7(7 + DE)$.\nExpanding and solving for DE, we get $DE = 4.9 + 0.7DE$, so $0.3DE = 4.9$.\nDividing both sides by 0.3, we find $DE = \\boxed{16.333}$.\nThe answer is: 16.333<|end|><|endoftext|>",
+            "logprob": -29.98585260474571,
+            "tokens": [
+              {
+                "text": "Since",
+                "logprob": -0.3574048578739166
+              },
+              {
+                "text": "$\\",
+                "logprob": -0.018827304244041443
+              },
+              {
+                "text": "sin",
+                "logprob": -9.858122211880982e-05
+              },
+              {
+                "text": "D",
+                "logprob": -0.00038747431244701147
+              },
+              {
+                "text": "=",
+                "logprob": -2.7418097943154862e-06
+              },
+              {
+                "text": "\\",
+                "logprob": -0.02599385753273964
+              },
+              {
+                "text": "frac",
+                "logprob": -0.0001599660754436627
+              },
+              {
+                "text": "{",
+                "logprob": -0.00017832119192462415
+              },
+              {
+                "text": "DE",
+                "logprob": -0.03420211747288704
+              },
+              {
+                "text": "}{",
+                "logprob": -8.344646857949556e-07
+              },
+              {
+                "text": "EF",
+                "logprob": -2.3411874771118164
+              },
+              {
+                "text": "}$",
+                "logprob": -0.5550010204315186
+              },
+              {
+                "text": "and",
+                "logprob": -9.655486064730212e-05
+              },
+              {
+                "text": "$\\",
+                "logprob": -0.21170370280742645
+              },
+              {
+                "text": "sin",
+                "logprob": -0.0006049233488738537
+              },
+              {
+                "text": "D",
+                "logprob": -3.4450891689630225e-05
+              },
+              {
+                "text": "=",
+                "logprob": -7.748573807475623e-06
+              },
+              {
+                "text": "",
+                "logprob": -1.168244216387393e-05
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": ".",
+                "logprob": 0.0
+              },
+              {
+                "text": "7",
+                "logprob": 0.0
+              },
+              {
+                "text": "$,",
+                "logprob": -0.006474352441728115
+              },
+              {
+                "text": "we",
+                "logprob": -0.0012977044098079205
+              },
+              {
+                "text": "have",
+                "logprob": -0.012936124578118324
+              },
+              {
+                "text": "$\\",
+                "logprob": -0.2125803679227829
+              },
+              {
+                "text": "frac",
+                "logprob": -0.00010334911348763853
+              },
+              {
+                "text": "{",
+                "logprob": -1.5497195136049413e-06
+              },
+              {
+                "text": "DE",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "}{",
+                "logprob": 0.0
+              },
+              {
+                "text": "EF",
+                "logprob": -0.49813711643218994
+              },
+              {
+                "text": "}",
+                "logprob": -5.245195097813848e-06
+              },
+              {
+                "text": "=",
+                "logprob": 0.0
+              },
+              {
+                "text": "",
+                "logprob": -3.766942609217949e-05
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": ".",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "7",
+                "logprob": 0.0
+              },
+              {
+                "text": "$.",
+                "logprob": -0.00011085849109804258
+              },
+              {
+                "text": "\n",
+                "logprob": -1.6127514839172363
+              },
+              {
+                "text": "We",
+                "logprob": -1.3628098964691162
+              },
+              {
+                "text": "also",
+                "logprob": -1.3785706758499146
+              },
+              {
+                "text": "know",
+                "logprob": -0.013691208325326443
+              },
+              {
+                "text": "that",
+                "logprob": -0.029033074155449867
+              },
+              {
+                "text": "$",
+                "logprob": -0.012701919302344322
+              },
+              {
+                "text": "EF",
+                "logprob": -0.002804515417665243
+              },
+              {
+                "text": "=",
+                "logprob": -0.004081610590219498
+              },
+              {
+                "text": "D",
+                "logprob": -6.252350330352783
+              },
+              {
+                "text": "F",
+                "logprob": -0.00047088501742109656
+              },
+              {
+                "text": "+",
+                "logprob": -0.23909948766231537
+              },
+              {
+                "text": "F",
+                "logprob": -0.22212623059749603
+              },
+              {
+                "text": "E",
+                "logprob": -0.00013767725613433868
+              },
+              {
+                "text": "=",
+                "logprob": -0.026519183069467545
+              },
+              {
+                "text": "",
+                "logprob": -0.15289334952831268
+              },
+              {
+                "text": "7",
+                "logprob": -5.769562994828448e-05
+              },
+              {
+                "text": "+",
+                "logprob": -0.003792476374655962
+              },
+              {
+                "text": "DE",
+                "logprob": -0.010318503715097904
+              },
+              {
+                "text": "$.",
+                "logprob": -0.007492891512811184
+              },
+              {
+                "text": "\n",
+                "logprob": -0.03158536180853844
+              },
+              {
+                "text": "Sub",
+                "logprob": -0.07941433042287827
+              },
+              {
+                "text": "st",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "itut",
+                "logprob": -0.0010831448016688228
+              },
+              {
+                "text": "ing",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "this",
+                "logprob": -0.15692362189292908
+              },
+              {
+                "text": "into",
+                "logprob": -0.016179101541638374
+              },
+              {
+                "text": "the",
+                "logprob": -0.056584108620882034
+              },
+              {
+                "text": "equation",
+                "logprob": -0.21308556199073792
+              },
+              {
+                "text": ",",
+                "logprob": -0.11550454795360565
+              },
+              {
+                "text": "we",
+                "logprob": -6.568216485902667e-05
+              },
+              {
+                "text": "get",
+                "logprob": -0.05851905047893524
+              },
+              {
+                "text": "$\\",
+                "logprob": -0.055084723979234695
+              },
+              {
+                "text": "frac",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "{",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "DE",
+                "logprob": 0.0
+              },
+              {
+                "text": "}{",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "7",
+                "logprob": -1.4305104514278355e-06
+              },
+              {
+                "text": "+",
+                "logprob": -0.05832924321293831
+              },
+              {
+                "text": "DE",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "}",
+                "logprob": -2.0265558760002023e-06
+              },
+              {
+                "text": "=",
+                "logprob": 0.0
+              },
+              {
+                "text": "",
+                "logprob": -1.6689160474925302e-05
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": ".",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "7",
+                "logprob": 0.0
+              },
+              {
+                "text": "$.",
+                "logprob": -7.30726242181845e-05
+              },
+              {
+                "text": "\n",
+                "logprob": -6.806619057897478e-05
+              },
+              {
+                "text": "C",
+                "logprob": -0.5101572275161743
+              },
+              {
+                "text": "ross",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "-",
+                "logprob": -0.07429098337888718
+              },
+              {
+                "text": "multip",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "lying",
+                "logprob": -3.9219088648678735e-05
+              },
+              {
+                "text": ",",
+                "logprob": -0.3436563014984131
+              },
+              {
+                "text": "we",
+                "logprob": -0.00015245705435518175
+              },
+              {
+                "text": "have",
+                "logprob": -0.18124635517597198
+              },
+              {
+                "text": "$",
+                "logprob": -0.00013767725613433868
+              },
+              {
+                "text": "DE",
+                "logprob": -0.15985973179340363
+              },
+              {
+                "text": "=",
+                "logprob": -5.602820692729438e-06
+              },
+              {
+                "text": "",
+                "logprob": -4.708655978902243e-05
+              },
+              {
+                "text": "0",
+                "logprob": -0.0006883158930577338
+              },
+              {
+                "text": ".",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "7",
+                "logprob": 0.0
+              },
+              {
+                "text": "(",
+                "logprob": -0.0006934384000487626
+              },
+              {
+                "text": "7",
+                "logprob": -1.3232143828645349e-05
+              },
+              {
+                "text": "+",
+                "logprob": -0.00014482879487331957
+              },
+              {
+                "text": "DE",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": ")$.",
+                "logprob": -0.0025006234645843506
+              },
+              {
+                "text": "\n",
+                "logprob": -0.00029094755882397294
+              },
+              {
+                "text": "Expand",
+                "logprob": -0.07569699734449387
+              },
+              {
+                "text": "ing",
+                "logprob": -1.3232143828645349e-05
+              },
+              {
+                "text": "and",
+                "logprob": -0.8276298642158508
+              },
+              {
+                "text": "solving",
+                "logprob": -2.4370012283325195
+              },
+              {
+                "text": "for",
+                "logprob": -0.006412525195628405
+              },
+              {
+                "text": "DE",
+                "logprob": -2.636789083480835
+              },
+              {
+                "text": ",",
+                "logprob": -0.0013763965107500553
+              },
+              {
+                "text": "we",
+                "logprob": -2.3483953555114567e-05
+              },
+              {
+                "text": "get",
+                "logprob": -0.018507063388824463
+              },
+              {
+                "text": "$",
+                "logprob": -0.009288550354540348
+              },
+              {
+                "text": "DE",
+                "logprob": -0.0023264028131961823
+              },
+              {
+                "text": "=",
+                "logprob": -0.00042548662167973816
+              },
+              {
+                "text": "",
+                "logprob": -0.15129587054252625
+              },
+              {
+                "text": "4",
+                "logprob": -0.003697940381243825
+              },
+              {
+                "text": ".",
+                "logprob": -7.152555099310121e-07
+              },
+              {
+                "text": "9",
+                "logprob": 0.0
+              },
+              {
+                "text": "+",
+                "logprob": -2.9802276912960224e-06
+              },
+              {
+                "text": "",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": ".",
+                "logprob": 0.0
+              },
+              {
+                "text": "7",
+                "logprob": 0.0
+              },
+              {
+                "text": "DE",
+                "logprob": -0.004972709808498621
+              },
+              {
+                "text": "$,",
+                "logprob": -1.7054290771484375
+              },
+              {
+                "text": "so",
+                "logprob": -0.9026816487312317
+              },
+              {
+                "text": "$",
+                "logprob": -0.00013279033009894192
+              },
+              {
+                "text": "0",
+                "logprob": -0.00022015532886143774
+              },
+              {
+                "text": ".",
+                "logprob": 0.0
+              },
+              {
+                "text": "3",
+                "logprob": 0.0
+              },
+              {
+                "text": "DE",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": -7.748573807475623e-06
+              },
+              {
+                "text": "",
+                "logprob": -5.245195097813848e-06
+              },
+              {
+                "text": "4",
+                "logprob": 0.0
+              },
+              {
+                "text": ".",
+                "logprob": 0.0
+              },
+              {
+                "text": "9",
+                "logprob": 0.0
+              },
+              {
+                "text": "$.",
+                "logprob": -0.1408354789018631
+              },
+              {
+                "text": "\n",
+                "logprob": -5.113947918289341e-05
+              },
+              {
+                "text": "D",
+                "logprob": -1.0195987224578857
+              },
+              {
+                "text": "ivid",
+                "logprob": 0.0
+              },
+              {
+                "text": "ing",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "both",
+                "logprob": -0.3049960136413574
+              },
+              {
+                "text": "sides",
+                "logprob": -2.861018856492592e-06
+              },
+              {
+                "text": "by",
+                "logprob": -0.0004258441040292382
+              },
+              {
+                "text": "",
+                "logprob": -0.045714449137449265
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": ".",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "3",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": ",",
+                "logprob": -0.0006779517862014472
+              },
+              {
+                "text": "we",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "find",
+                "logprob": -0.032039299607276917
+              },
+              {
+                "text": "$",
+                "logprob": -0.2031070590019226
+              },
+              {
+                "text": "DE",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "=",
+                "logprob": -7.152555099310121e-07
+              },
+              {
+                "text": "\\",
+                "logprob": -0.0029855461325496435
+              },
+              {
+                "text": "box",
+                "logprob": -0.3672425150871277
+              },
+              {
+                "text": "ed",
+                "logprob": 0.0
+              },
+              {
+                "text": "{",
+                "logprob": -0.00011955977242905647
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "6",
+                "logprob": 0.0
+              },
+              {
+                "text": ".",
+                "logprob": -0.0001433984871255234
+              },
+              {
+                "text": "3",
+                "logprob": 0.0
+              },
+              {
+                "text": "3",
+                "logprob": -0.017950579524040222
+              },
+              {
+                "text": "3",
+                "logprob": -0.0067374915815889835
+              },
+              {
+                "text": "}$.",
+                "logprob": -1.2749016284942627
+              },
+              {
+                "text": "\n",
+                "logprob": -0.006406958214938641
+              },
+              {
+                "text": "The",
+                "logprob": -0.051624640822410583
+              },
+              {
+                "text": "answer",
+                "logprob": -0.0003887851198669523
+              },
+              {
+                "text": "is",
+                "logprob": 0.0
+              },
+              {
+                "text": ":",
+                "logprob": -1.9073468138230965e-06
+              },
+              {
+                "text": "",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "6",
+                "logprob": 0.0
+              },
+              {
+                "text": ".",
+                "logprob": -9.536738616588991e-07
+              },
+              {
+                "text": "3",
+                "logprob": 0.0
+              },
+              {
+                "text": "3",
+                "logprob": 0.0
+              },
+              {
+                "text": "3",
+                "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0002232540718978271
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.16475740353369317,
+              "max_token_negative_log_likelihood": 6.252345561981201,
+              "predictive_entropy": 0.04488861413659934,
+              "shannon_entropy": 0.1549000928223747
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 11.668240547180176,
+        "request_datetime": 1755819124
+      },
+      "num_train_instances": 8,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "A curve is parameterized by\n\\[(x,y) = (t^3 + 7, -3t^2 - 6t - 5).\\]Find the point the curve passes through at $t = 2.$"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "At $t = 2,$ $(x,y) = (2^3 + 7, -3 \\cdot 2^2 - 6 \\cdot 2 - 5) = \\boxed{(15,-29)}.$"
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id119"
+      },
+      "train_trial_index": 0,
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "Given a mathematics problem, determine the answer. Simplify your answer as much as possible.\n###\nProblem: If $\\det \\mathbf{A} = 2$ and $\\det \\mathbf{B} = 12,$ then find $\\det (\\mathbf{A} \\mathbf{B}).$\nAnswer: We have that $\\det (\\mathbf{A} \\mathbf{B}) = (\\det \\mathbf{A})(\\det \\mathbf{B}) = (2)(12) = \\boxed{24}.$\n###\nProblem: Simplify $\\frac{\\csc \\theta}{\\sin \\theta} - \\frac{\\cot \\theta}{\\tan \\theta}.$\nAnswer: We have that\n\\begin{align*}\n\\frac{\\csc \\theta}{\\sin \\theta} - \\frac{\\cot \\theta}{\\tan \\theta} &= \\frac{1/\\sin \\theta}{\\sin \\theta} - \\frac{\\cos \\theta/\\sin \\theta}{\\sin \\theta/\\cos \\theta} \\\\\n&= \\frac{1}{\\sin^2 \\theta} - \\frac{\\cos^2 \\theta}{\\sin^2 \\theta} \\\\\n&= \\frac{1 - \\cos^2 \\theta}{\\sin^2 \\theta} = \\frac{\\sin^2 \\theta}{\\sin^2 \\theta} = \\boxed{1}.\n\\end{align*}\n###\nProblem: Compute $\\begin{pmatrix} 5 \\\\ -4 \\end{pmatrix} + \\begin{pmatrix} -11 \\\\ 10 \\end{pmatrix}$.\nAnswer: We see that\n\\[\\begin{pmatrix} 5 \\\\ -4 \\end{pmatrix} + \\begin{pmatrix} -11 \\\\ 10 \\end{pmatrix} =  \\boxed{\\begin{pmatrix} -6 \\\\ 6 \\end{pmatrix}}.\\]\n###\nProblem: Compute $\\tan \\left (\\operatorname{arccot} \\frac{4}{7} \\right).$\nAnswer: Consider a right triangle where the adjacent side is 4 and the opposite side is 7.\n\n[asy]\nunitsize (0.5 cm);\n\ndraw((0,0)--(4,0)--(4,7)--cycle);\n\nlabel(\"$4$\", (2,0), S);\nlabel(\"$7$\", (4,7/2), E);\nlabel(\"$\\theta$\", (0.8,0.5));\n[/asy]\n\nThen $\\cot \\theta = \\frac{4}{7},$ so $\\theta = \\operatorname{arccot} \\frac{4}{7}.$  Hence, $\\tan \\theta = \\frac{1}{\\cot \\theta} = \\boxed{\\frac{7}{4}}.$\n###\nProblem: Compute $\\operatorname{arccot} (-1).$  Express your answer in radians.\nAnswer: Since $\\cot \\left( \\frac{3 \\pi}{4} \\right) = -1,$ $\\operatorname{arccot} (-1) = \\boxed{\\frac{3 \\pi}{4}}.$\n\nNote: The arccot function is somewhat controversial.  Some define the range of the arccot function as $(0,\\pi)$ (including the AoPS Precalculus textbook), and others define the range as $\\left( -\\frac{\\pi}{2}, 0 \\right) \\cup \\left( 0, \\frac{\\pi}{2} \\right].$\n###\nProblem: Find the phase shift of the graph of $y =  3 \\sin \\left( x - \\frac{\\pi}{5} \\right).$\nAnswer: Since the graph of $y = 3 \\sin \\left( x - \\frac{\\pi}{5} \\right)$ is the same as the graph of $y = 3 \\sin x$ shifted $\\frac{\\pi}{5}$ units to the right, the phase shift is $\\boxed{\\frac{\\pi}{5}}.$\n\n[asy]import TrigMacros;\n\nsize(400);\n\nreal g(real x)\n{\n\treturn 3*sin(x - pi/5);\n}\n\nreal f(real x)\n{\n\treturn 3*sin(x);\n}\n\ndraw(graph(g,-3*pi,3*pi,n=700,join=operator ..),red);\ndraw(graph(f,-3*pi,3*pi,n=700,join=operator ..));\ntrig_axes(-3*pi,3*pi,-4,4,pi/2,1);\nlayer();\nrm_trig_labels(-5, 5, 2);\n[/asy]\n###\nProblem: Below is the graph of $y = a \\sin bx$ for some constants $a < 0$ and $b > 0.$  Find $a.$\n\n[asy]import TrigMacros;\n\nsize(400);\n\nreal g(real x)\n{\n\treturn (-2*sin(x/3));\n}\n\ndraw(graph(g,-3*pi,3*pi,n=700,join=operator ..),red);\ntrig_axes(-3*pi,3*pi,-3,3,pi/2,1);\nlayer();\nrm_trig_labels(-5, 5, 2);\n\nlabel(\"$1$\", (0,1), E);\nlabel(\"$2$\", (0,2), E);\nlabel(\"$-1$\", (0,-1), E);\nlabel(\"$-2$\", (0,-2), E);\n[/asy]\nAnswer: The maximum value of $a \\sin bx$ is $|a|,$ so $a = \\boxed{-2}.$\n###\nProblem: Compute $\\tan 75^\\circ.$\nAnswer: From the angle addition formula,\n\\begin{align*}\n\\tan 75^\\circ &= \\tan (45^\\circ + 30^\\circ) \\\\\n&= \\frac{\\tan 45^\\circ + \\tan 30^\\circ}{1 - \\tan 45^\\circ \\tan 30^\\circ} \\\\\n&= \\frac{1 + \\frac{1}{\\sqrt{3}}}{1 - \\frac{1}{\\sqrt{3}}} \\\\\n&= \\frac{\\sqrt{3} + 1}{\\sqrt{3} - 1} \\\\\n&= \\frac{(\\sqrt{3} + 1)(\\sqrt{3} + 1)}{(\\sqrt{3} - 1)(\\sqrt{3} + 1)} \\\\\n&= \\frac{3 + 2 \\sqrt{3} + 1}{2} \\\\\n&= \\boxed{2 + \\sqrt{3}}.\n\\end{align*}\n###\nProblem: A curve is parameterized by\n\\[(x,y) = (t^3 + 7, -3t^2 - 6t - 5).\\]Find the point the curve passes through at $t = 2.$\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 1,
+        "max_tokens": 700,
+        "stop_sequences": [
+          "###"
+        ],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "To find the point the curve passes through at $t = 2$, we substitute $t = 2$ into the parameterization:\n\n\\[\\begin{aligned}\nx &= (2^3) + 7 = 8 + 7 = 15, \\\\\ny &= -3(2^2) - 6(2) - 5 = -3(4) - 12 - 5 = -12 - 12 - 5 = -29.\n\\end{aligned}\\]\n\nSo, the curve passes through the point $(x, y) = (15, -29)$ when $t = 2$.\n\nThe answer is: (15, -29)<|end|><|endoftext|>",
+            "logprob": -16.830462258622084,
+            "tokens": [
+              {
+                "text": "To",
+                "logprob": -0.5370560884475708
+              },
+              {
+                "text": "find",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "the",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "point",
+                "logprob": -0.0008056493825279176
+              },
+              {
+                "text": "the",
+                "logprob": -1.3889539241790771
+              },
+              {
+                "text": "curve",
+                "logprob": 0.0
+              },
+              {
+                "text": "passes",
+                "logprob": -1.311301275563892e-06
+              },
+              {
+                "text": "through",
+                "logprob": 0.0
+              },
+              {
+                "text": "at",
+                "logprob": -0.04045281559228897
+              },
+              {
+                "text": "$",
+                "logprob": -0.007336342707276344
+              },
+              {
+                "text": "t",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": -0.018149960786104202
+              },
+              {
+                "text": "",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "$,",
+                "logprob": -0.0065141478553414345
+              },
+              {
+                "text": "we",
+                "logprob": -0.007153612095862627
+              },
+              {
+                "text": "substitute",
+                "logprob": -0.051217902451753616
+              },
+              {
+                "text": "$",
+                "logprob": -0.0002051381452474743
+              },
+              {
+                "text": "t",
+                "logprob": -3.099436753473128e-06
+              },
+              {
+                "text": "=",
+                "logprob": -0.0004379982128739357
+              },
+              {
+                "text": "",
+                "logprob": 0.0
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "$",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "into",
+                "logprob": -8.702239938429557e-06
+              },
+              {
+                "text": "the",
+                "logprob": -8.105902816168964e-05
+              },
+              {
+                "text": "parameter",
+                "logprob": -0.04663487896323204
+              },
+              {
+                "text": "ization",
+                "logprob": -0.12737534940242767
+              },
+              {
+                "text": ":",
+                "logprob": -0.6155698299407959
+              },
+              {
+                "text": "\n",
+                "logprob": -4.291525328881107e-06
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0008073169738054276
+              },
+              {
+                "text": "\\",
+                "logprob": -0.036835942417383194
+              },
+              {
+                "text": "[\\",
+                "logprob": -4.35795783996582
+              },
+              {
+                "text": "begin",
+                "logprob": -0.0017256144201382995
+              },
+              {
+                "text": "{",
+                "logprob": -1.3589766240329482e-05
+              },
+              {
+                "text": "aligned",
+                "logprob": -0.26599615812301636
+              },
+              {
+                "text": "}",
+                "logprob": -0.00874534621834755
+              },
+              {
+                "text": "\n",
+                "logprob": -0.15070772171020508
+              },
+              {
+                "text": "x",
+                "logprob": -0.004183589015156031
+              },
+              {
+                "text": "&=",
+                "logprob": -0.09043753892183304
+              },
+              {
+                "text": "(",
+                "logprob": -0.045446790754795074
+              },
+              {
+                "text": "2",
+                "logprob": -0.002117892960086465
+              },
+              {
+                "text": "^",
+                "logprob": -0.0034911418333649635
+              },
+              {
+                "text": "3",
+                "logprob": 0.0
+              },
+              {
+                "text": ")",
+                "logprob": -1.5756251811981201
+              },
+              {
+                "text": "+",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "",
+                "logprob": -3.099436753473128e-06
+              },
+              {
+                "text": "7",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": -0.0008110094931907952
+              },
+              {
+                "text": "",
+                "logprob": -0.00011777184408856556
+              },
+              {
+                "text": "8",
+                "logprob": -3.93382906622719e-05
+              },
+              {
+                "text": "+",
+                "logprob": -0.0002108589978888631
+              },
+              {
+                "text": "",
+                "logprob": -2.264974000354414e-06
+              },
+              {
+                "text": "7",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "=",
+                "logprob": -5.722029527532868e-06
+              },
+              {
+                "text": "",
+                "logprob": -0.00018082413589581847
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "5",
+                "logprob": 0.0
+              },
+              {
+                "text": ",",
+                "logprob": -0.03139360621571541
+              },
+              {
+                "text": "\\\\",
+                "logprob": -0.06198296323418617
+              },
+              {
+                "text": "\n",
+                "logprob": -5.006777428206988e-06
+              },
+              {
+                "text": "y",
+                "logprob": -3.361645576660521e-05
+              },
+              {
+                "text": "&=",
+                "logprob": 0.0
+              },
+              {
+                "text": "-",
+                "logprob": -0.04745806008577347
+              },
+              {
+                "text": "3",
+                "logprob": -1.7881377516459906e-06
+              },
+              {
+                "text": "(",
+                "logprob": -8.821448318485636e-06
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "^",
+                "logprob": -0.003600069787353277
+              },
+              {
+                "text": "2",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": ")",
+                "logprob": -1.4305104514278355e-06
+              },
+              {
+                "text": "-",
+                "logprob": -1.7881377516459906e-06
+              },
+              {
+                "text": "",
+                "logprob": -4.279521817807108e-05
+              },
+              {
+                "text": "6",
+                "logprob": 0.0
+              },
+              {
+                "text": "(",
+                "logprob": -5.6622808187967166e-05
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": ")",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "-",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "",
+                "logprob": -3.707340147229843e-05
+              },
+              {
+                "text": "5",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "=",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "-",
+                "logprob": -7.152555099310121e-07
+              },
+              {
+                "text": "3",
+                "logprob": -0.05658016726374626
+              },
+              {
+                "text": "(",
+                "logprob": -0.0006656814948655665
+              },
+              {
+                "text": "4",
+                "logprob": 0.0
+              },
+              {
+                "text": ")",
+                "logprob": -8.344646857949556e-07
+              },
+              {
+                "text": "-",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "",
+                "logprob": -0.00020358874462544918
+              },
+              {
+                "text": "1",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "-",
+                "logprob": -7.152555099310121e-07
+              },
+              {
+                "text": "",
+                "logprob": -0.00012373158824630082
+              },
+              {
+                "text": "5",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "=",
+                "logprob": -1.0728830375228426e-06
+              },
+              {
+                "text": "-",
+                "logprob": -2.3364747903542593e-05
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "-",
+                "logprob": -1.7881377516459906e-06
+              },
+              {
+                "text": "",
+                "logprob": -8.237022848334163e-05
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "2",
+                "logprob": -1.8596476365928538e-05
+              },
+              {
+                "text": "-",
+                "logprob": -4.529942543740617e-06
+              },
+              {
+                "text": "",
+                "logprob": -4.8636207793606445e-05
+              },
+              {
+                "text": "5",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": -1.1920922133867862e-06
+              },
+              {
+                "text": "-",
+                "logprob": -1.1324817933200393e-05
+              },
+              {
+                "text": "2",
+                "logprob": -2.90866428258596e-05
+              },
+              {
+                "text": "9",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": ".",
+                "logprob": -0.0003364712174516171
+              },
+              {
+                "text": "\n",
+                "logprob": -1.7046782886609435e-05
+              },
+              {
+                "text": "\\",
+                "logprob": -4.768360213347478e-06
+              },
+              {
+                "text": "end",
+                "logprob": 0.0
+              },
+              {
+                "text": "{",
+                "logprob": -1.0132738680113107e-05
+              },
+              {
+                "text": "aligned",
+                "logprob": 0.0
+              },
+              {
+                "text": "}\\",
+                "logprob": -9.202533692587167e-05
+              },
+              {
+                "text": "]",
+                "logprob": -5.531158240046352e-05
+              },
+              {
+                "text": "\n",
+                "logprob": -4.100715523236431e-05
+              },
+              {
+                "text": "\n",
+                "logprob": -6.6756979322235566e-06
+              },
+              {
+                "text": "So",
+                "logprob": -0.2437421679496765
+              },
+              {
+                "text": ",",
+                "logprob": -0.19057556986808777
+              },
+              {
+                "text": "the",
+                "logprob": -0.004175991285592318
+              },
+              {
+                "text": "curve",
+                "logprob": -0.6038601994514465
+              },
+              {
+                "text": "passes",
+                "logprob": -5.364403477869928e-06
+              },
+              {
+                "text": "through",
+                "logprob": 0.0
+              },
+              {
+                "text": "the",
+                "logprob": -0.0009289240115322173
+              },
+              {
+                "text": "point",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "$(",
+                "logprob": -0.0021211046259850264
+              },
+              {
+                "text": "x",
+                "logprob": -2.265784740447998
+              },
+              {
+                "text": ",",
+                "logprob": -4.935142715112306e-05
+              },
+              {
+                "text": "y",
+                "logprob": -0.003084665397182107
+              },
+              {
+                "text": ")",
+                "logprob": -0.00018785618885885924
+              },
+              {
+                "text": "=",
+                "logprob": -3.4570634852570947e-06
+              },
+              {
+                "text": "(",
+                "logprob": -0.00014435203047469258
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "5",
+                "logprob": 0.0
+              },
+              {
+                "text": ",",
+                "logprob": -7.247662142617628e-05
+              },
+              {
+                "text": "-",
+                "logprob": -1.0728830375228426e-06
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "9",
+                "logprob": 0.0
+              },
+              {
+                "text": ")$",
+                "logprob": -0.02517314814031124
+              },
+              {
+                "text": "when",
+                "logprob": -1.4537016153335571
+              },
+              {
+                "text": "$",
+                "logprob": -1.9073468138230965e-06
+              },
+              {
+                "text": "t",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": -0.0001399419124936685
+              },
+              {
+                "text": "",
+                "logprob": -1.311301275563892e-06
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "$.",
+                "logprob": -0.01710003800690174
+              },
+              {
+                "text": "\n",
+                "logprob": -0.2850724756717682
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0008702066843397915
+              },
+              {
+                "text": "The",
+                "logprob": -0.43424174189567566
+              },
+              {
+                "text": "answer",
+                "logprob": -0.38548386096954346
+              },
+              {
+                "text": "is",
+                "logprob": -9.393251093570143e-05
+              },
+              {
+                "text": ":",
+                "logprob": -0.00010477947944309562
+              },
+              {
+                "text": "(",
+                "logprob": -0.01251098420470953
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "5",
+                "logprob": 0.0
+              },
+              {
+                "text": ",",
+                "logprob": -0.9547522068023682
+              },
+              {
+                "text": "-",
+                "logprob": -0.010686315596103668
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "9",
+                "logprob": 0.0
+              },
+              {
+                "text": ")",
+                "logprob": -0.3393513262271881
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -2.706014311115723e-05
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.10453702518407854,
+              "max_token_negative_log_likelihood": 4.357956886291504,
+              "predictive_entropy": 0.03146621259617848,
+              "shannon_entropy": 0.09517576759820155
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 10.814477443695068,
+        "request_datetime": 1755819124
+      },
+      "num_train_instances": 8,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "Find the dot product of $\\begin{pmatrix} -2 \\\\ 0 \\\\ 7 \\end{pmatrix}$ and $\\begin{pmatrix} 3 \\\\ 4 \\\\ -5 \\end{pmatrix}.$"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "The dot product of $\\begin{pmatrix} -2 \\\\ 0 \\\\ 7 \\end{pmatrix}$ and $\\begin{pmatrix} 3 \\\\ 4 \\\\ -5 \\end{pmatrix}$ is\n\\[(-2)(3) + (0)(4) + (7)(-5) = \\boxed{-41}.\\]"
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id120"
+      },
+      "train_trial_index": 0,
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "Given a mathematics problem, determine the answer. Simplify your answer as much as possible.\n###\nProblem: If $\\det \\mathbf{A} = 2$ and $\\det \\mathbf{B} = 12,$ then find $\\det (\\mathbf{A} \\mathbf{B}).$\nAnswer: We have that $\\det (\\mathbf{A} \\mathbf{B}) = (\\det \\mathbf{A})(\\det \\mathbf{B}) = (2)(12) = \\boxed{24}.$\n###\nProblem: Simplify $\\frac{\\csc \\theta}{\\sin \\theta} - \\frac{\\cot \\theta}{\\tan \\theta}.$\nAnswer: We have that\n\\begin{align*}\n\\frac{\\csc \\theta}{\\sin \\theta} - \\frac{\\cot \\theta}{\\tan \\theta} &= \\frac{1/\\sin \\theta}{\\sin \\theta} - \\frac{\\cos \\theta/\\sin \\theta}{\\sin \\theta/\\cos \\theta} \\\\\n&= \\frac{1}{\\sin^2 \\theta} - \\frac{\\cos^2 \\theta}{\\sin^2 \\theta} \\\\\n&= \\frac{1 - \\cos^2 \\theta}{\\sin^2 \\theta} = \\frac{\\sin^2 \\theta}{\\sin^2 \\theta} = \\boxed{1}.\n\\end{align*}\n###\nProblem: Compute $\\begin{pmatrix} 5 \\\\ -4 \\end{pmatrix} + \\begin{pmatrix} -11 \\\\ 10 \\end{pmatrix}$.\nAnswer: We see that\n\\[\\begin{pmatrix} 5 \\\\ -4 \\end{pmatrix} + \\begin{pmatrix} -11 \\\\ 10 \\end{pmatrix} =  \\boxed{\\begin{pmatrix} -6 \\\\ 6 \\end{pmatrix}}.\\]\n###\nProblem: Compute $\\tan \\left (\\operatorname{arccot} \\frac{4}{7} \\right).$\nAnswer: Consider a right triangle where the adjacent side is 4 and the opposite side is 7.\n\n[asy]\nunitsize (0.5 cm);\n\ndraw((0,0)--(4,0)--(4,7)--cycle);\n\nlabel(\"$4$\", (2,0), S);\nlabel(\"$7$\", (4,7/2), E);\nlabel(\"$\\theta$\", (0.8,0.5));\n[/asy]\n\nThen $\\cot \\theta = \\frac{4}{7},$ so $\\theta = \\operatorname{arccot} \\frac{4}{7}.$  Hence, $\\tan \\theta = \\frac{1}{\\cot \\theta} = \\boxed{\\frac{7}{4}}.$\n###\nProblem: Compute $\\operatorname{arccot} (-1).$  Express your answer in radians.\nAnswer: Since $\\cot \\left( \\frac{3 \\pi}{4} \\right) = -1,$ $\\operatorname{arccot} (-1) = \\boxed{\\frac{3 \\pi}{4}}.$\n\nNote: The arccot function is somewhat controversial.  Some define the range of the arccot function as $(0,\\pi)$ (including the AoPS Precalculus textbook), and others define the range as $\\left( -\\frac{\\pi}{2}, 0 \\right) \\cup \\left( 0, \\frac{\\pi}{2} \\right].$\n###\nProblem: Find the phase shift of the graph of $y =  3 \\sin \\left( x - \\frac{\\pi}{5} \\right).$\nAnswer: Since the graph of $y = 3 \\sin \\left( x - \\frac{\\pi}{5} \\right)$ is the same as the graph of $y = 3 \\sin x$ shifted $\\frac{\\pi}{5}$ units to the right, the phase shift is $\\boxed{\\frac{\\pi}{5}}.$\n\n[asy]import TrigMacros;\n\nsize(400);\n\nreal g(real x)\n{\n\treturn 3*sin(x - pi/5);\n}\n\nreal f(real x)\n{\n\treturn 3*sin(x);\n}\n\ndraw(graph(g,-3*pi,3*pi,n=700,join=operator ..),red);\ndraw(graph(f,-3*pi,3*pi,n=700,join=operator ..));\ntrig_axes(-3*pi,3*pi,-4,4,pi/2,1);\nlayer();\nrm_trig_labels(-5, 5, 2);\n[/asy]\n###\nProblem: Below is the graph of $y = a \\sin bx$ for some constants $a < 0$ and $b > 0.$  Find $a.$\n\n[asy]import TrigMacros;\n\nsize(400);\n\nreal g(real x)\n{\n\treturn (-2*sin(x/3));\n}\n\ndraw(graph(g,-3*pi,3*pi,n=700,join=operator ..),red);\ntrig_axes(-3*pi,3*pi,-3,3,pi/2,1);\nlayer();\nrm_trig_labels(-5, 5, 2);\n\nlabel(\"$1$\", (0,1), E);\nlabel(\"$2$\", (0,2), E);\nlabel(\"$-1$\", (0,-1), E);\nlabel(\"$-2$\", (0,-2), E);\n[/asy]\nAnswer: The maximum value of $a \\sin bx$ is $|a|,$ so $a = \\boxed{-2}.$\n###\nProblem: Compute $\\tan 75^\\circ.$\nAnswer: From the angle addition formula,\n\\begin{align*}\n\\tan 75^\\circ &= \\tan (45^\\circ + 30^\\circ) \\\\\n&= \\frac{\\tan 45^\\circ + \\tan 30^\\circ}{1 - \\tan 45^\\circ \\tan 30^\\circ} \\\\\n&= \\frac{1 + \\frac{1}{\\sqrt{3}}}{1 - \\frac{1}{\\sqrt{3}}} \\\\\n&= \\frac{\\sqrt{3} + 1}{\\sqrt{3} - 1} \\\\\n&= \\frac{(\\sqrt{3} + 1)(\\sqrt{3} + 1)}{(\\sqrt{3} - 1)(\\sqrt{3} + 1)} \\\\\n&= \\frac{3 + 2 \\sqrt{3} + 1}{2} \\\\\n&= \\boxed{2 + \\sqrt{3}}.\n\\end{align*}\n###\nProblem: Find the dot product of $\\begin{pmatrix} -2 \\\\ 0 \\\\ 7 \\end{pmatrix}$ and $\\begin{pmatrix} 3 \\\\ 4 \\\\ -5 \\end{pmatrix}.$\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 1,
+        "max_tokens": 700,
+        "stop_sequences": [
+          "###"
+        ],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "The dot product of two vectors $\\mathbf{A} = \\begin{pmatrix} a_1 \\\\ a_2 \\\\ a_3 \\end{pmatrix}$ and $\\mathbf{B} = \\begin{pmatrix} b_1 \\\\ b_2 \\\\ b_3 \\end{pmatrix}$ is given by $\\mathbf{A} \\cdot \\mathbf{B} = a_1b_1 + a_2b_2 + a_3b_3$. \n\nUsing this formula, we can calculate the dot product of the given vectors:\n\n$\\begin{pmatrix} -2 \\\\ 0 \\\\ 7 \\end{pmatrix} \\cdot \\begin{pmatrix} 3 \\\\ 4 \\\\ -5 \\end{pmatrix} = (-2)(3) + (0)(4) + (7)(-5) = -6 + 0 - 35 = -41$.\n\nThus, the dot product is $\\boxed{-41}$.<|end|><|endoftext|>",
+            "logprob": -17.76228425785142,
+            "tokens": [
+              {
+                "text": "The",
+                "logprob": -0.0028038020245730877
+              },
+              {
+                "text": "dot",
+                "logprob": 0.0
+              },
+              {
+                "text": "product",
+                "logprob": 0.0
+              },
+              {
+                "text": "of",
+                "logprob": -9.679325739853084e-05
+              },
+              {
+                "text": "two",
+                "logprob": -0.0001262346631847322
+              },
+              {
+                "text": "vectors",
+                "logprob": -5.006777428206988e-06
+              },
+              {
+                "text": "$\\",
+                "logprob": -0.005832083523273468
+              },
+              {
+                "text": "mathbf",
+                "logprob": -0.03555930033326149
+              },
+              {
+                "text": "{",
+                "logprob": 0.0
+              },
+              {
+                "text": "A",
+                "logprob": -0.7723628878593445
+              },
+              {
+                "text": "}",
+                "logprob": -0.0007519278442487121
+              },
+              {
+                "text": "=",
+                "logprob": -1.3947389561508317e-05
+              },
+              {
+                "text": "\\",
+                "logprob": -0.00013779645087197423
+              },
+              {
+                "text": "begin",
+                "logprob": -0.00013195598148740828
+              },
+              {
+                "text": "{",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "pmatrix",
+                "logprob": -2.622600959512056e-06
+              },
+              {
+                "text": "}",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "a",
+                "logprob": -0.0010471820132806897
+              },
+              {
+                "text": "_",
+                "logprob": -0.0001954841281985864
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "\\\\",
+                "logprob": -3.6954811548639555e-06
+              },
+              {
+                "text": "a",
+                "logprob": -5.960462772236497e-07
+              },
+              {
+                "text": "_",
+                "logprob": -1.0728830375228426e-06
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "\\\\",
+                "logprob": -1.4305104514278355e-06
+              },
+              {
+                "text": "a",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "_",
+                "logprob": 0.0
+              },
+              {
+                "text": "3",
+                "logprob": 0.0
+              },
+              {
+                "text": "\\",
+                "logprob": -1.311301275563892e-06
+              },
+              {
+                "text": "end",
+                "logprob": -2.0265558760002023e-06
+              },
+              {
+                "text": "{",
+                "logprob": 0.0
+              },
+              {
+                "text": "pmatrix",
+                "logprob": 0.0
+              },
+              {
+                "text": "}$",
+                "logprob": 0.0
+              },
+              {
+                "text": "and",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "$\\",
+                "logprob": 0.0
+              },
+              {
+                "text": "mathbf",
+                "logprob": -9.536738616588991e-07
+              },
+              {
+                "text": "{",
+                "logprob": 0.0
+              },
+              {
+                "text": "B",
+                "logprob": 0.0
+              },
+              {
+                "text": "}",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": 0.0
+              },
+              {
+                "text": "\\",
+                "logprob": 0.0
+              },
+              {
+                "text": "begin",
+                "logprob": 0.0
+              },
+              {
+                "text": "{",
+                "logprob": -5.960462772236497e-07
+              },
+              {
+                "text": "pmatrix",
+                "logprob": 0.0
+              },
+              {
+                "text": "}",
+                "logprob": 0.0
+              },
+              {
+                "text": "b",
+                "logprob": 0.0
+              },
+              {
+                "text": "_",
+                "logprob": -5.960462772236497e-07
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "\\\\",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "b",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "_",
+                "logprob": -1.2755313036905136e-05
+              },
+              {
+                "text": "2",
+                "logprob": -5.960462772236497e-07
+              },
+              {
+                "text": "\\\\",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "b",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "_",
+                "logprob": 0.0
+              },
+              {
+                "text": "3",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "\\",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "end",
+                "logprob": -8.344646857949556e-07
+              },
+              {
+                "text": "{",
+                "logprob": 0.0
+              },
+              {
+                "text": "pmatrix",
+                "logprob": 0.0
+              },
+              {
+                "text": "}$",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "is",
+                "logprob": -0.001456272671930492
+              },
+              {
+                "text": "given",
+                "logprob": -0.017421316355466843
+              },
+              {
+                "text": "by",
+                "logprob": -7.152555099310121e-07
+              },
+              {
+                "text": "$\\",
+                "logprob": -1.3974997997283936
+              },
+              {
+                "text": "mathbf",
+                "logprob": -6.913899414939806e-05
+              },
+              {
+                "text": "{",
+                "logprob": 0.0
+              },
+              {
+                "text": "A",
+                "logprob": 0.0
+              },
+              {
+                "text": "}",
+                "logprob": -1.0728830375228426e-06
+              },
+              {
+                "text": "\\",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "cdot",
+                "logprob": 0.0
+              },
+              {
+                "text": "\\",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "mathbf",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "{",
+                "logprob": 0.0
+              },
+              {
+                "text": "B",
+                "logprob": 0.0
+              },
+              {
+                "text": "}",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": 0.0
+              },
+              {
+                "text": "a",
+                "logprob": -8.106198947643861e-06
+              },
+              {
+                "text": "_",
+                "logprob": 0.0
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "b",
+                "logprob": -0.004953018855303526
+              },
+              {
+                "text": "_",
+                "logprob": 0.0
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "+",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "a",
+                "logprob": 0.0
+              },
+              {
+                "text": "_",
+                "logprob": -7.629365427419543e-06
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "b",
+                "logprob": 0.0
+              },
+              {
+                "text": "_",
+                "logprob": -8.940656698541716e-06
+              },
+              {
+                "text": "2",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "+",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "a",
+                "logprob": 0.0
+              },
+              {
+                "text": "_",
+                "logprob": 0.0
+              },
+              {
+                "text": "3",
+                "logprob": 0.0
+              },
+              {
+                "text": "b",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "_",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "3",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "$.",
+                "logprob": -0.05659616366028786
+              },
+              {
+                "text": "",
+                "logprob": -1.0328636169433594
+              },
+              {
+                "text": "\n",
+                "logprob": -1.4305012882687151e-05
+              },
+              {
+                "text": "\n",
+                "logprob": -9.059495641849935e-05
+              },
+              {
+                "text": "Using",
+                "logprob": -3.566171646118164
+              },
+              {
+                "text": "this",
+                "logprob": -0.007193143479526043
+              },
+              {
+                "text": "formula",
+                "logprob": -0.007695906795561314
+              },
+              {
+                "text": ",",
+                "logprob": -0.048684753477573395
+              },
+              {
+                "text": "we",
+                "logprob": -0.07288554310798645
+              },
+              {
+                "text": "can",
+                "logprob": -1.2462682723999023
+              },
+              {
+                "text": "calculate",
+                "logprob": -2.658289909362793
+              },
+              {
+                "text": "the",
+                "logprob": -0.004270481877028942
+              },
+              {
+                "text": "dot",
+                "logprob": -2.622600959512056e-06
+              },
+              {
+                "text": "product",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "of",
+                "logprob": -0.04563791677355766
+              },
+              {
+                "text": "the",
+                "logprob": -0.14160847663879395
+              },
+              {
+                "text": "given",
+                "logprob": -0.005610670894384384
+              },
+              {
+                "text": "vectors",
+                "logprob": -1.7046782886609435e-05
+              },
+              {
+                "text": ":",
+                "logprob": -0.013690032996237278
+              },
+              {
+                "text": "\n",
+                "logprob": -0.00038115866482257843
+              },
+              {
+                "text": "\n",
+                "logprob": -0.009188980795443058
+              },
+              {
+                "text": "$\\",
+                "logprob": -0.24196535348892212
+              },
+              {
+                "text": "begin",
+                "logprob": -0.02414279617369175
+              },
+              {
+                "text": "{",
+                "logprob": -0.00011205045302631333
+              },
+              {
+                "text": "pmatrix",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "}",
+                "logprob": -0.00023052419419400394
+              },
+              {
+                "text": "-",
+                "logprob": -2.7417760065873154e-05
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "\\\\",
+                "logprob": -0.00035255891270935535
+              },
+              {
+                "text": "",
+                "logprob": -0.00010024998482549563
+              },
+              {
+                "text": "0",
+                "logprob": -8.344646857949556e-07
+              },
+              {
+                "text": "\\\\",
+                "logprob": -0.00013624693383462727
+              },
+              {
+                "text": "",
+                "logprob": -1.5258672647178173e-05
+              },
+              {
+                "text": "7",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "\\",
+                "logprob": -2.7179348762729205e-05
+              },
+              {
+                "text": "end",
+                "logprob": -1.4305104514278355e-06
+              },
+              {
+                "text": "{",
+                "logprob": -6.198863957251888e-06
+              },
+              {
+                "text": "pmatrix",
+                "logprob": 0.0
+              },
+              {
+                "text": "}",
+                "logprob": -0.0012809175532311201
+              },
+              {
+                "text": "\\",
+                "logprob": -1.7881377516459906e-06
+              },
+              {
+                "text": "cdot",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "\\",
+                "logprob": -2.407998726994265e-05
+              },
+              {
+                "text": "begin",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "{",
+                "logprob": -5.960462772236497e-07
+              },
+              {
+                "text": "pmatrix",
+                "logprob": 0.0
+              },
+              {
+                "text": "}",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "",
+                "logprob": -1.9788545614574105e-05
+              },
+              {
+                "text": "3",
+                "logprob": -8.344646857949556e-07
+              },
+              {
+                "text": "\\\\",
+                "logprob": -2.95634672511369e-05
+              },
+              {
+                "text": "",
+                "logprob": -1.2516897186287679e-05
+              },
+              {
+                "text": "4",
+                "logprob": -7.152555099310121e-07
+              },
+              {
+                "text": "\\\\",
+                "logprob": -3.313963316031732e-05
+              },
+              {
+                "text": "-",
+                "logprob": -2.145764938177308e-06
+              },
+              {
+                "text": "5",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "\\",
+                "logprob": -2.5748875486897305e-05
+              },
+              {
+                "text": "end",
+                "logprob": -1.6689286894688848e-06
+              },
+              {
+                "text": "{",
+                "logprob": -2.861018856492592e-06
+              },
+              {
+                "text": "pmatrix",
+                "logprob": 0.0
+              },
+              {
+                "text": "}",
+                "logprob": -0.0012365083675831556
+              },
+              {
+                "text": "=",
+                "logprob": -6.294052582234144e-05
+              },
+              {
+                "text": "(-",
+                "logprob": -0.0002083561266772449
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": ")(",
+                "logprob": -0.006854827981442213
+              },
+              {
+                "text": "3",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": ")",
+                "logprob": -1.7046782886609435e-05
+              },
+              {
+                "text": "+",
+                "logprob": 0.0
+              },
+              {
+                "text": "(",
+                "logprob": -1.5735502529423684e-05
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": ")(",
+                "logprob": 0.0
+              },
+              {
+                "text": "4",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": ")",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "+",
+                "logprob": 0.0
+              },
+              {
+                "text": "(",
+                "logprob": -2.13382354559144e-05
+              },
+              {
+                "text": "7",
+                "logprob": 0.0
+              },
+              {
+                "text": ")(",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "-",
+                "logprob": -2.50339189733495e-06
+              },
+              {
+                "text": "5",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": ")",
+                "logprob": -0.03792641684412956
+              },
+              {
+                "text": "=",
+                "logprob": -2.5033637939486653e-05
+              },
+              {
+                "text": "-",
+                "logprob": -0.0017561980057507753
+              },
+              {
+                "text": "6",
+                "logprob": -2.3841830625315197e-06
+              },
+              {
+                "text": "+",
+                "logprob": -0.004621776286512613
+              },
+              {
+                "text": "",
+                "logprob": -0.00011896379146492109
+              },
+              {
+                "text": "0",
+                "logprob": -9.536738616588991e-07
+              },
+              {
+                "text": "-",
+                "logprob": -0.002403111197054386
+              },
+              {
+                "text": "",
+                "logprob": -0.0006472161621786654
+              },
+              {
+                "text": "3",
+                "logprob": 0.0
+              },
+              {
+                "text": "5",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": -1.5735502529423684e-05
+              },
+              {
+                "text": "-",
+                "logprob": -0.2993483543395996
+              },
+              {
+                "text": "4",
+                "logprob": -2.50339189733495e-06
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "$.",
+                "logprob": -0.9069659113883972
+              },
+              {
+                "text": "\n",
+                "logprob": -0.036759186536073685
+              },
+              {
+                "text": "\n",
+                "logprob": -2.264974000354414e-06
+              },
+              {
+                "text": "Th",
+                "logprob": -4.0516037940979
+              },
+              {
+                "text": "us",
+                "logprob": -3.814689989667386e-06
+              },
+              {
+                "text": ",",
+                "logprob": -3.3378044463461265e-05
+              },
+              {
+                "text": "the",
+                "logprob": -0.0019408691441640258
+              },
+              {
+                "text": "dot",
+                "logprob": -0.003453958546742797
+              },
+              {
+                "text": "product",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "is",
+                "logprob": -0.8437193632125854
+              },
+              {
+                "text": "$\\",
+                "logprob": -0.013287446461617947
+              },
+              {
+                "text": "box",
+                "logprob": -0.00199607340618968
+              },
+              {
+                "text": "ed",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "{-",
+                "logprob": -3.576272320060525e-06
+              },
+              {
+                "text": "4",
+                "logprob": 0.0
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "}$.",
+                "logprob": -0.0006517431465908885
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.12033118307590485
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.08539559497389768,
+              "max_token_negative_log_likelihood": 4.051603317260742,
+              "predictive_entropy": 0.01741093220903536,
+              "shannon_entropy": 0.06096596985028253
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 12.179476261138916,
+        "request_datetime": 1755819124
+      },
+      "num_train_instances": 8,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    }
+  ]
 }

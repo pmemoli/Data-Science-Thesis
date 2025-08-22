@@ -1,8 +1,0 @@
-{
-  "name": "lsat_qa",
-  "description": "Question answering dataset with questions from LSAT exams.",
-  "tags": [
-    "question_answering"
-  ],
-  "definition_path": "https://github.com/stanford-crfm/helm/blob/main/src/helm/benchmark/scenarios/lsat_qa_scenario.py"
-}

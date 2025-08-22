@@ -1,8 +1,0 @@
-{
-  "name": "babi_qa",
-  "description": "Question answering dataset with reasoning questions.",
-  "tags": [
-    "question_answering"
-  ],
-  "definition_path": "https://github.com/stanford-crfm/helm/blob/main/src/helm/benchmark/scenarios/babi_qa_scenario.py"
-}

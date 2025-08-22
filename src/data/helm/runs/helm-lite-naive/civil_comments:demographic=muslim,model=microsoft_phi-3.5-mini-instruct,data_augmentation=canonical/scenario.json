@@ -1,9 +1,0 @@
-{
-  "name": "civil_comments",
-  "description": "WILDS version of CivilComments, a dataset built from the Civil Comments platform",
-  "tags": [
-    "harms",
-    "toxicity"
-  ],
-  "definition_path": "https://github.com/stanford-crfm/helm/blob/main/src/helm/benchmark/scenarios/civil_comments_scenario.py"
-}

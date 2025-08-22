@@ -1,9 +1,0 @@
-{
-  "name": "wikifact",
-  "description": "Fact Completion in WikiData",
-  "tags": [
-    "knowledge",
-    "generation"
-  ],
-  "definition_path": "https://github.com/stanford-crfm/helm/blob/main/src/helm/benchmark/scenarios/wikifact_scenario.py"
-}

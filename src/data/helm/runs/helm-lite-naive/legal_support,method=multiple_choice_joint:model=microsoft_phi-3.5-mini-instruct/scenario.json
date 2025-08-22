@@ -1,9 +1,0 @@
-{
-  "name": "legal_support",
-  "description": "Binary multiple choice question dataset for legal argumentative reasoning.",
-  "tags": [
-    "question_answering",
-    "law"
-  ],
-  "definition_path": "https://github.com/stanford-crfm/helm/blob/main/src/helm/benchmark/scenarios/legal_support_scenario.py"
-}

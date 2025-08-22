@@ -1,8 +1,0 @@
-{
-  "name": "boolq",
-  "description": "Question answering dataset with naturally occurring Yes/No questions.",
-  "tags": [
-    "question_answering"
-  ],
-  "definition_path": "https://github.com/stanford-crfm/helm/blob/main/src/helm/benchmark/scenarios/boolq_scenario.py"
-}

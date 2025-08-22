@@ -422,13 +422,15 @@ class MATHScenario(Scenario):
             else:
                 examples: List[Dict[str, str]] = [example for example in data[split_name]]  # Filter by split
                 examples = group_by_key(examples, "subject")[self.subject]  # Filter by subject
-                examples = group_by_key(examples, "level")[self.level]  # Filter by level
+                # Convert numeric level to string format for filtering  
+                level_int = int(self.level.split()[1])  # Extract number from "Level 1"
+                examples = group_by_key(examples, "level")[level_int]  # Filter by level
                 dataset[split] = examples
 
                 for example in dataset[split]:
                     # Sanity check that we filtered correctly
                     assert (
-                        example["subject"] == self.subject and example["level"] == self.level
+                        example["subject"] == self.subject and example["level"] == level_int
                     ), f"Wrong example was included after filtering: {example}"
 
                     if self.use_chain_of_thought:

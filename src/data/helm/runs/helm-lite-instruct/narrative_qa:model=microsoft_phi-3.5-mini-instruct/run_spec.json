@@ -28,7 +28,7 @@
     "model_deployment": "huggingface/phi-3.5-mini-instruct",
     "model": "microsoft/phi-3.5-mini-instruct",
     "temperature": 0.0,
-    "max_tokens": 100,
+    "max_tokens": 400,
     "stop_sequences": [
       "\n"
     ],

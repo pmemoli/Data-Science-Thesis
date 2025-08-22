@@ -23,7 +23,7 @@
     "model_deployment": "huggingface/phi-3.5-mini-instruct",
     "model": "microsoft/phi-3.5-mini-instruct",
     "temperature": 0.0,
-    "max_tokens": 1,
+    "max_tokens": 301,
     "stop_sequences": [
       "\n"
     ],
@@ -81,7 +81,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -93,25 +93,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "B",
-            "logprob": -1.6618719100952148,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.41191983108001295,
             "tokens": [
               {
-                "text": "B",
-                "logprob": -1.6618719100952148
+                "text": "A",
+                "logprob": -0.41187191009521484
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -4.792098479811102e-05
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 1.6618717908859253,
-              "max_token_negative_log_likelihood": 1.6618717908859253,
-              "predictive_entropy": 0.31539568305015564,
-              "shannon_entropy": 0.8708551526069641
+              "sequence_negative_log_likelihood": 0.13736121345330807,
+              "max_token_negative_log_likelihood": 0.41187191009521484,
+              "predictive_entropy": 0.09101313860567946,
+              "shannon_entropy": 0.29101096594240516
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3247056007385254,
-        "request_datetime": 1755806677
+        "request_time": 0.5183124542236328,
+        "request_datetime": 1755818927
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -168,7 +172,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -180,25 +184,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": 0.0,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.0018523454200476408,
             "tokens": [
               {
                 "text": "A",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0018523454200476408
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 1.0681090734099286e-10
+              "sequence_negative_log_likelihood": 0.0006534429703606293,
+              "max_token_negative_log_likelihood": 0.0018523194594308734,
+              "predictive_entropy": 0.0006522964273851054,
+              "shannon_entropy": 0.005015207257335179
             }
           }
         ],
         "cached": false,
-        "request_time": 0.32297372817993164,
-        "request_datetime": 1755806677
+        "request_time": 0.5142958164215088,
+        "request_datetime": 1755818927
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -255,7 +263,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -267,25 +275,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "C",
-            "logprob": 0.0,
+            "text": "C<|end|><|endoftext|>",
+            "logprob": -0.0003541081096045673,
             "tokens": [
               {
                 "text": "C",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0003541081096045673
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 3.997187780421796e-13
+              "sequence_negative_log_likelihood": 0.0001274954975087894,
+              "max_token_negative_log_likelihood": 0.0003541142796166241,
+              "predictive_entropy": 0.0001274534358041516,
+              "shannon_entropy": 0.0012451088115508341
             }
           }
         ],
         "cached": false,
-        "request_time": 0.322965145111084,
-        "request_datetime": 1755806677
+        "request_time": 0.514716386795044,
+        "request_datetime": 1755818927
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -342,7 +354,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -354,25 +366,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": -0.004628777038305998,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.004641174728021724,
             "tokens": [
               {
                 "text": "A",
                 "logprob": -0.004628777038305998
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -1.2397689715726301e-05
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.004628804512321949,
+              "sequence_negative_log_likelihood": 0.001638334658309759,
               "max_token_negative_log_likelihood": 0.004628804512321949,
-              "predictive_entropy": 0.004607428330928087,
-              "shannon_entropy": 0.029507605358958244
+              "predictive_entropy": 0.0016311842227878515,
+              "shannon_entropy": 0.010732156467080737
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3226475715637207,
-        "request_datetime": 1755806677
+        "request_time": 0.5151283740997314,
+        "request_datetime": 1755818927
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -429,7 +445,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -441,25 +457,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "D",
-            "logprob": 0.0,
+            "text": "D<|end|><|endoftext|>",
+            "logprob": -6.6756979322235566e-06,
             "tokens": [
               {
                 "text": "D",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -6.6756979322235566e-06
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 4.837169293586685e-12
+              "sequence_negative_log_likelihood": 1.15634394812029e-05,
+              "max_token_negative_log_likelihood": 2.801457594614476e-05,
+              "predictive_entropy": 1.1563163297978463e-05,
+              "shannon_entropy": 0.0001392340628682856
             }
           }
         ],
         "cached": false,
-        "request_time": 0.23732352256774902,
-        "request_datetime": 1755806677
+        "request_time": 0.46752047538757324,
+        "request_datetime": 1755818927
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -516,7 +536,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -528,25 +548,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": 0.0,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -9.619726915843785e-05,
             "tokens": [
               {
                 "text": "A",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -9.619726915843785e-05
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 3.6793723623418373e-09
+              "sequence_negative_log_likelihood": 3.572461294728176e-05,
+              "max_token_negative_log_likelihood": 9.620652417652309e-05,
+              "predictive_entropy": 3.572148792348647e-05,
+              "shannon_entropy": 0.0004077246356587831
             }
           }
         ],
         "cached": false,
-        "request_time": 0.23532605171203613,
-        "request_datetime": 1755806677
+        "request_time": 0.4642636775970459,
+        "request_datetime": 1755818927
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -603,7 +627,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -615,25 +639,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "B",
-            "logprob": 0.0,
+            "text": "B<|end|><|endoftext|>",
+            "logprob": -0.007233028300106525,
             "tokens": [
               {
                 "text": "B",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.007233028300106525
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 2.008791050167602e-11
+              "sequence_negative_log_likelihood": 0.002424554398506492,
+              "max_token_negative_log_likelihood": 0.00723301200196147,
+              "predictive_entropy": 0.0024071780074640023,
+              "shannon_entropy": 0.014572421823106467
             }
           }
         ],
         "cached": false,
-        "request_time": 0.23577308654785156,
-        "request_datetime": 1755806677
+        "request_time": 0.46642613410949707,
+        "request_datetime": 1755818927
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -690,7 +718,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -702,25 +730,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "B",
-            "logprob": 0.0,
+            "text": "B<|end|><|endoftext|>",
+            "logprob": -0.0007073761080391705,
             "tokens": [
               {
                 "text": "B",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0007073761080391705
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 2.110750132620562e-13
+              "sequence_negative_log_likelihood": 0.0002710479699696104,
+              "max_token_negative_log_likelihood": 0.0007073996821418405,
+              "predictive_entropy": 0.00027087749670802924,
+              "shannon_entropy": 0.002506390058816299
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3796670436859131,
-        "request_datetime": 1755806677
+        "request_time": 0.7196557521820068,
+        "request_datetime": 1755818927
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -777,7 +809,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -789,25 +821,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "D",
-            "logprob": 0.0,
+            "text": "D<|end|><|endoftext|>",
+            "logprob": -5.722029527532868e-06,
             "tokens": [
               {
                 "text": "D",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -5.722029527532868e-06
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 1.461605836361457e-10
+              "sequence_negative_log_likelihood": 1.764335138432216e-05,
+              "max_token_negative_log_likelihood": 4.7207991883624345e-05,
+              "predictive_entropy": 1.764259711004949e-05,
+              "shannon_entropy": 0.00020185007715713596
             }
           }
         ],
         "cached": false,
-        "request_time": 0.2723264694213867,
-        "request_datetime": 1755806677
+        "request_time": 0.4814753532409668,
+        "request_datetime": 1755818928
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -864,7 +900,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -876,25 +912,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "D",
-            "logprob": -4.887569048150908e-06,
+            "text": "D<|end|><|endoftext|>",
+            "logprob": -9.775138096301816e-06,
             "tokens": [
               {
                 "text": "D",
                 "logprob": -4.887569048150908e-06
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -4.887569048150908e-06
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 4.887592695013154e-06,
-              "max_token_negative_log_likelihood": 4.887592695013154e-06,
-              "predictive_entropy": 4.887568593403557e-06,
-              "shannon_entropy": 6.521102477563545e-05
+              "sequence_negative_log_likelihood": 1.2040261935908347e-05,
+              "max_token_negative_log_likelihood": 2.6345600417698734e-05,
+              "predictive_entropy": 1.2040014250184564e-05,
+              "shannon_entropy": 0.00014731663880714527
             }
           }
         ],
         "cached": false,
-        "request_time": 0.39831066131591797,
-        "request_datetime": 1755806677
+        "request_time": 0.4732980728149414,
+        "request_datetime": 1755818928
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -951,7 +991,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -963,25 +1003,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "D",
-            "logprob": 0.0,
+            "text": "D<|end|><|endoftext|>",
+            "logprob": -3.0278701160568744e-05,
             "tokens": [
               {
                 "text": "D",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -3.0278701160568744e-05
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 1.5205408113172503e-11
+              "sequence_negative_log_likelihood": 0.00021336727998762703,
+              "max_token_negative_log_likelihood": 0.0006098222220316529,
+              "predictive_entropy": 0.00021324305028732246,
+              "shannon_entropy": 0.0018836757277066144
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3975028991699219,
-        "request_datetime": 1755806677
+        "request_time": 0.47446155548095703,
+        "request_datetime": 1755818928
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -1038,7 +1082,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -1050,25 +1094,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "B",
-            "logprob": -2.4318398573086597e-05,
+            "text": "B<|end|><|endoftext|>",
+            "logprob": -0.06360253662023752,
             "tokens": [
               {
                 "text": "B",
                 "logprob": -2.4318398573086597e-05
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.06357821822166443
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 2.4318991563632153e-05,
-              "max_token_negative_log_likelihood": 2.4318991563632153e-05,
-              "predictive_entropy": 2.4318400392076e-05,
-              "shannon_entropy": 0.00028259376995265484
+              "sequence_negative_log_likelihood": 0.021215300178179557,
+              "max_token_negative_log_likelihood": 0.06357818841934204,
+              "predictive_entropy": 0.019909843390147824,
+              "shannon_entropy": 0.07998989915358834
             }
           }
         ],
         "cached": false,
-        "request_time": 0.25220608711242676,
-        "request_datetime": 1755806678
+        "request_time": 0.48551392555236816,
+        "request_datetime": 1755818928
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -1125,7 +1173,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -1137,25 +1185,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "D",
-            "logprob": 0.0,
+            "text": "D<|end|><|endoftext|>",
+            "logprob": -8.22540732769994e-06,
             "tokens": [
               {
                 "text": "D",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -8.22540732769994e-06
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 3.5058379810326556e-11
+              "sequence_negative_log_likelihood": 3.099452934899697e-06,
+              "max_token_negative_log_likelihood": 8.225474630307872e-06,
+              "predictive_entropy": 3.099430121740928e-06,
+              "shannon_entropy": 4.298074738080573e-05
             }
           }
         ],
         "cached": false,
-        "request_time": 0.2821769714355469,
-        "request_datetime": 1755806678
+        "request_time": 0.48955655097961426,
+        "request_datetime": 1755818928
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -1212,7 +1264,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -1224,25 +1276,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "B",
-            "logprob": 0.0,
+            "text": "B<|end|><|endoftext|>",
+            "logprob": -0.0014934111386537552,
             "tokens": [
               {
                 "text": "B",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0014934111386537552
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 1.2093973392190982e-11
+              "sequence_negative_log_likelihood": 0.0004983683664553004,
+              "max_token_negative_log_likelihood": 0.001493436167947948,
+              "predictive_entropy": 0.0004976254805342251,
+              "shannon_entropy": 0.004086234479260221
             }
           }
         ],
         "cached": false,
-        "request_time": 0.15555906295776367,
-        "request_datetime": 1755806678
+        "request_time": 0.48288798332214355,
+        "request_datetime": 1755818928
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -1299,7 +1355,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -1311,25 +1367,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": 0.0,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.002224353840574622,
             "tokens": [
               {
                 "text": "A",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.002224353840574622
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 1.6732475127678725e-10
+              "sequence_negative_log_likelihood": 0.0007534520530801577,
+              "max_token_negative_log_likelihood": 0.0022243543062359095,
+              "predictive_entropy": 0.000751804189349059,
+              "shannon_entropy": 0.006042212439441304
             }
           }
         ],
         "cached": false,
-        "request_time": 0.32181310653686523,
-        "request_datetime": 1755806678
+        "request_time": 0.4830620288848877,
+        "request_datetime": 1755818928
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -1386,7 +1446,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -1398,25 +1458,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "D",
-            "logprob": 0.0,
+            "text": "D<|end|><|endoftext|>",
+            "logprob": -8.22540732769994e-06,
             "tokens": [
               {
                 "text": "D",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -8.22540732769994e-06
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 3.5058379810326556e-11
+              "sequence_negative_log_likelihood": 3.099452934899697e-06,
+              "max_token_negative_log_likelihood": 8.225474630307872e-06,
+              "predictive_entropy": 3.099430121740928e-06,
+              "shannon_entropy": 4.298074738080573e-05
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3210632801055908,
-        "request_datetime": 1755806678
+        "request_time": 0.4021475315093994,
+        "request_datetime": 1755818928
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -1473,7 +1537,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -1485,25 +1549,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "D",
-            "logprob": 0.0,
+            "text": "D<|end|><|endoftext|>",
+            "logprob": -0.00019608005823101848,
             "tokens": [
               {
                 "text": "D",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.00019608005823101848
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 2.3203943974592356e-11
+              "sequence_negative_log_likelihood": 0.03279468809584311,
+              "max_token_negative_log_likelihood": 0.09818800538778305,
+              "predictive_entropy": 0.02973377809394151,
+              "shannon_entropy": 0.11172086016738013
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3250694274902344,
-        "request_datetime": 1755806678
+        "request_time": 0.4540061950683594,
+        "request_datetime": 1755818929
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -1560,7 +1628,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -1572,25 +1640,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "D",
-            "logprob": 0.0,
+            "text": "D<|end|><|endoftext|>",
+            "logprob": -1.5735502529423684e-05,
             "tokens": [
               {
                 "text": "D",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -1.5735502529423684e-05
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 1.5445036183336924e-07
+              "sequence_negative_log_likelihood": 2.7498392834483337e-05,
+              "max_token_negative_log_likelihood": 6.675942859146744e-05,
+              "predictive_entropy": 2.7496823652957875e-05,
+              "shannon_entropy": 0.0003075799407478523
             }
           }
         ],
         "cached": false,
-        "request_time": 0.32228899002075195,
-        "request_datetime": 1755806678
+        "request_time": 0.4487307071685791,
+        "request_datetime": 1755818929
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -1647,7 +1719,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -1659,25 +1731,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": 0.0,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.016014287248253822,
             "tokens": [
               {
                 "text": "A",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.016014287248253822
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 1.4829837011176572e-11
+              "sequence_negative_log_likelihood": 0.005355137525233052,
+              "max_token_negative_log_likelihood": 0.01601427048444748,
+              "predictive_entropy": 0.005270331661449745,
+              "shannon_entropy": 0.02866347260724238
             }
           }
         ],
         "cached": false,
-        "request_time": 0.31246423721313477,
-        "request_datetime": 1755806678
+        "request_time": 0.6363973617553711,
+        "request_datetime": 1755818929
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -1734,7 +1810,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -1746,25 +1822,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "B",
-            "logprob": 0.0,
+            "text": "B<|end|><|endoftext|>",
+            "logprob": -0.028028136119246483,
             "tokens": [
               {
                 "text": "B",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.028028136119246483
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 1.791947590312759e-09
+              "sequence_negative_log_likelihood": 0.010235705024873218,
+              "max_token_negative_log_likelihood": 0.02802811563014984,
+              "predictive_entropy": 0.009975093028818568,
+              "shannon_entropy": 0.04847204310325567
             }
           }
         ],
         "cached": false,
-        "request_time": 0.31103014945983887,
-        "request_datetime": 1755806678
+        "request_time": 0.45904016494750977,
+        "request_datetime": 1755818929
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -1821,7 +1901,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -1833,25 +1913,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": 0.0,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.001260320539586246,
             "tokens": [
               {
                 "text": "A",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.001260320539586246
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 4.393915786771174e-10
+              "sequence_negative_log_likelihood": 0.00043667036516126245,
+              "max_token_negative_log_likelihood": 0.0012602995848283172,
+              "predictive_entropy": 0.00043614043412768905,
+              "shannon_entropy": 0.003438247087347357
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3677632808685303,
-        "request_datetime": 1755806678
+        "request_time": 0.4749143123626709,
+        "request_datetime": 1755818929
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -1908,7 +1992,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -1920,25 +2004,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "B",
-            "logprob": 0.0,
+            "text": "B<|end|><|endoftext|>",
+            "logprob": -0.02453417330980301,
             "tokens": [
               {
                 "text": "B",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.02453417330980301
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 3.4700289516798044e-12
+              "sequence_negative_log_likelihood": 0.008186564578863909,
+              "max_token_negative_log_likelihood": 0.024534182623028755,
+              "predictive_entropy": 0.007988363395876755,
+              "shannon_entropy": 0.03913296653500321
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3611745834350586,
-        "request_datetime": 1755806678
+        "request_time": 0.4722864627838135,
+        "request_datetime": 1755818929
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -1995,7 +2083,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -2007,25 +2095,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "B",
-            "logprob": 0.0,
+            "text": "B<|end|><|endoftext|>",
+            "logprob": -0.0008742563077248633,
             "tokens": [
               {
                 "text": "B",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0008742563077248633
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 3.4170169471714473e-10
+              "sequence_negative_log_likelihood": 0.0003682942284892003,
+              "max_token_negative_log_likelihood": 0.000874245713930577,
+              "predictive_entropy": 0.0003680218408893173,
+              "shannon_entropy": 0.0031321646698127814
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3175976276397705,
-        "request_datetime": 1755806678
+        "request_time": 0.47878122329711914,
+        "request_datetime": 1755818929
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -2082,7 +2174,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -2094,25 +2186,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "C",
-            "logprob": -1.1797419786453247,
+            "text": "B<|end|><|endoftext|>",
+            "logprob": -0.3727242895402014,
             "tokens": [
               {
-                "text": "C",
-                "logprob": -1.1797419786453247
+                "text": "B",
+                "logprob": -0.3672420084476471
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.005482281092554331
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 1.1797419786453247,
-              "max_token_negative_log_likelihood": 1.1797419786453247,
-              "predictive_entropy": 0.36260315775871277,
-              "shannon_entropy": 0.616970419883728
+              "sequence_negative_log_likelihood": 0.12425062398930702,
+              "max_token_negative_log_likelihood": 0.3672420382499695,
+              "predictive_entropy": 0.08661570728812269,
+              "shannon_entropy": 0.2178129917398716
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3154323101043701,
-        "request_datetime": 1755806678
+        "request_time": 0.47604870796203613,
+        "request_datetime": 1755818929
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -2169,7 +2265,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -2181,25 +2277,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "C",
-            "logprob": 0.0,
+            "text": "C<|end|><|endoftext|>",
+            "logprob": -0.003842234844341874,
             "tokens": [
               {
                 "text": "C",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.003842234844341874
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 4.8138392827468124e-08
+              "sequence_negative_log_likelihood": 0.0012863016533325815,
+              "max_token_negative_log_likelihood": 0.003842215519398451,
+              "predictive_entropy": 0.0012813901533566725,
+              "shannon_entropy": 0.008827618260427291
             }
           }
         ],
         "cached": false,
-        "request_time": 0.2549777030944824,
-        "request_datetime": 1755806679
+        "request_time": 0.4795513153076172,
+        "request_datetime": 1755818930
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -2256,7 +2356,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -2268,25 +2368,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "D",
-            "logprob": 0.0,
+            "text": "D<|end|><|endoftext|>",
+            "logprob": -1.597391747054644e-05,
             "tokens": [
               {
                 "text": "D",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -1.597391747054644e-05
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 6.526131024475745e-11
+              "sequence_negative_log_likelihood": 4.303673025181828e-05,
+              "max_token_negative_log_likelihood": 0.00011313601862639189,
+              "predictive_entropy": 4.3032379229164995e-05,
+              "shannon_entropy": 0.0004774290694075321
             }
           }
         ],
         "cached": false,
-        "request_time": 0.2524571418762207,
-        "request_datetime": 1755806679
+        "request_time": 0.478503942489624,
+        "request_datetime": 1755818930
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -2343,7 +2447,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -2355,25 +2459,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "B",
-            "logprob": -0.16972702741622925,
+            "text": "B<|end|><|endoftext|>",
+            "logprob": -0.17864453420042992,
             "tokens": [
               {
                 "text": "B",
                 "logprob": -0.16972702741622925
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.008917506784200668
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.16972704231739044,
+              "sequence_negative_log_likelihood": 0.059703393024392426,
               "max_token_negative_log_likelihood": 0.16972704231739044,
-              "predictive_entropy": 0.1432318240404129,
-              "shannon_entropy": 0.43315404653549194
+              "predictive_entropy": 0.05084519169759005,
+              "shannon_entropy": 0.1640922405446569
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3828411102294922,
-        "request_datetime": 1755806679
+        "request_time": 0.4780735969543457,
+        "request_datetime": 1755818930
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -2430,7 +2538,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -2442,25 +2550,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": -0.03364565595984459,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.03379835140367504,
             "tokens": [
               {
                 "text": "A",
                 "logprob": -0.03364565595984459
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.00015269544383045286
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.033645663410425186,
+              "sequence_negative_log_likelihood": 0.011275783481323742,
               "max_token_negative_log_likelihood": 0.033645663410425186,
-              "predictive_entropy": 0.0325324647128582,
-              "shannon_entropy": 0.1453108936548233
+              "predictive_entropy": 0.010904709193710005,
+              "shannon_entropy": 0.04908636008622125
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3772392272949219,
-        "request_datetime": 1755806679
+        "request_time": 0.4769477844238281,
+        "request_datetime": 1755818930
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -2517,7 +2629,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -2529,25 +2641,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "B",
-            "logprob": -1.1920928244535389e-07,
+            "text": "B<|end|><|endoftext|>",
+            "logprob": -0.02901292778550868,
             "tokens": [
               {
                 "text": "B",
                 "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.029012808576226234
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 1.1920930376163597e-07,
-              "max_token_negative_log_likelihood": 1.1920930376163597e-07,
-              "predictive_entropy": 1.1920928955078125e-07,
-              "shannon_entropy": 1.856498215602187e-06
+              "sequence_negative_log_likelihood": 0.009773116064029827,
+              "max_token_negative_log_likelihood": 0.029012814164161682,
+              "predictive_entropy": 0.009496534737991169,
+              "shannon_entropy": 0.0465505017277413
             }
           }
         ],
         "cached": false,
-        "request_time": 0.23371195793151855,
-        "request_datetime": 1755806679
+        "request_time": 0.4857926368713379,
+        "request_datetime": 1755818930
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -2604,7 +2720,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -2616,25 +2732,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "D",
-            "logprob": -4.768370445162873e-07,
+            "text": "D<|end|><|endoftext|>",
+            "logprob": -5.626522749935248e-05,
             "tokens": [
               {
                 "text": "D",
                 "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -5.578839045483619e-05
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 4.768372718899627e-07,
-              "max_token_negative_log_likelihood": 4.768372718899627e-07,
-              "predictive_entropy": 4.768370445162873e-07,
-              "shannon_entropy": 7.18626324669458e-06
+              "sequence_negative_log_likelihood": 0.00024101644040304868,
+              "max_token_negative_log_likelihood": 0.000666780979372561,
+              "predictive_entropy": 0.00024086724439105941,
+              "shannon_entropy": 0.002082684699416859
             }
           }
         ],
         "cached": false,
-        "request_time": 0.38796067237854004,
-        "request_datetime": 1755806679
+        "request_time": 0.4848301410675049,
+        "request_datetime": 1755818930
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -2691,7 +2811,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -2703,25 +2823,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "C",
-            "logprob": 0.0,
+            "text": "C<|end|><|endoftext|>",
+            "logprob": -0.001443773857317865,
             "tokens": [
               {
                 "text": "C",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.001443773857317865
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 2.1788964404446942e-13
+              "sequence_negative_log_likelihood": 0.0004860655129353593,
+              "max_token_negative_log_likelihood": 0.0014437721110880375,
+              "predictive_entropy": 0.000485371103726114,
+              "shannon_entropy": 0.003748778389684222
             }
           }
         ],
         "cached": false,
-        "request_time": 0.156785249710083,
-        "request_datetime": 1755806679
+        "request_time": 0.4858691692352295,
+        "request_datetime": 1755818930
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -2778,7 +2902,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -2790,25 +2914,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "C",
-            "logprob": 0.0,
+            "text": "C<|end|><|endoftext|>",
+            "logprob": -0.056372079998254776,
             "tokens": [
               {
                 "text": "C",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.056372079998254776
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 3.2115036324720236e-11
+              "sequence_negative_log_likelihood": 0.018795420759791643,
+              "max_token_negative_log_likelihood": 0.05637207627296448,
+              "predictive_entropy": 0.017765453672836884,
+              "shannon_entropy": 0.07521693112700657
             }
           }
         ],
         "cached": false,
-        "request_time": 0.39714598655700684,
-        "request_datetime": 1755806679
+        "request_time": 0.48584532737731934,
+        "request_datetime": 1755818930
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -2865,7 +2993,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -2877,25 +3005,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": -0.34848731756210327,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.34983180940616876,
             "tokens": [
               {
                 "text": "A",
                 "logprob": -0.34848731756210327
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0013444918440654874
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.34848731756210327,
+              "sequence_negative_log_likelihood": 0.11678587350373466,
               "max_token_negative_log_likelihood": 0.34848731756210327,
-              "predictive_entropy": 0.24594663083553314,
-              "shannon_entropy": 0.6063427925109863
+              "predictive_entropy": 0.08260495029389858,
+              "shannon_entropy": 0.2072090421182414
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3979353904724121,
-        "request_datetime": 1755806679
+        "request_time": 0.47702980041503906,
+        "request_datetime": 1755818931
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -2952,7 +3084,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -2964,25 +3096,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "C",
-            "logprob": 0.0,
+            "text": "C<|end|><|endoftext|>",
+            "logprob": -0.0008937893435359001,
             "tokens": [
               {
                 "text": "C",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0008937893435359001
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 6.358451543064803e-08
+              "sequence_negative_log_likelihood": 0.0003002822325773498,
+              "max_token_negative_log_likelihood": 0.0008938133250921965,
+              "predictive_entropy": 0.0003000160324215055,
+              "shannon_entropy": 0.0025746928804177096
             }
           }
         ],
         "cached": false,
-        "request_time": 0.24347209930419922,
-        "request_datetime": 1755806679
+        "request_time": 0.4764974117279053,
+        "request_datetime": 1755818931
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -3039,7 +3175,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -3051,25 +3187,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "C",
-            "logprob": 0.0,
+            "text": "C<|end|><|endoftext|>",
+            "logprob": -0.1869896501302719,
             "tokens": [
               {
                 "text": "C",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.1869896501302719
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 5.635586575181151e-08
+              "sequence_negative_log_likelihood": 0.06235789376902782,
+              "max_token_negative_log_likelihood": 0.18698963522911072,
+              "predictive_entropy": 0.05172767620630717,
+              "shannon_entropy": 0.15637593295709232
             }
           }
         ],
         "cached": false,
-        "request_time": 0.39697718620300293,
-        "request_datetime": 1755806679
+        "request_time": 0.477764368057251,
+        "request_datetime": 1755818931
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -3126,7 +3266,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -3138,25 +3278,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "C",
-            "logprob": 0.0,
+            "text": "C<|end|><|endoftext|>",
+            "logprob": -0.0008700875914655626,
             "tokens": [
               {
                 "text": "C",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0008700875914655626
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 4.951718288875862e-13
+              "sequence_negative_log_likelihood": 0.0009710857217820982,
+              "max_token_negative_log_likelihood": 0.0020431873854249716,
+              "predictive_entropy": 0.0009694433344217638,
+              "shannon_entropy": 0.00803947712621704
             }
           }
         ],
         "cached": false,
-        "request_time": 0.15656685829162598,
-        "request_datetime": 1755806680
+        "request_time": 0.4750657081604004,
+        "request_datetime": 1755818931
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -3213,7 +3357,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -3225,25 +3369,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "C",
-            "logprob": 0.0,
+            "text": "C<|end|><|endoftext|>",
+            "logprob": -0.0012173393042758107,
             "tokens": [
               {
                 "text": "C",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0012173393042758107
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 2.3028684536553767e-13
+              "sequence_negative_log_likelihood": 0.00041710208824952133,
+              "max_token_negative_log_likelihood": 0.001217331038787961,
+              "predictive_entropy": 0.0004166080252616666,
+              "shannon_entropy": 0.003711109010889899
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3120265007019043,
-        "request_datetime": 1755806680
+        "request_time": 0.4783339500427246,
+        "request_datetime": 1755818931
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -3300,7 +3448,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -3312,25 +3460,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "D",
-            "logprob": -0.008152540773153305,
+            "text": "D<|end|><|endoftext|>",
+            "logprob": -0.00821595810703002,
             "tokens": [
               {
                 "text": "D",
                 "logprob": -0.008152540773153305
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -6.341733387671411e-05
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.008152546361088753,
+              "sequence_negative_log_likelihood": 0.0027559019605784365,
               "max_token_negative_log_likelihood": 0.008152546361088753,
-              "predictive_entropy": 0.008086352609097958,
-              "shannon_entropy": 0.04751276597380638
+              "predictive_entropy": 0.0027338351428625174,
+              "shannon_entropy": 0.01625900960061699
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3116414546966553,
-        "request_datetime": 1755806680
+        "request_time": 0.47585010528564453,
+        "request_datetime": 1755818931
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -3387,7 +3539,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -3399,25 +3551,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "C",
-            "logprob": 0.0,
+            "text": "C<|end|><|endoftext|>",
+            "logprob": -0.0030202509369701147,
             "tokens": [
               {
                 "text": "C",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0030202509369701147
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 5.037850345224193e-12
+              "sequence_negative_log_likelihood": 0.001009651860537512,
+              "max_token_negative_log_likelihood": 0.0030202532652765512,
+              "predictive_entropy": 0.0010066158013917932,
+              "shannon_entropy": 0.007181715750611807
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3710188865661621,
-        "request_datetime": 1755806680
+        "request_time": 0.479337215423584,
+        "request_datetime": 1755818931
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -3474,7 +3630,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -3486,25 +3642,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "D",
-            "logprob": -3.2186455882765586e-06,
+            "text": "D<|end|><|endoftext|>",
+            "logprob": -0.00030858622108098643,
             "tokens": [
               {
                 "text": "D",
                 "logprob": -3.2186455882765586e-06
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0003053675754927099
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 3.218656047465629e-06,
-              "max_token_negative_log_likelihood": 3.218656047465629e-06,
-              "predictive_entropy": 3.2186455882765586e-06,
-              "shannon_entropy": 4.390790854813531e-05
+              "sequence_negative_log_likelihood": 0.0008705505381385592,
+              "max_token_negative_log_likelihood": 0.0023030913434922695,
+              "predictive_entropy": 0.0008687534410303973,
+              "shannon_entropy": 0.0064119473900063895
             }
           }
         ],
         "cached": false,
-        "request_time": 0.36814069747924805,
-        "request_datetime": 1755806680
+        "request_time": 0.4761776924133301,
+        "request_datetime": 1755818931
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -3561,7 +3721,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -3573,25 +3733,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "D",
-            "logprob": 0.0,
+            "text": "D<|end|><|endoftext|>",
+            "logprob": -0.00040725519647821784,
             "tokens": [
               {
                 "text": "D",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.00040725519647821784
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 1.0483015566720155e-09
+              "sequence_negative_log_likelihood": 0.00014166819588960303,
+              "max_token_negative_log_likelihood": 0.0004072422452736646,
+              "predictive_entropy": 0.0001416128228205101,
+              "shannon_entropy": 0.0012931896588936527
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3110685348510742,
-        "request_datetime": 1755806680
+        "request_time": 0.48851633071899414,
+        "request_datetime": 1755818932
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -3648,7 +3812,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -3660,25 +3824,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": 0.0,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.0002992897352669388,
             "tokens": [
               {
                 "text": "A",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0002992897352669388
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 9.791818911253358e-08
+              "sequence_negative_log_likelihood": 0.00015526977464711914,
+              "max_token_negative_log_likelihood": 0.0002992600784637034,
+              "predictive_entropy": 0.00015523067850153893,
+              "shannon_entropy": 0.0015269631640535408
             }
           }
         ],
         "cached": false,
-        "request_time": 0.309948205947876,
-        "request_datetime": 1755806680
+        "request_time": 0.4874413013458252,
+        "request_datetime": 1755818932
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -3735,7 +3903,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -3747,25 +3915,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": 0.0,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.0016483780927956104,
             "tokens": [
               {
                 "text": "A",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0016483780927956104
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 2.4627715231734237e-12
+              "sequence_negative_log_likelihood": 0.000569240427770031,
+              "max_token_negative_log_likelihood": 0.0016483532963320613,
+              "predictive_entropy": 0.0005683343176012082,
+              "shannon_entropy": 0.0049887067103275345
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3424856662750244,
-        "request_datetime": 1755806680
+        "request_time": 0.48772668838500977,
+        "request_datetime": 1755818932
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -3822,7 +3994,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -3834,25 +4006,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "D",
-            "logprob": 0.0,
+            "text": "D<|end|><|endoftext|>",
+            "logprob": -0.0023180777207016945,
             "tokens": [
               {
                 "text": "D",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0023180777207016945
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 1.2148894390495713e-10
+              "sequence_negative_log_likelihood": 0.0009784746022584538,
+              "max_token_negative_log_likelihood": 0.002318086801096797,
+              "predictive_entropy": 0.0009765585418790579,
+              "shannon_entropy": 0.007867660569166069
             }
           }
         ],
         "cached": false,
-        "request_time": 0.33792662620544434,
-        "request_datetime": 1755806680
+        "request_time": 0.48457884788513184,
+        "request_datetime": 1755818932
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -3909,7 +4085,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -3921,25 +4097,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": -5.722029527532868e-06,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.0029204287402535556,
             "tokens": [
               {
                 "text": "A",
                 "logprob": -5.722029527532868e-06
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0029147067107260227
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 5.722062269342132e-06,
-              "max_token_negative_log_likelihood": 5.722062269342132e-06,
-              "predictive_entropy": 5.722029527532868e-06,
-              "shannon_entropy": 7.540632213931531e-05
+              "sequence_negative_log_likelihood": 0.0011173239866669367,
+              "max_token_negative_log_likelihood": 0.0029146787710487843,
+              "predictive_entropy": 0.0011144342564269512,
+              "shannon_entropy": 0.008238281176697152
             }
           }
         ],
         "cached": false,
-        "request_time": 0.2446460723876953,
-        "request_datetime": 1755806680
+        "request_time": 0.487595796585083,
+        "request_datetime": 1755818932
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -3996,7 +4176,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -4008,25 +4188,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": 0.0,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.011508152820169926,
             "tokens": [
               {
                 "text": "A",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.011508152820169926
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 4.221820670835541e-09
+              "sequence_negative_log_likelihood": 0.003902476067499568,
+              "max_token_negative_log_likelihood": 0.011508150026202202,
+              "predictive_entropy": 0.0038585699076065794,
+              "shannon_entropy": 0.023022977684359198
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3989238739013672,
-        "request_datetime": 1755806680
+        "request_time": 0.4847736358642578,
+        "request_datetime": 1755818932
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -4083,7 +4267,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -4095,25 +4279,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": 0.0,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.0026764783542603254,
             "tokens": [
               {
                 "text": "A",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0026764783542603254
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 2.7364027710419236e-10
+              "sequence_negative_log_likelihood": 0.0010220669306969892,
+              "max_token_negative_log_likelihood": 0.002676489297300577,
+              "predictive_entropy": 0.001019631667683522,
+              "shannon_entropy": 0.007992812601172369
             }
           }
         ],
         "cached": false,
-        "request_time": 0.15609407424926758,
-        "request_datetime": 1755806680
+        "request_time": 0.4886958599090576,
+        "request_datetime": 1755818932
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -4170,7 +4358,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -4182,25 +4370,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "C",
-            "logprob": 0.0,
+            "text": "C<|end|><|endoftext|>",
+            "logprob": -4.362964682513848e-05,
             "tokens": [
               {
                 "text": "C",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -4.362964682513848e-05
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 6.551896092332754e-08
+              "sequence_negative_log_likelihood": 2.0862003414852854e-05,
+              "max_token_negative_log_likelihood": 4.3631553126033396e-05,
+              "predictive_entropy": 2.0861249140580185e-05,
+              "shannon_entropy": 0.0002485504588728797
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3220391273498535,
-        "request_datetime": 1755806680
+        "request_time": 0.4857020378112793,
+        "request_datetime": 1755818932
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -4257,7 +4449,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -4269,25 +4461,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "D",
-            "logprob": 0.0,
+            "text": "D<|end|><|endoftext|>",
+            "logprob": -5.98412734689191e-05,
             "tokens": [
               {
                 "text": "D",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -5.98412734689191e-05
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 9.88937598478401e-10
+              "sequence_negative_log_likelihood": 0.0002751140612720822,
+              "max_token_negative_log_likelihood": 0.0007654973305761814,
+              "predictive_entropy": 0.0002749176201177761,
+              "shannon_entropy": 0.0023388432841324747
             }
           }
         ],
         "cached": false,
-        "request_time": 0.32147216796875,
-        "request_datetime": 1755806680
+        "request_time": 0.4866459369659424,
+        "request_datetime": 1755818933
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -4344,7 +4540,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -4356,25 +4552,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": -0.005928550846874714,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.016722305677831173,
             "tokens": [
               {
                 "text": "A",
                 "logprob": -0.005928550846874714
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.010793754830956459
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.005928531754761934,
-              "max_token_negative_log_likelihood": 0.005928531754761934,
-              "predictive_entropy": 0.00589348841458559,
-              "shannon_entropy": 0.036222755908966064
+              "sequence_negative_log_likelihood": 0.005604448713711463,
+              "max_token_negative_log_likelihood": 0.010793734341859818,
+              "predictive_entropy": 0.005554138852554995,
+              "shannon_entropy": 0.03285481569279606
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3340749740600586,
-        "request_datetime": 1755806681
+        "request_time": 0.4889092445373535,
+        "request_datetime": 1755818933
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -4431,7 +4631,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -4443,25 +4643,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": 0.0,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -8.237022848334163e-05,
             "tokens": [
               {
                 "text": "A",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -8.237022848334163e-05
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 1.3785021337753278e-06
+              "sequence_negative_log_likelihood": 0.00015090321054837355,
+              "max_token_negative_log_likelihood": 0.00037033262196928263,
+              "predictive_entropy": 0.00015085524501046166,
+              "shannon_entropy": 0.0014076970689605635
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3322429656982422,
-        "request_datetime": 1755806681
+        "request_time": 0.49729275703430176,
+        "request_datetime": 1755818933
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -4518,7 +4722,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -4530,25 +4734,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": 0.0,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.0507294200360775,
             "tokens": [
               {
                 "text": "A",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0507294200360775
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 3.535412851363162e-09
+              "sequence_negative_log_likelihood": 0.016913222787479754,
+              "max_token_negative_log_likelihood": 0.0507294163107872,
+              "predictive_entropy": 0.016076793255706434,
+              "shannon_entropy": 0.06698208133918875
             }
           }
         ],
         "cached": false,
-        "request_time": 0.32303333282470703,
-        "request_datetime": 1755806681
+        "request_time": 0.4942660331726074,
+        "request_datetime": 1755818933
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -4605,7 +4813,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -4617,25 +4825,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "B",
-            "logprob": 0.0,
+            "text": "B<|end|><|endoftext|>",
+            "logprob": -0.008210595697164536,
             "tokens": [
               {
                 "text": "B",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.008210595697164536
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 6.5180838157430365e-12
+              "sequence_negative_log_likelihood": 0.0027486677815128737,
+              "max_token_negative_log_likelihood": 0.008210597559809685,
+              "predictive_entropy": 0.0027262879921181593,
+              "shannon_entropy": 0.01617420059458003
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3207840919494629,
-        "request_datetime": 1755806681
+        "request_time": 0.49651074409484863,
+        "request_datetime": 1755818933
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -4692,7 +4904,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -4704,25 +4916,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "B",
-            "logprob": 0.0,
+            "text": "B<|end|><|endoftext|>",
+            "logprob": -0.001335205975919962,
             "tokens": [
               {
                 "text": "B",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.001335205975919962
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 3.0911276142908672e-12
+              "sequence_negative_log_likelihood": 0.0004504710329153265,
+              "max_token_negative_log_likelihood": 0.001335200504399836,
+              "predictive_entropy": 0.0004498770716357588,
+              "shannon_entropy": 0.003785091555194331
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3229339122772217,
-        "request_datetime": 1755806681
+        "request_time": 0.49357175827026367,
+        "request_datetime": 1755818933
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -4779,7 +4995,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -4791,25 +5007,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "B",
-            "logprob": 0.0,
+            "text": "B<|end|><|endoftext|>",
+            "logprob": -0.24997076392173767,
             "tokens": [
               {
                 "text": "B",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.24997076392173767
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 1.3861913839008366e-09
+              "sequence_negative_log_likelihood": 0.08343940005094434,
+              "max_token_negative_log_likelihood": 0.24997076392173767,
+              "predictive_entropy": 0.0650101450640553,
+              "shannon_entropy": 0.18537782908367975
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3207883834838867,
-        "request_datetime": 1755806681
+        "request_time": 0.4980769157409668,
+        "request_datetime": 1755818933
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -4866,7 +5086,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -4878,25 +5098,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "B",
-            "logprob": -2.3841855067985307e-07,
+            "text": "B<|end|><|endoftext|>",
+            "logprob": -0.0003000048454566695,
             "tokens": [
               {
                 "text": "B",
                 "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.00029976642690598965
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 2.3841860752327193e-07,
-              "max_token_negative_log_likelihood": 2.3841860752327193e-07,
-              "predictive_entropy": 2.3841855067985307e-07,
-              "shannon_entropy": 3.104539473497425e-06
+              "sequence_negative_log_likelihood": 0.00014251251802951023,
+              "max_token_negative_log_likelihood": 0.0002997370611410588,
+              "predictive_entropy": 0.00014247715685655749,
+              "shannon_entropy": 0.001436408290601321
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3328390121459961,
-        "request_datetime": 1755806681
+        "request_time": 0.49544668197631836,
+        "request_datetime": 1755818933
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -4953,7 +5177,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -4965,25 +5189,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "D",
-            "logprob": 0.0,
+            "text": "D<|end|><|endoftext|>",
+            "logprob": -9.298280929215252e-06,
             "tokens": [
               {
                 "text": "D",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -9.298280929215252e-06
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 6.928520691201756e-12
+              "sequence_negative_log_likelihood": 4.847863541120508e-06,
+              "max_token_negative_log_likelihood": 9.298368240706623e-06,
+              "predictive_entropy": 4.847825493925484e-06,
+              "shannon_entropy": 6.56600700852593e-05
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3264460563659668,
-        "request_datetime": 1755806681
+        "request_time": 0.4880337715148926,
+        "request_datetime": 1755818934
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -5040,7 +5268,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -5052,25 +5280,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "C",
-            "logprob": 0.0,
+            "text": "C<|end|><|endoftext|>",
+            "logprob": -0.00044526674901135266,
             "tokens": [
               {
                 "text": "C",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.00044526674901135266
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 1.555072477038566e-12
+              "sequence_negative_log_likelihood": 0.0001742186796036549,
+              "max_token_negative_log_likelihood": 0.0004452862194739282,
+              "predictive_entropy": 0.0001741506081695358,
+              "shannon_entropy": 0.0017135615349342878
             }
           }
         ],
         "cached": false,
-        "request_time": 0.33374929428100586,
-        "request_datetime": 1755806681
+        "request_time": 0.4875149726867676,
+        "request_datetime": 1755818934
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -5127,7 +5359,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -5139,25 +5371,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "B",
-            "logprob": 0.0,
+            "text": "B<|end|><|endoftext|>",
+            "logprob": -0.016262730583548546,
             "tokens": [
               {
                 "text": "B",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.016262730583548546
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 9.527653901386657e-07
+              "sequence_negative_log_likelihood": 0.005472100233115877,
+              "max_token_negative_log_likelihood": 0.01626274734735489,
+              "predictive_entropy": 0.005384646152378991,
+              "shannon_entropy": 0.0303329214683572
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3317527770996094,
-        "request_datetime": 1755806681
+        "request_time": 0.4777340888977051,
+        "request_datetime": 1755818934
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -5214,7 +5450,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -5226,25 +5462,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "B",
-            "logprob": 0.0,
+            "text": "B<|end|><|endoftext|>",
+            "logprob": -0.0007566926069557667,
             "tokens": [
               {
                 "text": "B",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0007566926069557667
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 2.514706325118521e-12
+              "sequence_negative_log_likelihood": 0.0002535740910995325,
+              "max_token_negative_log_likelihood": 0.0007566691492684186,
+              "predictive_entropy": 0.00025338330033264356,
+              "shannon_entropy": 0.0022204949972744084
             }
           }
         ],
         "cached": false,
-        "request_time": 0.32364630699157715,
-        "request_datetime": 1755806681
+        "request_time": 0.47708821296691895,
+        "request_datetime": 1755818934
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -5301,7 +5541,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -5313,25 +5553,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": 0.0,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.0031747438479214907,
             "tokens": [
               {
                 "text": "A",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0031747438479214907
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 4.912798501344184e-10
+              "sequence_negative_log_likelihood": 0.001064250144433269,
+              "max_token_negative_log_likelihood": 0.003174749668687582,
+              "predictive_entropy": 0.0010608957230336575,
+              "shannon_entropy": 0.007742327496140178
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3191707134246826,
-        "request_datetime": 1755806681
+        "request_time": 0.4870901107788086,
+        "request_datetime": 1755818934
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -5388,7 +5632,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -5400,25 +5644,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "B",
-            "logprob": -0.00035386974923312664,
+            "text": "B<|end|><|endoftext|>",
+            "logprob": -0.14042216236703098,
             "tokens": [
               {
                 "text": "B",
                 "logprob": -0.00035386974923312664
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.14006829261779785
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0003538757737260312,
-              "max_token_negative_log_likelihood": 0.0003538757737260312,
-              "predictive_entropy": 0.0003537505690474063,
-              "shannon_entropy": 0.003394408617168665
+              "sequence_negative_log_likelihood": 0.046816007413629755,
+              "max_token_negative_log_likelihood": 0.14006827771663666,
+              "predictive_entropy": 0.040713604670600034,
+              "shannon_entropy": 0.13326898632415882
             }
           }
         ],
         "cached": false,
-        "request_time": 0.32172465324401855,
-        "request_datetime": 1755806682
+        "request_time": 0.4865105152130127,
+        "request_datetime": 1755818934
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -5475,7 +5723,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -5487,25 +5735,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": -5.960462772236497e-07,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.00021705668751792473,
             "tokens": [
               {
                 "text": "A",
                 "logprob": -5.960462772236497e-07
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.00021646064124070108
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 5.960466182841628e-07,
-              "max_token_negative_log_likelihood": 5.960466182841628e-07,
-              "predictive_entropy": 5.960462772236497e-07,
-              "shannon_entropy": 8.801464900898281e-06
+              "sequence_negative_log_likelihood": 9.464086184607368e-05,
+              "max_token_negative_log_likelihood": 0.00021644789376296103,
+              "predictive_entropy": 9.462375595603589e-05,
+              "shannon_entropy": 0.0010232307640762883
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3196425437927246,
-        "request_datetime": 1755806682
+        "request_time": 0.4886353015899658,
+        "request_datetime": 1755818934
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -5562,7 +5814,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -5574,25 +5826,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": 0.0,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.034879960119724274,
             "tokens": [
               {
                 "text": "A",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.034879960119724274
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 1.4677657134143374e-07
+              "sequence_negative_log_likelihood": 0.011657300262110462,
+              "max_token_negative_log_likelihood": 0.03487998619675636,
+              "predictive_entropy": 0.011258750989024216,
+              "shannon_entropy": 0.050550417675836457
             }
           }
         ],
         "cached": false,
-        "request_time": 0.39951419830322266,
-        "request_datetime": 1755806682
+        "request_time": 0.48761749267578125,
+        "request_datetime": 1755818934
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -5649,7 +5905,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -5661,25 +5917,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "B",
-            "logprob": -0.11116237938404083,
+            "text": "B<|end|><|endoftext|>",
+            "logprob": -0.2864688038825989,
             "tokens": [
               {
                 "text": "B",
                 "logprob": -0.11116237938404083
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.17530642449855804
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.11116236448287964,
-              "max_token_negative_log_likelihood": 0.11116236448287964,
-              "predictive_entropy": 0.09946735203266144,
-              "shannon_entropy": 0.39631301164627075
+              "sequence_negative_log_likelihood": 0.09559467104069579,
+              "max_token_negative_log_likelihood": 0.17530640959739685,
+              "predictive_entropy": 0.08229986660686943,
+              "shannon_entropy": 0.2815879702102393
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3977839946746826,
-        "request_datetime": 1755806682
+        "request_time": 0.4831686019897461,
+        "request_datetime": 1755818934
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -5736,7 +5996,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -5748,25 +6008,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "B",
-            "logprob": 0.0,
+            "text": "B<|end|><|endoftext|>",
+            "logprob": -0.030818358063697815,
             "tokens": [
               {
                 "text": "B",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.030818358063697815
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 8.477616941782173e-10
+              "sequence_negative_log_likelihood": 0.010282398029933878,
+              "max_token_negative_log_likelihood": 0.03081834502518177,
+              "predictive_entropy": 0.009970636278618864,
+              "shannon_entropy": 0.052665164501414695
             }
           }
         ],
         "cached": false,
-        "request_time": 0.2347569465637207,
-        "request_datetime": 1755806682
+        "request_time": 0.47675013542175293,
+        "request_datetime": 1755818934
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -5823,7 +6087,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -5835,25 +6099,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "D",
-            "logprob": -4.768258077092469e-05,
+            "text": "D<|end|><|endoftext|>",
+            "logprob": -0.0008256972942035645,
             "tokens": [
               {
                 "text": "D",
                 "logprob": -4.768258077092469e-05
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0007780147134326398
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 4.768485450767912e-05,
-              "max_token_negative_log_likelihood": 4.768485450767912e-05,
-              "predictive_entropy": 4.768258077092469e-05,
-              "shannon_entropy": 0.0005310280248522758
+              "sequence_negative_log_likelihood": 0.0003185517962265294,
+              "max_token_negative_log_likelihood": 0.0007780239684507251,
+              "predictive_entropy": 0.0003183437220286578,
+              "shannon_entropy": 0.0029137651047979793
             }
           }
         ],
         "cached": false,
-        "request_time": 0.4403095245361328,
-        "request_datetime": 1755806682
+        "request_time": 0.4789719581604004,
+        "request_datetime": 1755818935
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -5910,7 +6178,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -5922,25 +6190,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": 0.0,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.0024177387822419405,
             "tokens": [
               {
                 "text": "A",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0024177387822419405
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 4.088990923634128e-09
+              "sequence_negative_log_likelihood": 0.0008210542485661184,
+              "max_token_negative_log_likelihood": 0.0024177429731935263,
+              "predictive_entropy": 0.0008191074072480357,
+              "shannon_entropy": 0.006082173150660027
             }
           }
         ],
         "cached": false,
-        "request_time": 0.20891785621643066,
-        "request_datetime": 1755806682
+        "request_time": 0.476315975189209,
+        "request_datetime": 1755818935
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -5997,7 +6269,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -6009,25 +6281,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "C",
-            "logprob": 0.0,
+            "text": "C<|end|><|endoftext|>",
+            "logprob": -0.008119314908981323,
             "tokens": [
               {
                 "text": "C",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.008119314908981323
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 1.6324222247392217e-13
+              "sequence_negative_log_likelihood": 0.0027174060487595852,
+              "max_token_negative_log_likelihood": 0.008119315840303898,
+              "predictive_entropy": 0.0026955202277652766,
+              "shannon_entropy": 0.015859060979037012
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3456127643585205,
-        "request_datetime": 1755806682
+        "request_time": 0.48240208625793457,
+        "request_datetime": 1755818935
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -6084,7 +6360,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -6096,25 +6372,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "C",
-            "logprob": 0.0,
+            "text": "C<|end|><|endoftext|>",
+            "logprob": -0.00047910655848681927,
             "tokens": [
               {
                 "text": "C",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.00047910655848681927
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 6.307514867397515e-14
+              "sequence_negative_log_likelihood": 0.00016136816157086287,
+              "max_token_negative_log_likelihood": 0.00047909768181852996,
+              "predictive_entropy": 0.00016129165866611098,
+              "shannon_entropy": 0.0015403583165817666
             }
           }
         ],
         "cached": false,
-        "request_time": 0.4571547508239746,
-        "request_datetime": 1755806682
+        "request_time": 0.4736332893371582,
+        "request_datetime": 1755818935
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -6171,7 +6451,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -6183,25 +6463,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": -0.0019286142196506262,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.002025407477049157,
             "tokens": [
               {
                 "text": "A",
                 "logprob": -0.0019286142196506262
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -9.679325739853084e-05
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0019286383176222444,
+              "sequence_negative_log_likelihood": 0.0007134948415720525,
               "max_token_negative_log_likelihood": 0.0019286383176222444,
-              "predictive_entropy": 0.0019249222241342068,
-              "shannon_entropy": 0.013970721513032913
+              "predictive_entropy": 0.0007122486082759375,
+              "shannon_entropy": 0.005387585299710433
             }
           }
         ],
         "cached": false,
-        "request_time": 0.25277233123779297,
-        "request_datetime": 1755806682
+        "request_time": 0.47705674171447754,
+        "request_datetime": 1755818935
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -6258,7 +6542,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -6270,25 +6554,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "D",
-            "logprob": -0.6325991153717041,
+            "text": "C<|end|><|endoftext|>",
+            "logprob": -0.7993693388998508,
             "tokens": [
               {
-                "text": "D",
-                "logprob": -0.6325991153717041
+                "text": "C",
+                "logprob": -0.7575991153717041
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.041770223528146744
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.6325990557670593,
-              "max_token_negative_log_likelihood": 0.6325990557670593,
-              "predictive_entropy": 0.33604252338409424,
-              "shannon_entropy": 0.6911994814872742
+              "sequence_negative_log_likelihood": 0.26648244114767294,
+              "max_token_negative_log_likelihood": 0.7575991153717041,
+              "predictive_entropy": 0.13176491134557486,
+              "shannon_entropy": 0.287796986871399
             }
           }
         ],
         "cached": false,
-        "request_time": 0.32018256187438965,
-        "request_datetime": 1755806682
+        "request_time": 0.47451138496398926,
+        "request_datetime": 1755818935
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -6345,7 +6633,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -6357,25 +6645,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "C",
-            "logprob": -2.45280385017395,
+            "text": "C<|end|><|endoftext|>",
+            "logprob": -2.4531329328601714,
             "tokens": [
               {
                 "text": "C",
                 "logprob": -2.45280385017395
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.00032908268622122705
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 2.45280385017395,
+              "sequence_negative_log_likelihood": 0.8177490833962414,
               "max_token_negative_log_likelihood": 2.45280385017395,
-              "predictive_entropy": 0.21106860041618347,
-              "shannon_entropy": 0.6036288738250732
+              "predictive_entropy": 0.07050395969902941,
+              "shannon_entropy": 0.20261252718046308
             }
           }
         ],
         "cached": false,
-        "request_time": 0.31598782539367676,
-        "request_datetime": 1755806682
+        "request_time": 0.4764273166656494,
+        "request_datetime": 1755818935
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -6432,7 +6724,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -6444,25 +6736,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": 0.0,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.0048345099203288555,
             "tokens": [
               {
                 "text": "A",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0048345099203288555
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 5.598206787027493e-09
+              "sequence_negative_log_likelihood": 0.0027676133904606104,
+              "max_token_negative_log_likelihood": 0.00483451783657074,
+              "predictive_entropy": 0.002755838523929318,
+              "shannon_entropy": 0.018486944961991398
             }
           }
         ],
         "cached": false,
-        "request_time": 0.31981682777404785,
-        "request_datetime": 1755806683
+        "request_time": 0.4705832004547119,
+        "request_datetime": 1755818935
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -6519,7 +6815,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -6531,25 +6827,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "B",
-            "logprob": -0.009262802079319954,
+            "text": "B<|end|><|endoftext|>",
+            "logprob": -0.009382004267536104,
             "tokens": [
               {
                 "text": "B",
                 "logprob": -0.009262802079319954
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.00011920218821614981
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.009262831881642342,
+              "sequence_negative_log_likelihood": 0.003139191092486726,
               "max_token_negative_log_likelihood": 0.009262831881642342,
-              "predictive_entropy": 0.009177427738904953,
-              "shannon_entropy": 0.05291670560836792
+              "predictive_entropy": 0.0031107178874663077,
+              "shannon_entropy": 0.01820379076525569
             }
           }
         ],
         "cached": false,
-        "request_time": 0.31592559814453125,
-        "request_datetime": 1755806683
+        "request_time": 0.48809146881103516,
+        "request_datetime": 1755818936
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -6606,7 +6906,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -6618,25 +6918,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "D",
-            "logprob": 0.0,
+            "text": "D<|end|><|endoftext|>",
+            "logprob": -6.007967749610543e-05,
             "tokens": [
               {
                 "text": "D",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -6.007967749610543e-05
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 3.40960940037327e-11
+              "sequence_negative_log_likelihood": 4.387047374621034e-05,
+              "max_token_negative_log_likelihood": 7.152813486754894e-05,
+              "predictive_entropy": 4.3867565788483866e-05,
+              "shannon_entropy": 0.0004916985555273798
             }
           }
         ],
         "cached": false,
-        "request_time": 0.24927997589111328,
-        "request_datetime": 1755806683
+        "request_time": 0.4855468273162842,
+        "request_datetime": 1755818936
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -6693,7 +6997,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -6705,25 +7009,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "C",
-            "logprob": 0.0,
+            "text": "C<|end|><|endoftext|>",
+            "logprob": -0.0030920335557311773,
             "tokens": [
               {
                 "text": "C",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0030920335557311773
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 7.188393214008215e-10
+              "sequence_negative_log_likelihood": 0.0010389909408938063,
+              "max_token_negative_log_likelihood": 0.0030920577701181173,
+              "predictive_entropy": 0.0010358087153387412,
+              "shannon_entropy": 0.007600055781456283
             }
           }
         ],
         "cached": false,
-        "request_time": 0.2608606815338135,
-        "request_datetime": 1755806683
+        "request_time": 0.48911118507385254,
+        "request_datetime": 1755818936
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -6780,7 +7088,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -6792,25 +7100,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "D",
-            "logprob": -0.004620233550667763,
+            "text": "D<|end|><|endoftext|>",
+            "logprob": -0.004783417753060348,
             "tokens": [
               {
                 "text": "D",
                 "logprob": -0.004620233550667763
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.00016318420239258558
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.004620241932570934,
+              "sequence_negative_log_likelihood": 0.001600405035787844,
               "max_token_negative_log_likelihood": 0.004620241932570934,
-              "predictive_entropy": 0.0045989444479346275,
-              "shannon_entropy": 0.029396718367934227
+              "predictive_entropy": 0.0015932968926790636,
+              "shannon_entropy": 0.010419175533267358
             }
           }
         ],
         "cached": false,
-        "request_time": 0.27733922004699707,
-        "request_datetime": 1755806683
+        "request_time": 0.4858722686767578,
+        "request_datetime": 1755818936
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -6867,7 +7179,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -6879,25 +7191,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": 0.0,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.007751503959298134,
             "tokens": [
               {
                 "text": "A",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.007751503959298134
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 2.524723832775244e-11
+              "sequence_negative_log_likelihood": 0.002605215090928444,
+              "max_token_negative_log_likelihood": 0.007751508615911007,
+              "predictive_entropy": 0.002585262462768393,
+              "shannon_entropy": 0.016454439075387087
             }
           }
         ],
         "cached": false,
-        "request_time": 0.39788365364074707,
-        "request_datetime": 1755806683
+        "request_time": 0.47803282737731934,
+        "request_datetime": 1755818936
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -6954,7 +7270,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -6966,25 +7282,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": -0.004983148071914911,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.020111076068133116,
             "tokens": [
               {
                 "text": "A",
                 "logprob": -0.004983148071914911
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.015127927996218204
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.004983124323189259,
-              "max_token_negative_log_likelihood": 0.004983124323189259,
-              "predictive_entropy": 0.004958354402333498,
-              "shannon_entropy": 0.03167400881648064
+              "sequence_negative_log_likelihood": 0.006753946717556876,
+              "max_token_negative_log_likelihood": 0.015127904713153839,
+              "predictive_entropy": 0.006669972179224715,
+              "shannon_entropy": 0.03793360746931285
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3985743522644043,
-        "request_datetime": 1755806683
+        "request_time": 0.47537803649902344,
+        "request_datetime": 1755818936
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -7041,7 +7361,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -7053,25 +7373,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "B",
-            "logprob": 0.0,
+            "text": "B<|end|><|endoftext|>",
+            "logprob": -0.0007350126979872584,
             "tokens": [
               {
                 "text": "B",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0007350126979872584
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 4.644077622462106e-10
+              "sequence_negative_log_likelihood": 0.00025136340263998136,
+              "max_token_negative_log_likelihood": 0.0007350165396928787,
+              "predictive_entropy": 0.0002511832644813694,
+              "shannon_entropy": 0.00220413473004911
             }
           }
         ],
         "cached": false,
-        "request_time": 0.2554287910461426,
-        "request_datetime": 1755806683
+        "request_time": 0.4771273136138916,
+        "request_datetime": 1755818936
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -7128,7 +7452,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -7140,25 +7464,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "B",
-            "logprob": 0.0,
+            "text": "B<|end|><|endoftext|>",
+            "logprob": -0.0006379238329827785,
             "tokens": [
               {
                 "text": "B",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0006379238329827785
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 1.1794211440818714e-10
+              "sequence_negative_log_likelihood": 0.0002697439825472732,
+              "max_token_negative_log_likelihood": 0.0006379135302267969,
+              "predictive_entropy": 0.0002695985943622266,
+              "shannon_entropy": 0.0023755197573575443
             }
           }
         ],
         "cached": false,
-        "request_time": 0.20291709899902344,
-        "request_datetime": 1755806683
+        "request_time": 0.47615504264831543,
+        "request_datetime": 1755818936
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -7215,7 +7543,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -7227,25 +7555,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "D",
-            "logprob": 0.0,
+            "text": "D<|end|><|endoftext|>",
+            "logprob": -4.2437604861333966e-05,
             "tokens": [
               {
                 "text": "D",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -4.2437604861333966e-05
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 6.262393381639697e-12
+              "sequence_negative_log_likelihood": 1.4424624888912755e-05,
+              "max_token_negative_log_likelihood": 4.2439409298822284e-05,
+              "predictive_entropy": 1.4424024395035909e-05,
+              "shannon_entropy": 0.00017023564332265909
             }
           }
         ],
         "cached": false,
-        "request_time": 0.323178768157959,
-        "request_datetime": 1755806683
+        "request_time": 0.4882774353027344,
+        "request_datetime": 1755818937
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -7302,7 +7634,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -7314,25 +7646,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "D",
-            "logprob": 0.0,
+            "text": "D<|end|><|endoftext|>",
+            "logprob": -0.00010346830822527409,
             "tokens": [
               {
                 "text": "D",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.00010346830822527409
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 1.0492545721163538e-10
+              "sequence_negative_log_likelihood": 4.240064966628173e-05,
+              "max_token_negative_log_likelihood": 0.00010347901843488216,
+              "predictive_entropy": 4.23968922405038e-05,
+              "shannon_entropy": 0.00045871644014270724
             }
           }
         ],
         "cached": false,
-        "request_time": 0.322221040725708,
-        "request_datetime": 1755806683
+        "request_time": 0.4884030818939209,
+        "request_datetime": 1755818937
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -7389,7 +7725,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -7401,25 +7737,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": 0.0,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.00024577934527769685,
             "tokens": [
               {
                 "text": "A",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.00024577934527769685
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 5.1445212534417806e-09
+              "sequence_negative_log_likelihood": 0.00012289749671860287,
+              "max_token_negative_log_likelihood": 0.00024578016018494964,
+              "predictive_entropy": 0.00012287233160653463,
+              "shannon_entropy": 0.0012539207310998297
             }
           }
         ],
         "cached": false,
-        "request_time": 0.32191944122314453,
-        "request_datetime": 1755806683
+        "request_time": 0.4874913692474365,
+        "request_datetime": 1755818937
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -7476,7 +7816,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -7488,25 +7828,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "C",
-            "logprob": -8.487341256113723e-05,
+            "text": "C<|end|><|endoftext|>",
+            "logprob": -0.07805122074933024,
             "tokens": [
               {
                 "text": "C",
                 "logprob": -8.487341256113723e-05
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0779663473367691
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 8.488061575917527e-05,
-              "max_token_negative_log_likelihood": 8.488061575917527e-05,
-              "predictive_entropy": 8.487341256113723e-05,
-              "shannon_entropy": 0.0008799756760708988
+              "sequence_negative_log_likelihood": 0.02607838003071568,
+              "max_token_negative_log_likelihood": 0.0779663622379303,
+              "predictive_entropy": 0.02412909082340775,
+              "shannon_entropy": 0.09223654685774818
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3233659267425537,
-        "request_datetime": 1755806683
+        "request_time": 0.4843606948852539,
+        "request_datetime": 1755818937
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -7563,7 +7907,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -7575,25 +7919,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "B",
-            "logprob": 0.0,
+            "text": "B<|end|><|endoftext|>",
+            "logprob": -0.05548549443483353,
             "tokens": [
               {
                 "text": "B",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.05548549443483353
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 4.0309658388970604e-11
+              "sequence_negative_log_likelihood": 0.018542023564805277,
+              "max_token_negative_log_likelihood": 0.05548551306128502,
+              "predictive_entropy": 0.017543753419886343,
+              "shannon_entropy": 0.07524875921454348
             }
           }
         ],
         "cached": false,
-        "request_time": 0.31153249740600586,
-        "request_datetime": 1755806684
+        "request_time": 0.47663044929504395,
+        "request_datetime": 1755818937
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -7650,7 +7998,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -7662,25 +8010,45 @@
         "embedding": [],
         "completions": [
           {
-            "text": "B",
-            "logprob": -0.825939416885376,
+            "text": "B. the president.<|end|><|endoftext|>",
+            "logprob": -3.6464417402557956,
             "tokens": [
               {
                 "text": "B",
                 "logprob": -0.825939416885376
+              },
+              {
+                "text": ".",
+                "logprob": -2.801990270614624
+              },
+              {
+                "text": "the",
+                "logprob": -0.017113279551267624
+              },
+              {
+                "text": "president",
+                "logprob": -6.198863957251888e-06
+              },
+              {
+                "text": ".",
+                "logprob": -0.0005530973430722952
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0008394769974984229
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.825939416885376,
-              "max_token_negative_log_likelihood": 0.825939416885376,
-              "predictive_entropy": 0.36161568760871887,
-              "shannon_entropy": 0.6853952407836914
+              "sequence_negative_log_likelihood": 0.5210306238759586,
+              "max_token_negative_log_likelihood": 2.801990032196045,
+              "predictive_entropy": 0.0786655770220932,
+              "shannon_entropy": 0.15896517011008524
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3108091354370117,
-        "request_datetime": 1755806684
+        "request_time": 1.0298535823822021,
+        "request_datetime": 1755818937
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -7737,7 +8105,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -7749,25 +8117,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": 0.0,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -5.9602869441732764e-05,
             "tokens": [
               {
                 "text": "A",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -5.9602869441732764e-05
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 8.842314033752352e-12
+              "sequence_negative_log_likelihood": 0.0001794090106462439,
+              "max_token_negative_log_likelihood": 0.0004786206118296832,
+              "predictive_entropy": 0.00017933148653052436,
+              "shannon_entropy": 0.0016285908088691417
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3105597496032715,
-        "request_datetime": 1755806684
+        "request_time": 0.411865234375,
+        "request_datetime": 1755818937
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -7824,7 +8196,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -7836,25 +8208,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "D",
-            "logprob": -0.06444457918405533,
+            "text": "D<|end|><|endoftext|>",
+            "logprob": -0.06454029965971131,
             "tokens": [
               {
                 "text": "D",
                 "logprob": -0.06444457918405533
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -9.572047565598041e-05
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.06444455683231354,
+              "sequence_negative_log_likelihood": 0.02151509775952339,
               "max_token_negative_log_likelihood": 0.06444455683231354,
-              "predictive_entropy": 0.06042245030403137,
-              "shannon_entropy": 0.24396313726902008
+              "predictive_entropy": 0.02017439252161542,
+              "shannon_entropy": 0.08169367313287997
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3895556926727295,
-        "request_datetime": 1755806684
+        "request_time": 0.4137868881225586,
+        "request_datetime": 1755818937
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -7911,7 +8287,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -7923,25 +8299,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": -7.712543447269127e-05,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.002317298720299732,
             "tokens": [
               {
                 "text": "A",
                 "logprob": -7.712543447269127e-05
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0022401732858270407
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 7.713138620601967e-05,
-              "max_token_negative_log_likelihood": 7.713138620601967e-05,
-              "predictive_entropy": 7.712543447269127e-05,
-              "shannon_entropy": 0.0008175365510396659
+              "sequence_negative_log_likelihood": 0.0007797900919589059,
+              "max_token_negative_log_likelihood": 0.0022401849273592234,
+              "predictive_entropy": 0.0007781169982384503,
+              "shannon_entropy": 0.006065613842414071
             }
           }
         ],
         "cached": false,
-        "request_time": 0.15929484367370605,
-        "request_datetime": 1755806684
+        "request_time": 0.4102003574371338,
+        "request_datetime": 1755818938
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -7998,7 +8378,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -8010,25 +8390,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "D",
-            "logprob": 0.0,
+            "text": "D<|end|><|endoftext|>",
+            "logprob": -0.00010179955279454589,
             "tokens": [
               {
                 "text": "D",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.00010179955279454589
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 8.11057124239234e-12
+              "sequence_negative_log_likelihood": 3.405584722789475e-05,
+              "max_token_negative_log_likelihood": 0.00010180991375818849,
+              "predictive_entropy": 3.40523911006585e-05,
+              "shannon_entropy": 0.0003626789076763293
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3125643730163574,
-        "request_datetime": 1755806684
+        "request_time": 0.4583108425140381,
+        "request_datetime": 1755818938
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -8085,7 +8469,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -8097,25 +8481,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "D",
-            "logprob": -1.1444026313256472e-05,
+            "text": "D<|end|><|endoftext|>",
+            "logprob": -0.0006431728761526756,
             "tokens": [
               {
                 "text": "D",
                 "logprob": -1.1444026313256472e-05
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0006317288498394191
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 1.1444157280493528e-05,
-              "max_token_negative_log_likelihood": 1.1444157280493528e-05,
-              "predictive_entropy": 1.1444026313256472e-05,
-              "shannon_entropy": 0.00014201195153873414
+              "sequence_negative_log_likelihood": 0.00024263874850779152,
+              "max_token_negative_log_likelihood": 0.0006317106890492141,
+              "predictive_entropy": 0.0002425033259593571,
+              "shannon_entropy": 0.0021462064808777845
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3128848075866699,
-        "request_datetime": 1755806684
+        "request_time": 0.45308494567871094,
+        "request_datetime": 1755818938
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -8172,7 +8560,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -8184,25 +8572,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "C",
-            "logprob": 0.0,
+            "text": "C<|end|><|endoftext|>",
+            "logprob": -0.006969309411942959,
             "tokens": [
               {
                 "text": "C",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.006969309411942959
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 3.3724678865504343e-12
+              "sequence_negative_log_likelihood": 0.002347698721375006,
+              "max_token_negative_log_likelihood": 0.0069693028926849365,
+              "predictive_entropy": 0.002331562830174031,
+              "shannon_entropy": 0.01580549307124725
             }
           }
         ],
         "cached": false,
-        "request_time": 0.32293272018432617,
-        "request_datetime": 1755806684
+        "request_time": 0.4693312644958496,
+        "request_datetime": 1755818938
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -8259,7 +8651,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -8271,25 +8663,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": 0.0,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.1913611888885498,
             "tokens": [
               {
                 "text": "A",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.1913611888885498
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 3.958496108680265e-07
+              "sequence_negative_log_likelihood": 0.06384137715698064,
+              "max_token_negative_log_likelihood": 0.19136115908622742,
+              "predictive_entropy": 0.05273185227997601,
+              "shannon_entropy": 0.15724255883143692
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3178112506866455,
-        "request_datetime": 1755806684
+        "request_time": 0.45228147506713867,
+        "request_datetime": 1755818938
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -8346,7 +8742,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -8358,25 +8754,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "D",
-            "logprob": 0.0,
+            "text": "D<|end|><|endoftext|>",
+            "logprob": -4.768360213347478e-06,
             "tokens": [
               {
                 "text": "D",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -4.768360213347478e-06
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 1.1546291700526012e-11
+              "sequence_negative_log_likelihood": 8.503671324433526e-06,
+              "max_token_negative_log_likelihood": 2.0742631022585556e-05,
+              "predictive_entropy": 8.50352004514813e-06,
+              "shannon_entropy": 0.00010563962274781624
             }
           }
         ],
         "cached": false,
-        "request_time": 0.33403730392456055,
-        "request_datetime": 1755806684
+        "request_time": 0.4670429229736328,
+        "request_datetime": 1755818938
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -8433,7 +8833,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -8445,25 +8845,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "A",
-            "logprob": 0.0,
+            "text": "A<|end|><|endoftext|>",
+            "logprob": -0.010384456254541874,
             "tokens": [
               {
                 "text": "A",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.010384456254541874
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 1.970566210207636e-10
+              "sequence_negative_log_likelihood": 0.003473132742025579,
+              "max_token_negative_log_likelihood": 0.010384469293057919,
+              "predictive_entropy": 0.00343737265332796,
+              "shannon_entropy": 0.019893209069373686
             }
           }
         ],
         "cached": false,
-        "request_time": 0.3309028148651123,
-        "request_datetime": 1755806684
+        "request_time": 0.46649909019470215,
+        "request_datetime": 1755818938
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -8520,7 +8924,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -8532,25 +8936,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "C",
-            "logprob": 0.0,
+            "text": "C<|end|><|endoftext|>",
+            "logprob": -0.0028165215626358986,
             "tokens": [
               {
                 "text": "C",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0028165215626358986
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 4.593107578304556e-13
+              "sequence_negative_log_likelihood": 0.000940193424867175,
+              "max_token_negative_log_likelihood": 0.0028165271505713463,
+              "predictive_entropy": 0.0009375528870805283,
+              "shannon_entropy": 0.006719601651185869
             }
           }
         ],
         "cached": false,
-        "request_time": 0.4056112766265869,
-        "request_datetime": 1755806684
+        "request_time": 0.37618398666381836,
+        "request_datetime": 1755818938
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -8607,7 +9015,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -8619,25 +9027,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "C",
-            "logprob": -2.288792165927589e-05,
+            "text": "C<|end|><|endoftext|>",
+            "logprob": -0.001113058504415676,
             "tokens": [
               {
                 "text": "C",
                 "logprob": -2.288792165927589e-05
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0010901705827564
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 2.288844552822411e-05,
-              "max_token_negative_log_likelihood": 2.288844552822411e-05,
-              "predictive_entropy": 2.288792165927589e-05,
-              "shannon_entropy": 0.0002668994420673698
+              "sequence_negative_log_likelihood": 0.0003949804013245739,
+              "max_token_negative_log_likelihood": 0.0010901669738814235,
+              "predictive_entropy": 0.0003945825762154224,
+              "shannon_entropy": 0.00337037249119021
             }
           }
         ],
         "cached": false,
-        "request_time": 0.40440845489501953,
-        "request_datetime": 1755806684
+        "request_time": 0.28873705863952637,
+        "request_datetime": 1755818939
       },
       "num_train_instances": 5,
       "prompt_truncated": false,
@@ -8694,7 +9106,7 @@
         "temperature": 0.0,
         "num_completions": 1,
         "top_k_per_token": 5,
-        "max_tokens": 1,
+        "max_tokens": 301,
         "stop_sequences": [],
         "echo_prompt": false,
         "top_p": 1,
@@ -8706,25 +9118,29 @@
         "embedding": [],
         "completions": [
           {
-            "text": "B",
-            "logprob": 0.0,
+            "text": "B<|end|><|endoftext|>",
+            "logprob": -0.004015835467725992,
             "tokens": [
               {
                 "text": "B",
                 "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.004015835467725992
               }
             ],
             "metrics": {
-              "sequence_negative_log_likelihood": 0.0,
-              "max_token_negative_log_likelihood": 0,
-              "predictive_entropy": 0.0,
-              "shannon_entropy": 7.015936226081876e-13
+              "sequence_negative_log_likelihood": 0.0014022868417669088,
+              "max_token_negative_log_likelihood": 0.004015809390693903,
+              "predictive_entropy": 0.0013969099478951346,
+              "shannon_entropy": 0.009438601477926389
             }
           }
         ],
         "cached": false,
-        "request_time": 0.2419419288635254,
-        "request_datetime": 1755806685
+        "request_time": 0.17159795761108398,
+        "request_datetime": 1755818939
       },
       "num_train_instances": 5,
       "prompt_truncated": false,

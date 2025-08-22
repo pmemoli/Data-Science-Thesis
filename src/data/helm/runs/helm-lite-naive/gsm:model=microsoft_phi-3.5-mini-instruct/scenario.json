@@ -1,9 +1,0 @@
-{
-  "name": "gsm",
-  "description": "Grade school math dataset with 8.5K examples (GSM8K).",
-  "tags": [
-    "reasoning",
-    "math"
-  ],
-  "definition_path": "https://github.com/stanford-crfm/helm/blob/main/src/helm/benchmark/scenarios/gsm_scenario.py"
-}

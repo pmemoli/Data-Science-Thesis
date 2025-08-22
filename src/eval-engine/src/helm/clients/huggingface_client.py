@@ -136,6 +136,7 @@ class HuggingFaceServer:
         sequences: torch.Tensor,
         scores: tuple[torch.Tensor],
         pad_token_id: int,
+        eos_token_id: int,
     ) -> list[dict[str, float]]:
         """
         Computes the normalized negative log likelihood (predictive entropy) and average shannon entropy
@@ -185,7 +186,13 @@ class HuggingFaceServer:
 
                 sequence_length += 1
 
-                if selected_token == pad_token_id:
+                if (
+                    selected_token == pad_token_id
+                    or selected_token == eos_token_id
+                ):
+                    print(
+                        f"Stopped at position {gen_token_idx} with token {selected_token}"
+                    )
                     break
 
             sequence_nll /= sequence_length
@@ -212,6 +219,7 @@ class HuggingFaceServer:
             ).to(0 if self.device is None else self.device)
 
             pad_token_id = tokenizer.pad_token_id
+            eos_token_id = tokenizer.eos_token_id
 
         stopping_criteria: Optional[StoppingCriteriaList] = None
         optional_args = {}
@@ -226,9 +234,7 @@ class HuggingFaceServer:
                 len(stop_sequence_ids.input_ids) == 1
                 and len(stop_sequence_ids.input_ids[0]) == 1
             ):
-                optional_args["eos_token_id"] = stop_sequence_ids.input_ids[0][
-                    0
-                ]
+                optional_args["eos_token_id"] = eos_token_id
             else:
                 stopping_criteria = StoppingCriteriaList()
                 for stop_sequence_input_ids in stop_sequence_ids.input_ids:
@@ -238,7 +244,9 @@ class HuggingFaceServer:
                         )
                     )
 
-        # Check if we need to compute the perplexity of the prompt (#1497)
+        optional_args["pad_token_id"] = pad_token_id
+        optional_args["eos_token_id"] = eos_token_id
+
         compute_logprobs_only = (
             raw_request["max_new_tokens"] == 0
             and raw_request["num_return_sequences"] == 1
@@ -276,7 +284,7 @@ class HuggingFaceServer:
         metric_input = encoded_input["input_ids"]
 
         output_metrics = self.compute_metrics(
-            metric_input, metric_sequences, metric_scores, pad_token_id  # type: ignore
+            metric_input, metric_sequences, metric_scores, pad_token_id, eos_token_id  # type: ignore
         )
 
         print(output_metrics)
@@ -308,8 +316,16 @@ class HuggingFaceServer:
                 )
                 # Get log probability of chosen token.
                 j = i + len(encoded_input.input_ids[0])
+
+                selected_token = sequences[completion_id][j]
+                if (
+                    selected_token == pad_token_id
+                    or selected_token == eos_token_id
+                ):
+                    continue
+
                 generated_tokens_logprobs.append(
-                    logprobs[sequences[completion_id][j]].item()
+                    logprobs[selected_token].item()
                 )
 
             all_generated_tokens_logprobs.append(generated_tokens_logprobs)
@@ -323,7 +339,12 @@ class HuggingFaceServer:
 
         with self.wrapped_tokenizer as tokenizer:
             all_tokens = [
-                [tokenizer.decode(token) for token in sequence_tokens]
+                [
+                    tokenizer.decode(token)
+                    for token in sequence_tokens
+                    if token != tokenizer.pad_token_id
+                    and token != tokenizer.eos_token_id
+                ]
                 for sequence_tokens in sequences
             ]
             all_decoded_text = tokenizer.batch_decode(sequences)

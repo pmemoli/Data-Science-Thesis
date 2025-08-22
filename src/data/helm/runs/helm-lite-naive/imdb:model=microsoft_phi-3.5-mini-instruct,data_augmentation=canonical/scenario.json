@@ -1,8 +1,0 @@
-{
-  "name": "imdb",
-  "description": "Sentiment analysis dataset.",
-  "tags": [
-    "sentiment_classification"
-  ],
-  "definition_path": "https://github.com/stanford-crfm/helm/blob/main/src/helm/benchmark/scenarios/imdb_scenario.py"
-}
