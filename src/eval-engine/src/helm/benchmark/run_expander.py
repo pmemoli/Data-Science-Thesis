@@ -1095,7 +1095,6 @@ class DataAugmentationRunExpander(RunExpander):
     is given by a name (see the keys to `PERTURBATION_SPECS_DICT` above).
 
     **Example:**
-
         data_augmentation=all
 
     Note that some names map to a single data augmentation with multiple
@@ -1475,61 +1474,70 @@ class OutputFormatInstructions(RunExpander):
     def expand(self, run_spec: RunSpec) -> List[RunSpec]:
         if run_spec.adapter_spec.method == ADAPT_MULTIPLE_CHOICE_JOINT:
             if self.scenario == "mmlu_only_last_question":
-                instructions = "Answer only the last question with only a single letter."
+                instructions = "First, briefly explain your reasoning step by step, then answer only the last question with only a single letter."
             elif self.scenario == "mmlu":
-                instructions = "Answer with only a single letter."
+                instructions = (
+                    "First, briefly explain your reasoning step by step, then answer with only a single letter."
+                )
             elif self.scenario == "mcqa":
-                instructions = "Answer with only a single letter."
+                instructions = (
+                    "First, briefly explain your reasoning step by step, then answer with only a single letter."
+                )
             elif self.scenario == "mcqa_no_period":
-                instructions = "Answer with only a single letter. Do not include a period in your answer."
+                instructions = "First, briefly explain your reasoning step by step, then answer with only a single letter. Do not include a period in your answer."
             elif self.scenario == "mcqa_only_last_question":
-                instructions = "Answer only the last question with only a single letter."
+                instructions = "First, briefly explain your reasoning step by step, then answer only the last question with only a single letter."
             else:
-                instructions = "Answer with only a single letter."
+                instructions = (
+                    "First, briefly explain your reasoning step by step, then answer with only a single letter."
+                )
         elif run_spec.adapter_spec.method == ADAPT_GENERATION:
             output_noun = run_spec.adapter_spec.output_prefix.split(":")[0]
             if self.scenario == "narrative_qa":
                 instructions = (
-                    "Answer with one word, a few-word phrase, or a short sentence. "
+                    "First, briefly explain your reasoning step by step, then answer with one word, a few-word phrase, or a short sentence. "
                     + "Avoid extra, unnecessary information in the answer."
                 )
             elif self.scenario == "natural_qa":
-                instructions = "Answer with a short answer or a boolean 'yes' or 'no' answer."
+                instructions = "First, briefly explain your reasoning step by step, then answer with a short answer or a boolean 'yes' or 'no' answer."
             elif self.scenario == "natural_qa_short_answer":
-                instructions = "Answer with a short answer."
+                instructions = "First, briefly explain your reasoning step by step, then answer with a short answer."
             elif self.scenario == "legalbench":
                 if output_noun != "Answer":
-                    instructions = f"Answer with the {output_noun.lower()}."
+                    instructions = f"First, briefly explain your reasoning step by step, then answer with the {output_noun.lower()}."
                 else:
-                    instructions = "Answer yes or no."
+                    instructions = "First, briefly explain your reasoning step by step, then answer yes or no."
             elif self.scenario == "legalbench_abercrombie":
-                instructions = "Answer with only 'generic', 'descriptive', 'suggestive', 'arbitrary' or 'fanciful'."
+                instructions = "First, briefly explain your reasoning step by step, then answer with only 'generic', 'descriptive', 'suggestive', 'arbitrary' or 'fanciful'."
             elif self.scenario == "legalbench_function_of_decision_section":
-                instructions = "Answer with only 'Facts', 'Procedural History', 'Issue', 'Rule', 'Analysis', 'Conclusion' or 'Decree'."  # noqa: E501
+                instructions = "First, briefly explain your reasoning step by step, then answer with only 'Facts', 'Procedural History', 'Issue', 'Rule', 'Analysis', 'Conclusion' or 'Decree'."  # noqa: E501
             elif self.scenario == "legalbench_yes_or_no":
-                instructions = "Answer with only 'Yes' or 'No'."
-            elif self.scenario == "wmt_14":
-                instructions = "Answer with the English translation."
-            elif self.scenario == "wmt_14_only_last_sentence":
-                instructions = "Answer with only the English translation for the last sentence."
-            elif self.scenario == "math":
-                instructions = "Wrap the final answer with the \\boxed{} command."
-            elif self.scenario == "numeric_nlg":
-                instructions = "Answer with only description of the last table as a single paragraph on a single line."
-            elif self.scenario == "tab_fact":
                 instructions = (
-                    "Answer with only the classification of the last statement, either 'refuted' or 'entailed'."
+                    "First, briefly explain your reasoning step by step, then answer with only 'Yes' or 'No'."
                 )
+            elif self.scenario == "wmt_14":
+                instructions = (
+                    "First, briefly explain your reasoning step by step, then answer with the English translation."
+                )
+            elif self.scenario == "wmt_14_only_last_sentence":
+                instructions = "First, briefly explain your reasoning step by step, then answer with only the English translation for the last sentence."
+            elif self.scenario == "math":
+                instructions = "First, briefly explain your reasoning step by step, then wrap the final answer with the \\boxed{} command."
+            elif self.scenario == "numeric_nlg":
+                instructions = "First, briefly explain your reasoning step by step, then answer with only description of the last table as a single paragraph on a single line."
+            elif self.scenario == "tab_fact":
+                instructions = "First, briefly explain your reasoning step by step, then answer with only the classification of the last statement, either 'refuted' or 'entailed'."
             elif self.scenario == "wikitq":
                 instructions = (
-                    "Answer only the last question with a short answer. "
+                    "First, briefly explain your reasoning step by step, then answer only the last question with a short answer. "
                     "Avoid extra, unnecessary information in the answer."
                 )
             else:
                 raise ValueError(f"Unknown scenario {self.scenario}")
+
         elif run_spec.adapter_spec.method == ADAPT_MULTIPLE_CHOICE_JOINT_CHAIN_OF_THOUGHT:
             if self.scenario == "mmlu_pro" or self.scenario == "gpqa":
-                instructions = 'In your response, replace "insert answer here" with the single uppercase letter corresponding to your answer.'  # noqa: E501
+                instructions = 'In your response, replace "insert answer here" with the single uppercase letter corresponding to your answer.'
             else:
                 raise ValueError(f"Unknown scenario {self.scenario}")
 

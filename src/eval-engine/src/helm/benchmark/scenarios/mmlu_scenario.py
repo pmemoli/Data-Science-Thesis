@@ -121,6 +121,7 @@ class MMLUScenario(Scenario):
             if not os.path.exists(csv_path):
                 hlog(f"{csv_path} doesn't exist, skipping")
                 continue
+
             instances.extend(self.process_csv(csv_path, splits[split]))
 
         return instances

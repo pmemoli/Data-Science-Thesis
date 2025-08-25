@@ -68,4 +68,6 @@ class Prompt:
     @property
     def num_train_instances(self) -> int:
         # Number of training instances in the prompt
-        return len(self.train_instance_blocks)
+        return 0
+
+        # return len(self.train_instance_blocks)

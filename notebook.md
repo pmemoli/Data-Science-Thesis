@@ -709,3 +709,61 @@ helm-run --run-entries natural_qa:mode=openbook_longans,model=microsoft/phi-3.5-
  --output-path src/data/helm/ \
  --num-threads 1 \
  --max-eval-instances 100
+
+## August 22th 2025:
+
+I was able to get a table with the metrics, but without either AUROC or some benchmark/accuracy metric. 
+
+TODO:
+
+- Write a script using gemini flash that produces an actual benchmark for each task.
+- Compute the AUROC for each metric, grouped by scenario, domain and globally.
+- Make all benchmarks COT where possible so that they can be compared.
+
+# August 23th 2025:
+
+Wrote the thesis plan and found where to make the benchmarks COT. I'm also removing the translation task since its. I may also add a bunch of other interesting datasets.
+
+TODO:
+
+1. Make all benchmarks COT where possible
+2. Compute the benchmarks and AUROC for each metric
+3. Present the results for the naive metrics
+
+After that I can start thinking about ASEU and domain clustering, possibly even using other "expensive" metrics just to fill the table with different options! Looks promising.
+The COT can be added in the run_expander.py file.
+
+## August 25th 2025:
+
+So, to make the benchmarks comparable, i'm using the COT 0-shot version. That can be done by setting max_train_instances to zero.
+
+I successfully made the evaluations COT with zero shot! All that's left is running the benchmarks and having an llm evaluate the results.
+
+Made a custom config!
+
+helm-run --conf-paths src/eval-engine/src/helm/benchmark/presentation/run_entries_custom.conf \
+ --models-to-run microsoft/phi-3.5-mini-instruct \
+ --suite helm-lite-custom \
+ --output-path src/data/helm/ \
+ --max-eval-instances 150
+
+Also wrote the necessary code to compute the benchmarks using gemini 2.5 flash. All that is left is running it and computing the AUROC for each metric. Everything is already set up to play with other metrics and instruct models.
+
+I also debated with myself about the merits of creating an eval-engine from scratch. It may be a good idea to do it eventually, but right now its too much work when i can work with helm...
+
+But on the other hand it will get messy when I include black box metrics. But i'm getting ahead of myself
+
+Idea:
+
+- 1. By default: COT 0-shot with open generation
+- 2. Custom prompt by domain
+- 3. Enable multiple evaluation strategies (necessary for black box)
+- 4. Implement all relevant metrics
+    - shannon, predictive, nll, max nll
+    - internal cosine sim (internal & external), semantic entropy, bertscore
+
+Will take me 2 weeks probably but it can be really worth it! Better talk it with my director after showcasing the results first.
+
+I can also add a bunch more datasets by making it custom! Possibly most of the phi 3.5 ones on top of helm.
+
+I have debugged everything. At night i'm running the evaluations and tomorrow i'm analysing the results. Not doing anything on wensday, gotta study.

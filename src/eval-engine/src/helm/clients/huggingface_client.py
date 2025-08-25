@@ -34,13 +34,9 @@ class StopAtSpecificTokenCriteria(StoppingCriteria):
         super().__init__()
         self.stop_sequence = stop_sequence
 
-    def __call__(
-        self, input_ids: torch.LongTensor, scores: torch.FloatTensor, **kwargs
-    ) -> bool:
+    def __call__(self, input_ids: torch.LongTensor, scores: torch.FloatTensor, **kwargs) -> bool:
         # Create a tensor from the stop_sequence
-        stop_sequence_tensor = torch.tensor(
-            self.stop_sequence, device=input_ids.device, dtype=input_ids.dtype
-        )
+        stop_sequence_tensor = torch.tensor(self.stop_sequence, device=input_ids.device, dtype=input_ids.dtype)
 
         # Check if the current sequence ends with the stop_sequence
         current_sequence = input_ids[:, -len(self.stop_sequence) :]
@@ -73,35 +69,23 @@ class HuggingFaceServer:
         self.device: Optional[str]
         if "device_map" in kwargs:
             if "device" in kwargs:
-                raise ValueError(
-                    "At most one of one of `device` and `device_map` may be specified."
-                )
+                raise ValueError("At most one of one of `device` and `device_map` may be specified.")
             try:
                 import accelerate  # noqa: F401
             except ModuleNotFoundError as e:
                 handle_module_not_found_error(e, ["accelerate"])
-            hlog(
-                f'Hugging Face device_map set to "{kwargs["device_map"]}" from kwargs.'
-            )
+            hlog(f'Hugging Face device_map set to "{kwargs["device_map"]}" from kwargs.')
             self.device = None
         elif "device" in kwargs:
             if "device_map" in kwargs:
-                raise ValueError(
-                    "At most one of one of `device` and `device_map` may be specified."
-                )
-            hlog(
-                f'Hugging Face device set to "{kwargs["device"]}" from kwargs.'
-            )
+                raise ValueError("At most one of one of `device` and `device_map` may be specified.")
+            hlog(f'Hugging Face device set to "{kwargs["device"]}" from kwargs.')
             self.device = kwargs.pop("device")
         elif torch.cuda.is_available():
-            hlog(
-                'Hugging Face device set to "cuda:0" because CUDA is available.'
-            )
+            hlog('Hugging Face device set to "cuda:0" because CUDA is available.')
             self.device = "cuda:0"
         else:
-            hlog(
-                'Hugging Face device set to "cpu" because CUDA is unavailable.'
-            )
+            hlog('Hugging Face device set to "cpu" because CUDA is unavailable.')
             self.device = "cpu"
 
         # Security issue: currently we trust remote code by default.
@@ -110,9 +94,7 @@ class HuggingFaceServer:
         if "trust_remote_code" not in kwargs:
             kwargs["trust_remote_code"] = False
 
-        with htrack_block(
-            f"Loading Hugging Face model {pretrained_model_name_or_path}"
-        ):
+        with htrack_block(f"Loading Hugging Face model {pretrained_model_name_or_path}"):
             # WARNING this may fail if your GPU does not have enough memory
             if self.device is None:
                 # kwargs contains device_map=auto
@@ -157,10 +139,10 @@ class HuggingFaceServer:
             sequence_length = 0
             for gen_token_idx in range(len(scores)):
                 token_logits = scores[gen_token_idx][batch_idx]
+                selected_token = sequences[batch_idx, prompt_length + gen_token_idx]
 
-                selected_token = sequences[
-                    batch_idx, prompt_length + gen_token_idx
-                ]
+                if selected_token == pad_token_id or selected_token == eos_token_id:
+                    break
 
                 token_probs = F.softmax(token_logits, dim=-1)
                 token_logprobs = torch.log(token_probs + eps)
@@ -174,26 +156,12 @@ class HuggingFaceServer:
                 sequence_nll += token_nll
 
                 # Predictive entropy
-                predictive_entropy += (
-                    -token_probs[selected_token]
-                    * token_logprobs[selected_token]
-                ).item()
+                predictive_entropy += (-token_probs[selected_token] * token_logprobs[selected_token]).item()
 
                 # Shannon entropy
-                shannon_entropy += torch.sum(
-                    -token_probs * token_logprobs
-                ).item()
+                shannon_entropy += torch.sum(-token_probs * token_logprobs).item()
 
                 sequence_length += 1
-
-                if (
-                    selected_token == pad_token_id
-                    or selected_token == eos_token_id
-                ):
-                    print(
-                        f"Stopped at position {gen_token_idx} with token {selected_token}"
-                    )
-                    break
 
             sequence_nll /= sequence_length
             predictive_entropy /= sequence_length
@@ -230,19 +198,12 @@ class HuggingFaceServer:
                     return_token_type_ids=False,
                     add_special_tokens=False,
                 )
-            if (
-                len(stop_sequence_ids.input_ids) == 1
-                and len(stop_sequence_ids.input_ids[0]) == 1
-            ):
+            if len(stop_sequence_ids.input_ids) == 1 and len(stop_sequence_ids.input_ids[0]) == 1:
                 optional_args["eos_token_id"] = eos_token_id
             else:
                 stopping_criteria = StoppingCriteriaList()
                 for stop_sequence_input_ids in stop_sequence_ids.input_ids:
-                    stopping_criteria.append(
-                        StopAtSpecificTokenCriteria(
-                            stop_sequence=stop_sequence_input_ids
-                        )
-                    )
+                    stopping_criteria.append(StopAtSpecificTokenCriteria(stop_sequence=stop_sequence_input_ids))
 
         optional_args["pad_token_id"] = pad_token_id
         optional_args["eos_token_id"] = eos_token_id
@@ -297,53 +258,36 @@ class HuggingFaceServer:
             # Compute logprobs of prompt tokens.
             for completion_id in range(raw_request["num_return_sequences"]):
                 for i in range(len(sequences[completion_id]) - 1):
-                    logprobs = torch.nn.functional.log_softmax(
-                        scores[completion_id][i], dim=0
-                    )
-                    prompt_tokens_logprobs.append(
-                        logprobs[sequences[completion_id][i + 1]].item()
-                    )
+                    logprobs = torch.nn.functional.log_softmax(scores[completion_id][i], dim=0)
+                    prompt_tokens_logprobs.append(logprobs[sequences[completion_id][i + 1]].item())
 
         # Compute logprobs of generated tokens for each completed sequence.
         all_generated_tokens_logprobs = []
         for completion_id in range(raw_request["num_return_sequences"]):
             generated_tokens_logprobs = []
-            for i in range(
-                len(sequences[completion_id]) - len(encoded_input.input_ids[0])
-            ):
-                logprobs = torch.nn.functional.log_softmax(
-                    scores[i][completion_id], dim=0
-                )
+            for i in range(len(sequences[completion_id]) - len(encoded_input.input_ids[0])):
+                logprobs = torch.nn.functional.log_softmax(scores[i][completion_id], dim=0)
                 # Get log probability of chosen token.
                 j = i + len(encoded_input.input_ids[0])
 
                 selected_token = sequences[completion_id][j]
-                if (
-                    selected_token == pad_token_id
-                    or selected_token == eos_token_id
-                ):
+                if selected_token == pad_token_id or selected_token == eos_token_id:
                     continue
 
-                generated_tokens_logprobs.append(
-                    logprobs[selected_token].item()
-                )
+                generated_tokens_logprobs.append(logprobs[selected_token].item())
 
             all_generated_tokens_logprobs.append(generated_tokens_logprobs)
 
         # Remove prompt from the start of each sequence if echo_prompt is False.
         if not raw_request["echo_prompt"]:
-            sequences = [
-                sequence[len(encoded_input.input_ids[0]) :]
-                for sequence in sequences
-            ]
+            sequences = [sequence[len(encoded_input.input_ids[0]) :] for sequence in sequences]
 
         with self.wrapped_tokenizer as tokenizer:
             all_tokens = [
                 [
                     tokenizer.decode(token)
                     for token in sequence_tokens
-                    if token != tokenizer.pad_token_id
-                    and token != tokenizer.eos_token_id
+                    if token != tokenizer.pad_token_id and token != tokenizer.eos_token_id
                 ]
                 for sequence_tokens in sequences
             ]
@@ -396,12 +340,10 @@ class HuggingFaceServerFactory:
                     f"Loading {pretrained_model_name_or_path} (kwargs={kwargs}) "
                     f"for HELM model {helm_model_name} with Hugging Face Transformers"
                 ):
-                    HuggingFaceServerFactory._servers[helm_model_name] = (
-                        HuggingFaceServer(
-                            pretrained_model_name_or_path,
-                            wrapped_tokenizer,
-                            **kwargs,
-                        )
+                    HuggingFaceServerFactory._servers[helm_model_name] = HuggingFaceServer(
+                        pretrained_model_name_or_path,
+                        wrapped_tokenizer,
+                        **kwargs,
                     )
 
         return HuggingFaceServerFactory._servers[helm_model_name]
@@ -426,9 +368,7 @@ def _process_huggingface_client_kwargs(raw_kwargs: Dict[str, Any]):
     torch_dtype = processed_kwargs.get(TORCH_DTYPE_KEY)
     if torch_dtype and isinstance(torch_dtype, str):
         if torch_dtype.startswith(TORCH_DTYPE_VALUE_PREFIX):
-            processed_kwargs[TORCH_DTYPE_KEY] = getattr(
-                torch, torch_dtype[len(TORCH_DTYPE_VALUE_PREFIX) :]
-            )
+            processed_kwargs[TORCH_DTYPE_KEY] = getattr(torch, torch_dtype[len(TORCH_DTYPE_VALUE_PREFIX) :])
 
     return processed_kwargs
 
@@ -450,9 +390,7 @@ class HuggingFaceClient(CachingClient):
                 f"Tokenizer for Hugging Face model {pretrained_model_name_or_path} must be a HuggingFaceTokenizer, "
                 "but instead it is {tokenizer}"
             )
-        self._wrapped_tokenizer: WrappedPreTrainedTokenizer = (
-            tokenizer.get_wrapped_tokenizer()
-        )
+        self._wrapped_tokenizer: WrappedPreTrainedTokenizer = tokenizer.get_wrapped_tokenizer()
         self._kwargs = _process_huggingface_client_kwargs(kwargs)
         self._end_of_text_token = end_of_text_token
         # If the user did not explicitly configure whether the model is a chat model with `apply_chat_template` arg,
@@ -473,9 +411,7 @@ class HuggingFaceClient(CachingClient):
 
     def get_prompt(self, request: Request) -> str:
         if request.prompt and request.messages:
-            raise NonRetriableException(
-                f"More than one of `prompt` and `messages` was set in request: {request}"
-            )
+            raise NonRetriableException(f"More than one of `prompt` and `messages` was set in request: {request}")
         # Chat model expects a list of messages as input
         if self._apply_chat_template:
             with self._wrapped_tokenizer as tokenizer:
@@ -498,9 +434,7 @@ class HuggingFaceClient(CachingClient):
         # Base non-chat model expects a string as input
         else:
             if request.messages:
-                raise NonRetriableException(
-                    "Chat mesages not supported by non-chat model"
-                )
+                raise NonRetriableException("Chat mesages not supported by non-chat model")
             else:
                 return request.prompt
 
@@ -512,9 +446,7 @@ class HuggingFaceClient(CachingClient):
         raw_request: HuggingFaceRequest = {
             "engine": request.model_engine,
             "prompt": self.get_prompt(request),
-            "temperature": (
-                1e-7 if request.temperature == 0 else request.temperature
-            ),
+            "temperature": (1e-7 if request.temperature == 0 else request.temperature),
             "num_return_sequences": request.num_completions,
             "max_new_tokens": request.max_tokens,
             "top_p": request.top_p,
@@ -524,17 +456,13 @@ class HuggingFaceClient(CachingClient):
         }
 
         pretrained_model_name_or_path = (
-            self._pretrained_model_name_or_path
-            if self._pretrained_model_name_or_path
-            else request.model
+            self._pretrained_model_name_or_path if self._pretrained_model_name_or_path else request.model
         )
-        huggingface_model: HuggingFaceServer = (
-            HuggingFaceServerFactory.get_server(
-                helm_model_name=request.model,
-                pretrained_model_name_or_path=pretrained_model_name_or_path,
-                wrapped_tokenizer=self._wrapped_tokenizer,
-                **self._kwargs,
-            )
+        huggingface_model: HuggingFaceServer = HuggingFaceServerFactory.get_server(
+            helm_model_name=request.model,
+            pretrained_model_name_or_path=pretrained_model_name_or_path,
+            wrapped_tokenizer=self._wrapped_tokenizer,
+            **self._kwargs,
         )
 
         try:
@@ -568,31 +496,23 @@ class HuggingFaceClient(CachingClient):
 
             if request.echo_prompt:
                 # Add prompt to list of generated tokens.
-                generated_tokens = raw_completion["tokens"][
-                    response["input_length"] :
-                ]
+                generated_tokens = raw_completion["tokens"][response["input_length"] :]
                 if raw_completion.get("prompt_logprobs"):
                     for token_text, logprob in zip(
                         raw_completion["tokens"][: response["input_length"]],
-                        raw_completion["prompt_logprobs"][
-                            : response["input_length"]
-                        ],
+                        raw_completion["prompt_logprobs"][: response["input_length"]],
                     ):
                         tokens.append(Token(text=token_text, logprob=logprob))
                         sequence_logprob += logprob
                 else:
-                    for token_text in raw_completion["tokens"][
-                        : response["input_length"]
-                    ]:
+                    for token_text in raw_completion["tokens"][: response["input_length"]]:
                         tokens.append(Token(text=token_text, logprob=0.0))
 
             else:
                 generated_tokens = raw_completion["tokens"]
 
             # Compute logprob for the entire sequence.
-            for token_text, logprob in zip(
-                generated_tokens, raw_completion["logprobs"]
-            ):
+            for token_text, logprob in zip(generated_tokens, raw_completion["logprobs"]):
                 tokens.append(Token(text=token_text, logprob=logprob))
                 sequence_logprob += logprob
 

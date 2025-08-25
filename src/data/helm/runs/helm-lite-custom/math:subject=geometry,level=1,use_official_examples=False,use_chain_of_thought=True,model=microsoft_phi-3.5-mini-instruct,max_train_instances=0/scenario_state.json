@@ -1,0 +1,2405 @@
+{
+  "adapter_spec": {
+    "method": "generation",
+    "global_prefix": "",
+    "global_suffix": "",
+    "instructions": "Given a mathematics problem, determine the answer. Simplify your answer as much as possible.\n",
+    "input_prefix": "Problem: ",
+    "input_suffix": "\n",
+    "reference_prefix": "A. ",
+    "reference_suffix": "\n",
+    "chain_of_thought_prefix": "",
+    "chain_of_thought_suffix": "\n",
+    "output_prefix": "Answer: ",
+    "output_suffix": "\n",
+    "instance_prefix": "###\n",
+    "substitutions": [],
+    "max_train_instances": 0,
+    "max_eval_instances": 150,
+    "num_outputs": 1,
+    "num_train_trials": 1,
+    "num_trials": 1,
+    "sample_train": true,
+    "model_deployment": "huggingface/phi-3.5-mini-instruct",
+    "model": "microsoft/phi-3.5-mini-instruct",
+    "temperature": 0.0,
+    "max_tokens": 800,
+    "stop_sequences": [
+      "###"
+    ],
+    "multi_label": false
+  },
+  "request_states": [
+    {
+      "instance": {
+        "input": {
+          "text": "In circle $J$, $HO$ and $HN$ are tangent to the circle at $O$ and $N$. Find the number of degrees in the sum of $m\\angle J$ and $m\\angle H$. [asy]\nsize(150);\nimport graph;\npair J = (0,0), H = (6,0), O, N;\npath circ = Circle(J,3);\npair M = midpoint(J--H);\npath secCirc = Circle(M,3);\npair[] tangentPoints = intersectionpoints(circ,secCirc);\nO = tangentPoints[0]; N = tangentPoints[1];\ndraw(J--N--H--O--cycle);\ndraw(circ);\nlabel(\"$H$\",H,E);\nlabel(\"$J$\",J,W);\nlabel(\"$N$\",N,S);\nlabel(\"$O$\",O,NE);\n[/asy]"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Since $\\overline{OH}$ and $\\overline{NH}$ are tangent to radii of the circle at $O$ and $N$, we have $\\angle O =\\angle N = 90^\\circ$.  The sum of the measures of the interior angles of quadrilateral $JOHN$ is $360^\\circ$, so $\\angle J + \\angle H = 360^\\circ - \\angle O - \\angle N = \\boxed{180^\\circ}$."
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id77"
+      },
+      "train_trial_index": 0,
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "Given a mathematics problem, determine the answer. Simplify your answer as much as possible.\n###\nProblem: In circle $J$, $HO$ and $HN$ are tangent to the circle at $O$ and $N$. Find the number of degrees in the sum of $m\\angle J$ and $m\\angle H$. [asy]\nsize(150);\nimport graph;\npair J = (0,0), H = (6,0), O, N;\npath circ = Circle(J,3);\npair M = midpoint(J--H);\npath secCirc = Circle(M,3);\npair[] tangentPoints = intersectionpoints(circ,secCirc);\nO = tangentPoints[0]; N = tangentPoints[1];\ndraw(J--N--H--O--cycle);\ndraw(circ);\nlabel(\"$H$\",H,E);\nlabel(\"$J$\",J,W);\nlabel(\"$N$\",N,S);\nlabel(\"$O$\",O,NE);\n[/asy]\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 1,
+        "max_tokens": 800,
+        "stop_sequences": [
+          "###"
+        ],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "In circle J, angles J and H are inscribed angles that intercept the same arc, ON. According to the Inscribed Angle Theorem, inscribed angles that intercept the same arc are congruent.\n\nTherefore, $m\\angle J = m\\angle H$.\n\nSince we are looking for the sum of $m\\angle J$ and $m\\angle H$, we have:\n\n$m\\angle J + m\\angle H = m\\angle J + m\\angle J = 2 \\cdot m\\angle J$.\n\nWe know that an inscribed angle in a circle is half the measure of the intercepted arc. Since arc ON is a semicircle (it spans 180 degrees), the measure of angle J (and angle H) is half of that:\n\n$m\\angle J = \\frac{1}{2} \\cdot 180^\\circ = 90^\\circ$.\n\nSo, the sum of $m\\angle J$ and $m\\angle H$ is:\n\n$2 \\cdot m\\angle J = 2 \\cdot 90^\\circ = 180^\\circ$.\n\nThe sum of $m\\angle J$ and $m\\angle H$ is $180^\\circ$.<|end|><|endoftext|>",
+            "logprob": -48.415939478134035,
+            "tokens": [
+              {
+                "text": "In",
+                "logprob": -0.40162429213523865
+              },
+              {
+                "text": "circle",
+                "logprob": -0.24536705017089844
+              },
+              {
+                "text": "J",
+                "logprob": -0.28086912631988525
+              },
+              {
+                "text": ",",
+                "logprob": -0.0018711454467847943
+              },
+              {
+                "text": "angles",
+                "logprob": -2.612086296081543
+              },
+              {
+                "text": "J",
+                "logprob": -0.31628018617630005
+              },
+              {
+                "text": "and",
+                "logprob": -0.008059244602918625
+              },
+              {
+                "text": "H",
+                "logprob": -0.002033191965892911
+              },
+              {
+                "text": "are",
+                "logprob": -0.007781903725117445
+              },
+              {
+                "text": "ins",
+                "logprob": -2.5811684131622314
+              },
+              {
+                "text": "cribed",
+                "logprob": -5.757642793469131e-05
+              },
+              {
+                "text": "angles",
+                "logprob": -0.0026376002933830023
+              },
+              {
+                "text": "that",
+                "logprob": -0.007408762816339731
+              },
+              {
+                "text": "intercept",
+                "logprob": -0.15079373121261597
+              },
+              {
+                "text": "the",
+                "logprob": -0.010363927111029625
+              },
+              {
+                "text": "same",
+                "logprob": -0.0005779979983344674
+              },
+              {
+                "text": "arc",
+                "logprob": -0.0007468056865036488
+              },
+              {
+                "text": ",",
+                "logprob": -0.4625265896320343
+              },
+              {
+                "text": "O",
+                "logprob": -1.6472506523132324
+              },
+              {
+                "text": "N",
+                "logprob": -0.09392305463552475
+              },
+              {
+                "text": ".",
+                "logprob": -0.00018380382971372455
+              },
+              {
+                "text": "According",
+                "logprob": -0.07448519766330719
+              },
+              {
+                "text": "to",
+                "logprob": -7.152555099310121e-07
+              },
+              {
+                "text": "the",
+                "logprob": -2.3841830625315197e-06
+              },
+              {
+                "text": "In",
+                "logprob": -0.17135010659694672
+              },
+              {
+                "text": "scri",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "bed",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "Ang",
+                "logprob": -1.5497195136049413e-06
+              },
+              {
+                "text": "le",
+                "logprob": -0.011756068095564842
+              },
+              {
+                "text": "Theorem",
+                "logprob": -3.0874729418428615e-05
+              },
+              {
+                "text": ",",
+                "logprob": -5.125986263010418e-06
+              },
+              {
+                "text": "ins",
+                "logprob": -0.37351351976394653
+              },
+              {
+                "text": "cribed",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "angles",
+                "logprob": -1.5497195136049413e-06
+              },
+              {
+                "text": "that",
+                "logprob": -0.009217328391969204
+              },
+              {
+                "text": "intercept",
+                "logprob": -6.246371776796877e-05
+              },
+              {
+                "text": "the",
+                "logprob": -1.9073468138230965e-06
+              },
+              {
+                "text": "same",
+                "logprob": 0.0
+              },
+              {
+                "text": "arc",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "are",
+                "logprob": -0.005056687630712986
+              },
+              {
+                "text": "con",
+                "logprob": -0.5360087156295776
+              },
+              {
+                "text": "gru",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "ent",
+                "logprob": 0.0
+              },
+              {
+                "text": ".",
+                "logprob": -0.018395885825157166
+              },
+              {
+                "text": "\n",
+                "logprob": -1.3386847972869873
+              },
+              {
+                "text": "\n",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "There",
+                "logprob": -1.2231149673461914
+              },
+              {
+                "text": "fore",
+                "logprob": -1.7165990357170813e-05
+              },
+              {
+                "text": ",",
+                "logprob": -1.847726889536716e-05
+              },
+              {
+                "text": "$",
+                "logprob": -0.35274821519851685
+              },
+              {
+                "text": "m",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "\\",
+                "logprob": -9.536738616588991e-07
+              },
+              {
+                "text": "angle",
+                "logprob": -1.1920922133867862e-06
+              },
+              {
+                "text": "J",
+                "logprob": -2.145764938177308e-06
+              },
+              {
+                "text": "=",
+                "logprob": -3.683499380713329e-05
+              },
+              {
+                "text": "m",
+                "logprob": -2.264974000354414e-06
+              },
+              {
+                "text": "\\",
+                "logprob": 0.0
+              },
+              {
+                "text": "angle",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "H",
+                "logprob": 0.0
+              },
+              {
+                "text": "$.",
+                "logprob": -0.0014731755945831537
+              },
+              {
+                "text": "\n",
+                "logprob": -0.04996494576334953
+              },
+              {
+                "text": "\n",
+                "logprob": -2.622600959512056e-06
+              },
+              {
+                "text": "Since",
+                "logprob": -1.2605723142623901
+              },
+              {
+                "text": "we",
+                "logprob": -0.40521401166915894
+              },
+              {
+                "text": "are",
+                "logprob": -0.6292279958724976
+              },
+              {
+                "text": "looking",
+                "logprob": -1.2472944259643555
+              },
+              {
+                "text": "for",
+                "logprob": -0.00023064337437972426
+              },
+              {
+                "text": "the",
+                "logprob": -0.00013505500101018697
+              },
+              {
+                "text": "sum",
+                "logprob": -0.0028307863976806402
+              },
+              {
+                "text": "of",
+                "logprob": -0.009583420120179653
+              },
+              {
+                "text": "$",
+                "logprob": -0.17679950594902039
+              },
+              {
+                "text": "m",
+                "logprob": 0.0
+              },
+              {
+                "text": "\\",
+                "logprob": 0.0
+              },
+              {
+                "text": "angle",
+                "logprob": 0.0
+              },
+              {
+                "text": "J",
+                "logprob": 0.0
+              },
+              {
+                "text": "$",
+                "logprob": -0.0018701935186982155
+              },
+              {
+                "text": "and",
+                "logprob": -5.960462772236497e-07
+              },
+              {
+                "text": "$",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "m",
+                "logprob": 0.0
+              },
+              {
+                "text": "\\",
+                "logprob": 0.0
+              },
+              {
+                "text": "angle",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "H",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "$,",
+                "logprob": -0.0005903884884901345
+              },
+              {
+                "text": "we",
+                "logprob": -0.28616541624069214
+              },
+              {
+                "text": "have",
+                "logprob": -0.2713828980922699
+              },
+              {
+                "text": ":",
+                "logprob": -0.012579617090523243
+              },
+              {
+                "text": "\n",
+                "logprob": -5.018585216021165e-05
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0014425835106521845
+              },
+              {
+                "text": "$",
+                "logprob": -0.001374729792587459
+              },
+              {
+                "text": "m",
+                "logprob": -2.253030106658116e-05
+              },
+              {
+                "text": "\\",
+                "logprob": -3.6954811548639555e-06
+              },
+              {
+                "text": "angle",
+                "logprob": -2.264974000354414e-06
+              },
+              {
+                "text": "J",
+                "logprob": -1.1920922133867862e-06
+              },
+              {
+                "text": "+",
+                "logprob": -1.6689286894688848e-06
+              },
+              {
+                "text": "m",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "\\",
+                "logprob": 0.0
+              },
+              {
+                "text": "angle",
+                "logprob": 0.0
+              },
+              {
+                "text": "H",
+                "logprob": -0.00027807659353129566
+              },
+              {
+                "text": "=",
+                "logprob": -5.960462772236497e-07
+              },
+              {
+                "text": "m",
+                "logprob": -0.017604757100343704
+              },
+              {
+                "text": "\\",
+                "logprob": 0.0
+              },
+              {
+                "text": "angle",
+                "logprob": 0.0
+              },
+              {
+                "text": "J",
+                "logprob": -4.541770613286644e-05
+              },
+              {
+                "text": "+",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "m",
+                "logprob": -5.960462772236497e-07
+              },
+              {
+                "text": "\\",
+                "logprob": 0.0
+              },
+              {
+                "text": "angle",
+                "logprob": 0.0
+              },
+              {
+                "text": "J",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": -0.006753832101821899
+              },
+              {
+                "text": "",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "\\",
+                "logprob": -1.9414616823196411
+              },
+              {
+                "text": "cdot",
+                "logprob": -0.12326864898204803
+              },
+              {
+                "text": "m",
+                "logprob": -1.5497195136049413e-06
+              },
+              {
+                "text": "\\",
+                "logprob": 0.0
+              },
+              {
+                "text": "angle",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "J",
+                "logprob": 0.0
+              },
+              {
+                "text": "$.",
+                "logprob": -0.349917471408844
+              },
+              {
+                "text": "\n",
+                "logprob": -3.2186455882765586e-06
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "We",
+                "logprob": -3.3495686054229736
+              },
+              {
+                "text": "know",
+                "logprob": -0.2193414717912674
+              },
+              {
+                "text": "that",
+                "logprob": -0.0006864098832011223
+              },
+              {
+                "text": "an",
+                "logprob": -1.869540810585022
+              },
+              {
+                "text": "ins",
+                "logprob": -0.01623176597058773
+              },
+              {
+                "text": "cribed",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "angle",
+                "logprob": -0.00015043080202303827
+              },
+              {
+                "text": "in",
+                "logprob": -0.5965638160705566
+              },
+              {
+                "text": "a",
+                "logprob": -4.8040190449682996e-05
+              },
+              {
+                "text": "circle",
+                "logprob": -0.01717456616461277
+              },
+              {
+                "text": "is",
+                "logprob": -0.10211756080389023
+              },
+              {
+                "text": "half",
+                "logprob": -0.022742867469787598
+              },
+              {
+                "text": "the",
+                "logprob": -0.04571114480495453
+              },
+              {
+                "text": "measure",
+                "logprob": -0.003469521179795265
+              },
+              {
+                "text": "of",
+                "logprob": 0.0
+              },
+              {
+                "text": "the",
+                "logprob": -0.9936444759368896
+              },
+              {
+                "text": "intercept",
+                "logprob": -0.06667088717222214
+              },
+              {
+                "text": "ed",
+                "logprob": -5.602820692729438e-06
+              },
+              {
+                "text": "arc",
+                "logprob": -8.987976616481319e-05
+              },
+              {
+                "text": ".",
+                "logprob": -0.10468227416276932
+              },
+              {
+                "text": "Since",
+                "logprob": -3.1798083782196045
+              },
+              {
+                "text": "arc",
+                "logprob": -2.09287428855896
+              },
+              {
+                "text": "O",
+                "logprob": -0.026634685695171356
+              },
+              {
+                "text": "N",
+                "logprob": -0.0020303367637097836
+              },
+              {
+                "text": "is",
+                "logprob": -0.062352195382118225
+              },
+              {
+                "text": "a",
+                "logprob": -0.27245402336120605
+              },
+              {
+                "text": "sem",
+                "logprob": -0.030536970123648643
+              },
+              {
+                "text": "ic",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "irc",
+                "logprob": 0.0
+              },
+              {
+                "text": "le",
+                "logprob": -7.867782187531702e-06
+              },
+              {
+                "text": "(",
+                "logprob": -0.2234649807214737
+              },
+              {
+                "text": "it",
+                "logprob": -2.0494141578674316
+              },
+              {
+                "text": "sp",
+                "logprob": -1.0913487672805786
+              },
+              {
+                "text": "ans",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "",
+                "logprob": -0.41621604561805725
+              },
+              {
+                "text": "1",
+                "logprob": -1.847726889536716e-05
+              },
+              {
+                "text": "8",
+                "logprob": -2.264974000354414e-06
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": "degrees",
+                "logprob": -0.00447842525318265
+              },
+              {
+                "text": "),",
+                "logprob": -0.029916223138570786
+              },
+              {
+                "text": "the",
+                "logprob": -0.3486575782299042
+              },
+              {
+                "text": "measure",
+                "logprob": -0.2916692793369293
+              },
+              {
+                "text": "of",
+                "logprob": -4.529942543740617e-06
+              },
+              {
+                "text": "angle",
+                "logprob": -0.43058446049690247
+              },
+              {
+                "text": "J",
+                "logprob": -0.00016056202002801
+              },
+              {
+                "text": "(",
+                "logprob": -0.13533954322338104
+              },
+              {
+                "text": "and",
+                "logprob": -1.1098171472549438
+              },
+              {
+                "text": "angle",
+                "logprob": -0.02601255662739277
+              },
+              {
+                "text": "H",
+                "logprob": -2.145764938177308e-06
+              },
+              {
+                "text": ")",
+                "logprob": -0.0015568528324365616
+              },
+              {
+                "text": "is",
+                "logprob": -0.050077885389328
+              },
+              {
+                "text": "half",
+                "logprob": -0.019868990406394005
+              },
+              {
+                "text": "of",
+                "logprob": -0.01794753596186638
+              },
+              {
+                "text": "that",
+                "logprob": -1.0646530389785767
+              },
+              {
+                "text": ":",
+                "logprob": -0.07651449739933014
+              },
+              {
+                "text": "\n",
+                "logprob": -3.981510963058099e-05
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "$",
+                "logprob": -0.001016576774418354
+              },
+              {
+                "text": "m",
+                "logprob": -0.00890025682747364
+              },
+              {
+                "text": "\\",
+                "logprob": 0.0
+              },
+              {
+                "text": "angle",
+                "logprob": -1.6689286894688848e-06
+              },
+              {
+                "text": "J",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": -0.00019059749320149422
+              },
+              {
+                "text": "\\",
+                "logprob": -0.1961512565612793
+              },
+              {
+                "text": "frac",
+                "logprob": -0.0007294139941222966
+              },
+              {
+                "text": "{",
+                "logprob": -1.2278481335670222e-05
+              },
+              {
+                "text": "1",
+                "logprob": -3.3378546504536644e-06
+              },
+              {
+                "text": "}{",
+                "logprob": -0.056577350944280624
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "}",
+                "logprob": -0.013895556330680847
+              },
+              {
+                "text": "\\",
+                "logprob": -0.0003762729174923152
+              },
+              {
+                "text": "cdot",
+                "logprob": -0.010582992807030678
+              },
+              {
+                "text": "",
+                "logprob": -0.010695632547140121
+              },
+              {
+                "text": "1",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "8",
+                "logprob": 0.0
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": "^\\",
+                "logprob": -1.0164010524749756
+              },
+              {
+                "text": "circ",
+                "logprob": -2.4318398573086597e-05
+              },
+              {
+                "text": "=",
+                "logprob": -1.823885577323381e-05
+              },
+              {
+                "text": "",
+                "logprob": -0.0004737447015941143
+              },
+              {
+                "text": "9",
+                "logprob": 0.0
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": "^\\",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "circ",
+                "logprob": -9.536738616588991e-07
+              },
+              {
+                "text": "$.",
+                "logprob": -0.0008744944934733212
+              },
+              {
+                "text": "\n",
+                "logprob": -2.0265558760002023e-06
+              },
+              {
+                "text": "\n",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "So",
+                "logprob": -0.8851714730262756
+              },
+              {
+                "text": ",",
+                "logprob": -0.12731751799583435
+              },
+              {
+                "text": "the",
+                "logprob": -0.023533087223768234
+              },
+              {
+                "text": "sum",
+                "logprob": -0.0007980260998010635
+              },
+              {
+                "text": "of",
+                "logprob": -0.02729969657957554
+              },
+              {
+                "text": "$",
+                "logprob": -0.6830390691757202
+              },
+              {
+                "text": "m",
+                "logprob": -7.152555099310121e-07
+              },
+              {
+                "text": "\\",
+                "logprob": 0.0
+              },
+              {
+                "text": "angle",
+                "logprob": 0.0
+              },
+              {
+                "text": "J",
+                "logprob": 0.0
+              },
+              {
+                "text": "$",
+                "logprob": -0.0008839037618599832
+              },
+              {
+                "text": "and",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "$",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "m",
+                "logprob": 0.0
+              },
+              {
+                "text": "\\",
+                "logprob": 0.0
+              },
+              {
+                "text": "angle",
+                "logprob": 0.0
+              },
+              {
+                "text": "H",
+                "logprob": -1.0132738680113107e-05
+              },
+              {
+                "text": "$",
+                "logprob": -0.0006313714548014104
+              },
+              {
+                "text": "is",
+                "logprob": -0.00016449528629891574
+              },
+              {
+                "text": ":",
+                "logprob": -0.003983302507549524
+              },
+              {
+                "text": "\n",
+                "logprob": -8.106198947643861e-06
+              },
+              {
+                "text": "\n",
+                "logprob": -1.311301275563892e-06
+              },
+              {
+                "text": "$",
+                "logprob": -0.00020883286197204143
+              },
+              {
+                "text": "2",
+                "logprob": -0.0006092122639529407
+              },
+              {
+                "text": "\\",
+                "logprob": -5.125986263010418e-06
+              },
+              {
+                "text": "cdot",
+                "logprob": -3.576272320060525e-06
+              },
+              {
+                "text": "m",
+                "logprob": -0.2737264633178711
+              },
+              {
+                "text": "\\",
+                "logprob": 0.0
+              },
+              {
+                "text": "angle",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "J",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": -2.169585604860913e-05
+              },
+              {
+                "text": "",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "\\",
+                "logprob": -2.622600959512056e-06
+              },
+              {
+                "text": "cdot",
+                "logprob": -2.062299427052494e-05
+              },
+              {
+                "text": "",
+                "logprob": -1.8358061424805783e-05
+              },
+              {
+                "text": "9",
+                "logprob": 0.0
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": "^\\",
+                "logprob": -1.6689286894688848e-06
+              },
+              {
+                "text": "circ",
+                "logprob": -1.1205610462639015e-05
+              },
+              {
+                "text": "=",
+                "logprob": -2.861018856492592e-06
+              },
+              {
+                "text": "",
+                "logprob": -0.0837797299027443
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "8",
+                "logprob": 0.0
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": "^\\",
+                "logprob": -1.5497195136049413e-06
+              },
+              {
+                "text": "circ",
+                "logprob": -3.4570634852570947e-06
+              },
+              {
+                "text": "$.",
+                "logprob": -3.075552376685664e-05
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0018272384768351912
+              },
+              {
+                "text": "\n",
+                "logprob": -1.6093124941107817e-05
+              },
+              {
+                "text": "The",
+                "logprob": -0.877464771270752
+              },
+              {
+                "text": "sum",
+                "logprob": -1.500357985496521
+              },
+              {
+                "text": "of",
+                "logprob": -0.0013773487880825996
+              },
+              {
+                "text": "$",
+                "logprob": -0.7435898780822754
+              },
+              {
+                "text": "m",
+                "logprob": -2.50339189733495e-06
+              },
+              {
+                "text": "\\",
+                "logprob": 0.0
+              },
+              {
+                "text": "angle",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "J",
+                "logprob": 0.0
+              },
+              {
+                "text": "$",
+                "logprob": -1.4305104514278355e-06
+              },
+              {
+                "text": "and",
+                "logprob": -1.0728830375228426e-06
+              },
+              {
+                "text": "$",
+                "logprob": -1.4305104514278355e-06
+              },
+              {
+                "text": "m",
+                "logprob": 0.0
+              },
+              {
+                "text": "\\",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "angle",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "H",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "$",
+                "logprob": -3.814624506048858e-05
+              },
+              {
+                "text": "is",
+                "logprob": -0.004310364834964275
+              },
+              {
+                "text": "$",
+                "logprob": -1.6026451587677002
+              },
+              {
+                "text": "1",
+                "logprob": -3.576272320060525e-06
+              },
+              {
+                "text": "8",
+                "logprob": 0.0
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": "^\\",
+                "logprob": -0.01557073649019003
+              },
+              {
+                "text": "circ",
+                "logprob": -2.861018856492592e-06
+              },
+              {
+                "text": "$.",
+                "logprob": -0.0007310817018151283
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.03058795817196369
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.17168772367466353,
+              "max_token_negative_log_likelihood": 3.3495681285858154,
+              "predictive_entropy": 0.0533139496724723,
+              "shannon_entropy": 0.20173828053941184
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 11.59896969795227,
+        "request_datetime": 1756138072
+      },
+      "num_train_instances": 0,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "$\\overline{BC}$ is parallel to the segment through $A$, and $AB = BC$. What is the number of degrees represented by $x$?\n\n[asy]\ndraw((0,0)--(10,0));\ndraw((0,3)--(10,3));\ndraw((2,3)--(8,0));\ndraw((2,3)--(4,0));\nlabel(\"$A$\",(2,3),N);\nlabel(\"$B$\",(4,0),S);\nlabel(\"$C$\",(8,0),S);\nlabel(\"$124^{\\circ}$\",(2,3),SW);\nlabel(\"$x^{\\circ}$\",(4.5,3),S);\n[/asy]"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Angle $\\angle BCA$ and the angle we're trying to measure are alternate interior angles, so they are congruent. Thus, $\\angle BCA=x^\\circ$:\n\n[asy]\ndraw((0,0)--(10,0));\ndraw((0,3)--(10,3));\ndraw((2,3)--(8,0));\ndraw((2,3)--(4,0));\nlabel(\"$A$\",(2,3),N);\nlabel(\"$B$\",(4,0),S);\nlabel(\"$C$\",(8,0),S);\nlabel(\"$124^{\\circ}$\",(2,3),SW);\nlabel(\"$x^{\\circ}$\",(4.5,3),S);\nlabel(\"$x^{\\circ}$\",(6,0),N);\n[/asy]\n\nSince $AB=BC$, we know that $\\triangle ABC$ is isosceles with equal angles at $C$ and $A$. Therefore, $\\angle BAC = x^\\circ$:\n\n[asy]\ndraw((0,0)--(10,0));\ndraw((0,3)--(10,3));\ndraw((2,3)--(8,0));\ndraw((2,3)--(4,0));\nlabel(\"$A$\",(2,3),N);\nlabel(\"$B$\",(4,0),S);\nlabel(\"$C$\",(8,0),S);\nlabel(\"$124^{\\circ}$\",(2,3),SW);\nlabel(\"$x^{\\circ}$\",(4.5,3),S);\nlabel(\"$x^{\\circ}$\",(6,0),N);\nlabel(\"$x^{\\circ}$\",(3.6,1.7));\n[/asy]\n\nThe sum of the three angles at $A$ is $180^\\circ$, since they form a straight angle. Therefore, $$124+x+x=180,$$ which we can solve to obtain $x=\\boxed{28}$."
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id78"
+      },
+      "train_trial_index": 0,
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "Given a mathematics problem, determine the answer. Simplify your answer as much as possible.\n###\nProblem: $\\overline{BC}$ is parallel to the segment through $A$, and $AB = BC$. What is the number of degrees represented by $x$?\n\n[asy]\ndraw((0,0)--(10,0));\ndraw((0,3)--(10,3));\ndraw((2,3)--(8,0));\ndraw((2,3)--(4,0));\nlabel(\"$A$\",(2,3),N);\nlabel(\"$B$\",(4,0),S);\nlabel(\"$C$\",(8,0),S);\nlabel(\"$124^{\\circ}$\",(2,3),SW);\nlabel(\"$x^{\\circ}$\",(4.5,3),S);\n[/asy]\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 1,
+        "max_tokens": 800,
+        "stop_sequences": [
+          "###"
+        ],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "Since $\\overline{BC}$ is parallel to the segment through $A$, we have $\\triangle ABC$ as an isosceles triangle with $AB = BC$. In any triangle, the sum of the angles is $180^\\circ$.\n\nLet's denote the angle at $B$ as $\\angle ABC = x$ and the angle at $C$ as $\\angle BCA = y$. Since $\\triangle ABC$ is isosceles, we have $\\angle ABC = \\angle BCA$, so $x = y$.\n\nThe sum of the angles in $\\triangle ABC$ is $180^\\circ$, so we have:\n\n$x + x + 124^\\circ = 180^\\circ$\n\nCombining the $x$ terms, we get:\n\n$2x + 124^\\circ = 180^\\circ$\n\nSubtracting $124^\\circ$ from both sides, we have:\n\n$2x = 56^\\circ$\n\nDividing both sides by 2, we get:\n\n$x = 28^\\circ$\n\nSo, the number of degrees represented by $x$ is $\\boxed{28^\\circ}$.The answer is: 28<|end|><|endoftext|>",
+            "logprob": -45.31217047078598,
+            "tokens": [
+              {
+                "text": "Since",
+                "logprob": -0.12806789577007294
+              },
+              {
+                "text": "$\\",
+                "logprob": -0.0036250133998692036
+              },
+              {
+                "text": "overline",
+                "logprob": 0.0
+              },
+              {
+                "text": "{",
+                "logprob": 0.0
+              },
+              {
+                "text": "BC",
+                "logprob": 0.0
+              },
+              {
+                "text": "}$",
+                "logprob": -0.0005720409681089222
+              },
+              {
+                "text": "is",
+                "logprob": 0.0
+              },
+              {
+                "text": "parallel",
+                "logprob": 0.0
+              },
+              {
+                "text": "to",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "the",
+                "logprob": -0.0019859608728438616
+              },
+              {
+                "text": "segment",
+                "logprob": -0.0043553500436246395
+              },
+              {
+                "text": "through",
+                "logprob": -0.0001161031104857102
+              },
+              {
+                "text": "$",
+                "logprob": -0.010538404807448387
+              },
+              {
+                "text": "A",
+                "logprob": 0.0
+              },
+              {
+                "text": "$,",
+                "logprob": -0.07438494265079498
+              },
+              {
+                "text": "we",
+                "logprob": -0.35170021653175354
+              },
+              {
+                "text": "have",
+                "logprob": -1.4378756284713745
+              },
+              {
+                "text": "$\\",
+                "logprob": -4.032916069030762
+              },
+              {
+                "text": "triangle",
+                "logprob": -3.926234245300293
+              },
+              {
+                "text": "ABC",
+                "logprob": -0.0012468667700886726
+              },
+              {
+                "text": "$",
+                "logprob": -0.1826101392507553
+              },
+              {
+                "text": "as",
+                "logprob": -1.587923288345337
+              },
+              {
+                "text": "an",
+                "logprob": -0.037006549537181854
+              },
+              {
+                "text": "is",
+                "logprob": -0.01780889183282852
+              },
+              {
+                "text": "os",
+                "logprob": -4.410734163684538e-06
+              },
+              {
+                "text": "cel",
+                "logprob": 0.0
+              },
+              {
+                "text": "es",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "triangle",
+                "logprob": -0.00481790117919445
+              },
+              {
+                "text": "with",
+                "logprob": -0.021896278485655785
+              },
+              {
+                "text": "$",
+                "logprob": -0.007404621224850416
+              },
+              {
+                "text": "AB",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "=",
+                "logprob": -8.189342770492658e-05
+              },
+              {
+                "text": "BC",
+                "logprob": -0.0011701886542141438
+              },
+              {
+                "text": "$.",
+                "logprob": -0.001301871263422072
+              },
+              {
+                "text": "In",
+                "logprob": -0.35453125834465027
+              },
+              {
+                "text": "any",
+                "logprob": -4.715106010437012
+              },
+              {
+                "text": "triangle",
+                "logprob": -0.48600661754608154
+              },
+              {
+                "text": ",",
+                "logprob": -7.986990567587782e-06
+              },
+              {
+                "text": "the",
+                "logprob": -0.00047088501742109656
+              },
+              {
+                "text": "sum",
+                "logprob": -0.019436264410614967
+              },
+              {
+                "text": "of",
+                "logprob": 0.0
+              },
+              {
+                "text": "the",
+                "logprob": -0.018957968801259995
+              },
+              {
+                "text": "angles",
+                "logprob": -0.9204295873641968
+              },
+              {
+                "text": "is",
+                "logprob": -0.008778078481554985
+              },
+              {
+                "text": "$",
+                "logprob": -0.04520697519183159
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "8",
+                "logprob": 0.0
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": "^\\",
+                "logprob": -1.1408512592315674
+              },
+              {
+                "text": "circ",
+                "logprob": 0.0
+              },
+              {
+                "text": "$.",
+                "logprob": -0.006374858319759369
+              },
+              {
+                "text": "\n",
+                "logprob": -0.39832398295402527
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0011176775442436337
+              },
+              {
+                "text": "Let",
+                "logprob": -0.3289300799369812
+              },
+              {
+                "text": "'",
+                "logprob": -1.027929425239563
+              },
+              {
+                "text": "s",
+                "logprob": 0.0
+              },
+              {
+                "text": "denote",
+                "logprob": -0.14312398433685303
+              },
+              {
+                "text": "the",
+                "logprob": -0.04507889598608017
+              },
+              {
+                "text": "angle",
+                "logprob": -0.3144338130950928
+              },
+              {
+                "text": "at",
+                "logprob": -0.03365948796272278
+              },
+              {
+                "text": "$",
+                "logprob": -0.18056908249855042
+              },
+              {
+                "text": "B",
+                "logprob": -0.9958620071411133
+              },
+              {
+                "text": "$",
+                "logprob": -6.460934673668817e-05
+              },
+              {
+                "text": "as",
+                "logprob": -0.004413625691086054
+              },
+              {
+                "text": "$\\",
+                "logprob": -1.3137038946151733
+              },
+              {
+                "text": "angle",
+                "logprob": -0.006049773655831814
+              },
+              {
+                "text": "ABC",
+                "logprob": -0.3035806119441986
+              },
+              {
+                "text": "=",
+                "logprob": -1.2318062782287598
+              },
+              {
+                "text": "x",
+                "logprob": -0.0913577675819397
+              },
+              {
+                "text": "$",
+                "logprob": -1.799514889717102
+              },
+              {
+                "text": "and",
+                "logprob": -0.0546213798224926
+              },
+              {
+                "text": "the",
+                "logprob": -0.00014077626110520214
+              },
+              {
+                "text": "angle",
+                "logprob": -0.008808565326035023
+              },
+              {
+                "text": "at",
+                "logprob": -7.867782187531702e-06
+              },
+              {
+                "text": "$",
+                "logprob": -0.0006149308173917234
+              },
+              {
+                "text": "C",
+                "logprob": -0.028016893193125725
+              },
+              {
+                "text": "$",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "as",
+                "logprob": -0.0006971312686800957
+              },
+              {
+                "text": "$\\",
+                "logprob": -4.935142715112306e-05
+              },
+              {
+                "text": "angle",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "B",
+                "logprob": -0.7518166899681091
+              },
+              {
+                "text": "CA",
+                "logprob": -0.08162517845630646
+              },
+              {
+                "text": "=",
+                "logprob": -0.16604696214199066
+              },
+              {
+                "text": "y",
+                "logprob": -1.0430908203125
+              },
+              {
+                "text": "$.",
+                "logprob": -0.000271521887043491
+              },
+              {
+                "text": "Since",
+                "logprob": -0.3481232821941376
+              },
+              {
+                "text": "$\\",
+                "logprob": -0.15744978189468384
+              },
+              {
+                "text": "triangle",
+                "logprob": -0.14459510147571564
+              },
+              {
+                "text": "ABC",
+                "logprob": 0.0
+              },
+              {
+                "text": "$",
+                "logprob": -3.576272320060525e-06
+              },
+              {
+                "text": "is",
+                "logprob": -1.2993727978027891e-05
+              },
+              {
+                "text": "is",
+                "logprob": -0.019311625510454178
+              },
+              {
+                "text": "os",
+                "logprob": 0.0
+              },
+              {
+                "text": "cel",
+                "logprob": 0.0
+              },
+              {
+                "text": "es",
+                "logprob": 0.0
+              },
+              {
+                "text": ",",
+                "logprob": -0.00743089010939002
+              },
+              {
+                "text": "we",
+                "logprob": -0.2771477699279785
+              },
+              {
+                "text": "have",
+                "logprob": -0.11680716276168823
+              },
+              {
+                "text": "$\\",
+                "logprob": -0.5013760328292847
+              },
+              {
+                "text": "angle",
+                "logprob": -0.0004690977220889181
+              },
+              {
+                "text": "ABC",
+                "logprob": -1.079958438873291
+              },
+              {
+                "text": "=",
+                "logprob": -4.172316494077677e-06
+              },
+              {
+                "text": "\\",
+                "logprob": -6.9141146923357155e-06
+              },
+              {
+                "text": "angle",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "B",
+                "logprob": -0.0006964165368117392
+              },
+              {
+                "text": "CA",
+                "logprob": -0.0008834273321554065
+              },
+              {
+                "text": "$,",
+                "logprob": -0.8549193739891052
+              },
+              {
+                "text": "so",
+                "logprob": -0.12748250365257263
+              },
+              {
+                "text": "$",
+                "logprob": -0.00237266649492085
+              },
+              {
+                "text": "x",
+                "logprob": -2.861018856492592e-06
+              },
+              {
+                "text": "=",
+                "logprob": -1.7046782886609435e-05
+              },
+              {
+                "text": "y",
+                "logprob": 0.0
+              },
+              {
+                "text": "$.",
+                "logprob": -6.437280717364047e-06
+              },
+              {
+                "text": "\n",
+                "logprob": -0.00811198353767395
+              },
+              {
+                "text": "\n",
+                "logprob": -2.3841830625315197e-06
+              },
+              {
+                "text": "The",
+                "logprob": -1.3767017126083374
+              },
+              {
+                "text": "sum",
+                "logprob": -0.24317052960395813
+              },
+              {
+                "text": "of",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "the",
+                "logprob": -0.0290717501193285
+              },
+              {
+                "text": "angles",
+                "logprob": -0.010371359996497631
+              },
+              {
+                "text": "in",
+                "logprob": -0.005898331757634878
+              },
+              {
+                "text": "$\\",
+                "logprob": -0.14394435286521912
+              },
+              {
+                "text": "triangle",
+                "logprob": -1.5258672647178173e-05
+              },
+              {
+                "text": "ABC",
+                "logprob": 0.0
+              },
+              {
+                "text": "$",
+                "logprob": -4.815939246327616e-05
+              },
+              {
+                "text": "is",
+                "logprob": -0.005836705211549997
+              },
+              {
+                "text": "$",
+                "logprob": -0.17061856389045715
+              },
+              {
+                "text": "1",
+                "logprob": -0.5759522914886475
+              },
+              {
+                "text": "8",
+                "logprob": -1.07287787614041e-05
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": "^\\",
+                "logprob": -1.6093124941107817e-05
+              },
+              {
+                "text": "circ",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "$,",
+                "logprob": -0.14027594029903412
+              },
+              {
+                "text": "so",
+                "logprob": -0.008510039187967777
+              },
+              {
+                "text": "we",
+                "logprob": -0.047186318784952164
+              },
+              {
+                "text": "have",
+                "logprob": -0.10346169024705887
+              },
+              {
+                "text": ":",
+                "logprob": -0.2625943720340729
+              },
+              {
+                "text": "\n",
+                "logprob": -8.95221673999913e-05
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0997132956981659
+              },
+              {
+                "text": "$",
+                "logprob": -0.05080091580748558
+              },
+              {
+                "text": "x",
+                "logprob": -0.00042441420373506844
+              },
+              {
+                "text": "+",
+                "logprob": -0.001259487122297287
+              },
+              {
+                "text": "x",
+                "logprob": -0.005982350558042526
+              },
+              {
+                "text": "+",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "",
+                "logprob": -0.04864932969212532
+              },
+              {
+                "text": "1",
+                "logprob": -3.099436753473128e-06
+              },
+              {
+                "text": "2",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "4",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "^\\",
+                "logprob": -0.027263157069683075
+              },
+              {
+                "text": "circ",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": -5.364403477869928e-06
+              },
+              {
+                "text": "",
+                "logprob": -9.536738616588991e-07
+              },
+              {
+                "text": "1",
+                "logprob": -1.7881377516459906e-06
+              },
+              {
+                "text": "8",
+                "logprob": 0.0
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": "^\\",
+                "logprob": -2.264974000354414e-06
+              },
+              {
+                "text": "circ",
+                "logprob": 0.0
+              },
+              {
+                "text": "$",
+                "logprob": -0.003866578685119748
+              },
+              {
+                "text": "\n",
+                "logprob": -5.4834770708112046e-05
+              },
+              {
+                "text": "\n",
+                "logprob": -0.01655285432934761
+              },
+              {
+                "text": "Com",
+                "logprob": -0.8548859357833862
+              },
+              {
+                "text": "bin",
+                "logprob": -0.05089178308844566
+              },
+              {
+                "text": "ing",
+                "logprob": -8.344646857949556e-07
+              },
+              {
+                "text": "the",
+                "logprob": -0.7172796726226807
+              },
+              {
+                "text": "$",
+                "logprob": -0.555326521396637
+              },
+              {
+                "text": "x",
+                "logprob": -7.152555099310121e-07
+              },
+              {
+                "text": "$",
+                "logprob": -0.00033122775494121015
+              },
+              {
+                "text": "terms",
+                "logprob": -0.012435635551810265
+              },
+              {
+                "text": ",",
+                "logprob": -0.09872307628393173
+              },
+              {
+                "text": "we",
+                "logprob": -5.006664650863968e-05
+              },
+              {
+                "text": "get",
+                "logprob": -0.024466123431921005
+              },
+              {
+                "text": ":",
+                "logprob": -0.0009708458674140275
+              },
+              {
+                "text": "\n",
+                "logprob": -2.7418097943154862e-06
+              },
+              {
+                "text": "\n",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "$",
+                "logprob": -1.1920922133867862e-06
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "x",
+                "logprob": 0.0
+              },
+              {
+                "text": "+",
+                "logprob": -0.0014561536954715848
+              },
+              {
+                "text": "",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "4",
+                "logprob": 0.0
+              },
+              {
+                "text": "^\\",
+                "logprob": -8.284702198579907e-05
+              },
+              {
+                "text": "circ",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "8",
+                "logprob": 0.0
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": "^\\",
+                "logprob": 0.0
+              },
+              {
+                "text": "circ",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "$",
+                "logprob": -4.410734163684538e-06
+              },
+              {
+                "text": "\n",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "\n",
+                "logprob": -1.5497195136049413e-06
+              },
+              {
+                "text": "Sub",
+                "logprob": -0.20431573688983917
+              },
+              {
+                "text": "t",
+                "logprob": -2.407998726994265e-05
+              },
+              {
+                "text": "ract",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "ing",
+                "logprob": -0.00779361417517066
+              },
+              {
+                "text": "$",
+                "logprob": -0.0005999195855110884
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "4",
+                "logprob": 0.0
+              },
+              {
+                "text": "^\\",
+                "logprob": -0.00021908267808612436
+              },
+              {
+                "text": "circ",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "$",
+                "logprob": -6.186770770000294e-05
+              },
+              {
+                "text": "from",
+                "logprob": -4.768360213347478e-06
+              },
+              {
+                "text": "both",
+                "logprob": -1.6689160474925302e-05
+              },
+              {
+                "text": "sides",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": ",",
+                "logprob": -0.15035392343997955
+              },
+              {
+                "text": "we",
+                "logprob": -7.629365427419543e-06
+              },
+              {
+                "text": "have",
+                "logprob": -0.90400630235672
+              },
+              {
+                "text": ":",
+                "logprob": -2.3841830625315197e-06
+              },
+              {
+                "text": "\n",
+                "logprob": -5.960462772236497e-07
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "$",
+                "logprob": -1.7881377516459906e-06
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "x",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "",
+                "logprob": -5.364403477869928e-06
+              },
+              {
+                "text": "5",
+                "logprob": -0.021853474900126457
+              },
+              {
+                "text": "6",
+                "logprob": 0.0
+              },
+              {
+                "text": "^\\",
+                "logprob": -0.00013159839727450162
+              },
+              {
+                "text": "circ",
+                "logprob": 0.0
+              },
+              {
+                "text": "$",
+                "logprob": -5.960462772236497e-07
+              },
+              {
+                "text": "\n",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "D",
+                "logprob": -0.03466442599892616
+              },
+              {
+                "text": "ivid",
+                "logprob": 0.0
+              },
+              {
+                "text": "ing",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "both",
+                "logprob": -0.2662038207054138
+              },
+              {
+                "text": "sides",
+                "logprob": 0.0
+              },
+              {
+                "text": "by",
+                "logprob": -0.00023064337437972426
+              },
+              {
+                "text": "",
+                "logprob": -0.12694452702999115
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": ",",
+                "logprob": -0.007121299393475056
+              },
+              {
+                "text": "we",
+                "logprob": -4.887569048150908e-06
+              },
+              {
+                "text": "get",
+                "logprob": -0.7401907444000244
+              },
+              {
+                "text": ":",
+                "logprob": -0.0013797297142446041
+              },
+              {
+                "text": "\n",
+                "logprob": -1.0728830375228426e-06
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "$",
+                "logprob": -3.302042750874534e-05
+              },
+              {
+                "text": "x",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": -2.50339189733495e-06
+              },
+              {
+                "text": "",
+                "logprob": -0.3049599826335907
+              },
+              {
+                "text": "2",
+                "logprob": -1.2278481335670222e-05
+              },
+              {
+                "text": "8",
+                "logprob": 0.0
+              },
+              {
+                "text": "^\\",
+                "logprob": -9.179073458653875e-06
+              },
+              {
+                "text": "circ",
+                "logprob": 0.0
+              },
+              {
+                "text": "$",
+                "logprob": -0.00040522945346310735
+              },
+              {
+                "text": "\n",
+                "logprob": -5.245195097813848e-06
+              },
+              {
+                "text": "\n",
+                "logprob": -5.960462772236497e-07
+              },
+              {
+                "text": "So",
+                "logprob": -0.31274569034576416
+              },
+              {
+                "text": ",",
+                "logprob": -0.10338643938302994
+              },
+              {
+                "text": "the",
+                "logprob": -0.013926475308835506
+              },
+              {
+                "text": "number",
+                "logprob": -0.2520439326763153
+              },
+              {
+                "text": "of",
+                "logprob": -0.0014240134041756392
+              },
+              {
+                "text": "degrees",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "represented",
+                "logprob": -5.006664650863968e-05
+              },
+              {
+                "text": "by",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "$",
+                "logprob": -0.00030882356804795563
+              },
+              {
+                "text": "x",
+                "logprob": 0.0
+              },
+              {
+                "text": "$",
+                "logprob": -3.814689989667386e-06
+              },
+              {
+                "text": "is",
+                "logprob": -0.0005368936690501869
+              },
+              {
+                "text": "$\\",
+                "logprob": -0.05340251699090004
+              },
+              {
+                "text": "box",
+                "logprob": -4.184158387943171e-05
+              },
+              {
+                "text": "ed",
+                "logprob": 0.0
+              },
+              {
+                "text": "{",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "2",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "8",
+                "logprob": 0.0
+              },
+              {
+                "text": "^\\",
+                "logprob": -0.7618856430053711
+              },
+              {
+                "text": "circ",
+                "logprob": 0.0
+              },
+              {
+                "text": "}$.",
+                "logprob": -7.4741430580616e-05
+              },
+              {
+                "text": "The",
+                "logprob": -0.45011264085769653
+              },
+              {
+                "text": "answer",
+                "logprob": -4.529942543740617e-06
+              },
+              {
+                "text": "is",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": ":",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "",
+                "logprob": -6.079655122448457e-06
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "8",
+                "logprob": 0.0
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -1.3410537242889404
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.1618291737191456,
+              "max_token_negative_log_likelihood": 4.715105056762695,
+              "predictive_entropy": 0.055044739124152135,
+              "shannon_entropy": 0.17208909422273536
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 11.562599420547485,
+        "request_datetime": 1756138072
+      },
+      "num_train_instances": 0,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    }
+  ],
+  "processed": true
+}

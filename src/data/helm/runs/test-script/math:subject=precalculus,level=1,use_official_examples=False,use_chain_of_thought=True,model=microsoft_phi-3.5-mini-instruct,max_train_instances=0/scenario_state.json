@@ -1,0 +1,2249 @@
+{
+  "adapter_spec": {
+    "method": "generation",
+    "global_prefix": "",
+    "global_suffix": "",
+    "instructions": "Given a mathematics problem, determine the answer. Simplify your answer as much as possible.\n",
+    "input_prefix": "Problem: ",
+    "input_suffix": "\n",
+    "reference_prefix": "A. ",
+    "reference_suffix": "\n",
+    "chain_of_thought_prefix": "",
+    "chain_of_thought_suffix": "\n",
+    "output_prefix": "Answer: ",
+    "output_suffix": "\n",
+    "instance_prefix": "###\n",
+    "substitutions": [],
+    "max_train_instances": 0,
+    "max_eval_instances": 5,
+    "num_outputs": 1,
+    "num_train_trials": 1,
+    "num_trials": 1,
+    "sample_train": true,
+    "model_deployment": "huggingface/phi-3.5-mini-instruct",
+    "model": "microsoft/phi-3.5-mini-instruct",
+    "temperature": 0.0,
+    "max_tokens": 1400,
+    "stop_sequences": [
+      "###"
+    ],
+    "multi_label": false
+  },
+  "request_states": [
+    {
+      "instance": {
+        "input": {
+          "text": "Suppose $\\sin D = 0.7$ in the diagram below. What is $DE$? [asy]\npair D,E,F;\nF = (0,0);\nD = (sqrt(51),7);\nE = (0,7);\ndraw(D--E--F--D);\ndraw(rightanglemark(D,E,F,15));\nlabel(\"$D$\",D,NE);\nlabel(\"$E$\",E,NW);\nlabel(\"$F$\",F,SW);\nlabel(\"$7$\",(E+F)/2,W);\n[/asy]"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "The triangle is a right triangle, so $\\sin D = \\frac{EF}{DF}$. Then we have that $\\sin D = 0.7 = \\frac{7}{DF}$, so $DF = 10$.\n\nUsing the Pythagorean Theorem, we find that the length of $DE$ is $\\sqrt{DF^2 - EF^2},$ or $\\sqrt{100 - 49} = \\boxed{\\sqrt{51}}$."
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id118"
+      },
+      "train_trial_index": 0,
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "Given a mathematics problem, determine the answer. Simplify your answer as much as possible.\n###\nProblem: Suppose $\\sin D = 0.7$ in the diagram below. What is $DE$? [asy]\npair D,E,F;\nF = (0,0);\nD = (sqrt(51),7);\nE = (0,7);\ndraw(D--E--F--D);\ndraw(rightanglemark(D,E,F,15));\nlabel(\"$D$\",D,NE);\nlabel(\"$E$\",E,NW);\nlabel(\"$F$\",F,SW);\nlabel(\"$7$\",(E+F)/2,W);\n[/asy]\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 1,
+        "max_tokens": 1400,
+        "stop_sequences": [
+          "###"
+        ],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "We have a right triangle with a hypotenuse of length 7 (the side opposite angle D) and an opposite side of length 0.7 (the side corresponding to angle D). We can use the definition of sine in a right triangle, which is the ratio of the opposite side to the hypotenuse.\n\n$\\sin D = \\frac{DE}{7}$\n\nGiven that $\\sin D = 0.7$, we can substitute this value into the equation:\n\n$0.7 = \\frac{DE}{7}$\n\nNow, we can solve for DE by multiplying both sides by 7:\n\n$DE = 0.7 \\times 7$\n\n$DE = 4.9$\n\nSo, the length of side DE is 4.9 units.<|end|><|endoftext|>",
+            "logprob": -33.874262451008306,
+            "tokens": [
+              {
+                "text": "We",
+                "logprob": -0.7574143409729004
+              },
+              {
+                "text": "have",
+                "logprob": -1.2684062719345093
+              },
+              {
+                "text": "a",
+                "logprob": -0.00439973920583725
+              },
+              {
+                "text": "right",
+                "logprob": -1.5497195136049413e-06
+              },
+              {
+                "text": "triangle",
+                "logprob": -0.0031802100129425526
+              },
+              {
+                "text": "with",
+                "logprob": -1.4888429641723633
+              },
+              {
+                "text": "a",
+                "logprob": -2.8639917373657227
+              },
+              {
+                "text": "hyp",
+                "logprob": -0.14670157432556152
+              },
+              {
+                "text": "oten",
+                "logprob": 0.0
+              },
+              {
+                "text": "use",
+                "logprob": 0.0
+              },
+              {
+                "text": "of",
+                "logprob": -0.5096480846405029
+              },
+              {
+                "text": "length",
+                "logprob": -0.017889339476823807
+              },
+              {
+                "text": "",
+                "logprob": -0.13767555356025696
+              },
+              {
+                "text": "7",
+                "logprob": -0.0024205928202718496
+              },
+              {
+                "text": "(",
+                "logprob": -1.1985747814178467
+              },
+              {
+                "text": "the",
+                "logprob": -1.1931655406951904
+              },
+              {
+                "text": "side",
+                "logprob": -0.09658221900463104
+              },
+              {
+                "text": "opposite",
+                "logprob": -0.008251149207353592
+              },
+              {
+                "text": "angle",
+                "logprob": -0.08154948055744171
+              },
+              {
+                "text": "D",
+                "logprob": -0.011236599646508694
+              },
+              {
+                "text": ")",
+                "logprob": -0.16100367903709412
+              },
+              {
+                "text": "and",
+                "logprob": -1.311301275563892e-06
+              },
+              {
+                "text": "an",
+                "logprob": -0.15133942663669586
+              },
+              {
+                "text": "opposite",
+                "logprob": -0.8159450888633728
+              },
+              {
+                "text": "side",
+                "logprob": -0.0011551857460290194
+              },
+              {
+                "text": "of",
+                "logprob": -0.35413113236427307
+              },
+              {
+                "text": "length",
+                "logprob": -0.00044252615771256387
+              },
+              {
+                "text": "",
+                "logprob": -0.38390055298805237
+              },
+              {
+                "text": "0",
+                "logprob": -0.010761677287518978
+              },
+              {
+                "text": ".",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "7",
+                "logprob": 0.0
+              },
+              {
+                "text": "(",
+                "logprob": -0.010132541880011559
+              },
+              {
+                "text": "the",
+                "logprob": -0.40363699197769165
+              },
+              {
+                "text": "side",
+                "logprob": -0.49884793162345886
+              },
+              {
+                "text": "corresponding",
+                "logprob": -1.8726369142532349
+              },
+              {
+                "text": "to",
+                "logprob": -4.6491513785440475e-06
+              },
+              {
+                "text": "angle",
+                "logprob": -0.5666905641555786
+              },
+              {
+                "text": "D",
+                "logprob": -2.3841830625315197e-06
+              },
+              {
+                "text": ").",
+                "logprob": -0.04738450422883034
+              },
+              {
+                "text": "We",
+                "logprob": -0.4071666896343231
+              },
+              {
+                "text": "can",
+                "logprob": -0.217964306473732
+              },
+              {
+                "text": "use",
+                "logprob": -0.002203062642365694
+              },
+              {
+                "text": "the",
+                "logprob": -0.0006227937992662191
+              },
+              {
+                "text": "definition",
+                "logprob": -0.16325201094150543
+              },
+              {
+                "text": "of",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "s",
+                "logprob": -0.0817064717411995
+              },
+              {
+                "text": "ine",
+                "logprob": 0.0
+              },
+              {
+                "text": "in",
+                "logprob": -0.7891905903816223
+              },
+              {
+                "text": "a",
+                "logprob": -0.001032891683280468
+              },
+              {
+                "text": "right",
+                "logprob": -1.0728830375228426e-06
+              },
+              {
+                "text": "triangle",
+                "logprob": -8.344646857949556e-07
+              },
+              {
+                "text": ",",
+                "logprob": -1.4962188005447388
+              },
+              {
+                "text": "which",
+                "logprob": -0.0005413020844571292
+              },
+              {
+                "text": "is",
+                "logprob": -0.00829028245061636
+              },
+              {
+                "text": "the",
+                "logprob": -0.146846204996109
+              },
+              {
+                "text": "ratio",
+                "logprob": -0.0036227568052709103
+              },
+              {
+                "text": "of",
+                "logprob": -1.1801649634435307e-05
+              },
+              {
+                "text": "the",
+                "logprob": 0.0
+              },
+              {
+                "text": "opposite",
+                "logprob": -2.1545307636260986
+              },
+              {
+                "text": "side",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "to",
+                "logprob": -0.0006425699684768915
+              },
+              {
+                "text": "the",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "hyp",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "oten",
+                "logprob": 0.0
+              },
+              {
+                "text": "use",
+                "logprob": 0.0
+              },
+              {
+                "text": ".",
+                "logprob": -0.44457077980041504
+              },
+              {
+                "text": "\n",
+                "logprob": -0.009978529997169971
+              },
+              {
+                "text": "\n",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "$\\",
+                "logprob": -1.8949389457702637
+              },
+              {
+                "text": "sin",
+                "logprob": -9.047575440490618e-05
+              },
+              {
+                "text": "D",
+                "logprob": -0.002435101196169853
+              },
+              {
+                "text": "=",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "\\",
+                "logprob": -1.311301275563892e-06
+              },
+              {
+                "text": "frac",
+                "logprob": -0.00017808281700126827
+              },
+              {
+                "text": "{",
+                "logprob": -0.10037113726139069
+              },
+              {
+                "text": "DE",
+                "logprob": -0.0873093530535698
+              },
+              {
+                "text": "}{",
+                "logprob": -0.0002165798214264214
+              },
+              {
+                "text": "7",
+                "logprob": -0.13407295942306519
+              },
+              {
+                "text": "}$",
+                "logprob": -0.9938268065452576
+              },
+              {
+                "text": "\n",
+                "logprob": -1.847726889536716e-05
+              },
+              {
+                "text": "\n",
+                "logprob": -9.179073458653875e-06
+              },
+              {
+                "text": "G",
+                "logprob": -1.7282975912094116
+              },
+              {
+                "text": "iven",
+                "logprob": 0.0
+              },
+              {
+                "text": "that",
+                "logprob": -0.06786400824785233
+              },
+              {
+                "text": "$\\",
+                "logprob": -1.7881377516459906e-06
+              },
+              {
+                "text": "sin",
+                "logprob": 0.0
+              },
+              {
+                "text": "D",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": -2.0265558760002023e-06
+              },
+              {
+                "text": "",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": ".",
+                "logprob": -1.0371154530730564e-05
+              },
+              {
+                "text": "7",
+                "logprob": 0.0
+              },
+              {
+                "text": "$,",
+                "logprob": -0.00038378025055862963
+              },
+              {
+                "text": "we",
+                "logprob": -2.253030106658116e-05
+              },
+              {
+                "text": "can",
+                "logprob": -0.012166808359324932
+              },
+              {
+                "text": "substitute",
+                "logprob": -2.1224100589752197
+              },
+              {
+                "text": "this",
+                "logprob": -0.1034928634762764
+              },
+              {
+                "text": "value",
+                "logprob": -0.10048402100801468
+              },
+              {
+                "text": "into",
+                "logprob": -0.016349870711565018
+              },
+              {
+                "text": "the",
+                "logprob": -0.0018122454639524221
+              },
+              {
+                "text": "equation",
+                "logprob": -7.343022298300639e-05
+              },
+              {
+                "text": ":",
+                "logprob": -0.047023240476846695
+              },
+              {
+                "text": "\n",
+                "logprob": -5.960462772236497e-07
+              },
+              {
+                "text": "\n",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "$",
+                "logprob": -0.015175129286944866
+              },
+              {
+                "text": "0",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": ".",
+                "logprob": 0.0
+              },
+              {
+                "text": "7",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": -2.1219027985353023e-05
+              },
+              {
+                "text": "\\",
+                "logprob": 0.0
+              },
+              {
+                "text": "frac",
+                "logprob": 0.0
+              },
+              {
+                "text": "{",
+                "logprob": 0.0
+              },
+              {
+                "text": "DE",
+                "logprob": 0.0
+              },
+              {
+                "text": "}{",
+                "logprob": 0.0
+              },
+              {
+                "text": "7",
+                "logprob": 0.0
+              },
+              {
+                "text": "}$",
+                "logprob": -1.585470999998506e-05
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "Now",
+                "logprob": -0.15172821283340454
+              },
+              {
+                "text": ",",
+                "logprob": -0.10403230786323547
+              },
+              {
+                "text": "we",
+                "logprob": -0.00902265589684248
+              },
+              {
+                "text": "can",
+                "logprob": -0.01594049297273159
+              },
+              {
+                "text": "solve",
+                "logprob": -7.223821739898995e-05
+              },
+              {
+                "text": "for",
+                "logprob": -5.221230458118953e-05
+              },
+              {
+                "text": "DE",
+                "logprob": -0.403019517660141
+              },
+              {
+                "text": "by",
+                "logprob": -2.3220436573028564
+              },
+              {
+                "text": "multip",
+                "logprob": -0.006833871826529503
+              },
+              {
+                "text": "lying",
+                "logprob": 0.0
+              },
+              {
+                "text": "both",
+                "logprob": -1.1920922133867862e-06
+              },
+              {
+                "text": "sides",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "by",
+                "logprob": -0.8436285853385925
+              },
+              {
+                "text": "",
+                "logprob": -0.0006683023530058563
+              },
+              {
+                "text": "7",
+                "logprob": 0.0
+              },
+              {
+                "text": ":",
+                "logprob": -3.4570634852570947e-06
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "$",
+                "logprob": -0.0002783149539027363
+              },
+              {
+                "text": "DE",
+                "logprob": -0.02152673527598381
+              },
+              {
+                "text": "=",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "",
+                "logprob": -2.13382354559144e-05
+              },
+              {
+                "text": "0",
+                "logprob": -0.052448820322752
+              },
+              {
+                "text": ".",
+                "logprob": 0.0
+              },
+              {
+                "text": "7",
+                "logprob": 0.0
+              },
+              {
+                "text": "\\",
+                "logprob": -0.011945380829274654
+              },
+              {
+                "text": "times",
+                "logprob": -0.05659796670079231
+              },
+              {
+                "text": "",
+                "logprob": 0.0
+              },
+              {
+                "text": "7",
+                "logprob": 0.0
+              },
+              {
+                "text": "$",
+                "logprob": -0.38691896200180054
+              },
+              {
+                "text": "\n",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0012954423436895013
+              },
+              {
+                "text": "$",
+                "logprob": -0.00929681770503521
+              },
+              {
+                "text": "DE",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": -8.344646857949556e-07
+              },
+              {
+                "text": "",
+                "logprob": -3.099436753473128e-06
+              },
+              {
+                "text": "4",
+                "logprob": 0.0
+              },
+              {
+                "text": ".",
+                "logprob": 0.0
+              },
+              {
+                "text": "9",
+                "logprob": 0.0
+              },
+              {
+                "text": "$",
+                "logprob": 0.0
+              },
+              {
+                "text": "\n",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "So",
+                "logprob": -0.015103857032954693
+              },
+              {
+                "text": ",",
+                "logprob": -0.005573329050093889
+              },
+              {
+                "text": "the",
+                "logprob": -0.0265475083142519
+              },
+              {
+                "text": "length",
+                "logprob": -0.0014749611727893353
+              },
+              {
+                "text": "of",
+                "logprob": -1.2993727978027891e-05
+              },
+              {
+                "text": "side",
+                "logprob": -0.1794971227645874
+              },
+              {
+                "text": "DE",
+                "logprob": -0.0016155298799276352
+              },
+              {
+                "text": "is",
+                "logprob": -0.011796596460044384
+              },
+              {
+                "text": "",
+                "logprob": -0.031527839601039886
+              },
+              {
+                "text": "4",
+                "logprob": 0.0
+              },
+              {
+                "text": ".",
+                "logprob": 0.0
+              },
+              {
+                "text": "9",
+                "logprob": 0.0
+              },
+              {
+                "text": "units",
+                "logprob": -0.7260390520095825
+              },
+              {
+                "text": ".",
+                "logprob": -0.0007194076315499842
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.051549918949604034
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.19356721160191584,
+              "max_token_negative_log_likelihood": 2.8639914989471436,
+              "predictive_entropy": 0.06364463160064701,
+              "shannon_entropy": 0.2143370882799171
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 10.433112144470215,
+        "request_datetime": 1756149806
+      },
+      "num_train_instances": 0,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "A curve is parameterized by\n\\[(x,y) = (t^3 + 7, -3t^2 - 6t - 5).\\]Find the point the curve passes through at $t = 2.$"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "At $t = 2,$ $(x,y) = (2^3 + 7, -3 \\cdot 2^2 - 6 \\cdot 2 - 5) = \\boxed{(15,-29)}.$"
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id119"
+      },
+      "train_trial_index": 0,
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "Given a mathematics problem, determine the answer. Simplify your answer as much as possible.\n###\nProblem: A curve is parameterized by\n\\[(x,y) = (t^3 + 7, -3t^2 - 6t - 5).\\]Find the point the curve passes through at $t = 2.$\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 1,
+        "max_tokens": 1400,
+        "stop_sequences": [
+          "###"
+        ],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "To find the point on the curve when t = 2, we need to substitute t = 2 into the parameterized equations for x and y.\n\nFor x:\nx = t^3 + 7\nx = (2)^3 + 7\nx = 8 + 7\nx = 15\n\nFor y:\ny = -3t^2 - 6t - 5\ny = -3(2)^2 - 6(2) - 5\ny = -3(4) - 12 - 5\ny = -12 - 12 - 5\ny = -24 - 5\ny = -29\n\nSo, the point on the curve when t = 2 is (15, -29).\n\nAnswer: (15, -29)<|end|><|endoftext|>",
+            "logprob": -9.350820315168605,
+            "tokens": [
+              {
+                "text": "To",
+                "logprob": -0.00047195740626193583
+              },
+              {
+                "text": "find",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "the",
+                "logprob": 0.0
+              },
+              {
+                "text": "point",
+                "logprob": -1.9073468138230965e-06
+              },
+              {
+                "text": "on",
+                "logprob": -1.1199824810028076
+              },
+              {
+                "text": "the",
+                "logprob": 0.0
+              },
+              {
+                "text": "curve",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "when",
+                "logprob": -1.589364767074585
+              },
+              {
+                "text": "t",
+                "logprob": -0.9880638718605042
+              },
+              {
+                "text": "=",
+                "logprob": -0.00048792376765049994
+              },
+              {
+                "text": "",
+                "logprob": 0.0
+              },
+              {
+                "text": "2",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": ",",
+                "logprob": 0.0
+              },
+              {
+                "text": "we",
+                "logprob": -0.0005922947311773896
+              },
+              {
+                "text": "need",
+                "logprob": -1.1872315406799316
+              },
+              {
+                "text": "to",
+                "logprob": 0.0
+              },
+              {
+                "text": "substitute",
+                "logprob": -0.06205892935395241
+              },
+              {
+                "text": "t",
+                "logprob": -0.00448732590302825
+              },
+              {
+                "text": "=",
+                "logprob": -0.007151126395910978
+              },
+              {
+                "text": "",
+                "logprob": 0.0
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "into",
+                "logprob": -1.3947389561508317e-05
+              },
+              {
+                "text": "the",
+                "logprob": -0.0003486264031380415
+              },
+              {
+                "text": "parameter",
+                "logprob": -0.2381540834903717
+              },
+              {
+                "text": "ized",
+                "logprob": -0.5496060252189636
+              },
+              {
+                "text": "equations",
+                "logprob": -0.0007497837068513036
+              },
+              {
+                "text": "for",
+                "logprob": -0.0011544713051989675
+              },
+              {
+                "text": "x",
+                "logprob": -5.745722592109814e-05
+              },
+              {
+                "text": "and",
+                "logprob": -0.00029595286468975246
+              },
+              {
+                "text": "y",
+                "logprob": 0.0
+              },
+              {
+                "text": ".",
+                "logprob": -0.07215879112482071
+              },
+              {
+                "text": "\n",
+                "logprob": -0.00010799778101500124
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "For",
+                "logprob": -0.23540611565113068
+              },
+              {
+                "text": "x",
+                "logprob": -0.015081780962646008
+              },
+              {
+                "text": ":",
+                "logprob": -0.027686942368745804
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0006064721383154392
+              },
+              {
+                "text": "x",
+                "logprob": -0.8806862831115723
+              },
+              {
+                "text": "=",
+                "logprob": -0.1556587964296341
+              },
+              {
+                "text": "t",
+                "logprob": -0.6180877685546875
+              },
+              {
+                "text": "^",
+                "logprob": -0.00022003613412380219
+              },
+              {
+                "text": "3",
+                "logprob": 0.0
+              },
+              {
+                "text": "+",
+                "logprob": 0.0
+              },
+              {
+                "text": "",
+                "logprob": 0.0
+              },
+              {
+                "text": "7",
+                "logprob": 0.0
+              },
+              {
+                "text": "\n",
+                "logprob": -0.004735326860100031
+              },
+              {
+                "text": "x",
+                "logprob": -0.00016080040950328112
+              },
+              {
+                "text": "=",
+                "logprob": -0.12325410544872284
+              },
+              {
+                "text": "(",
+                "logprob": -0.00013982271775603294
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": ")^",
+                "logprob": -0.0019286142196506262
+              },
+              {
+                "text": "3",
+                "logprob": 0.0
+              },
+              {
+                "text": "+",
+                "logprob": 0.0
+              },
+              {
+                "text": "",
+                "logprob": 0.0
+              },
+              {
+                "text": "7",
+                "logprob": 0.0
+              },
+              {
+                "text": "\n",
+                "logprob": -1.537788011773955e-05
+              },
+              {
+                "text": "x",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": 0.0
+              },
+              {
+                "text": "",
+                "logprob": 0.0
+              },
+              {
+                "text": "8",
+                "logprob": -7.152555099310121e-07
+              },
+              {
+                "text": "+",
+                "logprob": 0.0
+              },
+              {
+                "text": "",
+                "logprob": 0.0
+              },
+              {
+                "text": "7",
+                "logprob": 0.0
+              },
+              {
+                "text": "\n",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "x",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": 0.0
+              },
+              {
+                "text": "",
+                "logprob": 0.0
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "5",
+                "logprob": 0.0
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "For",
+                "logprob": -9.536738616588991e-07
+              },
+              {
+                "text": "y",
+                "logprob": 0.0
+              },
+              {
+                "text": ":",
+                "logprob": 0.0
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "y",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": 0.0
+              },
+              {
+                "text": "-",
+                "logprob": 0.0
+              },
+              {
+                "text": "3",
+                "logprob": 0.0
+              },
+              {
+                "text": "t",
+                "logprob": 0.0
+              },
+              {
+                "text": "^",
+                "logprob": 0.0
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "-",
+                "logprob": 0.0
+              },
+              {
+                "text": "",
+                "logprob": 0.0
+              },
+              {
+                "text": "6",
+                "logprob": 0.0
+              },
+              {
+                "text": "t",
+                "logprob": 0.0
+              },
+              {
+                "text": "-",
+                "logprob": 0.0
+              },
+              {
+                "text": "",
+                "logprob": 0.0
+              },
+              {
+                "text": "5",
+                "logprob": 0.0
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "y",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": 0.0
+              },
+              {
+                "text": "-",
+                "logprob": -5.519237674889155e-05
+              },
+              {
+                "text": "3",
+                "logprob": 0.0
+              },
+              {
+                "text": "(",
+                "logprob": -2.753696753643453e-05
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": ")^",
+                "logprob": -4.3987260141875595e-05
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "-",
+                "logprob": 0.0
+              },
+              {
+                "text": "",
+                "logprob": 0.0
+              },
+              {
+                "text": "6",
+                "logprob": 0.0
+              },
+              {
+                "text": "(",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": ")",
+                "logprob": 0.0
+              },
+              {
+                "text": "-",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "",
+                "logprob": 0.0
+              },
+              {
+                "text": "5",
+                "logprob": 0.0
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "y",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "-",
+                "logprob": 0.0
+              },
+              {
+                "text": "3",
+                "logprob": -2.145764938177308e-06
+              },
+              {
+                "text": "(",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "4",
+                "logprob": 0.0
+              },
+              {
+                "text": ")",
+                "logprob": 0.0
+              },
+              {
+                "text": "-",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "-",
+                "logprob": 0.0
+              },
+              {
+                "text": "",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "5",
+                "logprob": 0.0
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "y",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": 0.0
+              },
+              {
+                "text": "-",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "-",
+                "logprob": 0.0
+              },
+              {
+                "text": "",
+                "logprob": 0.0
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "-",
+                "logprob": 0.0
+              },
+              {
+                "text": "",
+                "logprob": 0.0
+              },
+              {
+                "text": "5",
+                "logprob": 0.0
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "y",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": 0.0
+              },
+              {
+                "text": "-",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "2",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "4",
+                "logprob": -0.04571353644132614
+              },
+              {
+                "text": "-",
+                "logprob": -1.1086402082582936e-05
+              },
+              {
+                "text": "",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "5",
+                "logprob": 0.0
+              },
+              {
+                "text": "\n",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "y",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": 0.0
+              },
+              {
+                "text": "-",
+                "logprob": 0.0
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "9",
+                "logprob": 0.0
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "So",
+                "logprob": -0.09631647169589996
+              },
+              {
+                "text": ",",
+                "logprob": -0.026057736948132515
+              },
+              {
+                "text": "the",
+                "logprob": -0.09233856201171875
+              },
+              {
+                "text": "point",
+                "logprob": -0.1797490417957306
+              },
+              {
+                "text": "on",
+                "logprob": -0.05980592221021652
+              },
+              {
+                "text": "the",
+                "logprob": 0.0
+              },
+              {
+                "text": "curve",
+                "logprob": 0.0
+              },
+              {
+                "text": "when",
+                "logprob": -0.14724980294704437
+              },
+              {
+                "text": "t",
+                "logprob": -1.823885577323381e-05
+              },
+              {
+                "text": "=",
+                "logprob": -8.344646857949556e-07
+              },
+              {
+                "text": "",
+                "logprob": 0.0
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "is",
+                "logprob": -1.4305104514278355e-06
+              },
+              {
+                "text": "(",
+                "logprob": -7.354942499659956e-05
+              },
+              {
+                "text": "1",
+                "logprob": -0.13857576251029968
+              },
+              {
+                "text": "5",
+                "logprob": 0.0
+              },
+              {
+                "text": ",",
+                "logprob": -1.1920922133867862e-06
+              },
+              {
+                "text": "-",
+                "logprob": 0.0
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "9",
+                "logprob": 0.0
+              },
+              {
+                "text": ").",
+                "logprob": -1.0371154530730564e-05
+              },
+              {
+                "text": "\n",
+                "logprob": -0.439142644405365
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0014521064003929496
+              },
+              {
+                "text": "Answer",
+                "logprob": -0.18022876977920532
+              },
+              {
+                "text": ":",
+                "logprob": -0.00025328766787424684
+              },
+              {
+                "text": "(",
+                "logprob": -0.049495816230773926
+              },
+              {
+                "text": "1",
+                "logprob": -9.179073458653875e-06
+              },
+              {
+                "text": "5",
+                "logprob": 0.0
+              },
+              {
+                "text": ",",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "-",
+                "logprob": 0.0
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "9",
+                "logprob": 0.0
+              },
+              {
+                "text": ")",
+                "logprob": -0.005073173902928829
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0028978281188756227
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.050273228393777306,
+              "max_token_negative_log_likelihood": 1.589364767074585,
+              "predictive_entropy": 0.023803760716177944,
+              "shannon_entropy": 0.07245858605502895
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 10.653898477554321,
+        "request_datetime": 1756149806
+      },
+      "num_train_instances": 0,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "Find the dot product of $\\begin{pmatrix} -2 \\\\ 0 \\\\ 7 \\end{pmatrix}$ and $\\begin{pmatrix} 3 \\\\ 4 \\\\ -5 \\end{pmatrix}.$"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "The dot product of $\\begin{pmatrix} -2 \\\\ 0 \\\\ 7 \\end{pmatrix}$ and $\\begin{pmatrix} 3 \\\\ 4 \\\\ -5 \\end{pmatrix}$ is\n\\[(-2)(3) + (0)(4) + (7)(-5) = \\boxed{-41}.\\]"
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id120"
+      },
+      "train_trial_index": 0,
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "Given a mathematics problem, determine the answer. Simplify your answer as much as possible.\n###\nProblem: Find the dot product of $\\begin{pmatrix} -2 \\\\ 0 \\\\ 7 \\end{pmatrix}$ and $\\begin{pmatrix} 3 \\\\ 4 \\\\ -5 \\end{pmatrix}.$\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 1,
+        "max_tokens": 1400,
+        "stop_sequences": [
+          "###"
+        ],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "To find the dot product of two vectors, we multiply their corresponding components and then sum the results. In this case, we have the vectors:\n\n$\\begin{pmatrix} -2 \\\\ 0 \\\\ 7 \\end{pmatrix}$ and $\\begin{pmatrix} 3 \\\\ 4 \\\\ -5 \\end{pmatrix}$\n\nThe dot product is calculated as follows:\n\n$(-2) \\cdot (3) + (0) \\cdot (4) + (7) \\cdot (-5)$\n\n$= -6 + 0 - 35$\n\n$= -41$\n\nSo, the dot product of the two given vectors is $-41$.<|end|><|endoftext|>",
+            "logprob": -14.41558199173405,
+            "tokens": [
+              {
+                "text": "To",
+                "logprob": -0.08893989026546478
+              },
+              {
+                "text": "find",
+                "logprob": -7.378782902378589e-05
+              },
+              {
+                "text": "the",
+                "logprob": 0.0
+              },
+              {
+                "text": "dot",
+                "logprob": 0.0
+              },
+              {
+                "text": "product",
+                "logprob": 0.0
+              },
+              {
+                "text": "of",
+                "logprob": -1.6093124941107817e-05
+              },
+              {
+                "text": "two",
+                "logprob": -0.00714970612898469
+              },
+              {
+                "text": "vectors",
+                "logprob": -0.00010764019680209458
+              },
+              {
+                "text": ",",
+                "logprob": -0.00660652294754982
+              },
+              {
+                "text": "we",
+                "logprob": -0.45522114634513855
+              },
+              {
+                "text": "multiply",
+                "logprob": -2.264974000354414e-06
+              },
+              {
+                "text": "their",
+                "logprob": -0.0032641009893268347
+              },
+              {
+                "text": "corresponding",
+                "logprob": -7.080780778778717e-05
+              },
+              {
+                "text": "components",
+                "logprob": -7.390703103737906e-05
+              },
+              {
+                "text": "and",
+                "logprob": -0.0007798014557920396
+              },
+              {
+                "text": "then",
+                "logprob": -0.007788646034896374
+              },
+              {
+                "text": "sum",
+                "logprob": -0.013310973532497883
+              },
+              {
+                "text": "the",
+                "logprob": -0.09320361167192459
+              },
+              {
+                "text": "results",
+                "logprob": -0.01663821004331112
+              },
+              {
+                "text": ".",
+                "logprob": -0.00068926892708987
+              },
+              {
+                "text": "In",
+                "logprob": -2.637599229812622
+              },
+              {
+                "text": "this",
+                "logprob": -1.4066597032069694e-05
+              },
+              {
+                "text": "case",
+                "logprob": -3.2543604902457446e-05
+              },
+              {
+                "text": ",",
+                "logprob": -0.0007563352701254189
+              },
+              {
+                "text": "we",
+                "logprob": -0.014259586110711098
+              },
+              {
+                "text": "have",
+                "logprob": -0.0011241076281294227
+              },
+              {
+                "text": "the",
+                "logprob": -1.5370328426361084
+              },
+              {
+                "text": "vectors",
+                "logprob": -0.024583375081419945
+              },
+              {
+                "text": ":",
+                "logprob": -0.46249234676361084
+              },
+              {
+                "text": "\n",
+                "logprob": -6.079655122448457e-06
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "$\\",
+                "logprob": -0.0009349980391561985
+              },
+              {
+                "text": "begin",
+                "logprob": -0.39696425199508667
+              },
+              {
+                "text": "{",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "pmatrix",
+                "logprob": 0.0
+              },
+              {
+                "text": "}",
+                "logprob": -2.50339189733495e-06
+              },
+              {
+                "text": "-",
+                "logprob": -6.341733387671411e-05
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "\\\\",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "",
+                "logprob": -2.145764938177308e-06
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": "\\\\",
+                "logprob": -9.536738616588991e-07
+              },
+              {
+                "text": "",
+                "logprob": 0.0
+              },
+              {
+                "text": "7",
+                "logprob": 0.0
+              },
+              {
+                "text": "\\",
+                "logprob": 0.0
+              },
+              {
+                "text": "end",
+                "logprob": 0.0
+              },
+              {
+                "text": "{",
+                "logprob": 0.0
+              },
+              {
+                "text": "pmatrix",
+                "logprob": 0.0
+              },
+              {
+                "text": "}$",
+                "logprob": -8.272782724816352e-05
+              },
+              {
+                "text": "and",
+                "logprob": -0.0013362773461267352
+              },
+              {
+                "text": "$\\",
+                "logprob": -0.0004544417606666684
+              },
+              {
+                "text": "begin",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "{",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "pmatrix",
+                "logprob": 0.0
+              },
+              {
+                "text": "}",
+                "logprob": 0.0
+              },
+              {
+                "text": "",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "3",
+                "logprob": 0.0
+              },
+              {
+                "text": "\\\\",
+                "logprob": 0.0
+              },
+              {
+                "text": "",
+                "logprob": -5.960462772236497e-07
+              },
+              {
+                "text": "4",
+                "logprob": 0.0
+              },
+              {
+                "text": "\\\\",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "-",
+                "logprob": 0.0
+              },
+              {
+                "text": "5",
+                "logprob": 0.0
+              },
+              {
+                "text": "\\",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "end",
+                "logprob": 0.0
+              },
+              {
+                "text": "{",
+                "logprob": 0.0
+              },
+              {
+                "text": "pmatrix",
+                "logprob": 0.0
+              },
+              {
+                "text": "}$",
+                "logprob": -1.9556615352630615
+              },
+              {
+                "text": "\n",
+                "logprob": -2.253030106658116e-05
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "The",
+                "logprob": -0.023689333349466324
+              },
+              {
+                "text": "dot",
+                "logprob": -6.007967749610543e-05
+              },
+              {
+                "text": "product",
+                "logprob": 0.0
+              },
+              {
+                "text": "is",
+                "logprob": -0.009127557277679443
+              },
+              {
+                "text": "calculated",
+                "logprob": -0.055452000349760056
+              },
+              {
+                "text": "as",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "follows",
+                "logprob": -0.007404621224850416
+              },
+              {
+                "text": ":",
+                "logprob": 0.0
+              },
+              {
+                "text": "\n",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "$",
+                "logprob": -0.0007894498412497342
+              },
+              {
+                "text": "(-",
+                "logprob": -8.749579137656838e-05
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": ")",
+                "logprob": -0.4315043091773987
+              },
+              {
+                "text": "\\",
+                "logprob": -0.011229881085455418
+              },
+              {
+                "text": "cdot",
+                "logprob": -0.33935242891311646
+              },
+              {
+                "text": "(",
+                "logprob": -0.9547410607337952
+              },
+              {
+                "text": "3",
+                "logprob": 0.0
+              },
+              {
+                "text": ")",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "+",
+                "logprob": 0.0
+              },
+              {
+                "text": "(",
+                "logprob": -0.022889217361807823
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": ")",
+                "logprob": -8.344646857949556e-07
+              },
+              {
+                "text": "\\",
+                "logprob": 0.0
+              },
+              {
+                "text": "cdot",
+                "logprob": 0.0
+              },
+              {
+                "text": "(",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "4",
+                "logprob": 0.0
+              },
+              {
+                "text": ")",
+                "logprob": 0.0
+              },
+              {
+                "text": "+",
+                "logprob": 0.0
+              },
+              {
+                "text": "(",
+                "logprob": -2.0265558760002023e-06
+              },
+              {
+                "text": "7",
+                "logprob": 0.0
+              },
+              {
+                "text": ")",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "\\",
+                "logprob": 0.0
+              },
+              {
+                "text": "cdot",
+                "logprob": 0.0
+              },
+              {
+                "text": "(-",
+                "logprob": -3.099436753473128e-06
+              },
+              {
+                "text": "5",
+                "logprob": 0.0
+              },
+              {
+                "text": ")$",
+                "logprob": -0.0678631141781807
+              },
+              {
+                "text": "\n",
+                "logprob": -2.9802276912960224e-06
+              },
+              {
+                "text": "\n",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "$",
+                "logprob": -1.0074574947357178
+              },
+              {
+                "text": "=",
+                "logprob": -0.0028306676540523767
+              },
+              {
+                "text": "-",
+                "logprob": -0.013087092898786068
+              },
+              {
+                "text": "6",
+                "logprob": 0.0
+              },
+              {
+                "text": "+",
+                "logprob": 0.0
+              },
+              {
+                "text": "",
+                "logprob": 0.0
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": "-",
+                "logprob": -0.003228097688406706
+              },
+              {
+                "text": "",
+                "logprob": -1.0728830375228426e-06
+              },
+              {
+                "text": "3",
+                "logprob": 0.0
+              },
+              {
+                "text": "5",
+                "logprob": 0.0
+              },
+              {
+                "text": "$",
+                "logprob": -9.536738616588991e-07
+              },
+              {
+                "text": "\n",
+                "logprob": -5.125986263010418e-06
+              },
+              {
+                "text": "\n",
+                "logprob": -1.9073468138230965e-06
+              },
+              {
+                "text": "$",
+                "logprob": -0.0005279577453620732
+              },
+              {
+                "text": "=",
+                "logprob": -2.0265558760002023e-06
+              },
+              {
+                "text": "-",
+                "logprob": 0.0
+              },
+              {
+                "text": "4",
+                "logprob": -0.09583079069852829
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "$",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "\n",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "So",
+                "logprob": -0.013828777708113194
+              },
+              {
+                "text": ",",
+                "logprob": -0.025110838934779167
+              },
+              {
+                "text": "the",
+                "logprob": 0.0
+              },
+              {
+                "text": "dot",
+                "logprob": -0.0034477810841053724
+              },
+              {
+                "text": "product",
+                "logprob": 0.0
+              },
+              {
+                "text": "of",
+                "logprob": -0.00041762212640605867
+              },
+              {
+                "text": "the",
+                "logprob": -0.04596632346510887
+              },
+              {
+                "text": "two",
+                "logprob": -2.072205066680908
+              },
+              {
+                "text": "given",
+                "logprob": -1.4061501026153564
+              },
+              {
+                "text": "vectors",
+                "logprob": 0.0
+              },
+              {
+                "text": "is",
+                "logprob": -3.981510963058099e-05
+              },
+              {
+                "text": "$-",
+                "logprob": -0.02755776047706604
+              },
+              {
+                "text": "4",
+                "logprob": 0.0
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "$.",
+                "logprob": -0.0013142528478056192
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.04500448331236839
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.09806518407342268,
+              "max_token_negative_log_likelihood": 2.637599229812622,
+              "predictive_entropy": 0.028735776234840797,
+              "shannon_entropy": 0.0792626597240039
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 9.287399768829346,
+        "request_datetime": 1756149806
+      },
+      "num_train_instances": 0,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    }
+  ]
+}

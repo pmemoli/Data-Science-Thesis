@@ -1,0 +1,1569 @@
+{
+  "adapter_spec": {
+    "method": "generation",
+    "global_prefix": "",
+    "global_suffix": "",
+    "instructions": "Given a mathematics problem, determine the answer. Simplify your answer as much as possible.\n",
+    "input_prefix": "Problem: ",
+    "input_suffix": "\n",
+    "reference_prefix": "A. ",
+    "reference_suffix": "\n",
+    "chain_of_thought_prefix": "",
+    "chain_of_thought_suffix": "\n",
+    "output_prefix": "Answer: ",
+    "output_suffix": "\n",
+    "instance_prefix": "###\n",
+    "substitutions": [],
+    "max_train_instances": 0,
+    "max_eval_instances": 150,
+    "num_outputs": 1,
+    "num_train_trials": 1,
+    "num_trials": 1,
+    "sample_train": true,
+    "model_deployment": "huggingface/phi-3.5-mini-instruct",
+    "model": "microsoft/phi-3.5-mini-instruct",
+    "temperature": 0.0,
+    "max_tokens": 800,
+    "stop_sequences": [
+      "###"
+    ],
+    "multi_label": false
+  },
+  "request_states": [
+    {
+      "instance": {
+        "input": {
+          "text": "Roslyn has ten boxes. Five of the boxes contain pencils, four of the boxes contain pens, and two of the boxes contain both pens and pencils. How many boxes contain neither pens nor pencils?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Of the 5 boxes with pencils, 2 have pens also, so $5-2=3$ have pencils only.  Similarly, $4-2 =2$ of the boxes have pens only:\n\n\n[asy]\nunitsize(0.05cm);\nlabel(\"Pencils\", (2,74));\nlabel(\"Pens\", (80,74));\ndraw(Circle((30,45), 22));\ndraw(Circle((58, 45), 22));\nlabel(\"$2$\", (44, 45));\nlabel(scale(0.8)*\"$3$\",(28,58));\nlabel(scale(0.8)*\"$2$\",(63,58));\n[/asy]\n\nThat gives us $3+2+2=7$ boxes with pens, pencils, or both.  This leaves $10-7 = \\boxed{3}$ with neither."
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id87"
+      },
+      "train_trial_index": 0,
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "Given a mathematics problem, determine the answer. Simplify your answer as much as possible.\n###\nProblem: Roslyn has ten boxes. Five of the boxes contain pencils, four of the boxes contain pens, and two of the boxes contain both pens and pencils. How many boxes contain neither pens nor pencils?\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 1,
+        "max_tokens": 800,
+        "stop_sequences": [
+          "###"
+        ],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "To find the number of boxes containing neither pens nor pencils, we can use the principle of inclusion-exclusion.\n\nFirst, let's find the total number of boxes containing either pens or pencils (or both). We have:\n\n5 boxes with pencils + 4 boxes with pens = 9 boxes\n\nHowever, we are double counting the 2 boxes that have both pens and pencils. So, we need to subtract those to avoid double counting:\n\n9 boxes - 2 boxes = 7 boxes\n\nNow we have 7 boxes containing either pens or pencils (or both). Since Roslyn has a total of 10 boxes, we can find the number of boxes without pens or pencils by subtracting the 7 boxes with pens or pencils from the total number of boxes:\n\n10 boxes - 7 boxes = 3 boxes\n\nSo, there are 3 boxes containing neither pens nor pencils.<|end|><|endoftext|>",
+            "logprob": -48.93587598393074,
+            "tokens": [
+              {
+                "text": "To",
+                "logprob": -0.18020567297935486
+              },
+              {
+                "text": "find",
+                "logprob": -0.5930491089820862
+              },
+              {
+                "text": "the",
+                "logprob": -0.19241125881671906
+              },
+              {
+                "text": "number",
+                "logprob": -0.001500552985817194
+              },
+              {
+                "text": "of",
+                "logprob": 0.0
+              },
+              {
+                "text": "boxes",
+                "logprob": 0.0
+              },
+              {
+                "text": "containing",
+                "logprob": -0.6950746178627014
+              },
+              {
+                "text": "neither",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "pens",
+                "logprob": -2.264974000354414e-06
+              },
+              {
+                "text": "nor",
+                "logprob": 0.0
+              },
+              {
+                "text": "p",
+                "logprob": 0.0
+              },
+              {
+                "text": "enc",
+                "logprob": 0.0
+              },
+              {
+                "text": "ils",
+                "logprob": 0.0
+              },
+              {
+                "text": ",",
+                "logprob": 0.0
+              },
+              {
+                "text": "we",
+                "logprob": -0.03191298991441727
+              },
+              {
+                "text": "can",
+                "logprob": -0.24096813797950745
+              },
+              {
+                "text": "use",
+                "logprob": -0.018920186907052994
+              },
+              {
+                "text": "the",
+                "logprob": -4.1483970562694594e-05
+              },
+              {
+                "text": "principle",
+                "logprob": -0.0005627478822134435
+              },
+              {
+                "text": "of",
+                "logprob": -2.50339189733495e-06
+              },
+              {
+                "text": "inclusion",
+                "logprob": -0.014209991320967674
+              },
+              {
+                "text": "-",
+                "logprob": -0.002985783852636814
+              },
+              {
+                "text": "ex",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "clusion",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": ".",
+                "logprob": -0.02032383717596531
+              },
+              {
+                "text": "\n",
+                "logprob": -0.03578786924481392
+              },
+              {
+                "text": "\n",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "First",
+                "logprob": -2.2502570152282715
+              },
+              {
+                "text": ",",
+                "logprob": -0.0034943493083119392
+              },
+              {
+                "text": "let",
+                "logprob": -0.3432973623275757
+              },
+              {
+                "text": "'",
+                "logprob": -0.00014768941036891192
+              },
+              {
+                "text": "s",
+                "logprob": 0.0
+              },
+              {
+                "text": "find",
+                "logprob": -0.17562519013881683
+              },
+              {
+                "text": "the",
+                "logprob": -0.05217209458351135
+              },
+              {
+                "text": "total",
+                "logprob": -0.16031864285469055
+              },
+              {
+                "text": "number",
+                "logprob": -9.560128091834486e-05
+              },
+              {
+                "text": "of",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "boxes",
+                "logprob": -8.105902816168964e-05
+              },
+              {
+                "text": "containing",
+                "logprob": -0.139018714427948
+              },
+              {
+                "text": "either",
+                "logprob": -0.17349064350128174
+              },
+              {
+                "text": "pens",
+                "logprob": -0.06277670711278915
+              },
+              {
+                "text": "or",
+                "logprob": -0.005411144345998764
+              },
+              {
+                "text": "p",
+                "logprob": -1.3828182090946939e-05
+              },
+              {
+                "text": "enc",
+                "logprob": 0.0
+              },
+              {
+                "text": "ils",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "(",
+                "logprob": -1.0583025217056274
+              },
+              {
+                "text": "or",
+                "logprob": -0.012018292210996151
+              },
+              {
+                "text": "both",
+                "logprob": -2.1457441107486375e-05
+              },
+              {
+                "text": ").",
+                "logprob": -1.0299744606018066
+              },
+              {
+                "text": "We",
+                "logprob": -0.45378971099853516
+              },
+              {
+                "text": "have",
+                "logprob": -1.3893264532089233
+              },
+              {
+                "text": ":",
+                "logprob": -0.19203777611255646
+              },
+              {
+                "text": "\n",
+                "logprob": -7.867782187531702e-06
+              },
+              {
+                "text": "\n",
+                "logprob": -0.005094166845083237
+              },
+              {
+                "text": "5",
+                "logprob": -1.3392475843429565
+              },
+              {
+                "text": "boxes",
+                "logprob": -0.05488964170217514
+              },
+              {
+                "text": "with",
+                "logprob": -0.2211504876613617
+              },
+              {
+                "text": "p",
+                "logprob": -0.0018606745870783925
+              },
+              {
+                "text": "enc",
+                "logprob": 0.0
+              },
+              {
+                "text": "ils",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "+",
+                "logprob": -0.2953696548938751
+              },
+              {
+                "text": "",
+                "logprob": -6.079655122448457e-06
+              },
+              {
+                "text": "4",
+                "logprob": 0.0
+              },
+              {
+                "text": "boxes",
+                "logprob": 0.0
+              },
+              {
+                "text": "with",
+                "logprob": 0.0
+              },
+              {
+                "text": "pens",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": -0.053265538066625595
+              },
+              {
+                "text": "",
+                "logprob": -2.7418097943154862e-06
+              },
+              {
+                "text": "9",
+                "logprob": -3.909988299710676e-05
+              },
+              {
+                "text": "boxes",
+                "logprob": -0.0013554443139582872
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0797722339630127
+              },
+              {
+                "text": "\n",
+                "logprob": -0.026995733380317688
+              },
+              {
+                "text": "However",
+                "logprob": -0.03348703682422638
+              },
+              {
+                "text": ",",
+                "logprob": -7.152555099310121e-07
+              },
+              {
+                "text": "we",
+                "logprob": -0.1888083517551422
+              },
+              {
+                "text": "are",
+                "logprob": -4.1205949783325195
+              },
+              {
+                "text": "double",
+                "logprob": -0.38602596521377563
+              },
+              {
+                "text": "counting",
+                "logprob": -3.469142436981201
+              },
+              {
+                "text": "the",
+                "logprob": -0.006252845283597708
+              },
+              {
+                "text": "",
+                "logprob": -0.22549988329410553
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "boxes",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "that",
+                "logprob": -0.1186680793762207
+              },
+              {
+                "text": "have",
+                "logprob": -3.590487241744995
+              },
+              {
+                "text": "both",
+                "logprob": -7.033323527139146e-06
+              },
+              {
+                "text": "pens",
+                "logprob": -0.003770624753087759
+              },
+              {
+                "text": "and",
+                "logprob": -1.4305104514278355e-06
+              },
+              {
+                "text": "p",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "enc",
+                "logprob": 0.0
+              },
+              {
+                "text": "ils",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": ".",
+                "logprob": -0.08587419241666794
+              },
+              {
+                "text": "So",
+                "logprob": -0.4710368812084198
+              },
+              {
+                "text": ",",
+                "logprob": -0.0898057073354721
+              },
+              {
+                "text": "we",
+                "logprob": -0.016129719093441963
+              },
+              {
+                "text": "need",
+                "logprob": -0.5682763457298279
+              },
+              {
+                "text": "to",
+                "logprob": -5.960462772236497e-07
+              },
+              {
+                "text": "subtract",
+                "logprob": -0.004851711913943291
+              },
+              {
+                "text": "those",
+                "logprob": -0.9161959886550903
+              },
+              {
+                "text": "to",
+                "logprob": -2.0938549041748047
+              },
+              {
+                "text": "avoid",
+                "logprob": -0.2047009915113449
+              },
+              {
+                "text": "double",
+                "logprob": -0.10952325910329819
+              },
+              {
+                "text": "counting",
+                "logprob": -0.030951395630836487
+              },
+              {
+                "text": ":",
+                "logprob": -0.0045715817250311375
+              },
+              {
+                "text": "\n",
+                "logprob": -7.390948667307384e-06
+              },
+              {
+                "text": "\n",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "9",
+                "logprob": -0.00040725519647821784
+              },
+              {
+                "text": "boxes",
+                "logprob": -0.005511564668267965
+              },
+              {
+                "text": "-",
+                "logprob": -0.9318780899047852
+              },
+              {
+                "text": "",
+                "logprob": -1.7881377516459906e-06
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "boxes",
+                "logprob": -3.862306402879767e-05
+              },
+              {
+                "text": "=",
+                "logprob": -1.9901926517486572
+              },
+              {
+                "text": "",
+                "logprob": 0.0
+              },
+              {
+                "text": "7",
+                "logprob": 0.0
+              },
+              {
+                "text": "boxes",
+                "logprob": -0.00012003655137959868
+              },
+              {
+                "text": "\n",
+                "logprob": -0.31232190132141113
+              },
+              {
+                "text": "\n",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "Now",
+                "logprob": -0.08194988965988159
+              },
+              {
+                "text": "we",
+                "logprob": -1.8411072492599487
+              },
+              {
+                "text": "have",
+                "logprob": -1.87648344039917
+              },
+              {
+                "text": "",
+                "logprob": -1.1375105381011963
+              },
+              {
+                "text": "7",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "boxes",
+                "logprob": -0.0002526917669456452
+              },
+              {
+                "text": "containing",
+                "logprob": -0.7676898837089539
+              },
+              {
+                "text": "either",
+                "logprob": -0.024897491559386253
+              },
+              {
+                "text": "pens",
+                "logprob": -0.01274452731013298
+              },
+              {
+                "text": "or",
+                "logprob": -0.40737080574035645
+              },
+              {
+                "text": "p",
+                "logprob": -7.033323527139146e-06
+              },
+              {
+                "text": "enc",
+                "logprob": 0.0
+              },
+              {
+                "text": "ils",
+                "logprob": 0.0
+              },
+              {
+                "text": "(",
+                "logprob": -0.05843179672956467
+              },
+              {
+                "text": "or",
+                "logprob": -0.001303180935792625
+              },
+              {
+                "text": "both",
+                "logprob": -6.318072337307967e-06
+              },
+              {
+                "text": ").",
+                "logprob": -0.02983800880610943
+              },
+              {
+                "text": "Since",
+                "logprob": -0.14431476593017578
+              },
+              {
+                "text": "Ros",
+                "logprob": -0.5817937850952148
+              },
+              {
+                "text": "lyn",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "has",
+                "logprob": -0.0010033579310402274
+              },
+              {
+                "text": "a",
+                "logprob": -0.3426676094532013
+              },
+              {
+                "text": "total",
+                "logprob": 0.0
+              },
+              {
+                "text": "of",
+                "logprob": 0.0
+              },
+              {
+                "text": "",
+                "logprob": -0.0002613918040879071
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": "boxes",
+                "logprob": 0.0
+              },
+              {
+                "text": ",",
+                "logprob": -0.041265543550252914
+              },
+              {
+                "text": "we",
+                "logprob": -0.045675043016672134
+              },
+              {
+                "text": "can",
+                "logprob": -0.012748882174491882
+              },
+              {
+                "text": "find",
+                "logprob": -0.2217579483985901
+              },
+              {
+                "text": "the",
+                "logprob": -0.001673013437539339
+              },
+              {
+                "text": "number",
+                "logprob": -0.0032340388279408216
+              },
+              {
+                "text": "of",
+                "logprob": -0.001077548018656671
+              },
+              {
+                "text": "boxes",
+                "logprob": -1.3351351299206726e-05
+              },
+              {
+                "text": "without",
+                "logprob": -4.00777530670166
+              },
+              {
+                "text": "pens",
+                "logprob": -0.5355995893478394
+              },
+              {
+                "text": "or",
+                "logprob": -0.010990913957357407
+              },
+              {
+                "text": "p",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "enc",
+                "logprob": 0.0
+              },
+              {
+                "text": "ils",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "by",
+                "logprob": -0.01299025397747755
+              },
+              {
+                "text": "subtract",
+                "logprob": -0.0007859955076128244
+              },
+              {
+                "text": "ing",
+                "logprob": -1.6689286894688848e-06
+              },
+              {
+                "text": "the",
+                "logprob": -0.03518671542406082
+              },
+              {
+                "text": "",
+                "logprob": -0.7236894965171814
+              },
+              {
+                "text": "7",
+                "logprob": 0.0
+              },
+              {
+                "text": "boxes",
+                "logprob": -0.09580739587545395
+              },
+              {
+                "text": "with",
+                "logprob": -1.452125072479248
+              },
+              {
+                "text": "pens",
+                "logprob": -0.5512692332267761
+              },
+              {
+                "text": "or",
+                "logprob": -0.0662672147154808
+              },
+              {
+                "text": "p",
+                "logprob": -0.0005610798834823072
+              },
+              {
+                "text": "enc",
+                "logprob": 0.0
+              },
+              {
+                "text": "ils",
+                "logprob": -7.152555099310121e-07
+              },
+              {
+                "text": "from",
+                "logprob": -0.0198186207562685
+              },
+              {
+                "text": "the",
+                "logprob": -3.266281055402942e-05
+              },
+              {
+                "text": "total",
+                "logprob": -0.0003150205302517861
+              },
+              {
+                "text": "number",
+                "logprob": -0.8665754795074463
+              },
+              {
+                "text": "of",
+                "logprob": -0.023270022124052048
+              },
+              {
+                "text": "boxes",
+                "logprob": -0.00040558696491643786
+              },
+              {
+                "text": ":",
+                "logprob": -0.0007578838267363608
+              },
+              {
+                "text": "\n",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "1",
+                "logprob": -0.0005359405186027288
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": "boxes",
+                "logprob": -0.0016055324813351035
+              },
+              {
+                "text": "-",
+                "logprob": -0.06613589078187943
+              },
+              {
+                "text": "",
+                "logprob": 0.0
+              },
+              {
+                "text": "7",
+                "logprob": 0.0
+              },
+              {
+                "text": "boxes",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "=",
+                "logprob": -0.000904032145626843
+              },
+              {
+                "text": "",
+                "logprob": -1.0728830375228426e-06
+              },
+              {
+                "text": "3",
+                "logprob": 0.0
+              },
+              {
+                "text": "boxes",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "\n",
+                "logprob": -1.847726889536716e-05
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "So",
+                "logprob": -0.12092437595129013
+              },
+              {
+                "text": ",",
+                "logprob": -0.001437464845366776
+              },
+              {
+                "text": "there",
+                "logprob": -0.305424302816391
+              },
+              {
+                "text": "are",
+                "logprob": -1.6689286894688848e-06
+              },
+              {
+                "text": "",
+                "logprob": -2.264974000354414e-06
+              },
+              {
+                "text": "3",
+                "logprob": 0.0
+              },
+              {
+                "text": "boxes",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "containing",
+                "logprob": -0.5776528716087341
+              },
+              {
+                "text": "neither",
+                "logprob": -1.4305104514278355e-06
+              },
+              {
+                "text": "pens",
+                "logprob": -2.3483953555114567e-05
+              },
+              {
+                "text": "nor",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "p",
+                "logprob": 0.0
+              },
+              {
+                "text": "enc",
+                "logprob": 0.0
+              },
+              {
+                "text": "ils",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": ".",
+                "logprob": -0.0007683662115596235
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.23144298791885376
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.23302796651838634,
+              "max_token_negative_log_likelihood": 4.120594024658203,
+              "predictive_entropy": 0.06772038973675235,
+              "shannon_entropy": 0.22838381903316374
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 7.31985878944397,
+        "request_datetime": 1756138086
+      },
+      "num_train_instances": 0,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "Two candidates, Dan and Donald, run for class president. Two other candidates, Freddie and Bernie, run for vice president. Each candidate has a 50$\\%$ chance of winning. What is the probability that both Dan and Freddie win? (Express your answer as a fraction.)"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "The probability that Dan wins is $\\frac12$. The probability that Freddie wins is also $\\frac12$. Therefore, the probability that both win is $\\frac12 \\cdot \\frac12 =\\boxed{\\frac14}$."
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id88"
+      },
+      "train_trial_index": 0,
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "Given a mathematics problem, determine the answer. Simplify your answer as much as possible.\n###\nProblem: Two candidates, Dan and Donald, run for class president. Two other candidates, Freddie and Bernie, run for vice president. Each candidate has a 50$\\%$ chance of winning. What is the probability that both Dan and Freddie win? (Express your answer as a fraction.)\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 1,
+        "max_tokens": 800,
+        "stop_sequences": [
+          "###"
+        ],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "Since each candidate has a 50% chance of winning, we can express this as a probability of 1/2 for each candidate.\n\nTo find the probability that both Dan and Freddie win, we need to multiply the probabilities of each event occurring independently:\n\nProbability(Dan wins) * Probability(Freddie wins) = (1/2) * (1/2)\n\nSo, the probability that both Dan and Freddie win is:\n\n(1/2) * (1/2) = 1/4\n\nTherefore, the simplified probability that both Dan and Freddie win is 1/4.<|end|><|endoftext|>",
+            "logprob": -20.160229225565246,
+            "tokens": [
+              {
+                "text": "Since",
+                "logprob": -0.9145060777664185
+              },
+              {
+                "text": "each",
+                "logprob": -0.026428628712892532
+              },
+              {
+                "text": "candidate",
+                "logprob": -6.067568756407127e-05
+              },
+              {
+                "text": "has",
+                "logprob": -0.00031895318534225225
+              },
+              {
+                "text": "a",
+                "logprob": -8.49926145747304e-05
+              },
+              {
+                "text": "",
+                "logprob": -1.1920922133867862e-06
+              },
+              {
+                "text": "5",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": "%",
+                "logprob": -0.0002632986579556018
+              },
+              {
+                "text": "chance",
+                "logprob": -0.5102918148040771
+              },
+              {
+                "text": "of",
+                "logprob": -0.03424692898988724
+              },
+              {
+                "text": "winning",
+                "logprob": 0.0
+              },
+              {
+                "text": ",",
+                "logprob": -0.05819282680749893
+              },
+              {
+                "text": "we",
+                "logprob": -0.05912904068827629
+              },
+              {
+                "text": "can",
+                "logprob": -0.00022539935889653862
+              },
+              {
+                "text": "express",
+                "logprob": -0.5060227513313293
+              },
+              {
+                "text": "this",
+                "logprob": -0.10957774519920349
+              },
+              {
+                "text": "as",
+                "logprob": -0.20183028280735016
+              },
+              {
+                "text": "a",
+                "logprob": -0.024271953850984573
+              },
+              {
+                "text": "probability",
+                "logprob": -0.4110007882118225
+              },
+              {
+                "text": "of",
+                "logprob": -0.009002571925520897
+              },
+              {
+                "text": "",
+                "logprob": -3.564294092939235e-05
+              },
+              {
+                "text": "1",
+                "logprob": -0.05922061204910278
+              },
+              {
+                "text": "/",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "for",
+                "logprob": -0.12847349047660828
+              },
+              {
+                "text": "each",
+                "logprob": -0.07851918786764145
+              },
+              {
+                "text": "candidate",
+                "logprob": -0.10329409688711166
+              },
+              {
+                "text": ".",
+                "logprob": -0.015970760956406593
+              },
+              {
+                "text": "\n",
+                "logprob": -0.23067593574523926
+              },
+              {
+                "text": "\n",
+                "logprob": -1.6689160474925302e-05
+              },
+              {
+                "text": "To",
+                "logprob": -0.12652119994163513
+              },
+              {
+                "text": "find",
+                "logprob": -0.0012326984433457255
+              },
+              {
+                "text": "the",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "probability",
+                "logprob": -3.909988299710676e-05
+              },
+              {
+                "text": "that",
+                "logprob": -0.07428334653377533
+              },
+              {
+                "text": "both",
+                "logprob": -0.00040463366894982755
+              },
+              {
+                "text": "Dan",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "and",
+                "logprob": -2.2411095415009186e-05
+              },
+              {
+                "text": "Fred",
+                "logprob": 0.0
+              },
+              {
+                "text": "die",
+                "logprob": -2.0265558760002023e-06
+              },
+              {
+                "text": "win",
+                "logprob": -9.65590606938349e-06
+              },
+              {
+                "text": ",",
+                "logprob": -6.139089964563027e-05
+              },
+              {
+                "text": "we",
+                "logprob": -6.198863957251888e-06
+              },
+              {
+                "text": "need",
+                "logprob": -0.5618708729743958
+              },
+              {
+                "text": "to",
+                "logprob": 0.0
+              },
+              {
+                "text": "multiply",
+                "logprob": -0.0038938906509429216
+              },
+              {
+                "text": "the",
+                "logprob": -2.870831251144409
+              },
+              {
+                "text": "prob",
+                "logprob": -1.1523693799972534
+              },
+              {
+                "text": "abilities",
+                "logprob": 0.0
+              },
+              {
+                "text": "of",
+                "logprob": -0.012646596878767014
+              },
+              {
+                "text": "each",
+                "logprob": -0.06500695645809174
+              },
+              {
+                "text": "event",
+                "logprob": -0.5309200882911682
+              },
+              {
+                "text": "occurr",
+                "logprob": -0.8509017825126648
+              },
+              {
+                "text": "ing",
+                "logprob": -4.005352093372494e-05
+              },
+              {
+                "text": "independently",
+                "logprob": -0.17396987974643707
+              },
+              {
+                "text": ":",
+                "logprob": -0.9079936742782593
+              },
+              {
+                "text": "\n",
+                "logprob": -3.9457496313843876e-05
+              },
+              {
+                "text": "\n",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "Pro",
+                "logprob": -0.24857528507709503
+              },
+              {
+                "text": "b",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "ability",
+                "logprob": -6.23445157543756e-05
+              },
+              {
+                "text": "(",
+                "logprob": -0.057065580040216446
+              },
+              {
+                "text": "Dan",
+                "logprob": -3.6954195820726454e-05
+              },
+              {
+                "text": "wins",
+                "logprob": -0.00020108585886191577
+              },
+              {
+                "text": ")",
+                "logprob": -0.0010193157941102982
+              },
+              {
+                "text": "*",
+                "logprob": -0.17369607090950012
+              },
+              {
+                "text": "Pro",
+                "logprob": 0.0
+              },
+              {
+                "text": "b",
+                "logprob": 0.0
+              },
+              {
+                "text": "ability",
+                "logprob": 0.0
+              },
+              {
+                "text": "(",
+                "logprob": -9.536738616588991e-07
+              },
+              {
+                "text": "F",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "red",
+                "logprob": 0.0
+              },
+              {
+                "text": "die",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "wins",
+                "logprob": 0.0
+              },
+              {
+                "text": ")",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": -0.20739975571632385
+              },
+              {
+                "text": "(",
+                "logprob": -0.00036840804386883974
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "/",
+                "logprob": 0.0
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": ")",
+                "logprob": 0.0
+              },
+              {
+                "text": "*",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "(",
+                "logprob": 0.0
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "/",
+                "logprob": 0.0
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": ")",
+                "logprob": -2.0265558760002023e-06
+              },
+              {
+                "text": "\n",
+                "logprob": -0.28116530179977417
+              },
+              {
+                "text": "\n",
+                "logprob": 0.0
+              },
+              {
+                "text": "So",
+                "logprob": -3.244425058364868
+              },
+              {
+                "text": ",",
+                "logprob": -0.1903076469898224
+              },
+              {
+                "text": "the",
+                "logprob": -0.0003843760641757399
+              },
+              {
+                "text": "probability",
+                "logprob": -0.0003474347176961601
+              },
+              {
+                "text": "that",
+                "logprob": -0.017697283998131752
+              },
+              {
+                "text": "both",
+                "logprob": -0.00043072958942502737
+              },
+              {
+                "text": "Dan",
+                "logprob": -9.536738616588991e-07
+              },
+              {
+                "text": "and",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "Fred",
+                "logprob": 0.0
+              },
+              {
+                "text": "die",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "win",
+                "logprob": -1.4662635294371285e-05
+              },
+              {
+                "text": "is",
+                "logprob": -7.283422019099817e-05
+              },
+              {
+                "text": ":",
+                "logprob": -0.1610315889120102
+              },
+              {
+                "text": "\n",
+                "logprob": -1.5258672647178173e-05
+              },
+              {
+                "text": "\n",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "(",
+                "logprob": -0.005748051684349775
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "/",
+                "logprob": -1.311301275563892e-06
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": ")",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "*",
+                "logprob": -4.172316494077677e-06
+              },
+              {
+                "text": "(",
+                "logprob": 0.0
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": "/",
+                "logprob": 0.0
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": ")",
+                "logprob": 0.0
+              },
+              {
+                "text": "=",
+                "logprob": 0.0
+              },
+              {
+                "text": "",
+                "logprob": -0.00043132537393830717
+              },
+              {
+                "text": "1",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "/",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "4",
+                "logprob": 0.0
+              },
+              {
+                "text": "\n",
+                "logprob": -0.00028451209072954953
+              },
+              {
+                "text": "\n",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "There",
+                "logprob": -1.0974247455596924
+              },
+              {
+                "text": "fore",
+                "logprob": -1.4662635294371285e-05
+              },
+              {
+                "text": ",",
+                "logprob": 0.0
+              },
+              {
+                "text": "the",
+                "logprob": -0.002495985943824053
+              },
+              {
+                "text": "simplified",
+                "logprob": -1.4319148063659668
+              },
+              {
+                "text": "probability",
+                "logprob": -1.9118026494979858
+              },
+              {
+                "text": "that",
+                "logprob": -0.2911953330039978
+              },
+              {
+                "text": "both",
+                "logprob": -0.0133143849670887
+              },
+              {
+                "text": "Dan",
+                "logprob": -0.0010511117288842797
+              },
+              {
+                "text": "and",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "Fred",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "die",
+                "logprob": -7.152555099310121e-07
+              },
+              {
+                "text": "win",
+                "logprob": -0.0012417471734806895
+              },
+              {
+                "text": "is",
+                "logprob": -0.0013578252401202917
+              },
+              {
+                "text": "",
+                "logprob": -0.002795005217194557
+              },
+              {
+                "text": "1",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "/",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "4",
+                "logprob": 0.0
+              },
+              {
+                "text": ".",
+                "logprob": -8.654219709569588e-05
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -1.0609570381348021e-05
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.140980619282101,
+              "max_token_negative_log_likelihood": 3.244424819946289,
+              "predictive_entropy": 0.04893366689912739,
+              "shannon_entropy": 0.15852306948290779
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 5.885359048843384,
+        "request_datetime": 1756138086
+      },
+      "num_train_instances": 0,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    }
+  ],
+  "processed": true
+}

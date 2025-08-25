@@ -1,0 +1,5479 @@
+{
+  "adapter_spec": {
+    "method": "generation",
+    "global_prefix": "",
+    "global_suffix": "",
+    "instructions": "First, briefly explain your reasoning step by step, then answer yes or no.\n\nAnswer the following questions considering the state of international law on January 1st, 2020. Answer Yes or No.\n",
+    "input_prefix": "",
+    "input_suffix": "\n",
+    "reference_prefix": "A. ",
+    "reference_suffix": "\n",
+    "chain_of_thought_prefix": "",
+    "chain_of_thought_suffix": "\n",
+    "output_prefix": "Answer: ",
+    "output_suffix": "\n",
+    "instance_prefix": "\n",
+    "substitutions": [],
+    "max_train_instances": 0,
+    "max_eval_instances": 5,
+    "num_outputs": 1,
+    "num_train_trials": 1,
+    "num_trials": 1,
+    "sample_train": true,
+    "model_deployment": "huggingface/phi-3.5-mini-instruct",
+    "model": "microsoft/phi-3.5-mini-instruct",
+    "temperature": 0.0,
+    "max_tokens": 1030,
+    "stop_sequences": [
+      "\n"
+    ],
+    "multi_label": false
+  },
+  "request_states": [
+    {
+      "instance": {
+        "input": {
+          "text": "Question: Consider the country of Madagascar. Does the country require the demonstration of civic knowledge or cultural integration for residence-based acquisition?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Yes"
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id3651"
+      },
+      "train_trial_index": 0,
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "First, briefly explain your reasoning step by step, then answer yes or no.\n\nAnswer the following questions considering the state of international law on January 1st, 2020. Answer Yes or No.\n\nQuestion: Consider the country of Madagascar. Does the country require the demonstration of civic knowledge or cultural integration for residence-based acquisition?\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 1,
+        "max_tokens": 1030,
+        "stop_sequences": [
+          "\n"
+        ],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "Step 1: Understanding the context of international law and immigration requirements\nInternational law primarily consists of treaties and conventions agreed upon by various countries to regulate global issues, including human rights, trade, and the environment. However, immigration policies and requirements are largely determined by individual countries and typically not influenced by international law, unless they have ratified specific international agreements relating to the matter.\n\nStep 2: Researching Madagascar's immigration policies\nTo determine whether Madagascar requires civic knowledge or cultural integration for residence-based acquisition, I need to research the country's immigration policies as of January 1st, 2020.\n\nStep 3: Finding relevant information\nUpon researching, I find that Madagascar's immigration policies outline the conditions for obtaining a residence permit based on several factors, such as employment, family reunification, or entrepreneurship. However, there is no explicit mention of civic knowledge or cultural integration requirements.\n\nStep 4: Answering based on the analysis\nBased on the information gathered, it seems that Madagascar does not have specific requirements for demonstration of civic knowledge or cultural integration for residence-based acquisition as of January 1st, 2020.\n\nAnswer: No.<|end|><|endoftext|>",
+            "logprob": -168.86320409037455,
+            "tokens": [
+              {
+                "text": "Step",
+                "logprob": -0.15418027341365814
+              },
+              {
+                "text": "",
+                "logprob": -9.941560711013153e-05
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": ":",
+                "logprob": -1.1444026313256472e-05
+              },
+              {
+                "text": "Under",
+                "logprob": -1.3445470333099365
+              },
+              {
+                "text": "standing",
+                "logprob": -2.463942050933838
+              },
+              {
+                "text": "the",
+                "logprob": -0.006845119409263134
+              },
+              {
+                "text": "context",
+                "logprob": -1.8884717226028442
+              },
+              {
+                "text": "of",
+                "logprob": -0.3352227210998535
+              },
+              {
+                "text": "international",
+                "logprob": -1.990513801574707
+              },
+              {
+                "text": "law",
+                "logprob": -0.002572800265625119
+              },
+              {
+                "text": "and",
+                "logprob": -1.3189719915390015
+              },
+              {
+                "text": "imm",
+                "logprob": -1.375704050064087
+              },
+              {
+                "text": "igration",
+                "logprob": -0.0001565095444675535
+              },
+              {
+                "text": "requirements",
+                "logprob": -1.0793529748916626
+              },
+              {
+                "text": "\n",
+                "logprob": -0.4647977352142334
+              },
+              {
+                "text": "Intern",
+                "logprob": -0.1683223694562912
+              },
+              {
+                "text": "ational",
+                "logprob": -1.4543427823809907e-05
+              },
+              {
+                "text": "law",
+                "logprob": -0.0003649522550404072
+              },
+              {
+                "text": "primarily",
+                "logprob": -1.483966588973999
+              },
+              {
+                "text": "consists",
+                "logprob": -1.1565862894058228
+              },
+              {
+                "text": "of",
+                "logprob": -9.536738616588991e-07
+              },
+              {
+                "text": "treat",
+                "logprob": -0.020484674721956253
+              },
+              {
+                "text": "ies",
+                "logprob": -0.00020001317898277193
+              },
+              {
+                "text": "and",
+                "logprob": -0.9044098854064941
+              },
+              {
+                "text": "convent",
+                "logprob": -1.844382882118225
+              },
+              {
+                "text": "ions",
+                "logprob": 0.0
+              },
+              {
+                "text": "agreed",
+                "logprob": -1.4289159774780273
+              },
+              {
+                "text": "upon",
+                "logprob": -0.0030612533446401358
+              },
+              {
+                "text": "by",
+                "logprob": -0.04941333085298538
+              },
+              {
+                "text": "various",
+                "logprob": -3.0311577320098877
+              },
+              {
+                "text": "countries",
+                "logprob": -0.4127613604068756
+              },
+              {
+                "text": "to",
+                "logprob": -2.599158763885498
+              },
+              {
+                "text": "reg",
+                "logprob": -0.8744239807128906
+              },
+              {
+                "text": "ulate",
+                "logprob": -2.50339189733495e-06
+              },
+              {
+                "text": "global",
+                "logprob": -4.289416313171387
+              },
+              {
+                "text": "issues",
+                "logprob": -1.2210750579833984
+              },
+              {
+                "text": ",",
+                "logprob": -1.7495195865631104
+              },
+              {
+                "text": "including",
+                "logprob": -0.8226953744888306
+              },
+              {
+                "text": "human",
+                "logprob": -0.8298165798187256
+              },
+              {
+                "text": "rights",
+                "logprob": -0.004895367659628391
+              },
+              {
+                "text": ",",
+                "logprob": -0.08418670296669006
+              },
+              {
+                "text": "trade",
+                "logprob": -0.22643649578094482
+              },
+              {
+                "text": ",",
+                "logprob": -0.0040427870117127895
+              },
+              {
+                "text": "and",
+                "logprob": -0.0689377635717392
+              },
+              {
+                "text": "the",
+                "logprob": -2.4966166019439697
+              },
+              {
+                "text": "environment",
+                "logprob": -0.1824229210615158
+              },
+              {
+                "text": ".",
+                "logprob": -0.0016656348016113043
+              },
+              {
+                "text": "However",
+                "logprob": -0.7433269023895264
+              },
+              {
+                "text": ",",
+                "logprob": -7.152555099310121e-07
+              },
+              {
+                "text": "imm",
+                "logprob": -0.9641351699829102
+              },
+              {
+                "text": "igration",
+                "logprob": -6.425174069590867e-05
+              },
+              {
+                "text": "policies",
+                "logprob": -1.2960478067398071
+              },
+              {
+                "text": "and",
+                "logprob": -1.4075829982757568
+              },
+              {
+                "text": "requirements",
+                "logprob": -0.21788616478443146
+              },
+              {
+                "text": "are",
+                "logprob": -0.9423743486404419
+              },
+              {
+                "text": "largely",
+                "logprob": -1.426242470741272
+              },
+              {
+                "text": "determined",
+                "logprob": -0.1852526217699051
+              },
+              {
+                "text": "by",
+                "logprob": -0.06201579421758652
+              },
+              {
+                "text": "individual",
+                "logprob": -0.21554948389530182
+              },
+              {
+                "text": "countries",
+                "logprob": -0.09357040375471115
+              },
+              {
+                "text": "and",
+                "logprob": -0.9086266756057739
+              },
+              {
+                "text": "typically",
+                "logprob": -6.609518527984619
+              },
+              {
+                "text": "not",
+                "logprob": -1.2709598541259766
+              },
+              {
+                "text": "influenced",
+                "logprob": -6.49894905090332
+              },
+              {
+                "text": "by",
+                "logprob": -1.4659011363983154
+              },
+              {
+                "text": "international",
+                "logprob": -0.03897775709629059
+              },
+              {
+                "text": "law",
+                "logprob": -0.008230222389101982
+              },
+              {
+                "text": ",",
+                "logprob": -4.337588310241699
+              },
+              {
+                "text": "unless",
+                "logprob": -1.1095887422561646
+              },
+              {
+                "text": "they",
+                "logprob": -1.059274435043335
+              },
+              {
+                "text": "have",
+                "logprob": -1.5019210577011108
+              },
+              {
+                "text": "rat",
+                "logprob": -1.4895070791244507
+              },
+              {
+                "text": "ified",
+                "logprob": -8.821448318485636e-06
+              },
+              {
+                "text": "specific",
+                "logprob": -0.6947309374809265
+              },
+              {
+                "text": "international",
+                "logprob": -0.7125568985939026
+              },
+              {
+                "text": "agre",
+                "logprob": -0.6774816513061523
+              },
+              {
+                "text": "ements",
+                "logprob": -8.344646857949556e-07
+              },
+              {
+                "text": "rel",
+                "logprob": -3.5376787185668945
+              },
+              {
+                "text": "ating",
+                "logprob": -4.029192859889008e-05
+              },
+              {
+                "text": "to",
+                "logprob": -0.0027046550530940294
+              },
+              {
+                "text": "the",
+                "logprob": -3.1658034324645996
+              },
+              {
+                "text": "matter",
+                "logprob": -0.45285671949386597
+              },
+              {
+                "text": ".",
+                "logprob": -0.053937025368213654
+              },
+              {
+                "text": "\n",
+                "logprob": -0.010490394197404385
+              },
+              {
+                "text": "\n",
+                "logprob": -0.00018380382971372455
+              },
+              {
+                "text": "Step",
+                "logprob": -5.722029527532868e-06
+              },
+              {
+                "text": "",
+                "logprob": -2.861018856492592e-06
+              },
+              {
+                "text": "2",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": ":",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "Research",
+                "logprob": -0.4895683825016022
+              },
+              {
+                "text": "ing",
+                "logprob": -0.17132891714572906
+              },
+              {
+                "text": "Mad",
+                "logprob": -0.0418807752430439
+              },
+              {
+                "text": "agas",
+                "logprob": -2.6940935640595853e-05
+              },
+              {
+                "text": "car",
+                "logprob": -2.0503786799963564e-05
+              },
+              {
+                "text": "'",
+                "logprob": -0.011407271958887577
+              },
+              {
+                "text": "s",
+                "logprob": -1.311301275563892e-06
+              },
+              {
+                "text": "imm",
+                "logprob": -0.07379515469074249
+              },
+              {
+                "text": "igration",
+                "logprob": -3.4689302992774174e-05
+              },
+              {
+                "text": "policies",
+                "logprob": -1.029228687286377
+              },
+              {
+                "text": "\n",
+                "logprob": -0.33973145484924316
+              },
+              {
+                "text": "To",
+                "logprob": -0.4316735565662384
+              },
+              {
+                "text": "determine",
+                "logprob": -1.650510311126709
+              },
+              {
+                "text": "whether",
+                "logprob": -0.8887026309967041
+              },
+              {
+                "text": "Mad",
+                "logprob": -0.010257267393171787
+              },
+              {
+                "text": "agas",
+                "logprob": -8.272782724816352e-05
+              },
+              {
+                "text": "car",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "requires",
+                "logprob": -0.020760849118232727
+              },
+              {
+                "text": "civ",
+                "logprob": -0.8930967450141907
+              },
+              {
+                "text": "ic",
+                "logprob": -1.6689286894688848e-06
+              },
+              {
+                "text": "knowledge",
+                "logprob": -0.00010871296399272978
+              },
+              {
+                "text": "or",
+                "logprob": -0.007465677335858345
+              },
+              {
+                "text": "cultural",
+                "logprob": -5.364403477869928e-06
+              },
+              {
+                "text": "integration",
+                "logprob": -5.245195097813848e-06
+              },
+              {
+                "text": "for",
+                "logprob": -0.19607120752334595
+              },
+              {
+                "text": "residence",
+                "logprob": -0.03344876319169998
+              },
+              {
+                "text": "-",
+                "logprob": -0.00016485285595990717
+              },
+              {
+                "text": "based",
+                "logprob": -7.152301259338856e-05
+              },
+              {
+                "text": "ac",
+                "logprob": -0.0029030581936240196
+              },
+              {
+                "text": "quisition",
+                "logprob": -0.00012385078298393637
+              },
+              {
+                "text": ",",
+                "logprob": -0.0520513579249382
+              },
+              {
+                "text": "I",
+                "logprob": -0.8325320482254028
+              },
+              {
+                "text": "need",
+                "logprob": -1.717198133468628
+              },
+              {
+                "text": "to",
+                "logprob": -0.0038373658899217844
+              },
+              {
+                "text": "research",
+                "logprob": -0.7565138339996338
+              },
+              {
+                "text": "the",
+                "logprob": -0.8575083613395691
+              },
+              {
+                "text": "country",
+                "logprob": -0.712887167930603
+              },
+              {
+                "text": "'",
+                "logprob": -0.007452188525348902
+              },
+              {
+                "text": "s",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "imm",
+                "logprob": -0.6528943777084351
+              },
+              {
+                "text": "igration",
+                "logprob": -0.00010966652916977182
+              },
+              {
+                "text": "policies",
+                "logprob": -0.2986968457698822
+              },
+              {
+                "text": "as",
+                "logprob": -0.8829210996627808
+              },
+              {
+                "text": "of",
+                "logprob": -0.050307124853134155
+              },
+              {
+                "text": "January",
+                "logprob": -0.004830595105886459
+              },
+              {
+                "text": "",
+                "logprob": -7.390948667307384e-06
+              },
+              {
+                "text": "1",
+                "logprob": -0.00016890530241653323
+              },
+              {
+                "text": "st",
+                "logprob": -0.01291658915579319
+              },
+              {
+                "text": ",",
+                "logprob": -4.100715523236431e-05
+              },
+              {
+                "text": "",
+                "logprob": -1.0728830375228426e-06
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": ".",
+                "logprob": -0.004091820679605007
+              },
+              {
+                "text": "\n",
+                "logprob": -0.20567922294139862
+              },
+              {
+                "text": "\n",
+                "logprob": -4.95898348162882e-05
+              },
+              {
+                "text": "Step",
+                "logprob": -0.04901057481765747
+              },
+              {
+                "text": "",
+                "logprob": -5.125986263010418e-06
+              },
+              {
+                "text": "3",
+                "logprob": -2.729855441430118e-05
+              },
+              {
+                "text": ":",
+                "logprob": -4.172316494077677e-06
+              },
+              {
+                "text": "F",
+                "logprob": -1.5825494527816772
+              },
+              {
+                "text": "inding",
+                "logprob": -0.0018754289485514164
+              },
+              {
+                "text": "relevant",
+                "logprob": -0.38494813442230225
+              },
+              {
+                "text": "information",
+                "logprob": -0.02894483134150505
+              },
+              {
+                "text": "\n",
+                "logprob": -0.12800927460193634
+              },
+              {
+                "text": "U",
+                "logprob": -1.3259623050689697
+              },
+              {
+                "text": "pon",
+                "logprob": -1.07287787614041e-05
+              },
+              {
+                "text": "research",
+                "logprob": -0.33476778864860535
+              },
+              {
+                "text": "ing",
+                "logprob": -0.31624406576156616
+              },
+              {
+                "text": ",",
+                "logprob": -0.5560253262519836
+              },
+              {
+                "text": "I",
+                "logprob": -0.19098031520843506
+              },
+              {
+                "text": "find",
+                "logprob": -1.9476356506347656
+              },
+              {
+                "text": "that",
+                "logprob": -0.055454932153224945
+              },
+              {
+                "text": "Mad",
+                "logprob": -0.21334226429462433
+              },
+              {
+                "text": "agas",
+                "logprob": -2.932505594799295e-05
+              },
+              {
+                "text": "car",
+                "logprob": -1.311301275563892e-06
+              },
+              {
+                "text": "'",
+                "logprob": -0.7314316034317017
+              },
+              {
+                "text": "s",
+                "logprob": -3.933898824470816e-06
+              },
+              {
+                "text": "imm",
+                "logprob": -0.24790920317173004
+              },
+              {
+                "text": "igration",
+                "logprob": -0.00020096666412428021
+              },
+              {
+                "text": "policies",
+                "logprob": -0.7837880253791809
+              },
+              {
+                "text": "outline",
+                "logprob": -4.597829818725586
+              },
+              {
+                "text": "the",
+                "logprob": -1.2370063066482544
+              },
+              {
+                "text": "conditions",
+                "logprob": -3.407519817352295
+              },
+              {
+                "text": "for",
+                "logprob": -0.5382643342018127
+              },
+              {
+                "text": "obtain",
+                "logprob": -0.9357014894485474
+              },
+              {
+                "text": "ing",
+                "logprob": -2.0265558760002023e-06
+              },
+              {
+                "text": "a",
+                "logprob": -0.7975782155990601
+              },
+              {
+                "text": "residence",
+                "logprob": -0.3495798408985138
+              },
+              {
+                "text": "permit",
+                "logprob": -0.019822359085083008
+              },
+              {
+                "text": "based",
+                "logprob": -3.83786940574646
+              },
+              {
+                "text": "on",
+                "logprob": -0.007055013906210661
+              },
+              {
+                "text": "several",
+                "logprob": -2.4420716762542725
+              },
+              {
+                "text": "factors",
+                "logprob": -0.5494730472564697
+              },
+              {
+                "text": ",",
+                "logprob": -0.34754619002342224
+              },
+              {
+                "text": "such",
+                "logprob": -0.8818280100822449
+              },
+              {
+                "text": "as",
+                "logprob": -2.9682672902708873e-05
+              },
+              {
+                "text": "employ",
+                "logprob": -0.609366774559021
+              },
+              {
+                "text": "ment",
+                "logprob": -0.0019132657907903194
+              },
+              {
+                "text": ",",
+                "logprob": -0.10815848410129547
+              },
+              {
+                "text": "family",
+                "logprob": -0.7555744051933289
+              },
+              {
+                "text": "reun",
+                "logprob": -0.25202280282974243
+              },
+              {
+                "text": "ification",
+                "logprob": -0.002167734783142805
+              },
+              {
+                "text": ",",
+                "logprob": -0.0019292091019451618
+              },
+              {
+                "text": "or",
+                "logprob": -0.8596153259277344
+              },
+              {
+                "text": "entrepr",
+                "logprob": -5.47859001159668
+              },
+              {
+                "text": "ene",
+                "logprob": -4.172316494077677e-06
+              },
+              {
+                "text": "ur",
+                "logprob": -0.001254724687896669
+              },
+              {
+                "text": "ship",
+                "logprob": -0.34273770451545715
+              },
+              {
+                "text": ".",
+                "logprob": -0.05554244667291641
+              },
+              {
+                "text": "However",
+                "logprob": -1.2520766258239746
+              },
+              {
+                "text": ",",
+                "logprob": -9.65590606938349e-06
+              },
+              {
+                "text": "there",
+                "logprob": -0.630092978477478
+              },
+              {
+                "text": "is",
+                "logprob": -0.1748882681131363
+              },
+              {
+                "text": "no",
+                "logprob": -0.0037070857360959053
+              },
+              {
+                "text": "explicit",
+                "logprob": -0.8570564985275269
+              },
+              {
+                "text": "mention",
+                "logprob": -0.8899389505386353
+              },
+              {
+                "text": "of",
+                "logprob": -0.016658609732985497
+              },
+              {
+                "text": "civ",
+                "logprob": -1.0090242624282837
+              },
+              {
+                "text": "ic",
+                "logprob": -5.364403477869928e-06
+              },
+              {
+                "text": "knowledge",
+                "logprob": -0.000764792668633163
+              },
+              {
+                "text": "or",
+                "logprob": -0.07774391025304794
+              },
+              {
+                "text": "cultural",
+                "logprob": -0.0021525088232010603
+              },
+              {
+                "text": "integration",
+                "logprob": -0.00026258357684127986
+              },
+              {
+                "text": "requirements",
+                "logprob": -0.370575875043869
+              },
+              {
+                "text": ".",
+                "logprob": -0.7545501589775085
+              },
+              {
+                "text": "\n",
+                "logprob": -0.005720672197639942
+              },
+              {
+                "text": "\n",
+                "logprob": -1.5139465176616795e-05
+              },
+              {
+                "text": "Step",
+                "logprob": -0.4057449698448181
+              },
+              {
+                "text": "",
+                "logprob": -1.2159273865108844e-05
+              },
+              {
+                "text": "4",
+                "logprob": -2.634490556374658e-05
+              },
+              {
+                "text": ":",
+                "logprob": -3.015949550899677e-05
+              },
+              {
+                "text": "Answer",
+                "logprob": -1.9929492473602295
+              },
+              {
+                "text": "ing",
+                "logprob": -0.026934117078781128
+              },
+              {
+                "text": "based",
+                "logprob": -4.669557094573975
+              },
+              {
+                "text": "on",
+                "logprob": -2.9801878554280847e-05
+              },
+              {
+                "text": "the",
+                "logprob": -0.5011664032936096
+              },
+              {
+                "text": "analysis",
+                "logprob": -5.997920989990234
+              },
+              {
+                "text": "\n",
+                "logprob": -0.013099446892738342
+              },
+              {
+                "text": "B",
+                "logprob": -0.5351748466491699
+              },
+              {
+                "text": "ased",
+                "logprob": -0.00013386306818574667
+              },
+              {
+                "text": "on",
+                "logprob": -2.8609820219571702e-05
+              },
+              {
+                "text": "the",
+                "logprob": -0.1332874298095703
+              },
+              {
+                "text": "information",
+                "logprob": -1.0284769535064697
+              },
+              {
+                "text": "gathered",
+                "logprob": -0.746667206287384
+              },
+              {
+                "text": ",",
+                "logprob": -0.19514629244804382
+              },
+              {
+                "text": "it",
+                "logprob": -1.0487000942230225
+              },
+              {
+                "text": "seems",
+                "logprob": -1.932769775390625
+              },
+              {
+                "text": "that",
+                "logprob": -0.08555841445922852
+              },
+              {
+                "text": "Mad",
+                "logprob": -0.1780328005552292
+              },
+              {
+                "text": "agas",
+                "logprob": -2.1576648578047752e-05
+              },
+              {
+                "text": "car",
+                "logprob": -8.082063141046092e-05
+              },
+              {
+                "text": "does",
+                "logprob": -0.16687659919261932
+              },
+              {
+                "text": "not",
+                "logprob": -2.3483953555114567e-05
+              },
+              {
+                "text": "have",
+                "logprob": -2.7842812538146973
+              },
+              {
+                "text": "specific",
+                "logprob": -0.6582722067832947
+              },
+              {
+                "text": "requirements",
+                "logprob": -0.15417149662971497
+              },
+              {
+                "text": "for",
+                "logprob": -0.24854367971420288
+              },
+              {
+                "text": "demonstr",
+                "logprob": -2.0418448448181152
+              },
+              {
+                "text": "ation",
+                "logprob": -3.7431716918945312
+              },
+              {
+                "text": "of",
+                "logprob": -2.2291887944447808e-05
+              },
+              {
+                "text": "civ",
+                "logprob": -9.905801562126726e-05
+              },
+              {
+                "text": "ic",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "knowledge",
+                "logprob": -6.079655122448457e-06
+              },
+              {
+                "text": "or",
+                "logprob": -8.046303264563903e-05
+              },
+              {
+                "text": "cultural",
+                "logprob": -0.00012087091454304755
+              },
+              {
+                "text": "integration",
+                "logprob": -1.680836794548668e-05
+              },
+              {
+                "text": "for",
+                "logprob": -0.04839017614722252
+              },
+              {
+                "text": "residence",
+                "logprob": -0.03347885236144066
+              },
+              {
+                "text": "-",
+                "logprob": -0.0011125572491437197
+              },
+              {
+                "text": "based",
+                "logprob": -9.536697689327411e-06
+              },
+              {
+                "text": "ac",
+                "logprob": -0.0018181951018050313
+              },
+              {
+                "text": "quisition",
+                "logprob": -0.00025388356880284846
+              },
+              {
+                "text": "as",
+                "logprob": -0.26883164048194885
+              },
+              {
+                "text": "of",
+                "logprob": -0.08036598563194275
+              },
+              {
+                "text": "January",
+                "logprob": -0.004981013014912605
+              },
+              {
+                "text": "",
+                "logprob": -1.0967194612021558e-05
+              },
+              {
+                "text": "1",
+                "logprob": -7.068861305015162e-05
+              },
+              {
+                "text": "st",
+                "logprob": -0.0005146132898516953
+              },
+              {
+                "text": ",",
+                "logprob": -2.5629668016335927e-05
+              },
+              {
+                "text": "",
+                "logprob": -1.9073468138230965e-06
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "0",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "0",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": ".",
+                "logprob": -0.0007198841194622219
+              },
+              {
+                "text": "\n",
+                "logprob": -0.10006681084632874
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0001294529065489769
+              },
+              {
+                "text": "Answer",
+                "logprob": -0.0022219750098884106
+              },
+              {
+                "text": ":",
+                "logprob": -6.329813186312094e-05
+              },
+              {
+                "text": "No",
+                "logprob": -0.014451832510530949
+              },
+              {
+                "text": ".",
+                "logprob": -0.7701911330223083
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.012457887642085552
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.5945886518460606,
+              "max_token_negative_log_likelihood": 6.609510898590088,
+              "predictive_entropy": 0.12936688351198355,
+              "shannon_entropy": 0.6580397664433342
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 27.26739740371704,
+        "request_datetime": 1756149913
+      },
+      "num_train_instances": 0,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "Question: Consider the country of Bhutan. Does the country provide for involuntary loss of citizenship by a person who is adopted by or in legal guardianship of a citizen of another country and, if so, under which conditions?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "No"
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id6849"
+      },
+      "train_trial_index": 0,
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "First, briefly explain your reasoning step by step, then answer yes or no.\n\nAnswer the following questions considering the state of international law on January 1st, 2020. Answer Yes or No.\n\nQuestion: Consider the country of Bhutan. Does the country provide for involuntary loss of citizenship by a person who is adopted by or in legal guardianship of a citizen of another country and, if so, under which conditions?\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 1,
+        "max_tokens": 1030,
+        "stop_sequences": [
+          "\n"
+        ],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "To determine whether Bhutan provides for involuntary loss of citizenship under the specified conditions, I will follow these steps:\n\n1. Research the citizenship laws of Bhutan, focusing on adoption and legal guardianship scenarios.\n2. Identify any provisions that relate to involuntary loss of citizenship.\n3. Determine if these provisions are applicable to individuals adopted by or in legal guardianship of citizens from other countries.\n\nStep 1: After research, I discovered that Bhutan's citizenship policy is based on the principle of Jus Sanguinis (right of blood), meaning citizenship is primarily acquired through descent rather than Jus Soli (right of the soil). The current law, as of January 1st, 2020, states that Bhutanese citizenship is inherited from parents and not through adoption or guardianship.\n\nStep 2: Unfortunately, there are no provisions in Bhutan's citizenship law that directly concern involuntary loss of citizenship on the basis of adoption by or in legal guardianship to a citizen of another country. Bhutanese law does not discuss involuntary loss of citizenship in the context of adoption or guardianship.\n\nStep 3: With no provisions or legal framework for involuntary loss of citizenship based on the adoption or legal guardianship by individuals from a foreign citizen, Bhutan effectively has no conditions under which involuntary loss of citizenship could occur under this scenario.\n\nAnswer: No, Bhutan does not provide for involuntary loss of citizenship by a person who is adopted by or in legal guardianship of a citizen of another country under these conditions on January 1st, 2020.<|end|><|endoftext|>",
+            "logprob": -229.3648857663742,
+            "tokens": [
+              {
+                "text": "To",
+                "logprob": -2.2385029792785645
+              },
+              {
+                "text": "determine",
+                "logprob": -3.2057363986968994
+              },
+              {
+                "text": "whether",
+                "logprob": -0.6136377453804016
+              },
+              {
+                "text": "Bh",
+                "logprob": -0.011531956493854523
+              },
+              {
+                "text": "ut",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "an",
+                "logprob": 0.0
+              },
+              {
+                "text": "provides",
+                "logprob": -0.06453566998243332
+              },
+              {
+                "text": "for",
+                "logprob": -0.0006690170848742127
+              },
+              {
+                "text": "invol",
+                "logprob": -0.0018205749802291393
+              },
+              {
+                "text": "unt",
+                "logprob": 0.0
+              },
+              {
+                "text": "ary",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "loss",
+                "logprob": -7.581423415103927e-05
+              },
+              {
+                "text": "of",
+                "logprob": 0.0
+              },
+              {
+                "text": "citizens",
+                "logprob": -5.960462772236497e-07
+              },
+              {
+                "text": "hip",
+                "logprob": 0.0
+              },
+              {
+                "text": "under",
+                "logprob": -0.08301883935928345
+              },
+              {
+                "text": "the",
+                "logprob": -0.03586239740252495
+              },
+              {
+                "text": "specified",
+                "logprob": -0.6250702738761902
+              },
+              {
+                "text": "conditions",
+                "logprob": -0.12949639558792114
+              },
+              {
+                "text": ",",
+                "logprob": -0.018819116055965424
+              },
+              {
+                "text": "I",
+                "logprob": -0.9514290690422058
+              },
+              {
+                "text": "will",
+                "logprob": -0.10555537790060043
+              },
+              {
+                "text": "follow",
+                "logprob": -0.26737815141677856
+              },
+              {
+                "text": "these",
+                "logprob": -0.02235463634133339
+              },
+              {
+                "text": "steps",
+                "logprob": -0.09180810302495956
+              },
+              {
+                "text": ":",
+                "logprob": -0.005619680043309927
+              },
+              {
+                "text": "\n",
+                "logprob": -7.760223525110632e-05
+              },
+              {
+                "text": "\n",
+                "logprob": -2.145764938177308e-06
+              },
+              {
+                "text": "1",
+                "logprob": -0.004620352294296026
+              },
+              {
+                "text": ".",
+                "logprob": -1.0490362910786644e-05
+              },
+              {
+                "text": "Research",
+                "logprob": -0.24096280336380005
+              },
+              {
+                "text": "the",
+                "logprob": -0.7025824189186096
+              },
+              {
+                "text": "citizens",
+                "logprob": -1.5259547233581543
+              },
+              {
+                "text": "hip",
+                "logprob": -8.344646857949556e-07
+              },
+              {
+                "text": "laws",
+                "logprob": -0.04955492168664932
+              },
+              {
+                "text": "of",
+                "logprob": -0.14611534774303436
+              },
+              {
+                "text": "Bh",
+                "logprob": -2.4914430468925275e-05
+              },
+              {
+                "text": "ut",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "an",
+                "logprob": 0.0
+              },
+              {
+                "text": ",",
+                "logprob": -1.129926323890686
+              },
+              {
+                "text": "foc",
+                "logprob": -0.9073442816734314
+              },
+              {
+                "text": "using",
+                "logprob": -1.549708758830093e-05
+              },
+              {
+                "text": "on",
+                "logprob": -0.05223443731665611
+              },
+              {
+                "text": "ad",
+                "logprob": -2.6639981269836426
+              },
+              {
+                "text": "option",
+                "logprob": -0.01041477546095848
+              },
+              {
+                "text": "and",
+                "logprob": -0.12468695640563965
+              },
+              {
+                "text": "legal",
+                "logprob": -0.30763617157936096
+              },
+              {
+                "text": "guard",
+                "logprob": -7.748573807475623e-06
+              },
+              {
+                "text": "ians",
+                "logprob": -1.3232143828645349e-05
+              },
+              {
+                "text": "hip",
+                "logprob": -0.000692961853928864
+              },
+              {
+                "text": "scenarios",
+                "logprob": -1.876871943473816
+              },
+              {
+                "text": ".",
+                "logprob": -0.05510108545422554
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0015791100449860096
+              },
+              {
+                "text": "2",
+                "logprob": -6.6756979322235566e-06
+              },
+              {
+                "text": ".",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "Ident",
+                "logprob": -0.2190331667661667
+              },
+              {
+                "text": "ify",
+                "logprob": -3.540453326422721e-05
+              },
+              {
+                "text": "any",
+                "logprob": -0.8449671268463135
+              },
+              {
+                "text": "prov",
+                "logprob": -0.7187287211418152
+              },
+              {
+                "text": "isions",
+                "logprob": -1.0251946150674485e-05
+              },
+              {
+                "text": "that",
+                "logprob": -2.013392686843872
+              },
+              {
+                "text": "relate",
+                "logprob": -2.9669508934020996
+              },
+              {
+                "text": "to",
+                "logprob": -0.005679067224264145
+              },
+              {
+                "text": "invol",
+                "logprob": -0.3677341639995575
+              },
+              {
+                "text": "unt",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "ary",
+                "logprob": -0.0027246277313679457
+              },
+              {
+                "text": "loss",
+                "logprob": -0.010713441297411919
+              },
+              {
+                "text": "of",
+                "logprob": -0.0010247938334941864
+              },
+              {
+                "text": "citizens",
+                "logprob": -0.0004477690381463617
+              },
+              {
+                "text": "hip",
+                "logprob": -9.536738616588991e-07
+              },
+              {
+                "text": ".",
+                "logprob": -1.3435823917388916
+              },
+              {
+                "text": "\n",
+                "logprob": -7.712543447269127e-05
+              },
+              {
+                "text": "3",
+                "logprob": -0.0014571059728041291
+              },
+              {
+                "text": ".",
+                "logprob": 0.0
+              },
+              {
+                "text": "Det",
+                "logprob": -2.250162363052368
+              },
+              {
+                "text": "erm",
+                "logprob": -0.0005124686285853386
+              },
+              {
+                "text": "ine",
+                "logprob": -1.311301275563892e-06
+              },
+              {
+                "text": "if",
+                "logprob": -1.135097622871399
+              },
+              {
+                "text": "these",
+                "logprob": -1.9592061042785645
+              },
+              {
+                "text": "prov",
+                "logprob": -0.022759297862648964
+              },
+              {
+                "text": "isions",
+                "logprob": -2.145764938177308e-06
+              },
+              {
+                "text": "are",
+                "logprob": -1.4171346426010132
+              },
+              {
+                "text": "applicable",
+                "logprob": -0.4651898145675659
+              },
+              {
+                "text": "to",
+                "logprob": -0.34801673889160156
+              },
+              {
+                "text": "individuals",
+                "logprob": -0.1976279467344284
+              },
+              {
+                "text": "adopted",
+                "logprob": -0.39514750242233276
+              },
+              {
+                "text": "by",
+                "logprob": -0.12702485918998718
+              },
+              {
+                "text": "or",
+                "logprob": -0.0040671261958777905
+              },
+              {
+                "text": "in",
+                "logprob": -0.5817331075668335
+              },
+              {
+                "text": "legal",
+                "logprob": -0.0011870964663103223
+              },
+              {
+                "text": "guard",
+                "logprob": -5.960446742392378e-06
+              },
+              {
+                "text": "ians",
+                "logprob": -2.0265373677830212e-05
+              },
+              {
+                "text": "hip",
+                "logprob": -8.022463589441031e-05
+              },
+              {
+                "text": "of",
+                "logprob": -0.0749320238828659
+              },
+              {
+                "text": "citizens",
+                "logprob": -0.9405990242958069
+              },
+              {
+                "text": "from",
+                "logprob": -0.6045432686805725
+              },
+              {
+                "text": "other",
+                "logprob": -1.3173110485076904
+              },
+              {
+                "text": "countries",
+                "logprob": -0.0017321596387773752
+              },
+              {
+                "text": ".",
+                "logprob": -0.0010152667528018355
+              },
+              {
+                "text": "\n",
+                "logprob": -9.381330892210826e-05
+              },
+              {
+                "text": "\n",
+                "logprob": -0.404799222946167
+              },
+              {
+                "text": "Step",
+                "logprob": -0.21546530723571777
+              },
+              {
+                "text": "",
+                "logprob": -0.001257463125512004
+              },
+              {
+                "text": "1",
+                "logprob": -3.2186455882765586e-06
+              },
+              {
+                "text": ":",
+                "logprob": -0.0015062665333971381
+              },
+              {
+                "text": "After",
+                "logprob": -1.9142351150512695
+              },
+              {
+                "text": "research",
+                "logprob": -0.40055763721466064
+              },
+              {
+                "text": ",",
+                "logprob": -3.7734885215759277
+              },
+              {
+                "text": "I",
+                "logprob": -0.11579806357622147
+              },
+              {
+                "text": "discovered",
+                "logprob": -5.817528247833252
+              },
+              {
+                "text": "that",
+                "logprob": -0.032598961144685745
+              },
+              {
+                "text": "Bh",
+                "logprob": -0.0928729772567749
+              },
+              {
+                "text": "ut",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "an",
+                "logprob": 0.0
+              },
+              {
+                "text": "'",
+                "logprob": -0.28936243057250977
+              },
+              {
+                "text": "s",
+                "logprob": 0.0
+              },
+              {
+                "text": "citizens",
+                "logprob": -0.10701947659254074
+              },
+              {
+                "text": "hip",
+                "logprob": -1.3112935448589269e-05
+              },
+              {
+                "text": "policy",
+                "logprob": -4.904072284698486
+              },
+              {
+                "text": "is",
+                "logprob": -0.24999834597110748
+              },
+              {
+                "text": "based",
+                "logprob": -1.436462163925171
+              },
+              {
+                "text": "on",
+                "logprob": -0.06002991273999214
+              },
+              {
+                "text": "the",
+                "logprob": -0.6688764691352844
+              },
+              {
+                "text": "principle",
+                "logprob": -0.23444297909736633
+              },
+              {
+                "text": "of",
+                "logprob": -0.003948512487113476
+              },
+              {
+                "text": "J",
+                "logprob": -1.6822550296783447
+              },
+              {
+                "text": "us",
+                "logprob": -0.002084584441035986
+              },
+              {
+                "text": "S",
+                "logprob": -0.23234155774116516
+              },
+              {
+                "text": "angu",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "in",
+                "logprob": -0.0007190502947196364
+              },
+              {
+                "text": "is",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "(",
+                "logprob": -0.5140336751937866
+              },
+              {
+                "text": "right",
+                "logprob": -0.322468101978302
+              },
+              {
+                "text": "of",
+                "logprob": -0.12121883034706116
+              },
+              {
+                "text": "blood",
+                "logprob": -0.000426439888542518
+              },
+              {
+                "text": "),",
+                "logprob": -0.33602339029312134
+              },
+              {
+                "text": "meaning",
+                "logprob": -0.9031276106834412
+              },
+              {
+                "text": "citizens",
+                "logprob": -0.9252317547798157
+              },
+              {
+                "text": "hip",
+                "logprob": -0.001213529147207737
+              },
+              {
+                "text": "is",
+                "logprob": -0.02457069791853428
+              },
+              {
+                "text": "primarily",
+                "logprob": -0.8402377963066101
+              },
+              {
+                "text": "acquired",
+                "logprob": -0.9748752117156982
+              },
+              {
+                "text": "through",
+                "logprob": -0.3946264088153839
+              },
+              {
+                "text": "descent",
+                "logprob": -0.7353644371032715
+              },
+              {
+                "text": "rather",
+                "logprob": -1.4666523933410645
+              },
+              {
+                "text": "than",
+                "logprob": -1.0609570381348021e-05
+              },
+              {
+                "text": "J",
+                "logprob": -2.552407741546631
+              },
+              {
+                "text": "us",
+                "logprob": -1.1205610462639015e-05
+              },
+              {
+                "text": "Sol",
+                "logprob": -1.4066597032069694e-05
+              },
+              {
+                "text": "i",
+                "logprob": -0.013320383615791798
+              },
+              {
+                "text": "(",
+                "logprob": -0.0008026715368032455
+              },
+              {
+                "text": "right",
+                "logprob": -0.0013581824023276567
+              },
+              {
+                "text": "of",
+                "logprob": -0.006125723011791706
+              },
+              {
+                "text": "the",
+                "logprob": -1.1654633283615112
+              },
+              {
+                "text": "soil",
+                "logprob": -0.005698980763554573
+              },
+              {
+                "text": ").",
+                "logprob": -0.4722357392311096
+              },
+              {
+                "text": "The",
+                "logprob": -1.6132267713546753
+              },
+              {
+                "text": "current",
+                "logprob": -4.5594000816345215
+              },
+              {
+                "text": "law",
+                "logprob": -2.0490939617156982
+              },
+              {
+                "text": ",",
+                "logprob": -1.9415348768234253
+              },
+              {
+                "text": "as",
+                "logprob": -0.11853170394897461
+              },
+              {
+                "text": "of",
+                "logprob": -0.1098552718758583
+              },
+              {
+                "text": "January",
+                "logprob": -0.5296427011489868
+              },
+              {
+                "text": "",
+                "logprob": -6.079655122448457e-06
+              },
+              {
+                "text": "1",
+                "logprob": -0.004089683759957552
+              },
+              {
+                "text": "st",
+                "logprob": -0.054897651076316833
+              },
+              {
+                "text": ",",
+                "logprob": -9.381330892210826e-05
+              },
+              {
+                "text": "",
+                "logprob": -5.006777428206988e-06
+              },
+              {
+                "text": "2",
+                "logprob": -3.3378546504536644e-06
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": "2",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "0",
+                "logprob": -1.4305104514278355e-06
+              },
+              {
+                "text": ",",
+                "logprob": -0.0018945855554193258
+              },
+              {
+                "text": "states",
+                "logprob": -1.3184418678283691
+              },
+              {
+                "text": "that",
+                "logprob": -0.03397664427757263
+              },
+              {
+                "text": "Bh",
+                "logprob": -0.5699941515922546
+              },
+              {
+                "text": "ut",
+                "logprob": -1.1205610462639015e-05
+              },
+              {
+                "text": "an",
+                "logprob": -6.079655122448457e-06
+              },
+              {
+                "text": "ese",
+                "logprob": -0.018630748614668846
+              },
+              {
+                "text": "citizens",
+                "logprob": -0.0754736140370369
+              },
+              {
+                "text": "hip",
+                "logprob": -0.039735663682222366
+              },
+              {
+                "text": "is",
+                "logprob": -0.5636096000671387
+              },
+              {
+                "text": "inherited",
+                "logprob": -2.8315513134002686
+              },
+              {
+                "text": "from",
+                "logprob": -0.4629678726196289
+              },
+              {
+                "text": "parents",
+                "logprob": -1.9412071704864502
+              },
+              {
+                "text": "and",
+                "logprob": -1.6774107217788696
+              },
+              {
+                "text": "not",
+                "logprob": -0.861568808555603
+              },
+              {
+                "text": "through",
+                "logprob": -1.303192138671875
+              },
+              {
+                "text": "ad",
+                "logprob": -0.5045936107635498
+              },
+              {
+                "text": "option",
+                "logprob": -0.0004898302140645683
+              },
+              {
+                "text": "or",
+                "logprob": -0.6050969958305359
+              },
+              {
+                "text": "guard",
+                "logprob": -0.6926296353340149
+              },
+              {
+                "text": "ians",
+                "logprob": -0.00016640232934150845
+              },
+              {
+                "text": "hip",
+                "logprob": -0.0010698077967390418
+              },
+              {
+                "text": ".",
+                "logprob": -0.027162576094269753
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0218846146017313
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0002972637885250151
+              },
+              {
+                "text": "Step",
+                "logprob": -0.00018356545479036868
+              },
+              {
+                "text": "",
+                "logprob": -6.198863957251888e-06
+              },
+              {
+                "text": "2",
+                "logprob": -1.0609570381348021e-05
+              },
+              {
+                "text": ":",
+                "logprob": -0.006084846332669258
+              },
+              {
+                "text": "Unfortunately",
+                "logprob": -7.412878513336182
+              },
+              {
+                "text": ",",
+                "logprob": -0.0002090712368953973
+              },
+              {
+                "text": "there",
+                "logprob": -0.48350346088409424
+              },
+              {
+                "text": "are",
+                "logprob": -0.32832205295562744
+              },
+              {
+                "text": "no",
+                "logprob": -0.0034907853696495295
+              },
+              {
+                "text": "prov",
+                "logprob": -0.7532126903533936
+              },
+              {
+                "text": "isions",
+                "logprob": -1.4305012882687151e-05
+              },
+              {
+                "text": "in",
+                "logprob": -0.6715298295021057
+              },
+              {
+                "text": "Bh",
+                "logprob": -0.1710958629846573
+              },
+              {
+                "text": "ut",
+                "logprob": -2.622600959512056e-06
+              },
+              {
+                "text": "an",
+                "logprob": -1.4305104514278355e-06
+              },
+              {
+                "text": "'",
+                "logprob": -0.21750587224960327
+              },
+              {
+                "text": "s",
+                "logprob": -8.344646857949556e-07
+              },
+              {
+                "text": "citizens",
+                "logprob": -0.11636625230312347
+              },
+              {
+                "text": "hip",
+                "logprob": -9.417489309271332e-06
+              },
+              {
+                "text": "law",
+                "logprob": -0.702967643737793
+              },
+              {
+                "text": "that",
+                "logprob": -0.2537294924259186
+              },
+              {
+                "text": "directly",
+                "logprob": -2.0675086975097656
+              },
+              {
+                "text": "concern",
+                "logprob": -5.423802852630615
+              },
+              {
+                "text": "invol",
+                "logprob": -0.1328365057706833
+              },
+              {
+                "text": "unt",
+                "logprob": -9.536738616588991e-07
+              },
+              {
+                "text": "ary",
+                "logprob": -0.0007944526732899249
+              },
+              {
+                "text": "loss",
+                "logprob": -0.0025678062811493874
+              },
+              {
+                "text": "of",
+                "logprob": -0.006080699153244495
+              },
+              {
+                "text": "citizens",
+                "logprob": -0.0006356602534651756
+              },
+              {
+                "text": "hip",
+                "logprob": -4.9232225137529895e-05
+              },
+              {
+                "text": "on",
+                "logprob": -6.994542121887207
+              },
+              {
+                "text": "the",
+                "logprob": -0.31652918457984924
+              },
+              {
+                "text": "basis",
+                "logprob": -0.9143422245979309
+              },
+              {
+                "text": "of",
+                "logprob": -0.0033844592981040478
+              },
+              {
+                "text": "ad",
+                "logprob": -0.24383381009101868
+              },
+              {
+                "text": "option",
+                "logprob": -0.00012432756193447858
+              },
+              {
+                "text": "by",
+                "logprob": -2.701805353164673
+              },
+              {
+                "text": "or",
+                "logprob": -0.10669862478971481
+              },
+              {
+                "text": "in",
+                "logprob": -2.367039680480957
+              },
+              {
+                "text": "legal",
+                "logprob": -0.018724936991930008
+              },
+              {
+                "text": "guard",
+                "logprob": -4.23184028477408e-05
+              },
+              {
+                "text": "ians",
+                "logprob": -6.580135959666222e-05
+              },
+              {
+                "text": "hip",
+                "logprob": -0.0001515035255579278
+              },
+              {
+                "text": "to",
+                "logprob": -4.22123384475708
+              },
+              {
+                "text": "a",
+                "logprob": -0.25442323088645935
+              },
+              {
+                "text": "citiz",
+                "logprob": -0.7524505853652954
+              },
+              {
+                "text": "en",
+                "logprob": 0.0
+              },
+              {
+                "text": "of",
+                "logprob": -0.17068126797676086
+              },
+              {
+                "text": "another",
+                "logprob": -0.009348428808152676
+              },
+              {
+                "text": "country",
+                "logprob": -0.007491826545447111
+              },
+              {
+                "text": ".",
+                "logprob": -0.026957673951983452
+              },
+              {
+                "text": "Bh",
+                "logprob": -5.4539570808410645
+              },
+              {
+                "text": "ut",
+                "logprob": -1.3112935448589269e-05
+              },
+              {
+                "text": "an",
+                "logprob": -1.7881377516459906e-06
+              },
+              {
+                "text": "ese",
+                "logprob": -1.0917725563049316
+              },
+              {
+                "text": "law",
+                "logprob": -1.1814587116241455
+              },
+              {
+                "text": "does",
+                "logprob": -0.5286476016044617
+              },
+              {
+                "text": "not",
+                "logprob": -0.15574337542057037
+              },
+              {
+                "text": "discuss",
+                "logprob": -4.144253730773926
+              },
+              {
+                "text": "invol",
+                "logprob": -2.0388450622558594
+              },
+              {
+                "text": "unt",
+                "logprob": -1.156323378381785e-05
+              },
+              {
+                "text": "ary",
+                "logprob": -0.010843638330698013
+              },
+              {
+                "text": "loss",
+                "logprob": -0.2927860915660858
+              },
+              {
+                "text": "of",
+                "logprob": -0.1716427356004715
+              },
+              {
+                "text": "citizens",
+                "logprob": -0.010056896135210991
+              },
+              {
+                "text": "hip",
+                "logprob": -0.00022373080719262362
+              },
+              {
+                "text": "in",
+                "logprob": -1.4423556327819824
+              },
+              {
+                "text": "the",
+                "logprob": -2.4418535232543945
+              },
+              {
+                "text": "context",
+                "logprob": -0.14091260731220245
+              },
+              {
+                "text": "of",
+                "logprob": -0.1135304719209671
+              },
+              {
+                "text": "ad",
+                "logprob": -0.5944876670837402
+              },
+              {
+                "text": "option",
+                "logprob": -0.0047235810197889805
+              },
+              {
+                "text": "or",
+                "logprob": -0.11953001469373703
+              },
+              {
+                "text": "guard",
+                "logprob": -0.30910998582839966
+              },
+              {
+                "text": "ians",
+                "logprob": -8.761498611420393e-05
+              },
+              {
+                "text": "hip",
+                "logprob": -0.001937180757522583
+              },
+              {
+                "text": ".",
+                "logprob": -0.12220866233110428
+              },
+              {
+                "text": "\n",
+                "logprob": -0.003667535027489066
+              },
+              {
+                "text": "\n",
+                "logprob": -1.823885577323381e-05
+              },
+              {
+                "text": "Step",
+                "logprob": -0.0009667966514825821
+              },
+              {
+                "text": "",
+                "logprob": -5.483612312673358e-06
+              },
+              {
+                "text": "3",
+                "logprob": -5.960462772236497e-07
+              },
+              {
+                "text": ":",
+                "logprob": -4.768360213347478e-06
+              },
+              {
+                "text": "With",
+                "logprob": -4.135618209838867
+              },
+              {
+                "text": "no",
+                "logprob": -0.9261573553085327
+              },
+              {
+                "text": "prov",
+                "logprob": -1.8867100477218628
+              },
+              {
+                "text": "isions",
+                "logprob": -8.189342770492658e-05
+              },
+              {
+                "text": "or",
+                "logprob": -3.867917060852051
+              },
+              {
+                "text": "legal",
+                "logprob": -3.2074644565582275
+              },
+              {
+                "text": "framework",
+                "logprob": -0.5585203170776367
+              },
+              {
+                "text": "for",
+                "logprob": -2.671957492828369
+              },
+              {
+                "text": "invol",
+                "logprob": -0.03492439538240433
+              },
+              {
+                "text": "unt",
+                "logprob": -3.099436753473128e-06
+              },
+              {
+                "text": "ary",
+                "logprob": -0.0019982149824500084
+              },
+              {
+                "text": "loss",
+                "logprob": -0.04129677265882492
+              },
+              {
+                "text": "of",
+                "logprob": -0.008580246940255165
+              },
+              {
+                "text": "citizens",
+                "logprob": -0.0100020170211792
+              },
+              {
+                "text": "hip",
+                "logprob": -1.1324817933200393e-05
+              },
+              {
+                "text": "based",
+                "logprob": -2.5958127975463867
+              },
+              {
+                "text": "on",
+                "logprob": -0.001459962804801762
+              },
+              {
+                "text": "the",
+                "logprob": -1.0652129650115967
+              },
+              {
+                "text": "ad",
+                "logprob": -2.595822811126709
+              },
+              {
+                "text": "option",
+                "logprob": -0.0003010773507412523
+              },
+              {
+                "text": "or",
+                "logprob": -0.3446485698223114
+              },
+              {
+                "text": "legal",
+                "logprob": -0.6944068074226379
+              },
+              {
+                "text": "guard",
+                "logprob": -9.297892393078655e-05
+              },
+              {
+                "text": "ians",
+                "logprob": -0.00010954733443213627
+              },
+              {
+                "text": "hip",
+                "logprob": -0.00021336186910048127
+              },
+              {
+                "text": "by",
+                "logprob": -2.470942735671997
+              },
+              {
+                "text": "individuals",
+                "logprob": -4.158903121948242
+              },
+              {
+                "text": "from",
+                "logprob": -0.2569460868835449
+              },
+              {
+                "text": "a",
+                "logprob": -3.83083438873291
+              },
+              {
+                "text": "foreign",
+                "logprob": -0.6151547431945801
+              },
+              {
+                "text": "citiz",
+                "logprob": -2.875718355178833
+              },
+              {
+                "text": "en",
+                "logprob": -2.264974000354414e-06
+              },
+              {
+                "text": ",",
+                "logprob": -0.11530391126871109
+              },
+              {
+                "text": "Bh",
+                "logprob": -2.9380013942718506
+              },
+              {
+                "text": "ut",
+                "logprob": -2.264974000354414e-06
+              },
+              {
+                "text": "an",
+                "logprob": -1.1086402082582936e-05
+              },
+              {
+                "text": "effectively",
+                "logprob": -7.566582679748535
+              },
+              {
+                "text": "has",
+                "logprob": -2.9864161014556885
+              },
+              {
+                "text": "no",
+                "logprob": -0.07339467853307724
+              },
+              {
+                "text": "conditions",
+                "logprob": -0.6365591287612915
+              },
+              {
+                "text": "under",
+                "logprob": -0.5610750913619995
+              },
+              {
+                "text": "which",
+                "logprob": -0.13400238752365112
+              },
+              {
+                "text": "invol",
+                "logprob": -1.2116013765335083
+              },
+              {
+                "text": "unt",
+                "logprob": -2.50339189733495e-06
+              },
+              {
+                "text": "ary",
+                "logprob": -0.001347944256849587
+              },
+              {
+                "text": "loss",
+                "logprob": -0.12177804112434387
+              },
+              {
+                "text": "of",
+                "logprob": -0.018488924950361252
+              },
+              {
+                "text": "citizens",
+                "logprob": -0.008344310335814953
+              },
+              {
+                "text": "hip",
+                "logprob": -7.915183232398704e-05
+              },
+              {
+                "text": "could",
+                "logprob": -1.875598669052124
+              },
+              {
+                "text": "occur",
+                "logprob": -0.10386459529399872
+              },
+              {
+                "text": "under",
+                "logprob": -2.1716887950897217
+              },
+              {
+                "text": "this",
+                "logprob": -2.7026190757751465
+              },
+              {
+                "text": "scenario",
+                "logprob": -0.4297553300857544
+              },
+              {
+                "text": ".",
+                "logprob": -0.15437878668308258
+              },
+              {
+                "text": "\n",
+                "logprob": -0.001515312702395022
+              },
+              {
+                "text": "\n",
+                "logprob": -7.748573807475623e-06
+              },
+              {
+                "text": "Answer",
+                "logprob": -0.2916468381881714
+              },
+              {
+                "text": ":",
+                "logprob": -0.0009266611887142062
+              },
+              {
+                "text": "No",
+                "logprob": -0.0613882802426815
+              },
+              {
+                "text": ",",
+                "logprob": -0.00704672746360302
+              },
+              {
+                "text": "Bh",
+                "logprob": -0.13095024228096008
+              },
+              {
+                "text": "ut",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "an",
+                "logprob": 0.0
+              },
+              {
+                "text": "does",
+                "logprob": -0.0066672726534307
+              },
+              {
+                "text": "not",
+                "logprob": -7.748573807475623e-06
+              },
+              {
+                "text": "provide",
+                "logprob": -0.010044150054454803
+              },
+              {
+                "text": "for",
+                "logprob": -0.007474551443010569
+              },
+              {
+                "text": "invol",
+                "logprob": -0.001280560391023755
+              },
+              {
+                "text": "unt",
+                "logprob": -1.4305104514278355e-06
+              },
+              {
+                "text": "ary",
+                "logprob": -1.1920922133867862e-06
+              },
+              {
+                "text": "loss",
+                "logprob": -4.327203714638017e-05
+              },
+              {
+                "text": "of",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "citizens",
+                "logprob": -2.6940935640595853e-05
+              },
+              {
+                "text": "hip",
+                "logprob": -5.960462772236497e-07
+              },
+              {
+                "text": "by",
+                "logprob": -0.09750254452228546
+              },
+              {
+                "text": "a",
+                "logprob": -0.004725716542452574
+              },
+              {
+                "text": "person",
+                "logprob": -1.0728830375228426e-06
+              },
+              {
+                "text": "who",
+                "logprob": -0.03662462159991264
+              },
+              {
+                "text": "is",
+                "logprob": -0.00016020445036701858
+              },
+              {
+                "text": "adopted",
+                "logprob": -2.8490614567999728e-05
+              },
+              {
+                "text": "by",
+                "logprob": -0.0011050553293898702
+              },
+              {
+                "text": "or",
+                "logprob": -7.807903602952138e-05
+              },
+              {
+                "text": "in",
+                "logprob": -0.006209485698491335
+              },
+              {
+                "text": "legal",
+                "logprob": -0.00015233787416946143
+              },
+              {
+                "text": "guard",
+                "logprob": -4.768360213347478e-06
+              },
+              {
+                "text": "ians",
+                "logprob": -2.9802276912960224e-06
+              },
+              {
+                "text": "hip",
+                "logprob": -8.344646857949556e-07
+              },
+              {
+                "text": "of",
+                "logprob": -0.0012161486083641648
+              },
+              {
+                "text": "a",
+                "logprob": -3.2782016205601394e-05
+              },
+              {
+                "text": "citiz",
+                "logprob": -0.0029135181102901697
+              },
+              {
+                "text": "en",
+                "logprob": 0.0
+              },
+              {
+                "text": "of",
+                "logprob": -0.0013380631571635604
+              },
+              {
+                "text": "another",
+                "logprob": -2.3841574147809297e-05
+              },
+              {
+                "text": "country",
+                "logprob": -6.794906312279636e-06
+              },
+              {
+                "text": "under",
+                "logprob": -1.0067201852798462
+              },
+              {
+                "text": "these",
+                "logprob": -3.8189566135406494
+              },
+              {
+                "text": "conditions",
+                "logprob": -0.33895939588546753
+              },
+              {
+                "text": "on",
+                "logprob": -5.0042219161987305
+              },
+              {
+                "text": "January",
+                "logprob": -0.004239619243890047
+              },
+              {
+                "text": "",
+                "logprob": -2.9802276912960224e-06
+              },
+              {
+                "text": "1",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "st",
+                "logprob": -0.00024399164249189198
+              },
+              {
+                "text": ",",
+                "logprob": -2.729855441430118e-05
+              },
+              {
+                "text": "",
+                "logprob": -1.4305104514278355e-06
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "0",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": ".",
+                "logprob": -0.006483945995569229
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0363924503326416
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.5866107863050152,
+              "max_token_negative_log_likelihood": 7.566563129425049,
+              "predictive_entropy": 0.10217527300784511,
+              "shannon_entropy": 0.5621458113651181
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 30.350201845169067,
+        "request_datetime": 1756149913
+      },
+      "num_train_instances": 0,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "Question: Consider the country of Togo. Does the country require knowledge of a national language, and at what level of competence, for residence- based acquisition?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Yes"
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id5588"
+      },
+      "train_trial_index": 0,
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "First, briefly explain your reasoning step by step, then answer yes or no.\n\nAnswer the following questions considering the state of international law on January 1st, 2020. Answer Yes or No.\n\nQuestion: Consider the country of Togo. Does the country require knowledge of a national language, and at what level of competence, for residence- based acquisition?\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 1,
+        "max_tokens": 1030,
+        "stop_sequences": [
+          "\n"
+        ],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "Step 1: Understand the context of the question, which is related to the country of Togo and its requirements for residence-based acquisition of nationality.\n\nStep 2: Know that international law generally refers to the set of rules and principles governing relations among states and between states and international organizations.\n\nStep 3: Recognize that the issue at hand is more related to the individual national law of Togo rather than international law.\n\nStep 4: Research the national law of Togo regarding the requirements for residence-based acquisition of nationality.\n\nStep 5: According to Togolese national law, as of January 1st, 2020, the criteria for citizenship by naturalization typically include: \n",
+            "logprob": -109.30799600003661,
+            "tokens": [
+              {
+                "text": "Step",
+                "logprob": -0.03821204602718353
+              },
+              {
+                "text": "",
+                "logprob": -3.7788631743751466e-05
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": ":",
+                "logprob": -5.8412379075889476e-06
+              },
+              {
+                "text": "Under",
+                "logprob": -1.5701446533203125
+              },
+              {
+                "text": "stand",
+                "logprob": -0.1232551634311676
+              },
+              {
+                "text": "the",
+                "logprob": -0.0012772268382832408
+              },
+              {
+                "text": "context",
+                "logprob": -1.150535225868225
+              },
+              {
+                "text": "of",
+                "logprob": -0.10915575921535492
+              },
+              {
+                "text": "the",
+                "logprob": -0.12224896252155304
+              },
+              {
+                "text": "question",
+                "logprob": -0.0008673481643199921
+              },
+              {
+                "text": ",",
+                "logprob": -0.5286188125610352
+              },
+              {
+                "text": "which",
+                "logprob": -0.0036362973041832447
+              },
+              {
+                "text": "is",
+                "logprob": -0.5469768047332764
+              },
+              {
+                "text": "related",
+                "logprob": -2.0550177097320557
+              },
+              {
+                "text": "to",
+                "logprob": -2.3841830625315197e-06
+              },
+              {
+                "text": "the",
+                "logprob": -0.4865655303001404
+              },
+              {
+                "text": "country",
+                "logprob": -2.444216728210449
+              },
+              {
+                "text": "of",
+                "logprob": -0.04420117288827896
+              },
+              {
+                "text": "T",
+                "logprob": -4.529942543740617e-06
+              },
+              {
+                "text": "ogo",
+                "logprob": -2.145764938177308e-06
+              },
+              {
+                "text": "and",
+                "logprob": -0.07323991507291794
+              },
+              {
+                "text": "its",
+                "logprob": -0.5884802341461182
+              },
+              {
+                "text": "requirements",
+                "logprob": -0.2428363859653473
+              },
+              {
+                "text": "for",
+                "logprob": -0.02043048106133938
+              },
+              {
+                "text": "residence",
+                "logprob": -0.20042331516742706
+              },
+              {
+                "text": "-",
+                "logprob": -2.4199192921514623e-05
+              },
+              {
+                "text": "based",
+                "logprob": -1.7523612768854946e-05
+              },
+              {
+                "text": "ac",
+                "logprob": -0.01251781266182661
+              },
+              {
+                "text": "quisition",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "of",
+                "logprob": -0.12697719037532806
+              },
+              {
+                "text": "national",
+                "logprob": -0.24967418611049652
+              },
+              {
+                "text": "ity",
+                "logprob": -1.7526012659072876
+              },
+              {
+                "text": ".",
+                "logprob": -0.5706512331962585
+              },
+              {
+                "text": "\n",
+                "logprob": -0.023018769919872284
+              },
+              {
+                "text": "\n",
+                "logprob": -0.008955905213952065
+              },
+              {
+                "text": "Step",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": ":",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "Know",
+                "logprob": -5.98751163482666
+              },
+              {
+                "text": "that",
+                "logprob": -1.2733644247055054
+              },
+              {
+                "text": "international",
+                "logprob": -1.7222484350204468
+              },
+              {
+                "text": "law",
+                "logprob": -0.0035827276296913624
+              },
+              {
+                "text": "generally",
+                "logprob": -1.2505003213882446
+              },
+              {
+                "text": "refers",
+                "logprob": -3.3027729988098145
+              },
+              {
+                "text": "to",
+                "logprob": -3.3378044463461265e-05
+              },
+              {
+                "text": "the",
+                "logprob": -0.7498491406440735
+              },
+              {
+                "text": "set",
+                "logprob": -1.6820974349975586
+              },
+              {
+                "text": "of",
+                "logprob": -0.0008810452418401837
+              },
+              {
+                "text": "rules",
+                "logprob": -0.025542277842760086
+              },
+              {
+                "text": "and",
+                "logprob": -0.5035257935523987
+              },
+              {
+                "text": "principles",
+                "logprob": -0.13111922144889832
+              },
+              {
+                "text": "gover",
+                "logprob": -0.7172490358352661
+              },
+              {
+                "text": "ning",
+                "logprob": -1.311301275563892e-06
+              },
+              {
+                "text": "relations",
+                "logprob": -0.6767337322235107
+              },
+              {
+                "text": "among",
+                "logprob": -2.8874599933624268
+              },
+              {
+                "text": "states",
+                "logprob": -0.2585945129394531
+              },
+              {
+                "text": "and",
+                "logprob": -0.7147731781005859
+              },
+              {
+                "text": "between",
+                "logprob": -5.487316131591797
+              },
+              {
+                "text": "states",
+                "logprob": -0.07452558726072311
+              },
+              {
+                "text": "and",
+                "logprob": -0.0012717501958832145
+              },
+              {
+                "text": "international",
+                "logprob": -0.05954211950302124
+              },
+              {
+                "text": "organizations",
+                "logprob": -0.3013385832309723
+              },
+              {
+                "text": ".",
+                "logprob": -0.2310793548822403
+              },
+              {
+                "text": "\n",
+                "logprob": -2.2137956619262695
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0001012035645544529
+              },
+              {
+                "text": "Step",
+                "logprob": -1.1801649634435307e-05
+              },
+              {
+                "text": "",
+                "logprob": -1.7881377516459906e-06
+              },
+              {
+                "text": "3",
+                "logprob": 0.0
+              },
+              {
+                "text": ":",
+                "logprob": -2.7418097943154862e-06
+              },
+              {
+                "text": "Rec",
+                "logprob": -0.6718526482582092
+              },
+              {
+                "text": "ogn",
+                "logprob": -0.028237108141183853
+              },
+              {
+                "text": "ize",
+                "logprob": -0.0015025765169411898
+              },
+              {
+                "text": "that",
+                "logprob": -0.005693173035979271
+              },
+              {
+                "text": "the",
+                "logprob": -1.0505094528198242
+              },
+              {
+                "text": "issue",
+                "logprob": -3.529191732406616
+              },
+              {
+                "text": "at",
+                "logprob": -0.8188689947128296
+              },
+              {
+                "text": "hand",
+                "logprob": -0.000459565402707085
+              },
+              {
+                "text": "is",
+                "logprob": -0.664612889289856
+              },
+              {
+                "text": "more",
+                "logprob": -1.2969532012939453
+              },
+              {
+                "text": "related",
+                "logprob": -1.0391342639923096
+              },
+              {
+                "text": "to",
+                "logprob": -2.6940935640595853e-05
+              },
+              {
+                "text": "the",
+                "logprob": -2.5141234397888184
+              },
+              {
+                "text": "individual",
+                "logprob": -5.698614120483398
+              },
+              {
+                "text": "national",
+                "logprob": -1.5624973773956299
+              },
+              {
+                "text": "law",
+                "logprob": -2.5553054809570312
+              },
+              {
+                "text": "of",
+                "logprob": -0.07726435363292694
+              },
+              {
+                "text": "T",
+                "logprob": -0.0422431044280529
+              },
+              {
+                "text": "ogo",
+                "logprob": -1.0132738680113107e-05
+              },
+              {
+                "text": "rather",
+                "logprob": -0.5938386917114258
+              },
+              {
+                "text": "than",
+                "logprob": -5.245195097813848e-06
+              },
+              {
+                "text": "international",
+                "logprob": -0.07603833079338074
+              },
+              {
+                "text": "law",
+                "logprob": -0.003493992844596505
+              },
+              {
+                "text": ".",
+                "logprob": -0.3881782293319702
+              },
+              {
+                "text": "\n",
+                "logprob": -0.5915159583091736
+              },
+              {
+                "text": "\n",
+                "logprob": -8.583032467868179e-06
+              },
+              {
+                "text": "Step",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "",
+                "logprob": -1.1920922133867862e-06
+              },
+              {
+                "text": "4",
+                "logprob": 0.0
+              },
+              {
+                "text": ":",
+                "logprob": -9.536738616588991e-07
+              },
+              {
+                "text": "Research",
+                "logprob": -0.4741806387901306
+              },
+              {
+                "text": "the",
+                "logprob": -1.0453121662139893
+              },
+              {
+                "text": "national",
+                "logprob": -0.4581286311149597
+              },
+              {
+                "text": "law",
+                "logprob": -0.5700798630714417
+              },
+              {
+                "text": "of",
+                "logprob": -0.1510341316461563
+              },
+              {
+                "text": "T",
+                "logprob": -7.629103492945433e-05
+              },
+              {
+                "text": "ogo",
+                "logprob": -0.00015364897262770683
+              },
+              {
+                "text": "regarding",
+                "logprob": -0.8901613354682922
+              },
+              {
+                "text": "the",
+                "logprob": -1.2735984325408936
+              },
+              {
+                "text": "requirements",
+                "logprob": -2.9423415660858154
+              },
+              {
+                "text": "for",
+                "logprob": -0.008856775239109993
+              },
+              {
+                "text": "residence",
+                "logprob": -0.3433355987071991
+              },
+              {
+                "text": "-",
+                "logprob": -0.001929566147737205
+              },
+              {
+                "text": "based",
+                "logprob": -0.00025233422638848424
+              },
+              {
+                "text": "ac",
+                "logprob": -0.04675888642668724
+              },
+              {
+                "text": "quisition",
+                "logprob": -5.149708886165172e-05
+              },
+              {
+                "text": "of",
+                "logprob": -0.04504413902759552
+              },
+              {
+                "text": "national",
+                "logprob": -0.03771337866783142
+              },
+              {
+                "text": "ity",
+                "logprob": -5.173549288883805e-05
+              },
+              {
+                "text": ".",
+                "logprob": -0.39380764961242676
+              },
+              {
+                "text": "\n",
+                "logprob": -0.3727465867996216
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0005875291535630822
+              },
+              {
+                "text": "Step",
+                "logprob": -0.014780187979340553
+              },
+              {
+                "text": "",
+                "logprob": -2.9802276912960224e-06
+              },
+              {
+                "text": "5",
+                "logprob": -8.344646857949556e-07
+              },
+              {
+                "text": ":",
+                "logprob": -1.9311717551317997e-05
+              },
+              {
+                "text": "According",
+                "logprob": -4.193267345428467
+              },
+              {
+                "text": "to",
+                "logprob": -0.0011433976469561458
+              },
+              {
+                "text": "T",
+                "logprob": -0.8000462055206299
+              },
+              {
+                "text": "og",
+                "logprob": -0.12337708473205566
+              },
+              {
+                "text": "ol",
+                "logprob": -0.0006808108882978559
+              },
+              {
+                "text": "ese",
+                "logprob": -2.002696055569686e-05
+              },
+              {
+                "text": "national",
+                "logprob": -0.27247798442840576
+              },
+              {
+                "text": "law",
+                "logprob": -0.39814507961273193
+              },
+              {
+                "text": ",",
+                "logprob": -0.06846620887517929
+              },
+              {
+                "text": "as",
+                "logprob": -2.222245216369629
+              },
+              {
+                "text": "of",
+                "logprob": -0.17437700927257538
+              },
+              {
+                "text": "January",
+                "logprob": -0.2690056562423706
+              },
+              {
+                "text": "",
+                "logprob": -8.106198947643861e-06
+              },
+              {
+                "text": "1",
+                "logprob": -0.0017081208061426878
+              },
+              {
+                "text": "st",
+                "logprob": -0.03471958264708519
+              },
+              {
+                "text": ",",
+                "logprob": -0.00026246439665555954
+              },
+              {
+                "text": "",
+                "logprob": -5.960462772236497e-07
+              },
+              {
+                "text": "2",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": "2",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "0",
+                "logprob": -1.4305104514278355e-06
+              },
+              {
+                "text": ",",
+                "logprob": -0.009118815883994102
+              },
+              {
+                "text": "the",
+                "logprob": -2.6987056732177734
+              },
+              {
+                "text": "criteria",
+                "logprob": -3.8931002616882324
+              },
+              {
+                "text": "for",
+                "logprob": -0.014484732411801815
+              },
+              {
+                "text": "citizens",
+                "logprob": -4.697157859802246
+              },
+              {
+                "text": "hip",
+                "logprob": -0.0001227780303452164
+              },
+              {
+                "text": "by",
+                "logprob": -0.5034492611885071
+              },
+              {
+                "text": "natural",
+                "logprob": -0.25278782844543457
+              },
+              {
+                "text": "ization",
+                "logprob": -0.013312267139554024
+              },
+              {
+                "text": "typically",
+                "logprob": -4.189566135406494
+              },
+              {
+                "text": "include",
+                "logprob": -0.34796464443206787
+              },
+              {
+                "text": ":",
+                "logprob": -4.432631492614746
+              },
+              {
+                "text": "",
+                "logprob": -4.056237697601318
+              },
+              {
+                "text": "\n",
+                "logprob": -0.006557257380336523
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.6747406166549738,
+              "max_token_negative_log_likelihood": 5.987507343292236,
+              "predictive_entropy": 0.11741623006001063,
+              "shannon_entropy": 0.6596514544300147
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 15.37699270248413,
+        "request_datetime": 1756149913
+      },
+      "num_train_instances": 0,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "Question: Consider the country of Turkmenistan. Does the country provide for acquisition of citizenship by a person who as a minor has had a certain period of residence or schooling in the country and, if so, under which conditions?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "No"
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id5660"
+      },
+      "train_trial_index": 0,
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "First, briefly explain your reasoning step by step, then answer yes or no.\n\nAnswer the following questions considering the state of international law on January 1st, 2020. Answer Yes or No.\n\nQuestion: Consider the country of Turkmenistan. Does the country provide for acquisition of citizenship by a person who as a minor has had a certain period of residence or schooling in the country and, if so, under which conditions?\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 1,
+        "max_tokens": 1030,
+        "stop_sequences": [
+          "\n"
+        ],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "Step 1: Understanding the question\nThe question is asking whether Turkmenistan provides a way for individuals, specifically minor children who have resided or attended school in the country for a certain period, to acquire citizenship.\n\nStep 2: Researching Turkmenistan's laws on citizenship\nAs of January 1st, 2020, Turkmenistan's laws on citizenship can be found in their specific legislation. According to the Turkmenistan Law on Citizenship (Law No. 987 of November 24, 2017) and its subsequent amendments, citizenship can be acquired through various means, such as by birth, marriage, or naturalization.\n\nStep 3: Identifying relevant provisions for minor children\nThe Turkmenistan Law on Citizenship doesn't specifically mention acquiring citizenship through a certain period of residence or schooling. The law primarily focuses on birth, descent, residency, and naturalization as means to acquire citizenship.\n\nStep 4: Determining the response\nBased on the available information, it appears that Turkmenistan's law on citizenship doesn't state that a minor's residence or schooling period can be grounds for acquiring citizenship.\n\nAnswer: No, Turkmenistan does not provide for the acquisition of citizenship by a minor based solely on a certain period of residence or schooling.<|end|><|endoftext|>",
+            "logprob": -191.9267738918609,
+            "tokens": [
+              {
+                "text": "Step",
+                "logprob": -0.01939394138753414
+              },
+              {
+                "text": "",
+                "logprob": -3.135155202471651e-05
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": ":",
+                "logprob": -4.6491513785440475e-06
+              },
+              {
+                "text": "Under",
+                "logprob": -1.8500179052352905
+              },
+              {
+                "text": "standing",
+                "logprob": -2.694937229156494
+              },
+              {
+                "text": "the",
+                "logprob": -0.011145594529807568
+              },
+              {
+                "text": "question",
+                "logprob": -0.20846767723560333
+              },
+              {
+                "text": "\n",
+                "logprob": -0.3746557831764221
+              },
+              {
+                "text": "The",
+                "logprob": -0.030612468719482422
+              },
+              {
+                "text": "question",
+                "logprob": -0.02793690748512745
+              },
+              {
+                "text": "is",
+                "logprob": -1.3261007070541382
+              },
+              {
+                "text": "asking",
+                "logprob": -0.007833948358893394
+              },
+              {
+                "text": "whether",
+                "logprob": -0.4330880343914032
+              },
+              {
+                "text": "Turk",
+                "logprob": -0.051147568970918655
+              },
+              {
+                "text": "men",
+                "logprob": -0.000436091679148376
+              },
+              {
+                "text": "istan",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "provides",
+                "logprob": -1.6066700220108032
+              },
+              {
+                "text": "a",
+                "logprob": -0.2597694396972656
+              },
+              {
+                "text": "way",
+                "logprob": -1.9447999000549316
+              },
+              {
+                "text": "for",
+                "logprob": -0.07485559582710266
+              },
+              {
+                "text": "individuals",
+                "logprob": -1.7523064613342285
+              },
+              {
+                "text": ",",
+                "logprob": -0.6014999747276306
+              },
+              {
+                "text": "specifically",
+                "logprob": -0.18983498215675354
+              },
+              {
+                "text": "minor",
+                "logprob": -4.751711845397949
+              },
+              {
+                "text": "children",
+                "logprob": -0.21263675391674042
+              },
+              {
+                "text": "who",
+                "logprob": -3.724853754043579
+              },
+              {
+                "text": "have",
+                "logprob": -0.032036758959293365
+              },
+              {
+                "text": "res",
+                "logprob": -0.5245482325553894
+              },
+              {
+                "text": "ided",
+                "logprob": -0.00032693761750124395
+              },
+              {
+                "text": "or",
+                "logprob": -0.03984621539711952
+              },
+              {
+                "text": "attended",
+                "logprob": -0.11096470057964325
+              },
+              {
+                "text": "school",
+                "logprob": -0.0010387268848717213
+              },
+              {
+                "text": "in",
+                "logprob": -0.050695084035396576
+              },
+              {
+                "text": "the",
+                "logprob": -0.10348942130804062
+              },
+              {
+                "text": "country",
+                "logprob": -0.00021884430316276848
+              },
+              {
+                "text": "for",
+                "logprob": -0.15180185437202454
+              },
+              {
+                "text": "a",
+                "logprob": -0.006268719676882029
+              },
+              {
+                "text": "certain",
+                "logprob": -0.29787927865982056
+              },
+              {
+                "text": "period",
+                "logprob": -0.1536494344472885
+              },
+              {
+                "text": ",",
+                "logprob": -0.09455087780952454
+              },
+              {
+                "text": "to",
+                "logprob": -3.2543604902457446e-05
+              },
+              {
+                "text": "ac",
+                "logprob": -0.020465051755309105
+              },
+              {
+                "text": "quire",
+                "logprob": 0.0
+              },
+              {
+                "text": "citizens",
+                "logprob": -0.7697982788085938
+              },
+              {
+                "text": "hip",
+                "logprob": 0.0
+              },
+              {
+                "text": ".",
+                "logprob": -0.032476067543029785
+              },
+              {
+                "text": "\n",
+                "logprob": -0.17225705087184906
+              },
+              {
+                "text": "\n",
+                "logprob": -9.548207890475169e-05
+              },
+              {
+                "text": "Step",
+                "logprob": -1.6689286894688848e-06
+              },
+              {
+                "text": "",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": ":",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "Research",
+                "logprob": -0.11473926156759262
+              },
+              {
+                "text": "ing",
+                "logprob": -0.3920755982398987
+              },
+              {
+                "text": "Turk",
+                "logprob": -0.6439217329025269
+              },
+              {
+                "text": "men",
+                "logprob": -5.245195097813848e-06
+              },
+              {
+                "text": "istan",
+                "logprob": -0.0007133323233574629
+              },
+              {
+                "text": "'",
+                "logprob": -0.011427071876823902
+              },
+              {
+                "text": "s",
+                "logprob": 0.0
+              },
+              {
+                "text": "laws",
+                "logprob": -2.419093608856201
+              },
+              {
+                "text": "on",
+                "logprob": -0.5425758361816406
+              },
+              {
+                "text": "citizens",
+                "logprob": -0.03991666063666344
+              },
+              {
+                "text": "hip",
+                "logprob": -3.4570634852570947e-06
+              },
+              {
+                "text": "\n",
+                "logprob": -0.15643145143985748
+              },
+              {
+                "text": "As",
+                "logprob": -3.965277671813965
+              },
+              {
+                "text": "of",
+                "logprob": -0.12988539040088654
+              },
+              {
+                "text": "January",
+                "logprob": -0.10011652857065201
+              },
+              {
+                "text": "",
+                "logprob": -8.106198947643861e-06
+              },
+              {
+                "text": "1",
+                "logprob": -1.1444026313256472e-05
+              },
+              {
+                "text": "st",
+                "logprob": -0.022540787234902382
+              },
+              {
+                "text": ",",
+                "logprob": -1.847726889536716e-05
+              },
+              {
+                "text": "",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": ",",
+                "logprob": -0.000835903687402606
+              },
+              {
+                "text": "Turk",
+                "logprob": -0.41597694158554077
+              },
+              {
+                "text": "men",
+                "logprob": -1.4424220353248529e-05
+              },
+              {
+                "text": "istan",
+                "logprob": -0.0022928635589778423
+              },
+              {
+                "text": "'",
+                "logprob": -0.2937867343425751
+              },
+              {
+                "text": "s",
+                "logprob": -3.814689989667386e-06
+              },
+              {
+                "text": "laws",
+                "logprob": -1.7923696041107178
+              },
+              {
+                "text": "on",
+                "logprob": -0.19546185433864594
+              },
+              {
+                "text": "citizens",
+                "logprob": -0.0677327811717987
+              },
+              {
+                "text": "hip",
+                "logprob": -1.7881377516459906e-06
+              },
+              {
+                "text": "can",
+                "logprob": -1.1038174629211426
+              },
+              {
+                "text": "be",
+                "logprob": -0.004977098666131496
+              },
+              {
+                "text": "found",
+                "logprob": -0.19873635470867157
+              },
+              {
+                "text": "in",
+                "logprob": -0.13928881287574768
+              },
+              {
+                "text": "their",
+                "logprob": -1.9044582843780518
+              },
+              {
+                "text": "specific",
+                "logprob": -6.573155403137207
+              },
+              {
+                "text": "legisl",
+                "logprob": -0.854039192199707
+              },
+              {
+                "text": "ation",
+                "logprob": -0.0880085900425911
+              },
+              {
+                "text": ".",
+                "logprob": -1.0933682918548584
+              },
+              {
+                "text": "According",
+                "logprob": -1.9391688108444214
+              },
+              {
+                "text": "to",
+                "logprob": -0.0009828743059188128
+              },
+              {
+                "text": "the",
+                "logprob": -0.5125423669815063
+              },
+              {
+                "text": "Turk",
+                "logprob": -0.3831101953983307
+              },
+              {
+                "text": "men",
+                "logprob": -4.3987260141875595e-05
+              },
+              {
+                "text": "istan",
+                "logprob": -0.12243988364934921
+              },
+              {
+                "text": "Law",
+                "logprob": -2.9010884761810303
+              },
+              {
+                "text": "on",
+                "logprob": -0.13477756083011627
+              },
+              {
+                "text": "Cit",
+                "logprob": -0.07024097442626953
+              },
+              {
+                "text": "iz",
+                "logprob": -1.0132738680113107e-05
+              },
+              {
+                "text": "ens",
+                "logprob": 0.0
+              },
+              {
+                "text": "hip",
+                "logprob": -0.0011458981316536665
+              },
+              {
+                "text": "(",
+                "logprob": -1.6722049713134766
+              },
+              {
+                "text": "L",
+                "logprob": -1.4068976640701294
+              },
+              {
+                "text": "aw",
+                "logprob": -0.0015261442167684436
+              },
+              {
+                "text": "No",
+                "logprob": -0.3529985845088959
+              },
+              {
+                "text": ".",
+                "logprob": -0.012133361771702766
+              },
+              {
+                "text": "",
+                "logprob": -0.0006037319544702768
+              },
+              {
+                "text": "9",
+                "logprob": -3.1172971725463867
+              },
+              {
+                "text": "8",
+                "logprob": -3.2365996837615967
+              },
+              {
+                "text": "7",
+                "logprob": -2.640005588531494
+              },
+              {
+                "text": "of",
+                "logprob": -1.2290947437286377
+              },
+              {
+                "text": "November",
+                "logprob": -2.5154576301574707
+              },
+              {
+                "text": "",
+                "logprob": -2.52720492426306e-05
+              },
+              {
+                "text": "2",
+                "logprob": -0.7494997978210449
+              },
+              {
+                "text": "4",
+                "logprob": -2.6290836334228516
+              },
+              {
+                "text": ",",
+                "logprob": -0.0193944089114666
+              },
+              {
+                "text": "",
+                "logprob": -3.2782016205601394e-05
+              },
+              {
+                "text": "2",
+                "logprob": -0.8660909533500671
+              },
+              {
+                "text": "0",
+                "logprob": -2.8132995794294402e-05
+              },
+              {
+                "text": "1",
+                "logprob": -1.8911550045013428
+              },
+              {
+                "text": "7",
+                "logprob": -2.5508646965026855
+              },
+              {
+                "text": ")",
+                "logprob": -4.180370807647705
+              },
+              {
+                "text": "and",
+                "logprob": -0.3338896334171295
+              },
+              {
+                "text": "its",
+                "logprob": -0.8813467621803284
+              },
+              {
+                "text": "subsequent",
+                "logprob": -1.1967356204986572
+              },
+              {
+                "text": "am",
+                "logprob": -0.07018008083105087
+              },
+              {
+                "text": "end",
+                "logprob": -0.00043478095903992653
+              },
+              {
+                "text": "ments",
+                "logprob": -0.0027330685406923294
+              },
+              {
+                "text": ",",
+                "logprob": -0.10672412812709808
+              },
+              {
+                "text": "citizens",
+                "logprob": -2.204921245574951
+              },
+              {
+                "text": "hip",
+                "logprob": -0.001064806361682713
+              },
+              {
+                "text": "can",
+                "logprob": -1.1123329401016235
+              },
+              {
+                "text": "be",
+                "logprob": -0.049773622304201126
+              },
+              {
+                "text": "acquired",
+                "logprob": -0.05408339574933052
+              },
+              {
+                "text": "through",
+                "logprob": -0.6606780886650085
+              },
+              {
+                "text": "various",
+                "logprob": -0.804591953754425
+              },
+              {
+                "text": "means",
+                "logprob": -0.5378398299217224
+              },
+              {
+                "text": ",",
+                "logprob": -0.5115028023719788
+              },
+              {
+                "text": "such",
+                "logprob": -1.963863730430603
+              },
+              {
+                "text": "as",
+                "logprob": -2.288792165927589e-05
+              },
+              {
+                "text": "by",
+                "logprob": -0.8157761693000793
+              },
+              {
+                "text": "birth",
+                "logprob": -0.5997443795204163
+              },
+              {
+                "text": ",",
+                "logprob": -0.2782779932022095
+              },
+              {
+                "text": "marriage",
+                "logprob": -2.9384968280792236
+              },
+              {
+                "text": ",",
+                "logprob": -0.007482479326426983
+              },
+              {
+                "text": "or",
+                "logprob": -1.279954195022583
+              },
+              {
+                "text": "natural",
+                "logprob": -0.13989770412445068
+              },
+              {
+                "text": "ization",
+                "logprob": -0.0019984529353678226
+              },
+              {
+                "text": ".",
+                "logprob": -0.02215760573744774
+              },
+              {
+                "text": "\n",
+                "logprob": -0.042270757257938385
+              },
+              {
+                "text": "\n",
+                "logprob": -4.017272294731811e-05
+              },
+              {
+                "text": "Step",
+                "logprob": -4.386805812828243e-05
+              },
+              {
+                "text": "",
+                "logprob": -3.3378546504536644e-06
+              },
+              {
+                "text": "3",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": ":",
+                "logprob": -3.2186455882765586e-06
+              },
+              {
+                "text": "Ident",
+                "logprob": -0.5679529905319214
+              },
+              {
+                "text": "ifying",
+                "logprob": -0.00939968228340149
+              },
+              {
+                "text": "relevant",
+                "logprob": -0.4825373888015747
+              },
+              {
+                "text": "prov",
+                "logprob": -1.070594072341919
+              },
+              {
+                "text": "isions",
+                "logprob": -2.861018856492592e-06
+              },
+              {
+                "text": "for",
+                "logprob": -0.6199687123298645
+              },
+              {
+                "text": "minor",
+                "logprob": -1.868030071258545
+              },
+              {
+                "text": "children",
+                "logprob": -0.6084069013595581
+              },
+              {
+                "text": "\n",
+                "logprob": -0.10804110765457153
+              },
+              {
+                "text": "The",
+                "logprob": -1.1768451929092407
+              },
+              {
+                "text": "Turk",
+                "logprob": -0.42964968085289
+              },
+              {
+                "text": "men",
+                "logprob": -0.00026854246971197426
+              },
+              {
+                "text": "istan",
+                "logprob": -0.004072112496942282
+              },
+              {
+                "text": "Law",
+                "logprob": -0.08005440980195999
+              },
+              {
+                "text": "on",
+                "logprob": -0.0037871322128921747
+              },
+              {
+                "text": "Cit",
+                "logprob": -0.0004103533865418285
+              },
+              {
+                "text": "iz",
+                "logprob": -1.1920922133867862e-06
+              },
+              {
+                "text": "ens",
+                "logprob": 0.0
+              },
+              {
+                "text": "hip",
+                "logprob": -1.5497195136049413e-06
+              },
+              {
+                "text": "doesn",
+                "logprob": -3.5816709995269775
+              },
+              {
+                "text": "'",
+                "logprob": -0.0027709919959306717
+              },
+              {
+                "text": "t",
+                "logprob": 0.0
+              },
+              {
+                "text": "specifically",
+                "logprob": -0.8721917867660522
+              },
+              {
+                "text": "mention",
+                "logprob": -0.19795739650726318
+              },
+              {
+                "text": "acqu",
+                "logprob": -1.399122953414917
+              },
+              {
+                "text": "iring",
+                "logprob": -1.490105023549404e-05
+              },
+              {
+                "text": "citizens",
+                "logprob": -0.0015434031374752522
+              },
+              {
+                "text": "hip",
+                "logprob": -6.794906312279636e-06
+              },
+              {
+                "text": "through",
+                "logprob": -0.6624099612236023
+              },
+              {
+                "text": "a",
+                "logprob": -1.7871463298797607
+              },
+              {
+                "text": "certain",
+                "logprob": -2.736945152282715
+              },
+              {
+                "text": "period",
+                "logprob": -0.009280872531235218
+              },
+              {
+                "text": "of",
+                "logprob": -0.00027056847466155887
+              },
+              {
+                "text": "residence",
+                "logprob": -0.12897783517837524
+              },
+              {
+                "text": "or",
+                "logprob": -0.011082876473665237
+              },
+              {
+                "text": "school",
+                "logprob": -0.03824635222554207
+              },
+              {
+                "text": "ing",
+                "logprob": -0.003201718209311366
+              },
+              {
+                "text": ".",
+                "logprob": -4.570197582244873
+              },
+              {
+                "text": "The",
+                "logprob": -1.6119948625564575
+              },
+              {
+                "text": "law",
+                "logprob": -1.2477418184280396
+              },
+              {
+                "text": "primarily",
+                "logprob": -1.3603782653808594
+              },
+              {
+                "text": "focus",
+                "logprob": -0.4510822594165802
+              },
+              {
+                "text": "es",
+                "logprob": -0.00018082413589581847
+              },
+              {
+                "text": "on",
+                "logprob": -0.00011240804451517761
+              },
+              {
+                "text": "birth",
+                "logprob": -1.2364330291748047
+              },
+              {
+                "text": ",",
+                "logprob": -1.4097415208816528
+              },
+              {
+                "text": "descent",
+                "logprob": -0.4530249834060669
+              },
+              {
+                "text": ",",
+                "logprob": -0.03417032212018967
+              },
+              {
+                "text": "res",
+                "logprob": -6.648465156555176
+              },
+              {
+                "text": "iden",
+                "logprob": -0.07076945155858994
+              },
+              {
+                "text": "cy",
+                "logprob": -7.629365427419543e-06
+              },
+              {
+                "text": ",",
+                "logprob": -0.10628034919500351
+              },
+              {
+                "text": "and",
+                "logprob": -0.3758205771446228
+              },
+              {
+                "text": "natural",
+                "logprob": -0.1774345189332962
+              },
+              {
+                "text": "ization",
+                "logprob": -0.004493615590035915
+              },
+              {
+                "text": "as",
+                "logprob": -1.8423665761947632
+              },
+              {
+                "text": "means",
+                "logprob": -2.2419021129608154
+              },
+              {
+                "text": "to",
+                "logprob": -1.044609546661377
+              },
+              {
+                "text": "ac",
+                "logprob": -0.19515874981880188
+              },
+              {
+                "text": "quire",
+                "logprob": -0.00019524575327523053
+              },
+              {
+                "text": "citizens",
+                "logprob": -0.07580021023750305
+              },
+              {
+                "text": "hip",
+                "logprob": -2.9682672902708873e-05
+              },
+              {
+                "text": ".",
+                "logprob": -0.02675887942314148
+              },
+              {
+                "text": "\n",
+                "logprob": -0.04003440588712692
+              },
+              {
+                "text": "\n",
+                "logprob": -3.182837463100441e-05
+              },
+              {
+                "text": "Step",
+                "logprob": -0.19144485890865326
+              },
+              {
+                "text": "",
+                "logprob": -2.0861407392658293e-05
+              },
+              {
+                "text": "4",
+                "logprob": -5.960446742392378e-06
+              },
+              {
+                "text": ":",
+                "logprob": -2.5033637939486653e-05
+              },
+              {
+                "text": "Det",
+                "logprob": -3.280595302581787
+              },
+              {
+                "text": "erm",
+                "logprob": -0.0004637358069885522
+              },
+              {
+                "text": "ining",
+                "logprob": -0.03303709998726845
+              },
+              {
+                "text": "the",
+                "logprob": -0.6041396856307983
+              },
+              {
+                "text": "response",
+                "logprob": -4.801323413848877
+              },
+              {
+                "text": "\n",
+                "logprob": -0.2205352932214737
+              },
+              {
+                "text": "B",
+                "logprob": -0.3415558934211731
+              },
+              {
+                "text": "ased",
+                "logprob": -0.0003108495147898793
+              },
+              {
+                "text": "on",
+                "logprob": -0.00010346830822527409
+              },
+              {
+                "text": "the",
+                "logprob": -0.10571819543838501
+              },
+              {
+                "text": "available",
+                "logprob": -1.3550641536712646
+              },
+              {
+                "text": "information",
+                "logprob": -0.03841764107346535
+              },
+              {
+                "text": ",",
+                "logprob": -0.6254534721374512
+              },
+              {
+                "text": "it",
+                "logprob": -1.6704180240631104
+              },
+              {
+                "text": "appears",
+                "logprob": -1.2400046586990356
+              },
+              {
+                "text": "that",
+                "logprob": -0.0629381388425827
+              },
+              {
+                "text": "Turk",
+                "logprob": -0.13076815009117126
+              },
+              {
+                "text": "men",
+                "logprob": -0.00042989550274796784
+              },
+              {
+                "text": "istan",
+                "logprob": -5.006777428206988e-06
+              },
+              {
+                "text": "'",
+                "logprob": -1.6904280185699463
+              },
+              {
+                "text": "s",
+                "logprob": -4.410734163684538e-06
+              },
+              {
+                "text": "law",
+                "logprob": -2.284064769744873
+              },
+              {
+                "text": "on",
+                "logprob": -0.523967444896698
+              },
+              {
+                "text": "citizens",
+                "logprob": -0.014734495431184769
+              },
+              {
+                "text": "hip",
+                "logprob": -3.933898824470816e-06
+              },
+              {
+                "text": "doesn",
+                "logprob": -1.8417586088180542
+              },
+              {
+                "text": "'",
+                "logprob": -0.0010749283246695995
+              },
+              {
+                "text": "t",
+                "logprob": 0.0
+              },
+              {
+                "text": "state",
+                "logprob": -6.093173027038574
+              },
+              {
+                "text": "that",
+                "logprob": -0.545623779296875
+              },
+              {
+                "text": "a",
+                "logprob": -0.9658387899398804
+              },
+              {
+                "text": "minor",
+                "logprob": -0.13553370535373688
+              },
+              {
+                "text": "'",
+                "logprob": -2.532954216003418
+              },
+              {
+                "text": "s",
+                "logprob": -2.0265558760002023e-06
+              },
+              {
+                "text": "residence",
+                "logprob": -0.8367053866386414
+              },
+              {
+                "text": "or",
+                "logprob": -0.019185101613402367
+              },
+              {
+                "text": "school",
+                "logprob": -0.026715006679296494
+              },
+              {
+                "text": "ing",
+                "logprob": -0.010331010445952415
+              },
+              {
+                "text": "period",
+                "logprob": -0.717544674873352
+              },
+              {
+                "text": "can",
+                "logprob": -1.3179428577423096
+              },
+              {
+                "text": "be",
+                "logprob": -1.221224308013916
+              },
+              {
+                "text": "grounds",
+                "logprob": -3.297633171081543
+              },
+              {
+                "text": "for",
+                "logprob": -0.009417160414159298
+              },
+              {
+                "text": "acqu",
+                "logprob": -0.27799350023269653
+              },
+              {
+                "text": "iring",
+                "logprob": -3.099436753473128e-06
+              },
+              {
+                "text": "citizens",
+                "logprob": -0.016751226037740707
+              },
+              {
+                "text": "hip",
+                "logprob": -4.172316494077677e-06
+              },
+              {
+                "text": ".",
+                "logprob": -0.03293883055448532
+              },
+              {
+                "text": "\n",
+                "logprob": -0.09499143064022064
+              },
+              {
+                "text": "\n",
+                "logprob": -5.3881147323409095e-05
+              },
+              {
+                "text": "Answer",
+                "logprob": -0.0021272904705256224
+              },
+              {
+                "text": ":",
+                "logprob": -6.806619057897478e-05
+              },
+              {
+                "text": "No",
+                "logprob": -0.0011092231143265963
+              },
+              {
+                "text": ",",
+                "logprob": -0.11119149625301361
+              },
+              {
+                "text": "Turk",
+                "logprob": -0.2995831370353699
+              },
+              {
+                "text": "men",
+                "logprob": -3.707340147229843e-05
+              },
+              {
+                "text": "istan",
+                "logprob": 0.0
+              },
+              {
+                "text": "does",
+                "logprob": -0.08169614523649216
+              },
+              {
+                "text": "not",
+                "logprob": -4.6491513785440475e-06
+              },
+              {
+                "text": "provide",
+                "logprob": -0.053233325481414795
+              },
+              {
+                "text": "for",
+                "logprob": -0.10550989955663681
+              },
+              {
+                "text": "the",
+                "logprob": -1.3904802799224854
+              },
+              {
+                "text": "ac",
+                "logprob": -0.0006100462633185089
+              },
+              {
+                "text": "quisition",
+                "logprob": -3.6238969187252223e-05
+              },
+              {
+                "text": "of",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "citizens",
+                "logprob": -0.0002727136597968638
+              },
+              {
+                "text": "hip",
+                "logprob": -3.099436753473128e-06
+              },
+              {
+                "text": "by",
+                "logprob": -0.12161063402891159
+              },
+              {
+                "text": "a",
+                "logprob": -0.007108516059815884
+              },
+              {
+                "text": "minor",
+                "logprob": -1.4063771963119507
+              },
+              {
+                "text": "based",
+                "logprob": -0.7982519268989563
+              },
+              {
+                "text": "sole",
+                "logprob": -2.0260534286499023
+              },
+              {
+                "text": "ly",
+                "logprob": 0.0
+              },
+              {
+                "text": "on",
+                "logprob": -0.0020729261450469494
+              },
+              {
+                "text": "a",
+                "logprob": -0.3190992474555969
+              },
+              {
+                "text": "certain",
+                "logprob": -0.11805617064237595
+              },
+              {
+                "text": "period",
+                "logprob": -0.0011391110019758344
+              },
+              {
+                "text": "of",
+                "logprob": -1.2040065485052764e-05
+              },
+              {
+                "text": "residence",
+                "logprob": -0.004377426113933325
+              },
+              {
+                "text": "or",
+                "logprob": -0.00011562632425921038
+              },
+              {
+                "text": "school",
+                "logprob": -0.0006058764411136508
+              },
+              {
+                "text": "ing",
+                "logprob": -0.0005516675882972777
+              },
+              {
+                "text": ".",
+                "logprob": -2.3957924842834473
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.040067851543426514
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.6092912530298422,
+              "max_token_negative_log_likelihood": 6.6484575271606445,
+              "predictive_entropy": 0.12073555215183326,
+              "shannon_entropy": 0.6410226790963727
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 28.686793327331543,
+        "request_datetime": 1756149913
+      },
+      "num_train_instances": 0,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "Question: Consider the country of Croatia. Does the country provide for period of residence in a residence-based acquisition?"
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Yes"
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id2457"
+      },
+      "train_trial_index": 0,
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "First, briefly explain your reasoning step by step, then answer yes or no.\n\nAnswer the following questions considering the state of international law on January 1st, 2020. Answer Yes or No.\n\nQuestion: Consider the country of Croatia. Does the country provide for period of residence in a residence-based acquisition?\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 1,
+        "max_tokens": 1030,
+        "stop_sequences": [
+          "\n"
+        ],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "Step 1: Understand the concept of \"period of residence in a residence-based acquisition.\" This term generally refers to the minimum duration of stay required for foreign residents or investors in a country before they can own property or participate in certain business activities.\n\nStep 2: Research Croatia's laws and regulations related to foreign property ownership and residence requirements. In this case, I can utilize reliable sources such as government websites, international law databases, and information provided by Croatian embassies abroad.\n\nStep 3: Assess the information found concerning Croatia's residence requirement for property ownership. \n",
+            "logprob": -116.25921117378337,
+            "tokens": [
+              {
+                "text": "Step",
+                "logprob": -0.05900239571928978
+              },
+              {
+                "text": "",
+                "logprob": -7.73638384998776e-05
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": ":",
+                "logprob": -4.172316494077677e-06
+              },
+              {
+                "text": "Under",
+                "logprob": -0.2465699017047882
+              },
+              {
+                "text": "stand",
+                "logprob": -0.06583603471517563
+              },
+              {
+                "text": "the",
+                "logprob": -0.006161503493785858
+              },
+              {
+                "text": "concept",
+                "logprob": -0.6979865431785583
+              },
+              {
+                "text": "of",
+                "logprob": -0.015224793925881386
+              },
+              {
+                "text": "\"",
+                "logprob": -2.605173110961914
+              },
+              {
+                "text": "period",
+                "logprob": -0.5762486457824707
+              },
+              {
+                "text": "of",
+                "logprob": -5.972207145532593e-05
+              },
+              {
+                "text": "residence",
+                "logprob": -1.9073468138230965e-06
+              },
+              {
+                "text": "in",
+                "logprob": -0.17086026072502136
+              },
+              {
+                "text": "a",
+                "logprob": -0.02075979858636856
+              },
+              {
+                "text": "residence",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "-",
+                "logprob": 0.0
+              },
+              {
+                "text": "based",
+                "logprob": 0.0
+              },
+              {
+                "text": "ac",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "quisition",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": ".\"",
+                "logprob": -0.35440465807914734
+              },
+              {
+                "text": "This",
+                "logprob": -0.28628987073898315
+              },
+              {
+                "text": "term",
+                "logprob": -2.317797899246216
+              },
+              {
+                "text": "generally",
+                "logprob": -1.0881344079971313
+              },
+              {
+                "text": "refers",
+                "logprob": -0.02281767688691616
+              },
+              {
+                "text": "to",
+                "logprob": -1.0728830375228426e-06
+              },
+              {
+                "text": "the",
+                "logprob": -0.8601033091545105
+              },
+              {
+                "text": "minimum",
+                "logprob": -6.513948440551758
+              },
+              {
+                "text": "duration",
+                "logprob": -0.9361889958381653
+              },
+              {
+                "text": "of",
+                "logprob": -1.1933730840682983
+              },
+              {
+                "text": "stay",
+                "logprob": -1.0729174613952637
+              },
+              {
+                "text": "required",
+                "logprob": -0.3719883859157562
+              },
+              {
+                "text": "for",
+                "logprob": -2.4910225868225098
+              },
+              {
+                "text": "foreign",
+                "logprob": -2.833066701889038
+              },
+              {
+                "text": "residents",
+                "logprob": -5.220182418823242
+              },
+              {
+                "text": "or",
+                "logprob": -3.396467447280884
+              },
+              {
+                "text": "invest",
+                "logprob": -0.37108489871025085
+              },
+              {
+                "text": "ors",
+                "logprob": -6.210611172718927e-05
+              },
+              {
+                "text": "in",
+                "logprob": -0.8189995288848877
+              },
+              {
+                "text": "a",
+                "logprob": -0.08874192088842392
+              },
+              {
+                "text": "country",
+                "logprob": -0.5164312720298767
+              },
+              {
+                "text": "before",
+                "logprob": -0.7685477137565613
+              },
+              {
+                "text": "they",
+                "logprob": -0.05040619894862175
+              },
+              {
+                "text": "can",
+                "logprob": -0.4347418248653412
+              },
+              {
+                "text": "own",
+                "logprob": -4.692328929901123
+              },
+              {
+                "text": "property",
+                "logprob": -0.04020080715417862
+              },
+              {
+                "text": "or",
+                "logprob": -0.24607035517692566
+              },
+              {
+                "text": "particip",
+                "logprob": -3.2027688026428223
+              },
+              {
+                "text": "ate",
+                "logprob": -4.172316494077677e-06
+              },
+              {
+                "text": "in",
+                "logprob": -0.0009964506607502699
+              },
+              {
+                "text": "certain",
+                "logprob": -0.1519724726676941
+              },
+              {
+                "text": "business",
+                "logprob": -1.4473276138305664
+              },
+              {
+                "text": "activities",
+                "logprob": -0.1607947051525116
+              },
+              {
+                "text": ".",
+                "logprob": -0.247882679104805
+              },
+              {
+                "text": "\n",
+                "logprob": -0.1720581352710724
+              },
+              {
+                "text": "\n",
+                "logprob": -0.00015793983766343445
+              },
+              {
+                "text": "Step",
+                "logprob": 0.0
+              },
+              {
+                "text": "",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": ":",
+                "logprob": 0.0
+              },
+              {
+                "text": "Research",
+                "logprob": -0.1703583002090454
+              },
+              {
+                "text": "Cro",
+                "logprob": -0.5610160827636719
+              },
+              {
+                "text": "atia",
+                "logprob": -0.02254137024283409
+              },
+              {
+                "text": "'",
+                "logprob": -0.0015337619697675109
+              },
+              {
+                "text": "s",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "laws",
+                "logprob": -1.148253321647644
+              },
+              {
+                "text": "and",
+                "logprob": -0.6371433138847351
+              },
+              {
+                "text": "reg",
+                "logprob": -0.030924580991268158
+              },
+              {
+                "text": "ulations",
+                "logprob": -0.00012015574611723423
+              },
+              {
+                "text": "related",
+                "logprob": -1.462687373161316
+              },
+              {
+                "text": "to",
+                "logprob": -1.537788011773955e-05
+              },
+              {
+                "text": "foreign",
+                "logprob": -0.34293821454048157
+              },
+              {
+                "text": "property",
+                "logprob": -2.2032814025878906
+              },
+              {
+                "text": "ownership",
+                "logprob": -0.055571313947439194
+              },
+              {
+                "text": "and",
+                "logprob": -0.20419037342071533
+              },
+              {
+                "text": "residence",
+                "logprob": -0.8019065260887146
+              },
+              {
+                "text": "requirements",
+                "logprob": -1.5631976127624512
+              },
+              {
+                "text": ".",
+                "logprob": -1.4182497262954712
+              },
+              {
+                "text": "In",
+                "logprob": -3.4528274536132812
+              },
+              {
+                "text": "this",
+                "logprob": -0.5239975452423096
+              },
+              {
+                "text": "case",
+                "logprob": -0.14674276113510132
+              },
+              {
+                "text": ",",
+                "logprob": -5.6503606174374e-05
+              },
+              {
+                "text": "I",
+                "logprob": -0.6684274077415466
+              },
+              {
+                "text": "can",
+                "logprob": -5.689525604248047
+              },
+              {
+                "text": "util",
+                "logprob": -4.515522003173828
+              },
+              {
+                "text": "ize",
+                "logprob": -0.0002146728802472353
+              },
+              {
+                "text": "reliable",
+                "logprob": -2.097285270690918
+              },
+              {
+                "text": "sources",
+                "logprob": -0.08005187660455704
+              },
+              {
+                "text": "such",
+                "logprob": -0.4420666992664337
+              },
+              {
+                "text": "as",
+                "logprob": -5.722029527532868e-06
+              },
+              {
+                "text": "government",
+                "logprob": -1.3005626201629639
+              },
+              {
+                "text": "websites",
+                "logprob": -0.07483026385307312
+              },
+              {
+                "text": ",",
+                "logprob": -0.040166109800338745
+              },
+              {
+                "text": "international",
+                "logprob": -0.8399183750152588
+              },
+              {
+                "text": "law",
+                "logprob": -0.2429666370153427
+              },
+              {
+                "text": "databases",
+                "logprob": -0.24053344130516052
+              },
+              {
+                "text": ",",
+                "logprob": -0.002995292190462351
+              },
+              {
+                "text": "and",
+                "logprob": -0.5362957715988159
+              },
+              {
+                "text": "information",
+                "logprob": -5.690282344818115
+              },
+              {
+                "text": "provided",
+                "logprob": -1.338425874710083
+              },
+              {
+                "text": "by",
+                "logprob": -0.001647664001211524
+              },
+              {
+                "text": "Cro",
+                "logprob": -2.866522789001465
+              },
+              {
+                "text": "at",
+                "logprob": -0.058441128581762314
+              },
+              {
+                "text": "ian",
+                "logprob": -7.152555099310121e-07
+              },
+              {
+                "text": "emb",
+                "logprob": -0.5499173402786255
+              },
+              {
+                "text": "ass",
+                "logprob": -7.152555099310121e-07
+              },
+              {
+                "text": "ies",
+                "logprob": -0.005401540081948042
+              },
+              {
+                "text": "abroad",
+                "logprob": -4.5882744789123535
+              },
+              {
+                "text": ".",
+                "logprob": -0.13179445266723633
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0048415097407996655
+              },
+              {
+                "text": "\n",
+                "logprob": -1.585470999998506e-05
+              },
+              {
+                "text": "Step",
+                "logprob": -0.0002985746832564473
+              },
+              {
+                "text": "",
+                "logprob": -3.099436753473128e-06
+              },
+              {
+                "text": "3",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": ":",
+                "logprob": -1.9073468138230965e-06
+              },
+              {
+                "text": "Ass",
+                "logprob": -3.743673324584961
+              },
+              {
+                "text": "ess",
+                "logprob": -0.000844479538500309
+              },
+              {
+                "text": "the",
+                "logprob": -0.20835696160793304
+              },
+              {
+                "text": "information",
+                "logprob": -0.6881150007247925
+              },
+              {
+                "text": "found",
+                "logprob": -1.2762134075164795
+              },
+              {
+                "text": "concerning",
+                "logprob": -5.106082916259766
+              },
+              {
+                "text": "Cro",
+                "logprob": -0.27221015095710754
+              },
+              {
+                "text": "atia",
+                "logprob": -0.050161220133304596
+              },
+              {
+                "text": "'",
+                "logprob": -0.01423349604010582
+              },
+              {
+                "text": "s",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "residence",
+                "logprob": -2.0708861351013184
+              },
+              {
+                "text": "requirement",
+                "logprob": -3.116162061691284
+              },
+              {
+                "text": "for",
+                "logprob": -0.13165882229804993
+              },
+              {
+                "text": "property",
+                "logprob": -0.4641542434692383
+              },
+              {
+                "text": "ownership",
+                "logprob": -0.7985019683837891
+              },
+              {
+                "text": ".",
+                "logprob": -0.8136654496192932
+              },
+              {
+                "text": "",
+                "logprob": -3.9151453971862793
+              },
+              {
+                "text": "\n",
+                "logprob": -0.00010442188795423135
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.8741292393100777,
+              "max_token_negative_log_likelihood": 6.513941764831543,
+              "predictive_entropy": 0.1357757058369636,
+              "shannon_entropy": 0.7652181201201563
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 12.45665192604065,
+        "request_datetime": 1756149929
+      },
+      "num_train_instances": 0,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    }
+  ]
+}

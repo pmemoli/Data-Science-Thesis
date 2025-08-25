@@ -1,0 +1,6171 @@
+{
+  "adapter_spec": {
+    "method": "generation",
+    "global_prefix": "",
+    "global_suffix": "",
+    "instructions": "First, briefly explain your reasoning step by step, then answer yes or no.\n\nA private right of action is when a regular person, a private citizen, is legally entitled to enforce their rights under a given statute. Does the clause specify a private right of action? Answer Yes or No.\n",
+    "input_prefix": "",
+    "input_suffix": "\n",
+    "reference_prefix": "A. ",
+    "reference_suffix": "\n",
+    "chain_of_thought_prefix": "",
+    "chain_of_thought_suffix": "\n",
+    "output_prefix": "Answer: ",
+    "output_suffix": "\n",
+    "instance_prefix": "\n",
+    "substitutions": [],
+    "max_train_instances": 0,
+    "max_eval_instances": 5,
+    "num_outputs": 1,
+    "num_train_trials": 1,
+    "num_trials": 1,
+    "sample_train": true,
+    "model_deployment": "huggingface/phi-3.5-mini-instruct",
+    "model": "microsoft/phi-3.5-mini-instruct",
+    "temperature": 0.0,
+    "max_tokens": 1030,
+    "stop_sequences": [
+      "\n"
+    ],
+    "multi_label": false
+  },
+  "request_states": [
+    {
+      "instance": {
+        "input": {
+          "text": "Statute: A consumer who suffers injury by an act of a consumer reporting agency that violates this chapter may bring a civil action against the consumer reporting agency in a circuit or superior court in the county in which the consumer resides."
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Yes"
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id7"
+      },
+      "train_trial_index": 0,
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "First, briefly explain your reasoning step by step, then answer yes or no.\n\nA private right of action is when a regular person, a private citizen, is legally entitled to enforce their rights under a given statute. Does the clause specify a private right of action? Answer Yes or No.\n\nStatute: A consumer who suffers injury by an act of a consumer reporting agency that violates this chapter may bring a civil action against the consumer reporting agency in a circuit or superior court in the county in which the consumer resides.\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 1,
+        "max_tokens": 1030,
+        "stop_sequences": [
+          "\n"
+        ],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "Step 1: Understand the definition of a \"private right of action\"\nA private right of action allows a private citizen, not a government entity, to enforce rights under a given statute. In simpler terms, it means individuals can seek legal redress if their rights, as defined by law, are violated.\n\nStep 2: Analyze the provided statute\nThe provided statute states that a consumer who suffers injury by a consumer reporting agency violating the chapter may bring a civil action against the reporting agency in a court.\n\nStep 3: Identify if there's an implied private right of action\nThe statute allows a consumer to seek legal proceedings against the consumer reporting agency in their local court for the agency's violation of the chapter. This action is initiated by an individual (the consumer) and not directly by the government, which aligns with the definition of a private right of action.\n\nConclusion: Based on the reasoning process described above, the statute does specify a private right of action.\n\nAnswer: Yes.<|end|><|endoftext|>",
+            "logprob": -140.41384114870175,
+            "tokens": [
+              {
+                "text": "Step",
+                "logprob": -0.002273952355608344
+              },
+              {
+                "text": "",
+                "logprob": -0.00010597144137136638
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": ":",
+                "logprob": -8.22540732769994e-06
+              },
+              {
+                "text": "Under",
+                "logprob": -1.0807464122772217
+              },
+              {
+                "text": "stand",
+                "logprob": -0.04299922659993172
+              },
+              {
+                "text": "the",
+                "logprob": -0.00032443503732793033
+              },
+              {
+                "text": "definition",
+                "logprob": -2.0824027061462402
+              },
+              {
+                "text": "of",
+                "logprob": -0.021442145109176636
+              },
+              {
+                "text": "a",
+                "logprob": -0.003954567946493626
+              },
+              {
+                "text": "\"",
+                "logprob": -4.264175891876221
+              },
+              {
+                "text": "private",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "right",
+                "logprob": 0.0
+              },
+              {
+                "text": "of",
+                "logprob": 0.0
+              },
+              {
+                "text": "action",
+                "logprob": 0.0
+              },
+              {
+                "text": "\"",
+                "logprob": -0.6378453969955444
+              },
+              {
+                "text": "\n",
+                "logprob": -0.7667458653450012
+              },
+              {
+                "text": "A",
+                "logprob": -0.04064009338617325
+              },
+              {
+                "text": "private",
+                "logprob": -0.0014118712861090899
+              },
+              {
+                "text": "right",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "of",
+                "logprob": 0.0
+              },
+              {
+                "text": "action",
+                "logprob": 0.0
+              },
+              {
+                "text": "allows",
+                "logprob": -1.4026600122451782
+              },
+              {
+                "text": "a",
+                "logprob": -0.6156308650970459
+              },
+              {
+                "text": "private",
+                "logprob": -0.37534236907958984
+              },
+              {
+                "text": "citiz",
+                "logprob": -0.47599655389785767
+              },
+              {
+                "text": "en",
+                "logprob": 0.0
+              },
+              {
+                "text": ",",
+                "logprob": -0.960561990737915
+              },
+              {
+                "text": "not",
+                "logprob": -0.48636943101882935
+              },
+              {
+                "text": "a",
+                "logprob": -0.5307153463363647
+              },
+              {
+                "text": "government",
+                "logprob": -0.009787782095372677
+              },
+              {
+                "text": "entity",
+                "logprob": -0.290703147649765
+              },
+              {
+                "text": ",",
+                "logprob": -0.035787176340818405
+              },
+              {
+                "text": "to",
+                "logprob": -0.0072060441598296165
+              },
+              {
+                "text": "en",
+                "logprob": -0.3971371352672577
+              },
+              {
+                "text": "force",
+                "logprob": -0.00011979816190432757
+              },
+              {
+                "text": "rights",
+                "logprob": -2.885838508605957
+              },
+              {
+                "text": "under",
+                "logprob": -0.5290741324424744
+              },
+              {
+                "text": "a",
+                "logprob": -0.00452494528144598
+              },
+              {
+                "text": "given",
+                "logprob": -1.5976229906082153
+              },
+              {
+                "text": "stat",
+                "logprob": -0.08188200742006302
+              },
+              {
+                "text": "ute",
+                "logprob": -9.417489309271332e-06
+              },
+              {
+                "text": ".",
+                "logprob": -0.750866711139679
+              },
+              {
+                "text": "In",
+                "logprob": -1.5865164995193481
+              },
+              {
+                "text": "simpler",
+                "logprob": -2.185880184173584
+              },
+              {
+                "text": "terms",
+                "logprob": -0.01818765513598919
+              },
+              {
+                "text": ",",
+                "logprob": -2.8371408916427754e-05
+              },
+              {
+                "text": "it",
+                "logprob": -0.0486559122800827
+              },
+              {
+                "text": "means",
+                "logprob": -0.6665030121803284
+              },
+              {
+                "text": "individuals",
+                "logprob": -2.0998454093933105
+              },
+              {
+                "text": "can",
+                "logprob": -0.3266051113605499
+              },
+              {
+                "text": "seek",
+                "logprob": -3.830472230911255
+              },
+              {
+                "text": "legal",
+                "logprob": -0.03549027070403099
+              },
+              {
+                "text": "red",
+                "logprob": -2.728614330291748
+              },
+              {
+                "text": "ress",
+                "logprob": 0.0
+              },
+              {
+                "text": "if",
+                "logprob": -1.3307095766067505
+              },
+              {
+                "text": "their",
+                "logprob": -0.40258467197418213
+              },
+              {
+                "text": "rights",
+                "logprob": -0.01405554823577404
+              },
+              {
+                "text": ",",
+                "logprob": -1.1333311796188354
+              },
+              {
+                "text": "as",
+                "logprob": -0.031038997694849968
+              },
+              {
+                "text": "defined",
+                "logprob": -0.8649440407752991
+              },
+              {
+                "text": "by",
+                "logprob": -0.15021339058876038
+              },
+              {
+                "text": "law",
+                "logprob": -2.4796626567840576
+              },
+              {
+                "text": ",",
+                "logprob": -0.000795882020611316
+              },
+              {
+                "text": "are",
+                "logprob": -0.45193231105804443
+              },
+              {
+                "text": "viol",
+                "logprob": -0.06116705760359764
+              },
+              {
+                "text": "ated",
+                "logprob": -1.9073468138230965e-06
+              },
+              {
+                "text": ".",
+                "logprob": -0.04145747423171997
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0029210064094513655
+              },
+              {
+                "text": "\n",
+                "logprob": -6.0794889577664435e-05
+              },
+              {
+                "text": "Step",
+                "logprob": 0.0
+              },
+              {
+                "text": "",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": ":",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "Anal",
+                "logprob": -0.1341921091079712
+              },
+              {
+                "text": "y",
+                "logprob": -0.0005995621904730797
+              },
+              {
+                "text": "ze",
+                "logprob": -1.537788011773955e-05
+              },
+              {
+                "text": "the",
+                "logprob": -0.000910106289666146
+              },
+              {
+                "text": "provided",
+                "logprob": -0.7645348310470581
+              },
+              {
+                "text": "stat",
+                "logprob": -0.06697752326726913
+              },
+              {
+                "text": "ute",
+                "logprob": -0.0037309578619897366
+              },
+              {
+                "text": "\n",
+                "logprob": -0.08150255680084229
+              },
+              {
+                "text": "The",
+                "logprob": -0.04086464270949364
+              },
+              {
+                "text": "provided",
+                "logprob": -2.3900744915008545
+              },
+              {
+                "text": "stat",
+                "logprob": -0.021022239699959755
+              },
+              {
+                "text": "ute",
+                "logprob": -0.0002864189154934138
+              },
+              {
+                "text": "states",
+                "logprob": -0.25907737016677856
+              },
+              {
+                "text": "that",
+                "logprob": -0.3635852038860321
+              },
+              {
+                "text": "a",
+                "logprob": -0.27626344561576843
+              },
+              {
+                "text": "consumer",
+                "logprob": -0.019069787114858627
+              },
+              {
+                "text": "who",
+                "logprob": -0.1861887127161026
+              },
+              {
+                "text": "suff",
+                "logprob": -0.09159905463457108
+              },
+              {
+                "text": "ers",
+                "logprob": 0.0
+              },
+              {
+                "text": "injury",
+                "logprob": -0.17111997306346893
+              },
+              {
+                "text": "by",
+                "logprob": -1.1600433588027954
+              },
+              {
+                "text": "a",
+                "logprob": -0.7563562393188477
+              },
+              {
+                "text": "consumer",
+                "logprob": -0.4780396521091461
+              },
+              {
+                "text": "reporting",
+                "logprob": -7.807903602952138e-05
+              },
+              {
+                "text": "ag",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "ency",
+                "logprob": 0.0
+              },
+              {
+                "text": "viol",
+                "logprob": -1.8545078039169312
+              },
+              {
+                "text": "ating",
+                "logprob": -0.055045463144779205
+              },
+              {
+                "text": "the",
+                "logprob": -0.3213876783847809
+              },
+              {
+                "text": "chapter",
+                "logprob": -0.05621882900595665
+              },
+              {
+                "text": "may",
+                "logprob": -1.2118406295776367
+              },
+              {
+                "text": "bring",
+                "logprob": -0.06034386530518532
+              },
+              {
+                "text": "a",
+                "logprob": -0.0023265217896550894
+              },
+              {
+                "text": "civil",
+                "logprob": -0.004289711359888315
+              },
+              {
+                "text": "action",
+                "logprob": -0.0003367095487192273
+              },
+              {
+                "text": "against",
+                "logprob": -0.09077409654855728
+              },
+              {
+                "text": "the",
+                "logprob": -0.21385149657726288
+              },
+              {
+                "text": "reporting",
+                "logprob": -3.7633700370788574
+              },
+              {
+                "text": "ag",
+                "logprob": -4.6491513785440475e-06
+              },
+              {
+                "text": "ency",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "in",
+                "logprob": -0.8336278200149536
+              },
+              {
+                "text": "a",
+                "logprob": -0.2639349102973938
+              },
+              {
+                "text": "court",
+                "logprob": -2.217924118041992
+              },
+              {
+                "text": ".",
+                "logprob": -1.032204508781433
+              },
+              {
+                "text": "\n",
+                "logprob": -1.0347704887390137
+              },
+              {
+                "text": "\n",
+                "logprob": -0.00043132537393830717
+              },
+              {
+                "text": "Step",
+                "logprob": -0.00012933371181134135
+              },
+              {
+                "text": "",
+                "logprob": -2.50339189733495e-06
+              },
+              {
+                "text": "3",
+                "logprob": 0.0
+              },
+              {
+                "text": ":",
+                "logprob": -2.145764938177308e-06
+              },
+              {
+                "text": "Ident",
+                "logprob": -0.8587389588356018
+              },
+              {
+                "text": "ify",
+                "logprob": -0.0008170842193067074
+              },
+              {
+                "text": "if",
+                "logprob": -0.6449673175811768
+              },
+              {
+                "text": "there",
+                "logprob": -2.0290279388427734
+              },
+              {
+                "text": "'",
+                "logprob": -0.6759248375892639
+              },
+              {
+                "text": "s",
+                "logprob": -1.9073468138230965e-06
+              },
+              {
+                "text": "an",
+                "logprob": -2.278726816177368
+              },
+              {
+                "text": "imp",
+                "logprob": -2.4061522483825684
+              },
+              {
+                "text": "lied",
+                "logprob": -1.6771655082702637
+              },
+              {
+                "text": "private",
+                "logprob": -0.17390817403793335
+              },
+              {
+                "text": "right",
+                "logprob": -0.00024339574156329036
+              },
+              {
+                "text": "of",
+                "logprob": -0.00021634146105498075
+              },
+              {
+                "text": "action",
+                "logprob": -1.1920858014491387e-05
+              },
+              {
+                "text": "\n",
+                "logprob": -0.046710994094610214
+              },
+              {
+                "text": "The",
+                "logprob": -0.5029674172401428
+              },
+              {
+                "text": "stat",
+                "logprob": -0.2932375967502594
+              },
+              {
+                "text": "ute",
+                "logprob": -0.0007962394156493247
+              },
+              {
+                "text": "allows",
+                "logprob": -1.1408132314682007
+              },
+              {
+                "text": "a",
+                "logprob": -0.870991587638855
+              },
+              {
+                "text": "consumer",
+                "logprob": -0.15654633939266205
+              },
+              {
+                "text": "to",
+                "logprob": -0.7259252071380615
+              },
+              {
+                "text": "seek",
+                "logprob": -2.1711153984069824
+              },
+              {
+                "text": "legal",
+                "logprob": -0.1568390429019928
+              },
+              {
+                "text": "proceed",
+                "logprob": -7.023457050323486
+              },
+              {
+                "text": "ings",
+                "logprob": -0.0016123164677992463
+              },
+              {
+                "text": "against",
+                "logprob": -0.42391887307167053
+              },
+              {
+                "text": "the",
+                "logprob": -1.3707386255264282
+              },
+              {
+                "text": "consumer",
+                "logprob": -0.43785813450813293
+              },
+              {
+                "text": "reporting",
+                "logprob": -0.0005490464391186833
+              },
+              {
+                "text": "ag",
+                "logprob": -3.099436753473128e-06
+              },
+              {
+                "text": "ency",
+                "logprob": -1.1920858014491387e-05
+              },
+              {
+                "text": "in",
+                "logprob": -2.589655876159668
+              },
+              {
+                "text": "their",
+                "logprob": -4.047529220581055
+              },
+              {
+                "text": "local",
+                "logprob": -0.8360763788223267
+              },
+              {
+                "text": "court",
+                "logprob": -0.20601165294647217
+              },
+              {
+                "text": "for",
+                "logprob": -2.0965330600738525
+              },
+              {
+                "text": "the",
+                "logprob": -2.260023593902588
+              },
+              {
+                "text": "ag",
+                "logprob": -2.1980652809143066
+              },
+              {
+                "text": "ency",
+                "logprob": -0.0003897384158335626
+              },
+              {
+                "text": "'",
+                "logprob": -0.01676752045750618
+              },
+              {
+                "text": "s",
+                "logprob": -7.510157047363464e-06
+              },
+              {
+                "text": "viol",
+                "logprob": -0.10605297982692719
+              },
+              {
+                "text": "ation",
+                "logprob": -0.047561053186655045
+              },
+              {
+                "text": "of",
+                "logprob": -0.9791565537452698
+              },
+              {
+                "text": "the",
+                "logprob": -0.047847241163253784
+              },
+              {
+                "text": "chapter",
+                "logprob": -0.06166123226284981
+              },
+              {
+                "text": ".",
+                "logprob": -0.07722551375627518
+              },
+              {
+                "text": "This",
+                "logprob": -0.18420779705047607
+              },
+              {
+                "text": "action",
+                "logprob": -5.401437282562256
+              },
+              {
+                "text": "is",
+                "logprob": -0.6261157989501953
+              },
+              {
+                "text": "initi",
+                "logprob": -1.6907739639282227
+              },
+              {
+                "text": "ated",
+                "logprob": -0.0002441108226776123
+              },
+              {
+                "text": "by",
+                "logprob": -0.07112468034029007
+              },
+              {
+                "text": "an",
+                "logprob": -1.5392314195632935
+              },
+              {
+                "text": "individual",
+                "logprob": -0.016802921891212463
+              },
+              {
+                "text": "(",
+                "logprob": -0.7573721408843994
+              },
+              {
+                "text": "the",
+                "logprob": -0.4112768769264221
+              },
+              {
+                "text": "consumer",
+                "logprob": -0.03821204602718353
+              },
+              {
+                "text": ")",
+                "logprob": -0.6671600341796875
+              },
+              {
+                "text": "and",
+                "logprob": -0.7944021821022034
+              },
+              {
+                "text": "not",
+                "logprob": -0.2997916042804718
+              },
+              {
+                "text": "directly",
+                "logprob": -3.831486940383911
+              },
+              {
+                "text": "by",
+                "logprob": -0.0603095218539238
+              },
+              {
+                "text": "the",
+                "logprob": -0.42421314120292664
+              },
+              {
+                "text": "government",
+                "logprob": -0.11177211999893188
+              },
+              {
+                "text": ",",
+                "logprob": -1.167730450630188
+              },
+              {
+                "text": "which",
+                "logprob": -0.9585201144218445
+              },
+              {
+                "text": "align",
+                "logprob": -1.0355256795883179
+              },
+              {
+                "text": "s",
+                "logprob": -0.0002563863235991448
+              },
+              {
+                "text": "with",
+                "logprob": -0.005465920083224773
+              },
+              {
+                "text": "the",
+                "logprob": -0.01859026402235031
+              },
+              {
+                "text": "definition",
+                "logprob": -0.5414689779281616
+              },
+              {
+                "text": "of",
+                "logprob": -0.019302038475871086
+              },
+              {
+                "text": "a",
+                "logprob": -0.005943837575614452
+              },
+              {
+                "text": "private",
+                "logprob": -0.008152304217219353
+              },
+              {
+                "text": "right",
+                "logprob": -1.2159273865108844e-05
+              },
+              {
+                "text": "of",
+                "logprob": -2.169585604860913e-05
+              },
+              {
+                "text": "action",
+                "logprob": -9.775113539944869e-06
+              },
+              {
+                "text": ".",
+                "logprob": -0.01552437525242567
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0023667202331125736
+              },
+              {
+                "text": "\n",
+                "logprob": -1.8358061424805783e-05
+              },
+              {
+                "text": "Con",
+                "logprob": -1.2514163255691528
+              },
+              {
+                "text": "clusion",
+                "logprob": -0.002247785683721304
+              },
+              {
+                "text": ":",
+                "logprob": -0.0017433458706364036
+              },
+              {
+                "text": "Based",
+                "logprob": -0.6752241253852844
+              },
+              {
+                "text": "on",
+                "logprob": -0.0001429217227268964
+              },
+              {
+                "text": "the",
+                "logprob": -0.09839631617069244
+              },
+              {
+                "text": "reasoning",
+                "logprob": -1.9177494049072266
+              },
+              {
+                "text": "process",
+                "logprob": -4.1842145919799805
+              },
+              {
+                "text": "described",
+                "logprob": -4.583273410797119
+              },
+              {
+                "text": "above",
+                "logprob": -0.17487895488739014
+              },
+              {
+                "text": ",",
+                "logprob": -0.021420208737254143
+              },
+              {
+                "text": "the",
+                "logprob": -0.3993566334247589
+              },
+              {
+                "text": "stat",
+                "logprob": -1.3734891414642334
+              },
+              {
+                "text": "ute",
+                "logprob": -0.000918681500479579
+              },
+              {
+                "text": "does",
+                "logprob": -0.5161317586898804
+              },
+              {
+                "text": "specify",
+                "logprob": -0.5535830855369568
+              },
+              {
+                "text": "a",
+                "logprob": -0.005510853137820959
+              },
+              {
+                "text": "private",
+                "logprob": -0.003591161221265793
+              },
+              {
+                "text": "right",
+                "logprob": -1.9073468138230965e-06
+              },
+              {
+                "text": "of",
+                "logprob": -1.7881377516459906e-06
+              },
+              {
+                "text": "action",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": ".",
+                "logprob": -0.3123372793197632
+              },
+              {
+                "text": "\n",
+                "logprob": -0.26257842779159546
+              },
+              {
+                "text": "\n",
+                "logprob": -0.018351994454860687
+              },
+              {
+                "text": "Answer",
+                "logprob": -0.00038092033355496824
+              },
+              {
+                "text": ":",
+                "logprob": -8.296622399939224e-05
+              },
+              {
+                "text": "Yes",
+                "logprob": -9.524368942948058e-05
+              },
+              {
+                "text": ".",
+                "logprob": -0.5528178811073303
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.0004549183649942279
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.6000590618906123,
+              "max_token_negative_log_likelihood": 7.0234456062316895,
+              "predictive_entropy": 0.13249934058473772,
+              "shannon_entropy": 0.6308191116055524
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 22.343506574630737,
+        "request_datetime": 1756149976
+      },
+      "num_train_instances": 0,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "Statute: In addition to all other penalties, rights, or remedies provided by law, an individual or entity that uses or attempts to use its official authority or influence for the purpose of interfering with the right of a legislative employee to make a protected disclosure is liable in a civil action for damages brought by a legislative employee."
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Yes"
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id35"
+      },
+      "train_trial_index": 0,
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "First, briefly explain your reasoning step by step, then answer yes or no.\n\nA private right of action is when a regular person, a private citizen, is legally entitled to enforce their rights under a given statute. Does the clause specify a private right of action? Answer Yes or No.\n\nStatute: In addition to all other penalties, rights, or remedies provided by law, an individual or entity that uses or attempts to use its official authority or influence for the purpose of interfering with the right of a legislative employee to make a protected disclosure is liable in a civil action for damages brought by a legislative employee.\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 1,
+        "max_tokens": 1030,
+        "stop_sequences": [
+          "\n"
+        ],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "Step 1: Identify the key elements related to a private right of action in the statute.\nIn the given statute, the key elements to look for a private right of action would include:\n- A reference to \"civil action\" as a mechanism for remedy\n- The ability for an individual or entity to bring forth an action\n- The involvement of a legislative employee's right to make a protected disclosure\n\nStep 2: Analyze the information provided.\nThe statute states that an \"individual or entity that uses or attempts to use its official authority or influence for the purpose of interfering with the right of a legislative employee to make a protected disclosure\" can be held liable for damages. This implies that legislative employees have the ability to bring a case against such entities or individuals by seeking legal redress.\n\nStep 3: Compare key elements to the concept of a private right of action.\nThe statute outlines that legislative employees can seek damages for interference with their protected disclosure rights, which falls in line with the concept of a private right of action. The ability to bring a civil action ensures that the legislative employees have a private avenue to enforce their rights, even if the interference comes from someone asserting official authority or influence.\n\nAnswer: Yes, the clause specifies a private right of action. This is because it allows legislative employees the ability to pursue a civil lawsuit for damages when their protected disclosure rights are interfered with.<|end|><|endoftext|>",
+            "logprob": -216.79991723618275,
+            "tokens": [
+              {
+                "text": "Step",
+                "logprob": -0.00774369714781642
+              },
+              {
+                "text": "",
+                "logprob": -7.045020902296528e-05
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": ":",
+                "logprob": -6.437280717364047e-06
+              },
+              {
+                "text": "Ident",
+                "logprob": -0.6700881123542786
+              },
+              {
+                "text": "ify",
+                "logprob": -0.0008663953049108386
+              },
+              {
+                "text": "the",
+                "logprob": -0.0341813787817955
+              },
+              {
+                "text": "key",
+                "logprob": -0.5525643229484558
+              },
+              {
+                "text": "elements",
+                "logprob": -0.26034224033355713
+              },
+              {
+                "text": "related",
+                "logprob": -4.015083312988281
+              },
+              {
+                "text": "to",
+                "logprob": 0.0
+              },
+              {
+                "text": "a",
+                "logprob": -0.19732344150543213
+              },
+              {
+                "text": "private",
+                "logprob": -0.03905675187706947
+              },
+              {
+                "text": "right",
+                "logprob": -5.960462772236497e-07
+              },
+              {
+                "text": "of",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "action",
+                "logprob": 0.0
+              },
+              {
+                "text": "in",
+                "logprob": -0.42754706740379333
+              },
+              {
+                "text": "the",
+                "logprob": -1.4543427823809907e-05
+              },
+              {
+                "text": "stat",
+                "logprob": -0.9966170191764832
+              },
+              {
+                "text": "ute",
+                "logprob": -0.0007110689766705036
+              },
+              {
+                "text": ".",
+                "logprob": -0.10226792097091675
+              },
+              {
+                "text": "\n",
+                "logprob": -0.167374849319458
+              },
+              {
+                "text": "In",
+                "logprob": -0.7842966914176941
+              },
+              {
+                "text": "the",
+                "logprob": -1.3143858909606934
+              },
+              {
+                "text": "given",
+                "logprob": -0.43103712797164917
+              },
+              {
+                "text": "stat",
+                "logprob": -0.06894432753324509
+              },
+              {
+                "text": "ute",
+                "logprob": -0.000256982195423916
+              },
+              {
+                "text": ",",
+                "logprob": -0.0012357940431684256
+              },
+              {
+                "text": "the",
+                "logprob": -1.4647765159606934
+              },
+              {
+                "text": "key",
+                "logprob": -1.1774765253067017
+              },
+              {
+                "text": "elements",
+                "logprob": -0.05490667745471001
+              },
+              {
+                "text": "to",
+                "logprob": -2.257152557373047
+              },
+              {
+                "text": "look",
+                "logprob": -0.9404670596122742
+              },
+              {
+                "text": "for",
+                "logprob": -0.06856861710548401
+              },
+              {
+                "text": "a",
+                "logprob": -2.2277350425720215
+              },
+              {
+                "text": "private",
+                "logprob": -0.008697367273271084
+              },
+              {
+                "text": "right",
+                "logprob": -7.152555099310121e-07
+              },
+              {
+                "text": "of",
+                "logprob": -1.0728830375228426e-06
+              },
+              {
+                "text": "action",
+                "logprob": 0.0
+              },
+              {
+                "text": "would",
+                "logprob": -2.1764376163482666
+              },
+              {
+                "text": "include",
+                "logprob": -1.5948872566223145
+              },
+              {
+                "text": ":",
+                "logprob": -1.9070992469787598
+              },
+              {
+                "text": "\n",
+                "logprob": -0.03620414808392525
+              },
+              {
+                "text": "-",
+                "logprob": -0.159123495221138
+              },
+              {
+                "text": "A",
+                "logprob": -1.3739039897918701
+              },
+              {
+                "text": "reference",
+                "logprob": -1.151653528213501
+              },
+              {
+                "text": "to",
+                "logprob": -0.004515926353633404
+              },
+              {
+                "text": "\"",
+                "logprob": -2.8453526496887207
+              },
+              {
+                "text": "c",
+                "logprob": -0.42676660418510437
+              },
+              {
+                "text": "ivil",
+                "logprob": -2.9802276912960224e-06
+              },
+              {
+                "text": "action",
+                "logprob": -3.6477376852417365e-05
+              },
+              {
+                "text": "\"",
+                "logprob": -0.08058597147464752
+              },
+              {
+                "text": "as",
+                "logprob": -5.264121055603027
+              },
+              {
+                "text": "a",
+                "logprob": -0.3624817132949829
+              },
+              {
+                "text": "mechanism",
+                "logprob": -3.414600133895874
+              },
+              {
+                "text": "for",
+                "logprob": -0.10759802162647247
+              },
+              {
+                "text": "rem",
+                "logprob": -5.177536964416504
+              },
+              {
+                "text": "edy",
+                "logprob": -0.15567155182361603
+              },
+              {
+                "text": "\n",
+                "logprob": -0.7583053708076477
+              },
+              {
+                "text": "-",
+                "logprob": -2.3841830625315197e-06
+              },
+              {
+                "text": "The",
+                "logprob": -0.629784107208252
+              },
+              {
+                "text": "ability",
+                "logprob": -1.081404685974121
+              },
+              {
+                "text": "for",
+                "logprob": -0.21852752566337585
+              },
+              {
+                "text": "an",
+                "logprob": -0.8497883081436157
+              },
+              {
+                "text": "individual",
+                "logprob": -0.441668301820755
+              },
+              {
+                "text": "or",
+                "logprob": -0.03583283722400665
+              },
+              {
+                "text": "entity",
+                "logprob": -0.0022834674455225468
+              },
+              {
+                "text": "to",
+                "logprob": -0.25665831565856934
+              },
+              {
+                "text": "bring",
+                "logprob": -1.5627182722091675
+              },
+              {
+                "text": "forth",
+                "logprob": -2.554190158843994
+              },
+              {
+                "text": "an",
+                "logprob": -3.875075101852417
+              },
+              {
+                "text": "action",
+                "logprob": -0.0008741371566429734
+              },
+              {
+                "text": "\n",
+                "logprob": -0.22856904566287994
+              },
+              {
+                "text": "-",
+                "logprob": -0.13858458399772644
+              },
+              {
+                "text": "The",
+                "logprob": -0.3372095823287964
+              },
+              {
+                "text": "invol",
+                "logprob": -1.8337973356246948
+              },
+              {
+                "text": "vement",
+                "logprob": -0.00010168035078095272
+              },
+              {
+                "text": "of",
+                "logprob": -0.0064454530365765095
+              },
+              {
+                "text": "a",
+                "logprob": -0.09594040364027023
+              },
+              {
+                "text": "legisl",
+                "logprob": -1.138115406036377
+              },
+              {
+                "text": "ative",
+                "logprob": -6.8662193370983e-05
+              },
+              {
+                "text": "employee",
+                "logprob": -1.1444026313256472e-05
+              },
+              {
+                "text": "'",
+                "logprob": -0.9559274911880493
+              },
+              {
+                "text": "s",
+                "logprob": 0.0
+              },
+              {
+                "text": "right",
+                "logprob": -0.4086701273918152
+              },
+              {
+                "text": "to",
+                "logprob": -0.05433114245533943
+              },
+              {
+                "text": "make",
+                "logprob": -0.022288186475634575
+              },
+              {
+                "text": "a",
+                "logprob": -0.06590935587882996
+              },
+              {
+                "text": "protected",
+                "logprob": -0.00017629499780014157
+              },
+              {
+                "text": "dis",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "closure",
+                "logprob": 0.0
+              },
+              {
+                "text": "\n",
+                "logprob": -0.055478502064943314
+              },
+              {
+                "text": "\n",
+                "logprob": -0.03081361949443817
+              },
+              {
+                "text": "Step",
+                "logprob": -2.3841830625315197e-06
+              },
+              {
+                "text": "",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": ":",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "Anal",
+                "logprob": -0.26627689599990845
+              },
+              {
+                "text": "y",
+                "logprob": -0.00032062159152701497
+              },
+              {
+                "text": "ze",
+                "logprob": -6.4490144723095e-05
+              },
+              {
+                "text": "the",
+                "logprob": -0.35983383655548096
+              },
+              {
+                "text": "information",
+                "logprob": -4.652744293212891
+              },
+              {
+                "text": "provided",
+                "logprob": -0.6436470150947571
+              },
+              {
+                "text": ".",
+                "logprob": -2.2241618633270264
+              },
+              {
+                "text": "\n",
+                "logprob": -0.00024863966973498464
+              },
+              {
+                "text": "The",
+                "logprob": -0.049328457564115524
+              },
+              {
+                "text": "stat",
+                "logprob": -0.02570018544793129
+              },
+              {
+                "text": "ute",
+                "logprob": -0.0002109781780745834
+              },
+              {
+                "text": "states",
+                "logprob": -1.2815642356872559
+              },
+              {
+                "text": "that",
+                "logprob": -0.04536852985620499
+              },
+              {
+                "text": "an",
+                "logprob": -0.33975285291671753
+              },
+              {
+                "text": "\"",
+                "logprob": -2.5813019275665283
+              },
+              {
+                "text": "ind",
+                "logprob": -0.0002991705550812185
+              },
+              {
+                "text": "ividual",
+                "logprob": 0.0
+              },
+              {
+                "text": "or",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "entity",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "that",
+                "logprob": -0.13076616823673248
+              },
+              {
+                "text": "uses",
+                "logprob": -0.0005872909096069634
+              },
+              {
+                "text": "or",
+                "logprob": -0.0019334923708811402
+              },
+              {
+                "text": "attempts",
+                "logprob": -5.3165931603871286e-05
+              },
+              {
+                "text": "to",
+                "logprob": -1.9073468138230965e-06
+              },
+              {
+                "text": "use",
+                "logprob": -3.4570634852570947e-06
+              },
+              {
+                "text": "its",
+                "logprob": -0.0010186012368649244
+              },
+              {
+                "text": "official",
+                "logprob": -0.0001829695247579366
+              },
+              {
+                "text": "authority",
+                "logprob": -2.13382354559144e-05
+              },
+              {
+                "text": "or",
+                "logprob": -0.005604032427072525
+              },
+              {
+                "text": "influence",
+                "logprob": -9.536738616588991e-07
+              },
+              {
+                "text": "for",
+                "logprob": -0.011720722541213036
+              },
+              {
+                "text": "the",
+                "logprob": -0.14283043146133423
+              },
+              {
+                "text": "purpose",
+                "logprob": -0.0016335012624040246
+              },
+              {
+                "text": "of",
+                "logprob": -1.537788011773955e-05
+              },
+              {
+                "text": "inter",
+                "logprob": -2.145764938177308e-06
+              },
+              {
+                "text": "fer",
+                "logprob": -2.7418097943154862e-06
+              },
+              {
+                "text": "ing",
+                "logprob": -8.284702198579907e-05
+              },
+              {
+                "text": "with",
+                "logprob": -0.0029963618144392967
+              },
+              {
+                "text": "the",
+                "logprob": -0.005829120520502329
+              },
+              {
+                "text": "right",
+                "logprob": -0.00015627116954419762
+              },
+              {
+                "text": "of",
+                "logprob": -0.0014527016319334507
+              },
+              {
+                "text": "a",
+                "logprob": -5.245195097813848e-06
+              },
+              {
+                "text": "legisl",
+                "logprob": 0.0
+              },
+              {
+                "text": "ative",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "employee",
+                "logprob": 0.0
+              },
+              {
+                "text": "to",
+                "logprob": -0.0012207920663058758
+              },
+              {
+                "text": "make",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "a",
+                "logprob": -3.3378044463461265e-05
+              },
+              {
+                "text": "protected",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "dis",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "closure",
+                "logprob": 0.0
+              },
+              {
+                "text": "\"",
+                "logprob": -1.9654377698898315
+              },
+              {
+                "text": "can",
+                "logprob": -2.4662914276123047
+              },
+              {
+                "text": "be",
+                "logprob": -0.06815412640571594
+              },
+              {
+                "text": "held",
+                "logprob": -0.5436452031135559
+              },
+              {
+                "text": "li",
+                "logprob": -0.031939081847667694
+              },
+              {
+                "text": "able",
+                "logprob": 0.0
+              },
+              {
+                "text": "for",
+                "logprob": -2.0372314453125
+              },
+              {
+                "text": "dam",
+                "logprob": -0.11847865581512451
+              },
+              {
+                "text": "ages",
+                "logprob": 0.0
+              },
+              {
+                "text": ".",
+                "logprob": -0.80196213722229
+              },
+              {
+                "text": "This",
+                "logprob": -0.635903000831604
+              },
+              {
+                "text": "implies",
+                "logprob": -0.7881281971931458
+              },
+              {
+                "text": "that",
+                "logprob": -0.1243218332529068
+              },
+              {
+                "text": "legisl",
+                "logprob": -2.2111024856567383
+              },
+              {
+                "text": "ative",
+                "logprob": -2.9205850296420977e-05
+              },
+              {
+                "text": "employees",
+                "logprob": -0.00013636612857226282
+              },
+              {
+                "text": "have",
+                "logprob": -0.33746081590652466
+              },
+              {
+                "text": "the",
+                "logprob": -0.21329939365386963
+              },
+              {
+                "text": "ability",
+                "logprob": -1.0403296947479248
+              },
+              {
+                "text": "to",
+                "logprob": -0.0010022860951721668
+              },
+              {
+                "text": "bring",
+                "logprob": -1.6330691576004028
+              },
+              {
+                "text": "a",
+                "logprob": -1.564466953277588
+              },
+              {
+                "text": "case",
+                "logprob": -2.640899896621704
+              },
+              {
+                "text": "against",
+                "logprob": -0.27879491448402405
+              },
+              {
+                "text": "such",
+                "logprob": -0.43665868043899536
+              },
+              {
+                "text": "entities",
+                "logprob": -1.3077497482299805
+              },
+              {
+                "text": "or",
+                "logprob": -1.4447581768035889
+              },
+              {
+                "text": "individuals",
+                "logprob": -0.00782436691224575
+              },
+              {
+                "text": "by",
+                "logprob": -4.942203521728516
+              },
+              {
+                "text": "seeking",
+                "logprob": -1.495448112487793
+              },
+              {
+                "text": "legal",
+                "logprob": -5.268887519836426
+              },
+              {
+                "text": "red",
+                "logprob": -1.7031947374343872
+              },
+              {
+                "text": "ress",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": ".",
+                "logprob": -1.7275468111038208
+              },
+              {
+                "text": "\n",
+                "logprob": -0.01759527064859867
+              },
+              {
+                "text": "\n",
+                "logprob": -5.125868119648658e-05
+              },
+              {
+                "text": "Step",
+                "logprob": -0.0006754500791430473
+              },
+              {
+                "text": "",
+                "logprob": -2.145764938177308e-06
+              },
+              {
+                "text": "3",
+                "logprob": 0.0
+              },
+              {
+                "text": ":",
+                "logprob": -1.311301275563892e-06
+              },
+              {
+                "text": "Comp",
+                "logprob": -1.5945713520050049
+              },
+              {
+                "text": "are",
+                "logprob": -4.386805812828243e-05
+              },
+              {
+                "text": "key",
+                "logprob": -4.480408668518066
+              },
+              {
+                "text": "elements",
+                "logprob": -0.0012536532012745738
+              },
+              {
+                "text": "to",
+                "logprob": -1.1004846096038818
+              },
+              {
+                "text": "the",
+                "logprob": -0.2855222821235657
+              },
+              {
+                "text": "concept",
+                "logprob": -2.3897249698638916
+              },
+              {
+                "text": "of",
+                "logprob": -0.00037091050762683153
+              },
+              {
+                "text": "a",
+                "logprob": -0.028190288692712784
+              },
+              {
+                "text": "private",
+                "logprob": -0.00016985881666187197
+              },
+              {
+                "text": "right",
+                "logprob": -2.0265558760002023e-06
+              },
+              {
+                "text": "of",
+                "logprob": -3.099436753473128e-06
+              },
+              {
+                "text": "action",
+                "logprob": -7.152555099310121e-07
+              },
+              {
+                "text": ".",
+                "logprob": -0.06288955360651016
+              },
+              {
+                "text": "\n",
+                "logprob": -9.7508447652217e-05
+              },
+              {
+                "text": "The",
+                "logprob": -0.4697973132133484
+              },
+              {
+                "text": "stat",
+                "logprob": -0.5046228170394897
+              },
+              {
+                "text": "ute",
+                "logprob": -0.002541052643209696
+              },
+              {
+                "text": "out",
+                "logprob": -2.3914260864257812
+              },
+              {
+                "text": "lines",
+                "logprob": -0.0049795894883573055
+              },
+              {
+                "text": "that",
+                "logprob": -2.0390443801879883
+              },
+              {
+                "text": "legisl",
+                "logprob": -0.803335428237915
+              },
+              {
+                "text": "ative",
+                "logprob": -0.00013720047718379647
+              },
+              {
+                "text": "employees",
+                "logprob": -0.00014757021563127637
+              },
+              {
+                "text": "can",
+                "logprob": -0.41522711515426636
+              },
+              {
+                "text": "seek",
+                "logprob": -1.0603739023208618
+              },
+              {
+                "text": "dam",
+                "logprob": -0.5099927186965942
+              },
+              {
+                "text": "ages",
+                "logprob": -7.152555099310121e-07
+              },
+              {
+                "text": "for",
+                "logprob": -1.8287575244903564
+              },
+              {
+                "text": "inter",
+                "logprob": -0.1938604861497879
+              },
+              {
+                "text": "ference",
+                "logprob": -0.012859278358519077
+              },
+              {
+                "text": "with",
+                "logprob": -0.2332230806350708
+              },
+              {
+                "text": "their",
+                "logprob": -0.02721327356994152
+              },
+              {
+                "text": "protected",
+                "logprob": -1.0372490882873535
+              },
+              {
+                "text": "dis",
+                "logprob": -0.14379890263080597
+              },
+              {
+                "text": "closure",
+                "logprob": -0.009230085648596287
+              },
+              {
+                "text": "rights",
+                "logprob": -0.16676853597164154
+              },
+              {
+                "text": ",",
+                "logprob": -1.017405390739441
+              },
+              {
+                "text": "which",
+                "logprob": -0.43734458088874817
+              },
+              {
+                "text": "falls",
+                "logprob": -2.68581485748291
+              },
+              {
+                "text": "in",
+                "logprob": -1.0995033979415894
+              },
+              {
+                "text": "line",
+                "logprob": -0.0008575814426876605
+              },
+              {
+                "text": "with",
+                "logprob": -1.2516897186287679e-05
+              },
+              {
+                "text": "the",
+                "logprob": -0.12000072747468948
+              },
+              {
+                "text": "concept",
+                "logprob": -0.33287525177001953
+              },
+              {
+                "text": "of",
+                "logprob": -0.00037901371251791716
+              },
+              {
+                "text": "a",
+                "logprob": -0.0056017800234258175
+              },
+              {
+                "text": "private",
+                "logprob": -0.0006702084210701287
+              },
+              {
+                "text": "right",
+                "logprob": -0.00016842853801790625
+              },
+              {
+                "text": "of",
+                "logprob": -1.168244216387393e-05
+              },
+              {
+                "text": "action",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": ".",
+                "logprob": -0.10778994113206863
+              },
+              {
+                "text": "The",
+                "logprob": -1.896873950958252
+              },
+              {
+                "text": "ability",
+                "logprob": -1.6560108661651611
+              },
+              {
+                "text": "to",
+                "logprob": -0.27393561601638794
+              },
+              {
+                "text": "bring",
+                "logprob": -0.8524978160858154
+              },
+              {
+                "text": "a",
+                "logprob": -0.1470922827720642
+              },
+              {
+                "text": "civil",
+                "logprob": -0.07967327535152435
+              },
+              {
+                "text": "action",
+                "logprob": -0.01878647692501545
+              },
+              {
+                "text": "ens",
+                "logprob": -6.843091011047363
+              },
+              {
+                "text": "ures",
+                "logprob": -0.00025006983196362853
+              },
+              {
+                "text": "that",
+                "logprob": -0.20491798222064972
+              },
+              {
+                "text": "the",
+                "logprob": -2.669412136077881
+              },
+              {
+                "text": "legisl",
+                "logprob": -0.7218653559684753
+              },
+              {
+                "text": "ative",
+                "logprob": -0.0003079893649555743
+              },
+              {
+                "text": "employees",
+                "logprob": -1.223745584487915
+              },
+              {
+                "text": "have",
+                "logprob": -0.5587736964225769
+              },
+              {
+                "text": "a",
+                "logprob": -0.6718121767044067
+              },
+              {
+                "text": "private",
+                "logprob": -2.7835607528686523
+              },
+              {
+                "text": "a",
+                "logprob": -2.7128138542175293
+              },
+              {
+                "text": "venue",
+                "logprob": -0.00038044367101974785
+              },
+              {
+                "text": "to",
+                "logprob": -0.5207987427711487
+              },
+              {
+                "text": "en",
+                "logprob": -0.06027843430638313
+              },
+              {
+                "text": "force",
+                "logprob": -0.00010084597306558862
+              },
+              {
+                "text": "their",
+                "logprob": -0.02829354628920555
+              },
+              {
+                "text": "rights",
+                "logprob": -0.05453886464238167
+              },
+              {
+                "text": ",",
+                "logprob": -3.779486894607544
+              },
+              {
+                "text": "even",
+                "logprob": -3.1940526962280273
+              },
+              {
+                "text": "if",
+                "logprob": -1.0123909711837769
+              },
+              {
+                "text": "the",
+                "logprob": -1.4863795042037964
+              },
+              {
+                "text": "inter",
+                "logprob": -0.9832252264022827
+              },
+              {
+                "text": "ference",
+                "logprob": -0.00790041871368885
+              },
+              {
+                "text": "comes",
+                "logprob": -1.231510877609253
+              },
+              {
+                "text": "from",
+                "logprob": -0.0013598490040749311
+              },
+              {
+                "text": "someone",
+                "logprob": -2.1110873222351074
+              },
+              {
+                "text": "as",
+                "logprob": -9.007562637329102
+              },
+              {
+                "text": "ser",
+                "logprob": -0.002895213197916746
+              },
+              {
+                "text": "ting",
+                "logprob": -6.556489552167477e-06
+              },
+              {
+                "text": "official",
+                "logprob": -1.137437343597412
+              },
+              {
+                "text": "authority",
+                "logprob": -0.12321005761623383
+              },
+              {
+                "text": "or",
+                "logprob": -0.6050036549568176
+              },
+              {
+                "text": "influence",
+                "logprob": -0.0010893370490521193
+              },
+              {
+                "text": ".",
+                "logprob": -0.0020272433757781982
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0008939084364101291
+              },
+              {
+                "text": "\n",
+                "logprob": -9.179073458653875e-06
+              },
+              {
+                "text": "Answer",
+                "logprob": -0.5397285223007202
+              },
+              {
+                "text": ":",
+                "logprob": -7.748303323751315e-05
+              },
+              {
+                "text": "Yes",
+                "logprob": -0.0032021934166550636
+              },
+              {
+                "text": ",",
+                "logprob": -0.05989383906126022
+              },
+              {
+                "text": "the",
+                "logprob": -0.027493396773934364
+              },
+              {
+                "text": "clause",
+                "logprob": -0.04127275198698044
+              },
+              {
+                "text": "spec",
+                "logprob": -0.25173062086105347
+              },
+              {
+                "text": "ifies",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "a",
+                "logprob": -5.543078441405669e-05
+              },
+              {
+                "text": "private",
+                "logprob": -1.4305012882687151e-05
+              },
+              {
+                "text": "right",
+                "logprob": 0.0
+              },
+              {
+                "text": "of",
+                "logprob": 0.0
+              },
+              {
+                "text": "action",
+                "logprob": 0.0
+              },
+              {
+                "text": ".",
+                "logprob": -0.34912005066871643
+              },
+              {
+                "text": "This",
+                "logprob": -6.43297004699707
+              },
+              {
+                "text": "is",
+                "logprob": -0.11824852973222733
+              },
+              {
+                "text": "because",
+                "logprob": -0.2398257702589035
+              },
+              {
+                "text": "it",
+                "logprob": -0.20324395596981049
+              },
+              {
+                "text": "allows",
+                "logprob": -0.9438762664794922
+              },
+              {
+                "text": "legisl",
+                "logprob": -0.29461005330085754
+              },
+              {
+                "text": "ative",
+                "logprob": -1.2874520507466514e-05
+              },
+              {
+                "text": "employees",
+                "logprob": -4.8040190449682996e-05
+              },
+              {
+                "text": "the",
+                "logprob": -3.4328622817993164
+              },
+              {
+                "text": "ability",
+                "logprob": -0.4645998477935791
+              },
+              {
+                "text": "to",
+                "logprob": -0.0005402297829277813
+              },
+              {
+                "text": "purs",
+                "logprob": -2.5545966625213623
+              },
+              {
+                "text": "ue",
+                "logprob": -6.556489552167477e-06
+              },
+              {
+                "text": "a",
+                "logprob": -1.0300688743591309
+              },
+              {
+                "text": "civil",
+                "logprob": -0.01666329987347126
+              },
+              {
+                "text": "law",
+                "logprob": -2.248283624649048
+              },
+              {
+                "text": "suit",
+                "logprob": -8.713819261174649e-05
+              },
+              {
+                "text": "for",
+                "logprob": -1.1454195976257324
+              },
+              {
+                "text": "dam",
+                "logprob": -0.13706986606121063
+              },
+              {
+                "text": "ages",
+                "logprob": -3.2186455882765586e-06
+              },
+              {
+                "text": "when",
+                "logprob": -1.560335636138916
+              },
+              {
+                "text": "their",
+                "logprob": -0.1388261616230011
+              },
+              {
+                "text": "protected",
+                "logprob": -2.6400821208953857
+              },
+              {
+                "text": "dis",
+                "logprob": -0.0520961694419384
+              },
+              {
+                "text": "closure",
+                "logprob": -0.0015526870265603065
+              },
+              {
+                "text": "rights",
+                "logprob": -0.038981541991233826
+              },
+              {
+                "text": "are",
+                "logprob": -0.09514730423688889
+              },
+              {
+                "text": "inter",
+                "logprob": -0.19035641849040985
+              },
+              {
+                "text": "fer",
+                "logprob": -2.8967437174287625e-05
+              },
+              {
+                "text": "ed",
+                "logprob": -4.8993817472364753e-05
+              },
+              {
+                "text": "with",
+                "logprob": -0.009784241206943989
+              },
+              {
+                "text": ".",
+                "logprob": -2.3812336921691895
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.09812747687101364
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.65696910662858,
+              "max_token_negative_log_likelihood": 9.00748062133789,
+              "predictive_entropy": 0.11986893804226058,
+              "shannon_entropy": 0.6275699332572197
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 28.313030242919922,
+        "request_datetime": 1756149976
+      },
+      "num_train_instances": 0,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "Statute: Where a party has made an election pursuant to the provisions of this section, to have the claims asserted in a written notice issued by the chairperson, decided in a civil action, the chairperson shall immediately direct staff attorneys employed by the commission to commence and maintain a civil action on behalf of the complainant."
+        },
+        "references": [
+          {
+            "output": {
+              "text": "No"
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id61"
+      },
+      "train_trial_index": 0,
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "First, briefly explain your reasoning step by step, then answer yes or no.\n\nA private right of action is when a regular person, a private citizen, is legally entitled to enforce their rights under a given statute. Does the clause specify a private right of action? Answer Yes or No.\n\nStatute: Where a party has made an election pursuant to the provisions of this section, to have the claims asserted in a written notice issued by the chairperson, decided in a civil action, the chairperson shall immediately direct staff attorneys employed by the commission to commence and maintain a civil action on behalf of the complainant.\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 1,
+        "max_tokens": 1030,
+        "stop_sequences": [
+          "\n"
+        ],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "Step 1: Identify the key elements in the statute.\n- Party making an election\n- Claims asserted in written notice\n- Decision made by chairperson\n- The chairperson directs staff attorneys\n- Civil action on behalf of the complainant\n\nStep 2: Analyze the elements to determine if a private right of action exists.\n- The statute involves a party who makes a choice about the course of action for their claims.\n- The claims are addressed by a written notice and a decision by the chairperson.\n- The chairperson then instructs staff attorneys to begin a civil action.\n\nStep 3: Examine the role of staff attorneys and complainant.\n- The statute specifies that staff attorneys will commence and maintain the civil action.\n- The action is being initiated on behalf of the complainant, which indicates that the complainant's rights are being enforced by another party (the staff attorneys).\n\nStep 4: Assess whether a private right of action is granted by considering the role of the complainant and the use of staff attorneys.\n- While the complainant's rights are being enforced by staff attorneys, the complainant has chosen to have their claims processed in a specific manner (issued by the chairperson, decided upon, and then represented in court).\n- The clause in the statute does not indicate that the complainant has the option, duty, or legal standing to independently commence and maintain the civil action themselves.\n\nConclusion: Based on these reasoning steps, the clause does not specify a private right of action for the complainant. The complainant's rights are being enforced by staff attorneys, as directed by the chairperson.\n\nAnswer: No<|end|><|endoftext|>",
+            "logprob": -240.18934072248243,
+            "tokens": [
+              {
+                "text": "Step",
+                "logprob": -0.0020673349499702454
+              },
+              {
+                "text": "",
+                "logprob": -0.00016389934171456844
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": ":",
+                "logprob": -1.2755313036905136e-05
+              },
+              {
+                "text": "Ident",
+                "logprob": -1.0052975416183472
+              },
+              {
+                "text": "ify",
+                "logprob": -0.00046230596490204334
+              },
+              {
+                "text": "the",
+                "logprob": -0.024748295545578003
+              },
+              {
+                "text": "key",
+                "logprob": -0.40474560856819153
+              },
+              {
+                "text": "elements",
+                "logprob": -0.1800365298986435
+              },
+              {
+                "text": "in",
+                "logprob": -0.4557434320449829
+              },
+              {
+                "text": "the",
+                "logprob": -7.402622577501461e-05
+              },
+              {
+                "text": "stat",
+                "logprob": -0.3364917039871216
+              },
+              {
+                "text": "ute",
+                "logprob": -0.0002101439022226259
+              },
+              {
+                "text": ".",
+                "logprob": -1.1981110572814941
+              },
+              {
+                "text": "\n",
+                "logprob": -0.5239025354385376
+              },
+              {
+                "text": "-",
+                "logprob": -1.168189525604248
+              },
+              {
+                "text": "Party",
+                "logprob": -2.4506821632385254
+              },
+              {
+                "text": "making",
+                "logprob": -0.9293376207351685
+              },
+              {
+                "text": "an",
+                "logprob": -0.009649420157074928
+              },
+              {
+                "text": "election",
+                "logprob": -0.0005190217634662986
+              },
+              {
+                "text": "\n",
+                "logprob": -1.1304113864898682
+              },
+              {
+                "text": "-",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "Cla",
+                "logprob": -0.2648557126522064
+              },
+              {
+                "text": "ims",
+                "logprob": -9.023735765367746e-05
+              },
+              {
+                "text": "assert",
+                "logprob": -0.07376956939697266
+              },
+              {
+                "text": "ed",
+                "logprob": -2.3841830625315197e-06
+              },
+              {
+                "text": "in",
+                "logprob": -0.005942889489233494
+              },
+              {
+                "text": "written",
+                "logprob": -2.0179367065429688
+              },
+              {
+                "text": "notice",
+                "logprob": -0.0001387499796692282
+              },
+              {
+                "text": "\n",
+                "logprob": -0.28016403317451477
+              },
+              {
+                "text": "-",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "Dec",
+                "logprob": -0.7237009406089783
+              },
+              {
+                "text": "ision",
+                "logprob": -0.11664126068353653
+              },
+              {
+                "text": "made",
+                "logprob": -2.6526496410369873
+              },
+              {
+                "text": "by",
+                "logprob": -0.01053687185049057
+              },
+              {
+                "text": "chair",
+                "logprob": -2.637514114379883
+              },
+              {
+                "text": "person",
+                "logprob": -1.9073468138230965e-06
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0020165364257991314
+              },
+              {
+                "text": "-",
+                "logprob": -2.074220174108632e-05
+              },
+              {
+                "text": "The",
+                "logprob": -4.663102149963379
+              },
+              {
+                "text": "chair",
+                "logprob": -0.10048068314790726
+              },
+              {
+                "text": "person",
+                "logprob": -0.0002444683632347733
+              },
+              {
+                "text": "direct",
+                "logprob": -0.017755841836333275
+              },
+              {
+                "text": "s",
+                "logprob": -0.2255346029996872
+              },
+              {
+                "text": "staff",
+                "logprob": -0.005929972976446152
+              },
+              {
+                "text": "att",
+                "logprob": -7.986990567587782e-06
+              },
+              {
+                "text": "or",
+                "logprob": -1.1920922133867862e-06
+              },
+              {
+                "text": "ne",
+                "logprob": 0.0
+              },
+              {
+                "text": "ys",
+                "logprob": 0.0
+              },
+              {
+                "text": "\n",
+                "logprob": -0.46221908926963806
+              },
+              {
+                "text": "-",
+                "logprob": -0.1307111382484436
+              },
+              {
+                "text": "Civil",
+                "logprob": -0.9092625379562378
+              },
+              {
+                "text": "action",
+                "logprob": -0.00028761065914295614
+              },
+              {
+                "text": "on",
+                "logprob": -0.47971370816230774
+              },
+              {
+                "text": "beh",
+                "logprob": -0.0005728749092668295
+              },
+              {
+                "text": "alf",
+                "logprob": 0.0
+              },
+              {
+                "text": "of",
+                "logprob": -5.960462772236497e-07
+              },
+              {
+                "text": "the",
+                "logprob": -0.11425086110830307
+              },
+              {
+                "text": "comp",
+                "logprob": -0.0002208704245276749
+              },
+              {
+                "text": "lain",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "ant",
+                "logprob": 0.0
+              },
+              {
+                "text": "\n",
+                "logprob": -0.004311551805585623
+              },
+              {
+                "text": "\n",
+                "logprob": -6.997340824455023e-05
+              },
+              {
+                "text": "Step",
+                "logprob": -1.7881377516459906e-06
+              },
+              {
+                "text": "",
+                "logprob": 0.0
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": ":",
+                "logprob": 0.0
+              },
+              {
+                "text": "Anal",
+                "logprob": -0.6058661341667175
+              },
+              {
+                "text": "y",
+                "logprob": -0.00018785618885885924
+              },
+              {
+                "text": "ze",
+                "logprob": -1.8596476365928538e-05
+              },
+              {
+                "text": "the",
+                "logprob": -0.6393850445747375
+              },
+              {
+                "text": "elements",
+                "logprob": -0.6154966354370117
+              },
+              {
+                "text": "to",
+                "logprob": -0.5975168347358704
+              },
+              {
+                "text": "determine",
+                "logprob": -0.3539629578590393
+              },
+              {
+                "text": "if",
+                "logprob": -0.052879367023706436
+              },
+              {
+                "text": "a",
+                "logprob": -0.8328436017036438
+              },
+              {
+                "text": "private",
+                "logprob": -0.00047922570956870914
+              },
+              {
+                "text": "right",
+                "logprob": -0.003956349100917578
+              },
+              {
+                "text": "of",
+                "logprob": -1.4185804502631072e-05
+              },
+              {
+                "text": "action",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "exists",
+                "logprob": -2.412567138671875
+              },
+              {
+                "text": ".",
+                "logprob": -0.014001475647091866
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0010502781951799989
+              },
+              {
+                "text": "-",
+                "logprob": -0.1154232993721962
+              },
+              {
+                "text": "The",
+                "logprob": -0.2867307960987091
+              },
+              {
+                "text": "stat",
+                "logprob": -0.16624988615512848
+              },
+              {
+                "text": "ute",
+                "logprob": -0.00010418349120300263
+              },
+              {
+                "text": "involves",
+                "logprob": -0.7955739498138428
+              },
+              {
+                "text": "a",
+                "logprob": -0.13701114058494568
+              },
+              {
+                "text": "party",
+                "logprob": -0.2630288302898407
+              },
+              {
+                "text": "who",
+                "logprob": -3.6251394748687744
+              },
+              {
+                "text": "makes",
+                "logprob": -2.360698938369751
+              },
+              {
+                "text": "a",
+                "logprob": -0.5778799653053284
+              },
+              {
+                "text": "choice",
+                "logprob": -0.2722601890563965
+              },
+              {
+                "text": "about",
+                "logprob": -2.3532588481903076
+              },
+              {
+                "text": "the",
+                "logprob": -2.4369893074035645
+              },
+              {
+                "text": "course",
+                "logprob": -3.048943042755127
+              },
+              {
+                "text": "of",
+                "logprob": -0.0020759000908583403
+              },
+              {
+                "text": "action",
+                "logprob": -0.043708451092243195
+              },
+              {
+                "text": "for",
+                "logprob": -0.6555145382881165
+              },
+              {
+                "text": "their",
+                "logprob": -0.09158230572938919
+              },
+              {
+                "text": "claims",
+                "logprob": -0.015223032794892788
+              },
+              {
+                "text": ".",
+                "logprob": -0.18103788793087006
+              },
+              {
+                "text": "\n",
+                "logprob": -0.001961928093805909
+              },
+              {
+                "text": "-",
+                "logprob": -3.814689989667386e-06
+              },
+              {
+                "text": "The",
+                "logprob": -0.5802636742591858
+              },
+              {
+                "text": "claims",
+                "logprob": -0.6789841651916504
+              },
+              {
+                "text": "are",
+                "logprob": -0.1360217183828354
+              },
+              {
+                "text": "addressed",
+                "logprob": -1.6271921396255493
+              },
+              {
+                "text": "by",
+                "logprob": -3.369157552719116
+              },
+              {
+                "text": "a",
+                "logprob": -0.6454039812088013
+              },
+              {
+                "text": "written",
+                "logprob": -0.12723396718502045
+              },
+              {
+                "text": "notice",
+                "logprob": -0.007733287289738655
+              },
+              {
+                "text": "and",
+                "logprob": -1.727075457572937
+              },
+              {
+                "text": "a",
+                "logprob": -0.46454936265945435
+              },
+              {
+                "text": "decision",
+                "logprob": -0.03927936404943466
+              },
+              {
+                "text": "by",
+                "logprob": -0.8209460377693176
+              },
+              {
+                "text": "the",
+                "logprob": -0.17183218896389008
+              },
+              {
+                "text": "chair",
+                "logprob": -0.00026472879108041525
+              },
+              {
+                "text": "person",
+                "logprob": -0.0007440659101121128
+              },
+              {
+                "text": ".",
+                "logprob": -0.05468424782156944
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0005146132898516953
+              },
+              {
+                "text": "-",
+                "logprob": -4.005352093372494e-05
+              },
+              {
+                "text": "The",
+                "logprob": -0.22754231095314026
+              },
+              {
+                "text": "chair",
+                "logprob": -0.05474891513586044
+              },
+              {
+                "text": "person",
+                "logprob": -0.00012933371181134135
+              },
+              {
+                "text": "then",
+                "logprob": -1.6336685419082642
+              },
+              {
+                "text": "instruct",
+                "logprob": -1.4306981563568115
+              },
+              {
+                "text": "s",
+                "logprob": -2.1934269170742482e-05
+              },
+              {
+                "text": "staff",
+                "logprob": -0.08848629891872406
+              },
+              {
+                "text": "att",
+                "logprob": -0.00024387246230617166
+              },
+              {
+                "text": "or",
+                "logprob": -1.6689286894688848e-06
+              },
+              {
+                "text": "ne",
+                "logprob": 0.0
+              },
+              {
+                "text": "ys",
+                "logprob": 0.0
+              },
+              {
+                "text": "to",
+                "logprob": -0.027783295139670372
+              },
+              {
+                "text": "begin",
+                "logprob": -3.132033586502075
+              },
+              {
+                "text": "a",
+                "logprob": -1.3216060400009155
+              },
+              {
+                "text": "civil",
+                "logprob": -0.00525154173374176
+              },
+              {
+                "text": "action",
+                "logprob": -0.002427490195259452
+              },
+              {
+                "text": ".",
+                "logprob": -1.03792142868042
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0059866164810955524
+              },
+              {
+                "text": "\n",
+                "logprob": -1.2680087089538574
+              },
+              {
+                "text": "Step",
+                "logprob": -0.02263787016272545
+              },
+              {
+                "text": "",
+                "logprob": -8.344646857949556e-07
+              },
+              {
+                "text": "3",
+                "logprob": -5.960462772236497e-07
+              },
+              {
+                "text": ":",
+                "logprob": -9.536738616588991e-07
+              },
+              {
+                "text": "Ex",
+                "logprob": -3.1675126552581787
+              },
+              {
+                "text": "am",
+                "logprob": -0.0010595666244626045
+              },
+              {
+                "text": "ine",
+                "logprob": -3.0517112463712692e-05
+              },
+              {
+                "text": "the",
+                "logprob": -0.9025169014930725
+              },
+              {
+                "text": "role",
+                "logprob": -0.4236805737018585
+              },
+              {
+                "text": "of",
+                "logprob": -0.04920646920800209
+              },
+              {
+                "text": "staff",
+                "logprob": -2.0042662620544434
+              },
+              {
+                "text": "att",
+                "logprob": -1.0132738680113107e-05
+              },
+              {
+                "text": "or",
+                "logprob": -3.6954811548639555e-06
+              },
+              {
+                "text": "ne",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "ys",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "and",
+                "logprob": -0.6411140561103821
+              },
+              {
+                "text": "comp",
+                "logprob": -4.434959411621094
+              },
+              {
+                "text": "lain",
+                "logprob": -0.0005667987279593945
+              },
+              {
+                "text": "ant",
+                "logprob": -0.677707850933075
+              },
+              {
+                "text": ".",
+                "logprob": -0.679978609085083
+              },
+              {
+                "text": "\n",
+                "logprob": -0.000526289688423276
+              },
+              {
+                "text": "-",
+                "logprob": -0.0001501924270996824
+              },
+              {
+                "text": "The",
+                "logprob": -1.1965970993041992
+              },
+              {
+                "text": "stat",
+                "logprob": -1.7189196348190308
+              },
+              {
+                "text": "ute",
+                "logprob": -0.0004148814477957785
+              },
+              {
+                "text": "spec",
+                "logprob": -2.073401927947998
+              },
+              {
+                "text": "ifies",
+                "logprob": -5.006777428206988e-06
+              },
+              {
+                "text": "that",
+                "logprob": -0.02540375478565693
+              },
+              {
+                "text": "staff",
+                "logprob": -0.2567395567893982
+              },
+              {
+                "text": "att",
+                "logprob": -1.3470558769768104e-05
+              },
+              {
+                "text": "or",
+                "logprob": -5.960462772236497e-07
+              },
+              {
+                "text": "ne",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "ys",
+                "logprob": 0.0
+              },
+              {
+                "text": "will",
+                "logprob": -1.537898063659668
+              },
+              {
+                "text": "commence",
+                "logprob": -0.20841580629348755
+              },
+              {
+                "text": "and",
+                "logprob": -0.03129182383418083
+              },
+              {
+                "text": "maintain",
+                "logprob": -0.0005983707960695028
+              },
+              {
+                "text": "the",
+                "logprob": -1.7552441358566284
+              },
+              {
+                "text": "civil",
+                "logprob": -0.0053994059562683105
+              },
+              {
+                "text": "action",
+                "logprob": -5.2927523938706145e-05
+              },
+              {
+                "text": ".",
+                "logprob": -0.4378468990325928
+              },
+              {
+                "text": "\n",
+                "logprob": -0.00909459963440895
+              },
+              {
+                "text": "-",
+                "logprob": -9.464769391342998e-05
+              },
+              {
+                "text": "The",
+                "logprob": -0.24005384743213654
+              },
+              {
+                "text": "action",
+                "logprob": -1.622992753982544
+              },
+              {
+                "text": "is",
+                "logprob": -0.02173660323023796
+              },
+              {
+                "text": "being",
+                "logprob": -2.0657739639282227
+              },
+              {
+                "text": "initi",
+                "logprob": -2.6965160369873047
+              },
+              {
+                "text": "ated",
+                "logprob": -4.887569048150908e-06
+              },
+              {
+                "text": "on",
+                "logprob": -0.19250458478927612
+              },
+              {
+                "text": "beh",
+                "logprob": -0.014244426041841507
+              },
+              {
+                "text": "alf",
+                "logprob": 0.0
+              },
+              {
+                "text": "of",
+                "logprob": -4.0531076592742465e-06
+              },
+              {
+                "text": "the",
+                "logprob": -0.008298439905047417
+              },
+              {
+                "text": "comp",
+                "logprob": -0.0032522189430892467
+              },
+              {
+                "text": "lain",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "ant",
+                "logprob": -5.602820692729438e-06
+              },
+              {
+                "text": ",",
+                "logprob": -0.28387507796287537
+              },
+              {
+                "text": "which",
+                "logprob": -1.6417460441589355
+              },
+              {
+                "text": "indicates",
+                "logprob": -1.2720730304718018
+              },
+              {
+                "text": "that",
+                "logprob": -0.3482614755630493
+              },
+              {
+                "text": "the",
+                "logprob": -0.3007805049419403
+              },
+              {
+                "text": "comp",
+                "logprob": -0.12730303406715393
+              },
+              {
+                "text": "lain",
+                "logprob": -3.4570634852570947e-06
+              },
+              {
+                "text": "ant",
+                "logprob": -0.00011729506513802335
+              },
+              {
+                "text": "'",
+                "logprob": -1.2896716594696045
+              },
+              {
+                "text": "s",
+                "logprob": -1.1920922133867862e-06
+              },
+              {
+                "text": "rights",
+                "logprob": -1.1895688772201538
+              },
+              {
+                "text": "are",
+                "logprob": -0.053751543164253235
+              },
+              {
+                "text": "being",
+                "logprob": -0.3479776680469513
+              },
+              {
+                "text": "enfor",
+                "logprob": -0.06824443489313126
+              },
+              {
+                "text": "ced",
+                "logprob": -1.8596476365928538e-05
+              },
+              {
+                "text": "by",
+                "logprob": -2.52139949798584
+              },
+              {
+                "text": "another",
+                "logprob": -2.806976556777954
+              },
+              {
+                "text": "party",
+                "logprob": -0.43784549832344055
+              },
+              {
+                "text": "(",
+                "logprob": -0.13037049770355225
+              },
+              {
+                "text": "the",
+                "logprob": -0.5083982944488525
+              },
+              {
+                "text": "staff",
+                "logprob": -0.043182373046875
+              },
+              {
+                "text": "att",
+                "logprob": -6.3774932641536e-05
+              },
+              {
+                "text": "or",
+                "logprob": -0.061983413994312286
+              },
+              {
+                "text": "ne",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "ys",
+                "logprob": 0.0
+              },
+              {
+                "text": ").",
+                "logprob": -0.19899782538414001
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0006019449210725725
+              },
+              {
+                "text": "\n",
+                "logprob": -0.00024959311122074723
+              },
+              {
+                "text": "Step",
+                "logprob": -0.03539247065782547
+              },
+              {
+                "text": "",
+                "logprob": -5.960462772236497e-07
+              },
+              {
+                "text": "4",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": ":",
+                "logprob": -8.344646857949556e-07
+              },
+              {
+                "text": "Ass",
+                "logprob": -1.1523436307907104
+              },
+              {
+                "text": "ess",
+                "logprob": -0.0005763299996033311
+              },
+              {
+                "text": "whether",
+                "logprob": -1.0451805591583252
+              },
+              {
+                "text": "a",
+                "logprob": -1.8900160789489746
+              },
+              {
+                "text": "private",
+                "logprob": -0.12321995943784714
+              },
+              {
+                "text": "right",
+                "logprob": -0.3748100996017456
+              },
+              {
+                "text": "of",
+                "logprob": -9.250213042832911e-05
+              },
+              {
+                "text": "action",
+                "logprob": -3.0278701160568744e-05
+              },
+              {
+                "text": "is",
+                "logprob": -0.11594255268573761
+              },
+              {
+                "text": "granted",
+                "logprob": -2.0223445892333984
+              },
+              {
+                "text": "by",
+                "logprob": -3.660524845123291
+              },
+              {
+                "text": "considering",
+                "logprob": -2.012026309967041
+              },
+              {
+                "text": "the",
+                "logprob": -0.6025880575180054
+              },
+              {
+                "text": "role",
+                "logprob": -2.7694835662841797
+              },
+              {
+                "text": "of",
+                "logprob": -0.016188133507966995
+              },
+              {
+                "text": "the",
+                "logprob": -0.1852167695760727
+              },
+              {
+                "text": "comp",
+                "logprob": -0.11716391146183014
+              },
+              {
+                "text": "lain",
+                "logprob": -1.0728830375228426e-06
+              },
+              {
+                "text": "ant",
+                "logprob": -0.0002172949316445738
+              },
+              {
+                "text": "and",
+                "logprob": -0.28403472900390625
+              },
+              {
+                "text": "the",
+                "logprob": -0.34597262740135193
+              },
+              {
+                "text": "use",
+                "logprob": -3.713970184326172
+              },
+              {
+                "text": "of",
+                "logprob": -0.00014077626110520214
+              },
+              {
+                "text": "staff",
+                "logprob": -0.12990809977054596
+              },
+              {
+                "text": "att",
+                "logprob": -0.00015960850578267127
+              },
+              {
+                "text": "or",
+                "logprob": -1.2993727978027891e-05
+              },
+              {
+                "text": "ne",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "ys",
+                "logprob": 0.0
+              },
+              {
+                "text": ".",
+                "logprob": -0.09141281992197037
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0005754960584454238
+              },
+              {
+                "text": "-",
+                "logprob": -0.0025273782666772604
+              },
+              {
+                "text": "While",
+                "logprob": -2.888428211212158
+              },
+              {
+                "text": "the",
+                "logprob": -0.032029833644628525
+              },
+              {
+                "text": "comp",
+                "logprob": -0.049290332943201065
+              },
+              {
+                "text": "lain",
+                "logprob": -1.0728830375228426e-06
+              },
+              {
+                "text": "ant",
+                "logprob": -6.675497570540756e-05
+              },
+              {
+                "text": "'",
+                "logprob": -0.37573304772377014
+              },
+              {
+                "text": "s",
+                "logprob": -2.9802276912960224e-06
+              },
+              {
+                "text": "rights",
+                "logprob": -0.508110761642456
+              },
+              {
+                "text": "are",
+                "logprob": -0.009215084835886955
+              },
+              {
+                "text": "being",
+                "logprob": -0.2553834021091461
+              },
+              {
+                "text": "enfor",
+                "logprob": -0.16793102025985718
+              },
+              {
+                "text": "ced",
+                "logprob": -9.179073458653875e-06
+              },
+              {
+                "text": "by",
+                "logprob": -2.241673707962036
+              },
+              {
+                "text": "staff",
+                "logprob": -0.38946306705474854
+              },
+              {
+                "text": "att",
+                "logprob": -4.303362584323622e-05
+              },
+              {
+                "text": "or",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "ne",
+                "logprob": 0.0
+              },
+              {
+                "text": "ys",
+                "logprob": 0.0
+              },
+              {
+                "text": ",",
+                "logprob": -0.08533448725938797
+              },
+              {
+                "text": "the",
+                "logprob": -0.6530168056488037
+              },
+              {
+                "text": "comp",
+                "logprob": -0.9626154899597168
+              },
+              {
+                "text": "lain",
+                "logprob": -1.4305104514278355e-06
+              },
+              {
+                "text": "ant",
+                "logprob": -2.539125671319198e-05
+              },
+              {
+                "text": "has",
+                "logprob": -2.7223334312438965
+              },
+              {
+                "text": "chosen",
+                "logprob": -2.0993905067443848
+              },
+              {
+                "text": "to",
+                "logprob": -1.705383539199829
+              },
+              {
+                "text": "have",
+                "logprob": -0.5080515742301941
+              },
+              {
+                "text": "their",
+                "logprob": -0.13370613753795624
+              },
+              {
+                "text": "claims",
+                "logprob": -0.01778172329068184
+              },
+              {
+                "text": "processed",
+                "logprob": -2.370293617248535
+              },
+              {
+                "text": "in",
+                "logprob": -0.657045841217041
+              },
+              {
+                "text": "a",
+                "logprob": -1.6630308628082275
+              },
+              {
+                "text": "specific",
+                "logprob": -0.637718141078949
+              },
+              {
+                "text": "manner",
+                "logprob": -0.35328856110572815
+              },
+              {
+                "text": "(",
+                "logprob": -0.4251377582550049
+              },
+              {
+                "text": "iss",
+                "logprob": -7.158656597137451
+              },
+              {
+                "text": "ued",
+                "logprob": -0.03980279713869095
+              },
+              {
+                "text": "by",
+                "logprob": -0.2546778619289398
+              },
+              {
+                "text": "the",
+                "logprob": -0.059299033135175705
+              },
+              {
+                "text": "chair",
+                "logprob": -4.172238186583854e-05
+              },
+              {
+                "text": "person",
+                "logprob": -0.000144709600135684
+              },
+              {
+                "text": ",",
+                "logprob": -2.433894395828247
+              },
+              {
+                "text": "decided",
+                "logprob": -0.14965026080608368
+              },
+              {
+                "text": "upon",
+                "logprob": -2.2124521732330322
+              },
+              {
+                "text": ",",
+                "logprob": -0.04004139453172684
+              },
+              {
+                "text": "and",
+                "logprob": -0.06788817793130875
+              },
+              {
+                "text": "then",
+                "logprob": -0.3851907253265381
+              },
+              {
+                "text": "represented",
+                "logprob": -3.01816463470459
+              },
+              {
+                "text": "in",
+                "logprob": -0.7111096978187561
+              },
+              {
+                "text": "court",
+                "logprob": -2.019425392150879
+              },
+              {
+                "text": ").",
+                "logprob": -0.38878682255744934
+              },
+              {
+                "text": "\n",
+                "logprob": -0.041837677359580994
+              },
+              {
+                "text": "-",
+                "logprob": -0.36285921931266785
+              },
+              {
+                "text": "The",
+                "logprob": -0.22782589495182037
+              },
+              {
+                "text": "clause",
+                "logprob": -4.995333194732666
+              },
+              {
+                "text": "in",
+                "logprob": -4.633446216583252
+              },
+              {
+                "text": "the",
+                "logprob": -0.4555017352104187
+              },
+              {
+                "text": "stat",
+                "logprob": -0.001123035908676684
+              },
+              {
+                "text": "ute",
+                "logprob": -2.2291887944447808e-05
+              },
+              {
+                "text": "does",
+                "logprob": -1.3781425952911377
+              },
+              {
+                "text": "not",
+                "logprob": -0.04668209329247475
+              },
+              {
+                "text": "indicate",
+                "logprob": -2.453770637512207
+              },
+              {
+                "text": "that",
+                "logprob": -0.027438074350357056
+              },
+              {
+                "text": "the",
+                "logprob": -0.20553548634052277
+              },
+              {
+                "text": "comp",
+                "logprob": -0.019563928246498108
+              },
+              {
+                "text": "lain",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "ant",
+                "logprob": -0.002118606586009264
+              },
+              {
+                "text": "has",
+                "logprob": -2.9192469120025635
+              },
+              {
+                "text": "the",
+                "logprob": -0.5573018193244934
+              },
+              {
+                "text": "option",
+                "logprob": -3.884125232696533
+              },
+              {
+                "text": ",",
+                "logprob": -5.134954929351807
+              },
+              {
+                "text": "duty",
+                "logprob": -3.851792097091675
+              },
+              {
+                "text": ",",
+                "logprob": -0.0018147443188354373
+              },
+              {
+                "text": "or",
+                "logprob": -9.083335316972807e-05
+              },
+              {
+                "text": "legal",
+                "logprob": -2.6827070713043213
+              },
+              {
+                "text": "standing",
+                "logprob": -2.103034019470215
+              },
+              {
+                "text": "to",
+                "logprob": -0.009444557130336761
+              },
+              {
+                "text": "independently",
+                "logprob": -2.252878189086914
+              },
+              {
+                "text": "commence",
+                "logprob": -1.284873366355896
+              },
+              {
+                "text": "and",
+                "logprob": -0.4063759446144104
+              },
+              {
+                "text": "maintain",
+                "logprob": -0.013521160930395126
+              },
+              {
+                "text": "the",
+                "logprob": -0.24564477801322937
+              },
+              {
+                "text": "civil",
+                "logprob": -0.01918393187224865
+              },
+              {
+                "text": "action",
+                "logprob": -8.463501580990851e-05
+              },
+              {
+                "text": "themselves",
+                "logprob": -2.0786032676696777
+              },
+              {
+                "text": ".",
+                "logprob": -0.05355348438024521
+              },
+              {
+                "text": "\n",
+                "logprob": -0.057792238891124725
+              },
+              {
+                "text": "\n",
+                "logprob": -0.002409295178949833
+              },
+              {
+                "text": "Con",
+                "logprob": -0.411146342754364
+              },
+              {
+                "text": "clusion",
+                "logprob": -0.0002450642641633749
+              },
+              {
+                "text": ":",
+                "logprob": -0.0007364421617239714
+              },
+              {
+                "text": "Based",
+                "logprob": -0.8053776025772095
+              },
+              {
+                "text": "on",
+                "logprob": -7.450303382938728e-05
+              },
+              {
+                "text": "these",
+                "logprob": -4.595787525177002
+              },
+              {
+                "text": "reasoning",
+                "logprob": -3.3870317935943604
+              },
+              {
+                "text": "steps",
+                "logprob": -1.966933996300213e-05
+              },
+              {
+                "text": ",",
+                "logprob": -0.005383873358368874
+              },
+              {
+                "text": "the",
+                "logprob": -0.18411746621131897
+              },
+              {
+                "text": "clause",
+                "logprob": -0.6725987195968628
+              },
+              {
+                "text": "does",
+                "logprob": -0.20788083970546722
+              },
+              {
+                "text": "not",
+                "logprob": -0.001949435449205339
+              },
+              {
+                "text": "specify",
+                "logprob": -0.14160288870334625
+              },
+              {
+                "text": "a",
+                "logprob": -0.07555607706308365
+              },
+              {
+                "text": "private",
+                "logprob": -0.006087926682084799
+              },
+              {
+                "text": "right",
+                "logprob": -6.794906312279636e-06
+              },
+              {
+                "text": "of",
+                "logprob": -6.556489552167477e-06
+              },
+              {
+                "text": "action",
+                "logprob": -2.7418097943154862e-06
+              },
+              {
+                "text": "for",
+                "logprob": -0.6383665204048157
+              },
+              {
+                "text": "the",
+                "logprob": -0.16708964109420776
+              },
+              {
+                "text": "comp",
+                "logprob": -0.22874648869037628
+              },
+              {
+                "text": "lain",
+                "logprob": 0.0
+              },
+              {
+                "text": "ant",
+                "logprob": -2.6225699912174605e-05
+              },
+              {
+                "text": ".",
+                "logprob": -1.068242073059082
+              },
+              {
+                "text": "The",
+                "logprob": -0.678241491317749
+              },
+              {
+                "text": "comp",
+                "logprob": -1.0492523908615112
+              },
+              {
+                "text": "lain",
+                "logprob": -0.00021181246847845614
+              },
+              {
+                "text": "ant",
+                "logprob": -1.6331539882230572e-05
+              },
+              {
+                "text": "'",
+                "logprob": -0.34560972452163696
+              },
+              {
+                "text": "s",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "rights",
+                "logprob": -0.18766051530838013
+              },
+              {
+                "text": "are",
+                "logprob": -0.005268024746328592
+              },
+              {
+                "text": "being",
+                "logprob": -0.3254050314426422
+              },
+              {
+                "text": "enfor",
+                "logprob": -0.07472030818462372
+              },
+              {
+                "text": "ced",
+                "logprob": -7.033323527139146e-06
+              },
+              {
+                "text": "by",
+                "logprob": -0.2672228515148163
+              },
+              {
+                "text": "staff",
+                "logprob": -0.5267765522003174
+              },
+              {
+                "text": "att",
+                "logprob": -8.296622399939224e-05
+              },
+              {
+                "text": "or",
+                "logprob": -2.7418097943154862e-06
+              },
+              {
+                "text": "ne",
+                "logprob": 0.0
+              },
+              {
+                "text": "ys",
+                "logprob": 0.0
+              },
+              {
+                "text": ",",
+                "logprob": -2.3065452575683594
+              },
+              {
+                "text": "as",
+                "logprob": -1.9770948886871338
+              },
+              {
+                "text": "directed",
+                "logprob": -0.39890429377555847
+              },
+              {
+                "text": "by",
+                "logprob": -0.0015482831513509154
+              },
+              {
+                "text": "the",
+                "logprob": -0.001050635357387364
+              },
+              {
+                "text": "chair",
+                "logprob": -0.053750865161418915
+              },
+              {
+                "text": "person",
+                "logprob": -0.00018499570433050394
+              },
+              {
+                "text": ".",
+                "logprob": -0.6606570482254028
+              },
+              {
+                "text": "\n",
+                "logprob": -0.28244301676750183
+              },
+              {
+                "text": "\n",
+                "logprob": -0.001703955582343042
+              },
+              {
+                "text": "Answer",
+                "logprob": -5.4238757002167404e-05
+              },
+              {
+                "text": ":",
+                "logprob": -4.172316494077677e-06
+              },
+              {
+                "text": "No",
+                "logprob": -1.4543427823809907e-05
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -1.7605116367340088
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.5915992903894852,
+              "max_token_negative_log_likelihood": 7.15864372253418,
+              "predictive_entropy": 0.11917845203415739,
+              "shannon_entropy": 0.6134042861089002
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 31.360913038253784,
+        "request_datetime": 1756149976
+      },
+      "num_train_instances": 0,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "Statute: Any  owner  or  tenant  of  residential  real property  shall  have  a private right of action for damages against any person who installs or  affixes  a  video  imaging  device  on  property adjoining such residential real property for the purpose of video taping or  taking  moving  digital  images of the recreational activities which occur in the backyard of  the  residential  real  property  without  the written  consent  thereto  of  such  owner  and/or tenant with intent to harass, annoy or alarm another person, or with intent  to  threaten  the person  or  property  of  another person."
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Yes"
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id21"
+      },
+      "train_trial_index": 0,
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "First, briefly explain your reasoning step by step, then answer yes or no.\n\nA private right of action is when a regular person, a private citizen, is legally entitled to enforce their rights under a given statute. Does the clause specify a private right of action? Answer Yes or No.\n\nStatute: Any  owner  or  tenant  of  residential  real property  shall  have  a private right of action for damages against any person who installs or  affixes  a  video  imaging  device  on  property adjoining such residential real property for the purpose of video taping or  taking  moving  digital  images of the recreational activities which occur in the backyard of  the  residential  real  property  without  the written  consent  thereto  of  such  owner  and/or tenant with intent to harass, annoy or alarm another person, or with intent  to  threaten  the person  or  property  of  another person.\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 1,
+        "max_tokens": 1030,
+        "stop_sequences": [
+          "\n"
+        ],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "Step 1: Identify the subject matter of the statute, which is the right to take action against someone who installs a video imaging device on neighboring residential real property without consent, potentially with harmful intent.\n\nStep 2: Analyze the statute to see if it grants rights to a private citizen (owner or tenant) to enforce those rights. In this statute, we can find the term \"private right of action\", which explicitly indicates that a regular person can enforce their rights under this statute.\n\nStep 3: Determine if the clause mentioned in the question is related to the identified right in the statute. The phrase \"private right of action\" is directly mentioned in the statute, and it indeed speaks to the ability of private citizens to pursue action.\n\nAnswer: Yes, the clause specifies a private right of action.<|end|><|endoftext|>",
+            "logprob": -132.20615676021117,
+            "tokens": [
+              {
+                "text": "Step",
+                "logprob": -0.003222394036129117
+              },
+              {
+                "text": "",
+                "logprob": -7.998623186722398e-05
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": ":",
+                "logprob": -6.556489552167477e-06
+              },
+              {
+                "text": "Ident",
+                "logprob": -0.12800265848636627
+              },
+              {
+                "text": "ify",
+                "logprob": -0.0008104139124043286
+              },
+              {
+                "text": "the",
+                "logprob": -0.01662367209792137
+              },
+              {
+                "text": "subject",
+                "logprob": -1.9285354614257812
+              },
+              {
+                "text": "matter",
+                "logprob": -0.38514092564582825
+              },
+              {
+                "text": "of",
+                "logprob": -1.0512892007827759
+              },
+              {
+                "text": "the",
+                "logprob": -0.004741615150123835
+              },
+              {
+                "text": "stat",
+                "logprob": -0.2825199365615845
+              },
+              {
+                "text": "ute",
+                "logprob": -4.589452510117553e-05
+              },
+              {
+                "text": ",",
+                "logprob": -0.41273611783981323
+              },
+              {
+                "text": "which",
+                "logprob": -0.001177809201180935
+              },
+              {
+                "text": "is",
+                "logprob": -0.5280648469924927
+              },
+              {
+                "text": "the",
+                "logprob": -0.8946056365966797
+              },
+              {
+                "text": "right",
+                "logprob": -1.427549123764038
+              },
+              {
+                "text": "to",
+                "logprob": -2.0049331188201904
+              },
+              {
+                "text": "take",
+                "logprob": -0.7539656758308411
+              },
+              {
+                "text": "action",
+                "logprob": -0.8672564029693604
+              },
+              {
+                "text": "against",
+                "logprob": -0.24377112090587616
+              },
+              {
+                "text": "someone",
+                "logprob": -0.9152657985687256
+              },
+              {
+                "text": "who",
+                "logprob": -0.05973416566848755
+              },
+              {
+                "text": "install",
+                "logprob": -0.04590620845556259
+              },
+              {
+                "text": "s",
+                "logprob": -1.0728830375228426e-06
+              },
+              {
+                "text": "a",
+                "logprob": -0.5434536933898926
+              },
+              {
+                "text": "video",
+                "logprob": -0.001536618685349822
+              },
+              {
+                "text": "imag",
+                "logprob": -0.003937350586056709
+              },
+              {
+                "text": "ing",
+                "logprob": -1.1920922133867862e-06
+              },
+              {
+                "text": "device",
+                "logprob": 0.0
+              },
+              {
+                "text": "on",
+                "logprob": -0.09665841609239578
+              },
+              {
+                "text": "neighbor",
+                "logprob": -2.3482604026794434
+              },
+              {
+                "text": "ing",
+                "logprob": -0.0018294993788003922
+              },
+              {
+                "text": "resident",
+                "logprob": -0.038343071937561035
+              },
+              {
+                "text": "ial",
+                "logprob": 0.0
+              },
+              {
+                "text": "real",
+                "logprob": -1.1375946998596191
+              },
+              {
+                "text": "property",
+                "logprob": -0.00020013237372040749
+              },
+              {
+                "text": "without",
+                "logprob": -0.16962411999702454
+              },
+              {
+                "text": "consent",
+                "logprob": -0.11862784624099731
+              },
+              {
+                "text": ",",
+                "logprob": -0.7300800085067749
+              },
+              {
+                "text": "potentially",
+                "logprob": -4.4588942527771
+              },
+              {
+                "text": "with",
+                "logprob": -1.2471163272857666
+              },
+              {
+                "text": "harm",
+                "logprob": -0.6517590880393982
+              },
+              {
+                "text": "ful",
+                "logprob": -3.1709168979432434e-05
+              },
+              {
+                "text": "intent",
+                "logprob": -0.001191978226415813
+              },
+              {
+                "text": ".",
+                "logprob": -0.1008296087384224
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0026537699159234762
+              },
+              {
+                "text": "\n",
+                "logprob": -0.004131116904318333
+              },
+              {
+                "text": "Step",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": ":",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "Anal",
+                "logprob": -2.4321069717407227
+              },
+              {
+                "text": "y",
+                "logprob": -0.0002022777043748647
+              },
+              {
+                "text": "ze",
+                "logprob": -3.671578815556131e-05
+              },
+              {
+                "text": "the",
+                "logprob": -0.01723526418209076
+              },
+              {
+                "text": "stat",
+                "logprob": -2.946106195449829
+              },
+              {
+                "text": "ute",
+                "logprob": -0.017863109707832336
+              },
+              {
+                "text": "to",
+                "logprob": -0.9735473394393921
+              },
+              {
+                "text": "see",
+                "logprob": -1.5327683687210083
+              },
+              {
+                "text": "if",
+                "logprob": -0.01007754821330309
+              },
+              {
+                "text": "it",
+                "logprob": -0.0651901364326477
+              },
+              {
+                "text": "gr",
+                "logprob": -1.200032114982605
+              },
+              {
+                "text": "ants",
+                "logprob": 0.0
+              },
+              {
+                "text": "rights",
+                "logprob": -2.547421932220459
+              },
+              {
+                "text": "to",
+                "logprob": -0.7639924883842468
+              },
+              {
+                "text": "a",
+                "logprob": -0.6459624767303467
+              },
+              {
+                "text": "private",
+                "logprob": -0.6648178696632385
+              },
+              {
+                "text": "citiz",
+                "logprob": -0.19204388558864594
+              },
+              {
+                "text": "en",
+                "logprob": 0.0
+              },
+              {
+                "text": "(",
+                "logprob": -0.9586827754974365
+              },
+              {
+                "text": "owner",
+                "logprob": -0.2890367805957794
+              },
+              {
+                "text": "or",
+                "logprob": -0.011397253721952438
+              },
+              {
+                "text": "ten",
+                "logprob": -1.6689286894688848e-06
+              },
+              {
+                "text": "ant",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": ")",
+                "logprob": -0.09283528476953506
+              },
+              {
+                "text": "to",
+                "logprob": -0.29015132784843445
+              },
+              {
+                "text": "en",
+                "logprob": -0.13007454574108124
+              },
+              {
+                "text": "force",
+                "logprob": -0.0018134353449568152
+              },
+              {
+                "text": "those",
+                "logprob": -1.4256420135498047
+              },
+              {
+                "text": "rights",
+                "logprob": -0.0273443553596735
+              },
+              {
+                "text": ".",
+                "logprob": -0.31372353434562683
+              },
+              {
+                "text": "In",
+                "logprob": -2.616734743118286
+              },
+              {
+                "text": "this",
+                "logprob": -0.06903378665447235
+              },
+              {
+                "text": "stat",
+                "logprob": -4.016622543334961
+              },
+              {
+                "text": "ute",
+                "logprob": -0.00016437610611319542
+              },
+              {
+                "text": ",",
+                "logprob": -0.0013327058404684067
+              },
+              {
+                "text": "we",
+                "logprob": -3.5099191665649414
+              },
+              {
+                "text": "can",
+                "logprob": -1.7825229167938232
+              },
+              {
+                "text": "find",
+                "logprob": -3.1680490970611572
+              },
+              {
+                "text": "the",
+                "logprob": -1.28382408618927
+              },
+              {
+                "text": "term",
+                "logprob": -3.710211753845215
+              },
+              {
+                "text": "\"",
+                "logprob": -0.009397320449352264
+              },
+              {
+                "text": "private",
+                "logprob": -0.07405222952365875
+              },
+              {
+                "text": "right",
+                "logprob": -0.00035696811391972005
+              },
+              {
+                "text": "of",
+                "logprob": -1.7046782886609435e-05
+              },
+              {
+                "text": "action",
+                "logprob": -2.0265558760002023e-06
+              },
+              {
+                "text": "\",",
+                "logprob": -3.3036723136901855
+              },
+              {
+                "text": "which",
+                "logprob": -0.14819057285785675
+              },
+              {
+                "text": "explicitly",
+                "logprob": -1.7987422943115234
+              },
+              {
+                "text": "indicates",
+                "logprob": -2.507838487625122
+              },
+              {
+                "text": "that",
+                "logprob": -0.2609586715698242
+              },
+              {
+                "text": "a",
+                "logprob": -1.3262763023376465
+              },
+              {
+                "text": "regular",
+                "logprob": -1.967453956604004
+              },
+              {
+                "text": "person",
+                "logprob": -0.07637302577495575
+              },
+              {
+                "text": "can",
+                "logprob": -1.7697679996490479
+              },
+              {
+                "text": "en",
+                "logprob": -0.7559128999710083
+              },
+              {
+                "text": "force",
+                "logprob": -0.0020617435220628977
+              },
+              {
+                "text": "their",
+                "logprob": -0.18855199217796326
+              },
+              {
+                "text": "rights",
+                "logprob": -0.0073660449124872684
+              },
+              {
+                "text": "under",
+                "logprob": -0.34610480070114136
+              },
+              {
+                "text": "this",
+                "logprob": -0.2310127466917038
+              },
+              {
+                "text": "stat",
+                "logprob": -0.5996313095092773
+              },
+              {
+                "text": "ute",
+                "logprob": -0.0003761537664104253
+              },
+              {
+                "text": ".",
+                "logprob": -0.02314760722219944
+              },
+              {
+                "text": "\n",
+                "logprob": -0.003854228649288416
+              },
+              {
+                "text": "\n",
+                "logprob": -2.9205850296420977e-05
+              },
+              {
+                "text": "Step",
+                "logprob": -0.013115918263792992
+              },
+              {
+                "text": "",
+                "logprob": -1.4305104514278355e-06
+              },
+              {
+                "text": "3",
+                "logprob": -1.1920922133867862e-06
+              },
+              {
+                "text": ":",
+                "logprob": -3.933898824470816e-06
+              },
+              {
+                "text": "Det",
+                "logprob": -1.5382726192474365
+              },
+              {
+                "text": "erm",
+                "logprob": -3.71926071238704e-05
+              },
+              {
+                "text": "ine",
+                "logprob": -0.00015138434537220746
+              },
+              {
+                "text": "if",
+                "logprob": -0.2451220005750656
+              },
+              {
+                "text": "the",
+                "logprob": -0.0904259905219078
+              },
+              {
+                "text": "clause",
+                "logprob": -0.4615660607814789
+              },
+              {
+                "text": "mentioned",
+                "logprob": -2.7337734699249268
+              },
+              {
+                "text": "in",
+                "logprob": -0.6989341378211975
+              },
+              {
+                "text": "the",
+                "logprob": -0.011844308115541935
+              },
+              {
+                "text": "question",
+                "logprob": -0.025251494720578194
+              },
+              {
+                "text": "is",
+                "logprob": -1.1276284456253052
+              },
+              {
+                "text": "related",
+                "logprob": -4.172502517700195
+              },
+              {
+                "text": "to",
+                "logprob": -0.004649304784834385
+              },
+              {
+                "text": "the",
+                "logprob": -0.2631984353065491
+              },
+              {
+                "text": "identified",
+                "logprob": -2.5566086769104004
+              },
+              {
+                "text": "right",
+                "logprob": -1.4859693050384521
+              },
+              {
+                "text": "in",
+                "logprob": -0.8979079723358154
+              },
+              {
+                "text": "the",
+                "logprob": -0.17872685194015503
+              },
+              {
+                "text": "stat",
+                "logprob": -0.011649792082607746
+              },
+              {
+                "text": "ute",
+                "logprob": -0.00012492353562265635
+              },
+              {
+                "text": ".",
+                "logprob": -0.04608779773116112
+              },
+              {
+                "text": "The",
+                "logprob": -0.5142878293991089
+              },
+              {
+                "text": "phrase",
+                "logprob": -4.548108100891113
+              },
+              {
+                "text": "\"",
+                "logprob": -0.10024529695510864
+              },
+              {
+                "text": "private",
+                "logprob": -0.06077136471867561
+              },
+              {
+                "text": "right",
+                "logprob": -8.237022848334163e-05
+              },
+              {
+                "text": "of",
+                "logprob": -2.0503786799963564e-05
+              },
+              {
+                "text": "action",
+                "logprob": -7.152531907195225e-06
+              },
+              {
+                "text": "\"",
+                "logprob": -0.0165778286755085
+              },
+              {
+                "text": "is",
+                "logprob": -1.1994584798812866
+              },
+              {
+                "text": "directly",
+                "logprob": -1.2531875371932983
+              },
+              {
+                "text": "mentioned",
+                "logprob": -0.9341261982917786
+              },
+              {
+                "text": "in",
+                "logprob": -0.2951580882072449
+              },
+              {
+                "text": "the",
+                "logprob": -0.019833579659461975
+              },
+              {
+                "text": "stat",
+                "logprob": -0.07017874717712402
+              },
+              {
+                "text": "ute",
+                "logprob": -0.0010881462367251515
+              },
+              {
+                "text": ",",
+                "logprob": -0.9757421612739563
+              },
+              {
+                "text": "and",
+                "logprob": -1.72061026096344
+              },
+              {
+                "text": "it",
+                "logprob": -0.1770150512456894
+              },
+              {
+                "text": "indeed",
+                "logprob": -6.184566497802734
+              },
+              {
+                "text": "speak",
+                "logprob": -5.75222635269165
+              },
+              {
+                "text": "s",
+                "logprob": -2.95634672511369e-05
+              },
+              {
+                "text": "to",
+                "logprob": -0.6826267838478088
+              },
+              {
+                "text": "the",
+                "logprob": -0.09766235947608948
+              },
+              {
+                "text": "ability",
+                "logprob": -0.8970620632171631
+              },
+              {
+                "text": "of",
+                "logprob": -0.03671758994460106
+              },
+              {
+                "text": "private",
+                "logprob": -3.0601589679718018
+              },
+              {
+                "text": "citizens",
+                "logprob": -0.15780016779899597
+              },
+              {
+                "text": "to",
+                "logprob": -0.2777796983718872
+              },
+              {
+                "text": "purs",
+                "logprob": -4.324105262756348
+              },
+              {
+                "text": "ue",
+                "logprob": -3.2186455882765586e-06
+              },
+              {
+                "text": "action",
+                "logprob": -3.1842212677001953
+              },
+              {
+                "text": ".",
+                "logprob": -0.8208639621734619
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0023234295658767223
+              },
+              {
+                "text": "\n",
+                "logprob": -2.2172682292875834e-05
+              },
+              {
+                "text": "Answer",
+                "logprob": -1.1825929880142212
+              },
+              {
+                "text": ":",
+                "logprob": -0.0003688847064040601
+              },
+              {
+                "text": "Yes",
+                "logprob": -0.00020883286197204143
+              },
+              {
+                "text": ",",
+                "logprob": -0.08159419149160385
+              },
+              {
+                "text": "the",
+                "logprob": -0.002690626075491309
+              },
+              {
+                "text": "clause",
+                "logprob": -0.013670042157173157
+              },
+              {
+                "text": "spec",
+                "logprob": -0.2009388655424118
+              },
+              {
+                "text": "ifies",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "a",
+                "logprob": -0.000271521887043491
+              },
+              {
+                "text": "private",
+                "logprob": -0.0021912867669016123
+              },
+              {
+                "text": "right",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "of",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "action",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": ".",
+                "logprob": -0.056886084377765656
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.014106209389865398
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.6885736599529045,
+              "max_token_negative_log_likelihood": 6.184561729431152,
+              "predictive_entropy": 0.12718804954039964,
+              "shannon_entropy": 0.7039121402232835
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 18.213109493255615,
+        "request_datetime": 1756149976
+      },
+      "num_train_instances": 0,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    },
+    {
+      "instance": {
+        "input": {
+          "text": "Statute: A residential tenant may bring a civil action for a violation of this section and recover from the landlord $250 or actual damages, whichever is greater, and reasonable attorney's fees."
+        },
+        "references": [
+          {
+            "output": {
+              "text": "Yes"
+            },
+            "tags": [
+              "correct"
+            ]
+          }
+        ],
+        "split": "test",
+        "id": "id18"
+      },
+      "train_trial_index": 0,
+      "request": {
+        "model_deployment": "huggingface/phi-3.5-mini-instruct",
+        "model": "microsoft/phi-3.5-mini-instruct",
+        "embedding": false,
+        "prompt": "First, briefly explain your reasoning step by step, then answer yes or no.\n\nA private right of action is when a regular person, a private citizen, is legally entitled to enforce their rights under a given statute. Does the clause specify a private right of action? Answer Yes or No.\n\nStatute: A residential tenant may bring a civil action for a violation of this section and recover from the landlord $250 or actual damages, whichever is greater, and reasonable attorney's fees.\nAnswer:",
+        "temperature": 0.0,
+        "num_completions": 1,
+        "top_k_per_token": 1,
+        "max_tokens": 1030,
+        "stop_sequences": [
+          "\n"
+        ],
+        "echo_prompt": false,
+        "top_p": 1,
+        "presence_penalty": 0,
+        "frequency_penalty": 0
+      },
+      "result": {
+        "success": true,
+        "embedding": [],
+        "completions": [
+          {
+            "text": "Step 1: Identify the key elements in the provided statute. The statute mentions that a residential tenant and a landlord are involved.\n\nStep 2: Recognize that the statute allows a residential tenant to bring a civil action. This indicates that the tenant has the legal authority to initiate a lawsuit.\n\nStep 3: Determine the context of the lawsuit. The tenant can sue for a violation of the statute and seek financial recourse in the form of either $250 or actual damages (whichever is greater), along with the possibility of recovering reasonable attorney's fees.\n\nStep 4: Understand that the ability for the tenant to initiate a civil action is indicative of a private right of action. The right to enforce one's rights under the statute through the legal system is a primary feature of a private right of action.\n\nStep 5: Assess the provided information against the definition of a private right of action.\n\nGiven the examination of the steps above, the answer to the question is:\n\nAnswer: Yes\n\nThe clause does specify a private right of action as it allows a residential tenant (a private citizen) to bring a civil action for a violation of the statute and seek compensation or actual damages.<|end|><|endoftext|>",
+            "logprob": -175.6197263518779,
+            "tokens": [
+              {
+                "text": "Step",
+                "logprob": -0.004813867621123791
+              },
+              {
+                "text": "",
+                "logprob": -0.00023123928986024112
+              },
+              {
+                "text": "1",
+                "logprob": 0.0
+              },
+              {
+                "text": ":",
+                "logprob": -6.6756979322235566e-06
+              },
+              {
+                "text": "Ident",
+                "logprob": -0.8113866448402405
+              },
+              {
+                "text": "ify",
+                "logprob": -0.0004907834227196872
+              },
+              {
+                "text": "the",
+                "logprob": -0.01193030271679163
+              },
+              {
+                "text": "key",
+                "logprob": -0.5153636932373047
+              },
+              {
+                "text": "elements",
+                "logprob": -0.22974024713039398
+              },
+              {
+                "text": "in",
+                "logprob": -0.3228549361228943
+              },
+              {
+                "text": "the",
+                "logprob": -7.891343557275832e-05
+              },
+              {
+                "text": "provided",
+                "logprob": -1.7216700315475464
+              },
+              {
+                "text": "stat",
+                "logprob": -0.21664129197597504
+              },
+              {
+                "text": "ute",
+                "logprob": -0.001814387273043394
+              },
+              {
+                "text": ".",
+                "logprob": -0.3576924204826355
+              },
+              {
+                "text": "The",
+                "logprob": -2.18926739692688
+              },
+              {
+                "text": "stat",
+                "logprob": -1.24574613571167
+              },
+              {
+                "text": "ute",
+                "logprob": -0.00015448330668732524
+              },
+              {
+                "text": "mentions",
+                "logprob": -0.23378145694732666
+              },
+              {
+                "text": "that",
+                "logprob": -1.1724274158477783
+              },
+              {
+                "text": "a",
+                "logprob": -0.03124098666012287
+              },
+              {
+                "text": "resident",
+                "logprob": -0.08420500159263611
+              },
+              {
+                "text": "ial",
+                "logprob": -8.344646857949556e-07
+              },
+              {
+                "text": "ten",
+                "logprob": 0.0
+              },
+              {
+                "text": "ant",
+                "logprob": 0.0
+              },
+              {
+                "text": "and",
+                "logprob": -12.42357349395752
+              },
+              {
+                "text": "a",
+                "logprob": -1.3625489473342896
+              },
+              {
+                "text": "land",
+                "logprob": -0.039083003997802734
+              },
+              {
+                "text": "l",
+                "logprob": -1.2755313036905136e-05
+              },
+              {
+                "text": "ord",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "are",
+                "logprob": -0.03554146736860275
+              },
+              {
+                "text": "involved",
+                "logprob": -0.07165579497814178
+              },
+              {
+                "text": ".",
+                "logprob": -1.451419472694397
+              },
+              {
+                "text": "\n",
+                "logprob": -0.3926395773887634
+              },
+              {
+                "text": "\n",
+                "logprob": -0.021618783473968506
+              },
+              {
+                "text": "Step",
+                "logprob": -3.2186455882765586e-06
+              },
+              {
+                "text": "",
+                "logprob": -4.768370445162873e-07
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": ":",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "Rec",
+                "logprob": -2.555175304412842
+              },
+              {
+                "text": "ogn",
+                "logprob": -0.00038628268521279097
+              },
+              {
+                "text": "ize",
+                "logprob": -9.321732068201527e-05
+              },
+              {
+                "text": "that",
+                "logprob": -1.3649487495422363
+              },
+              {
+                "text": "the",
+                "logprob": -0.18321189284324646
+              },
+              {
+                "text": "stat",
+                "logprob": -0.28017574548721313
+              },
+              {
+                "text": "ute",
+                "logprob": -0.0001287377526750788
+              },
+              {
+                "text": "allows",
+                "logprob": -0.9417054653167725
+              },
+              {
+                "text": "a",
+                "logprob": -0.9129572510719299
+              },
+              {
+                "text": "resident",
+                "logprob": -0.132362499833107
+              },
+              {
+                "text": "ial",
+                "logprob": -8.344646857949556e-07
+              },
+              {
+                "text": "ten",
+                "logprob": -2.622600959512056e-06
+              },
+              {
+                "text": "ant",
+                "logprob": 0.0
+              },
+              {
+                "text": "to",
+                "logprob": -0.014765975996851921
+              },
+              {
+                "text": "bring",
+                "logprob": -0.395411878824234
+              },
+              {
+                "text": "a",
+                "logprob": -0.012249831110239029
+              },
+              {
+                "text": "civil",
+                "logprob": -0.15632052719593048
+              },
+              {
+                "text": "action",
+                "logprob": -5.173549288883805e-05
+              },
+              {
+                "text": ".",
+                "logprob": -0.7588098645210266
+              },
+              {
+                "text": "This",
+                "logprob": -0.3512418866157532
+              },
+              {
+                "text": "indicates",
+                "logprob": -1.4170544147491455
+              },
+              {
+                "text": "that",
+                "logprob": -0.22886882722377777
+              },
+              {
+                "text": "the",
+                "logprob": -1.053836703300476
+              },
+              {
+                "text": "ten",
+                "logprob": -0.3250555992126465
+              },
+              {
+                "text": "ant",
+                "logprob": -0.00044848397374153137
+              },
+              {
+                "text": "has",
+                "logprob": -0.34700480103492737
+              },
+              {
+                "text": "the",
+                "logprob": -0.2269841432571411
+              },
+              {
+                "text": "legal",
+                "logprob": -0.6361303329467773
+              },
+              {
+                "text": "authority",
+                "logprob": -0.9595798254013062
+              },
+              {
+                "text": "to",
+                "logprob": -0.04799075797200203
+              },
+              {
+                "text": "initi",
+                "logprob": -1.2810344696044922
+              },
+              {
+                "text": "ate",
+                "logprob": -1.1444026313256472e-05
+              },
+              {
+                "text": "a",
+                "logprob": -0.28332287073135376
+              },
+              {
+                "text": "law",
+                "logprob": -0.12444109469652176
+              },
+              {
+                "text": "suit",
+                "logprob": -7.152301259338856e-05
+              },
+              {
+                "text": ".",
+                "logprob": -0.3655715584754944
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0020302177872508764
+              },
+              {
+                "text": "\n",
+                "logprob": -7.748573807475623e-06
+              },
+              {
+                "text": "Step",
+                "logprob": 0.0
+              },
+              {
+                "text": "",
+                "logprob": -7.152555099310121e-07
+              },
+              {
+                "text": "3",
+                "logprob": 0.0
+              },
+              {
+                "text": ":",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "Det",
+                "logprob": -1.3443788290023804
+              },
+              {
+                "text": "erm",
+                "logprob": -0.00012242044613230973
+              },
+              {
+                "text": "ine",
+                "logprob": -7.867782187531702e-06
+              },
+              {
+                "text": "the",
+                "logprob": -0.44871366024017334
+              },
+              {
+                "text": "context",
+                "logprob": -4.027882099151611
+              },
+              {
+                "text": "of",
+                "logprob": -0.6415025591850281
+              },
+              {
+                "text": "the",
+                "logprob": -0.09704525023698807
+              },
+              {
+                "text": "law",
+                "logprob": -1.6588250398635864
+              },
+              {
+                "text": "suit",
+                "logprob": -0.00048315772437490523
+              },
+              {
+                "text": ".",
+                "logprob": -0.16625766456127167
+              },
+              {
+                "text": "The",
+                "logprob": -0.2651097774505615
+              },
+              {
+                "text": "ten",
+                "logprob": -3.0322041511535645
+              },
+              {
+                "text": "ant",
+                "logprob": -0.0002348147245356813
+              },
+              {
+                "text": "can",
+                "logprob": -0.375119149684906
+              },
+              {
+                "text": "sue",
+                "logprob": -1.2769289016723633
+              },
+              {
+                "text": "for",
+                "logprob": -0.13856340944766998
+              },
+              {
+                "text": "a",
+                "logprob": -0.05378611013293266
+              },
+              {
+                "text": "viol",
+                "logprob": -0.0045167566277086735
+              },
+              {
+                "text": "ation",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "of",
+                "logprob": -0.020451387390494347
+              },
+              {
+                "text": "the",
+                "logprob": -0.6350162029266357
+              },
+              {
+                "text": "stat",
+                "logprob": -1.0134814977645874
+              },
+              {
+                "text": "ute",
+                "logprob": -0.0022109129931777716
+              },
+              {
+                "text": "and",
+                "logprob": -1.5783734321594238
+              },
+              {
+                "text": "seek",
+                "logprob": -0.9063737392425537
+              },
+              {
+                "text": "financial",
+                "logprob": -3.5340652465820312
+              },
+              {
+                "text": "rec",
+                "logprob": -5.896479606628418
+              },
+              {
+                "text": "ourse",
+                "logprob": -0.010517879389226437
+              },
+              {
+                "text": "in",
+                "logprob": -3.4493589401245117
+              },
+              {
+                "text": "the",
+                "logprob": -0.1329273134469986
+              },
+              {
+                "text": "form",
+                "logprob": -0.0034252090845257044
+              },
+              {
+                "text": "of",
+                "logprob": -3.6954811548639555e-06
+              },
+              {
+                "text": "either",
+                "logprob": -2.690443515777588
+              },
+              {
+                "text": "$",
+                "logprob": -0.07387210428714752
+              },
+              {
+                "text": "2",
+                "logprob": 0.0
+              },
+              {
+                "text": "5",
+                "logprob": 0.0
+              },
+              {
+                "text": "0",
+                "logprob": 0.0
+              },
+              {
+                "text": "or",
+                "logprob": -0.03240867331624031
+              },
+              {
+                "text": "actual",
+                "logprob": -0.013340616598725319
+              },
+              {
+                "text": "dam",
+                "logprob": -4.3987260141875595e-05
+              },
+              {
+                "text": "ages",
+                "logprob": 0.0
+              },
+              {
+                "text": "(",
+                "logprob": -1.3310478925704956
+              },
+              {
+                "text": "wh",
+                "logprob": -0.12320594489574432
+              },
+              {
+                "text": "iche",
+                "logprob": -0.00021872512297704816
+              },
+              {
+                "text": "ver",
+                "logprob": 0.0
+              },
+              {
+                "text": "is",
+                "logprob": -0.0016269554616883397
+              },
+              {
+                "text": "greater",
+                "logprob": -0.01036121416836977
+              },
+              {
+                "text": "),",
+                "logprob": -0.3835194706916809
+              },
+              {
+                "text": "along",
+                "logprob": -1.2592442035675049
+              },
+              {
+                "text": "with",
+                "logprob": -1.7881377516459906e-06
+              },
+              {
+                "text": "the",
+                "logprob": -5.787996768951416
+              },
+              {
+                "text": "possibility",
+                "logprob": -0.7490280866622925
+              },
+              {
+                "text": "of",
+                "logprob": -0.05682346597313881
+              },
+              {
+                "text": "recover",
+                "logprob": -0.14830723404884338
+              },
+              {
+                "text": "ing",
+                "logprob": -0.00028939827461726964
+              },
+              {
+                "text": "reasonable",
+                "logprob": -0.01708480343222618
+              },
+              {
+                "text": "att",
+                "logprob": -3.099436753473128e-06
+              },
+              {
+                "text": "orney",
+                "logprob": -9.536738616588991e-07
+              },
+              {
+                "text": "'",
+                "logprob": -0.0009803733555600047
+              },
+              {
+                "text": "s",
+                "logprob": 0.0
+              },
+              {
+                "text": "fe",
+                "logprob": -5.960462772236497e-07
+              },
+              {
+                "text": "es",
+                "logprob": 0.0
+              },
+              {
+                "text": ".",
+                "logprob": -0.0010265801101922989
+              },
+              {
+                "text": "\n",
+                "logprob": -0.008500228635966778
+              },
+              {
+                "text": "\n",
+                "logprob": -2.9802276912960224e-06
+              },
+              {
+                "text": "Step",
+                "logprob": -0.0016317160334438086
+              },
+              {
+                "text": "",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "4",
+                "logprob": 0.0
+              },
+              {
+                "text": ":",
+                "logprob": -7.152555099310121e-07
+              },
+              {
+                "text": "Under",
+                "logprob": -3.52195143699646
+              },
+              {
+                "text": "stand",
+                "logprob": -0.0049838596023619175
+              },
+              {
+                "text": "that",
+                "logprob": -0.42005208134651184
+              },
+              {
+                "text": "the",
+                "logprob": -0.6012802720069885
+              },
+              {
+                "text": "ability",
+                "logprob": -0.7841358184814453
+              },
+              {
+                "text": "for",
+                "logprob": -0.9344439506530762
+              },
+              {
+                "text": "the",
+                "logprob": -1.2218533754348755
+              },
+              {
+                "text": "ten",
+                "logprob": -0.35904186964035034
+              },
+              {
+                "text": "ant",
+                "logprob": -1.1920922133867862e-06
+              },
+              {
+                "text": "to",
+                "logprob": -0.04962457716464996
+              },
+              {
+                "text": "initi",
+                "logprob": -0.6456160545349121
+              },
+              {
+                "text": "ate",
+                "logprob": -1.2397689715726301e-05
+              },
+              {
+                "text": "a",
+                "logprob": -0.1390102058649063
+              },
+              {
+                "text": "civil",
+                "logprob": -1.9934642314910889
+              },
+              {
+                "text": "action",
+                "logprob": -0.04253767058253288
+              },
+              {
+                "text": "is",
+                "logprob": -3.0491044521331787
+              },
+              {
+                "text": "indic",
+                "logprob": -1.8506064414978027
+              },
+              {
+                "text": "ative",
+                "logprob": -0.00025006983196362853
+              },
+              {
+                "text": "of",
+                "logprob": -0.0006086166249588132
+              },
+              {
+                "text": "a",
+                "logprob": -0.24693912267684937
+              },
+              {
+                "text": "private",
+                "logprob": -0.1308448165655136
+              },
+              {
+                "text": "right",
+                "logprob": -0.001587560516782105
+              },
+              {
+                "text": "of",
+                "logprob": -0.0003275334893260151
+              },
+              {
+                "text": "action",
+                "logprob": -1.6569954823353328e-05
+              },
+              {
+                "text": ".",
+                "logprob": -0.2827320098876953
+              },
+              {
+                "text": "The",
+                "logprob": -2.552706003189087
+              },
+              {
+                "text": "right",
+                "logprob": -3.2882633209228516
+              },
+              {
+                "text": "to",
+                "logprob": -1.088536024093628
+              },
+              {
+                "text": "en",
+                "logprob": -0.7321391701698303
+              },
+              {
+                "text": "force",
+                "logprob": -0.001953480765223503
+              },
+              {
+                "text": "one",
+                "logprob": -1.8787407875061035
+              },
+              {
+                "text": "'",
+                "logprob": -0.0040998938493430614
+              },
+              {
+                "text": "s",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "rights",
+                "logprob": -0.15029668807983398
+              },
+              {
+                "text": "under",
+                "logprob": -0.4087994694709778
+              },
+              {
+                "text": "the",
+                "logprob": -0.7057430744171143
+              },
+              {
+                "text": "stat",
+                "logprob": -0.14601944386959076
+              },
+              {
+                "text": "ute",
+                "logprob": -0.0004180987598374486
+              },
+              {
+                "text": "through",
+                "logprob": -0.7749944925308228
+              },
+              {
+                "text": "the",
+                "logprob": -2.2558670043945312
+              },
+              {
+                "text": "legal",
+                "logprob": -0.4765910804271698
+              },
+              {
+                "text": "system",
+                "logprob": -0.08886300027370453
+              },
+              {
+                "text": "is",
+                "logprob": -0.4686204791069031
+              },
+              {
+                "text": "a",
+                "logprob": -0.7871372103691101
+              },
+              {
+                "text": "primary",
+                "logprob": -4.653670310974121
+              },
+              {
+                "text": "feature",
+                "logprob": -1.5804595947265625
+              },
+              {
+                "text": "of",
+                "logprob": -0.0021398996468633413
+              },
+              {
+                "text": "a",
+                "logprob": -0.08169043809175491
+              },
+              {
+                "text": "private",
+                "logprob": -0.00018439977429807186
+              },
+              {
+                "text": "right",
+                "logprob": -0.00038985759601928294
+              },
+              {
+                "text": "of",
+                "logprob": -0.0012722263345494866
+              },
+              {
+                "text": "action",
+                "logprob": -2.3841830625315197e-06
+              },
+              {
+                "text": ".",
+                "logprob": -0.0033153113909065723
+              },
+              {
+                "text": "\n",
+                "logprob": -0.0028514699079096317
+              },
+              {
+                "text": "\n",
+                "logprob": -4.6491513785440475e-06
+              },
+              {
+                "text": "Step",
+                "logprob": -1.6561102867126465
+              },
+              {
+                "text": "",
+                "logprob": -6.318072337307967e-06
+              },
+              {
+                "text": "5",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": ":",
+                "logprob": -2.9682672902708873e-05
+              },
+              {
+                "text": "Ass",
+                "logprob": -2.724032402038574
+              },
+              {
+                "text": "ess",
+                "logprob": -0.002537604421377182
+              },
+              {
+                "text": "the",
+                "logprob": -2.0005218982696533
+              },
+              {
+                "text": "provided",
+                "logprob": -2.3639442920684814
+              },
+              {
+                "text": "information",
+                "logprob": -0.5810317397117615
+              },
+              {
+                "text": "against",
+                "logprob": -1.0809496641159058
+              },
+              {
+                "text": "the",
+                "logprob": -0.007271136157214642
+              },
+              {
+                "text": "definition",
+                "logprob": -0.14316344261169434
+              },
+              {
+                "text": "of",
+                "logprob": -0.028587384149432182
+              },
+              {
+                "text": "a",
+                "logprob": -0.0038916345220059156
+              },
+              {
+                "text": "private",
+                "logprob": -0.0010027624666690826
+              },
+              {
+                "text": "right",
+                "logprob": -2.145764938177308e-06
+              },
+              {
+                "text": "of",
+                "logprob": -1.0728830375228426e-06
+              },
+              {
+                "text": "action",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": ".",
+                "logprob": -0.1521204262971878
+              },
+              {
+                "text": "\n",
+                "logprob": -2.830242156982422
+              },
+              {
+                "text": "\n",
+                "logprob": -0.002365055261179805
+              },
+              {
+                "text": "G",
+                "logprob": -2.7807538509368896
+              },
+              {
+                "text": "iven",
+                "logprob": -2.622600959512056e-06
+              },
+              {
+                "text": "the",
+                "logprob": -0.30994343757629395
+              },
+              {
+                "text": "exam",
+                "logprob": -6.154816627502441
+              },
+              {
+                "text": "ination",
+                "logprob": -0.012722281739115715
+              },
+              {
+                "text": "of",
+                "logprob": -0.22420834004878998
+              },
+              {
+                "text": "the",
+                "logprob": -0.07421151548624039
+              },
+              {
+                "text": "steps",
+                "logprob": -3.137789726257324
+              },
+              {
+                "text": "above",
+                "logprob": -0.46289336681365967
+              },
+              {
+                "text": ",",
+                "logprob": -0.05975808575749397
+              },
+              {
+                "text": "the",
+                "logprob": -0.8085775971412659
+              },
+              {
+                "text": "answer",
+                "logprob": -1.1547836065292358
+              },
+              {
+                "text": "to",
+                "logprob": -1.0317819118499756
+              },
+              {
+                "text": "the",
+                "logprob": -0.3910120129585266
+              },
+              {
+                "text": "question",
+                "logprob": -0.012202609330415726
+              },
+              {
+                "text": "is",
+                "logprob": -0.4581127166748047
+              },
+              {
+                "text": ":",
+                "logprob": -0.6510167717933655
+              },
+              {
+                "text": "\n",
+                "logprob": -0.2588324248790741
+              },
+              {
+                "text": "\n",
+                "logprob": -0.001531619462184608
+              },
+              {
+                "text": "Answer",
+                "logprob": -1.8577015399932861
+              },
+              {
+                "text": ":",
+                "logprob": -0.0001262346631847322
+              },
+              {
+                "text": "Yes",
+                "logprob": -0.00010227633902104571
+              },
+              {
+                "text": "\n",
+                "logprob": -2.5678787231445312
+              },
+              {
+                "text": "\n",
+                "logprob": -0.000337305391440168
+              },
+              {
+                "text": "The",
+                "logprob": -0.019017623737454414
+              },
+              {
+                "text": "clause",
+                "logprob": -0.08812987059354782
+              },
+              {
+                "text": "does",
+                "logprob": -1.0418907403945923
+              },
+              {
+                "text": "specify",
+                "logprob": -0.014117492362856865
+              },
+              {
+                "text": "a",
+                "logprob": -0.00011562632425921038
+              },
+              {
+                "text": "private",
+                "logprob": -8.809178689261898e-05
+              },
+              {
+                "text": "right",
+                "logprob": -1.1920928244535389e-07
+              },
+              {
+                "text": "of",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": "action",
+                "logprob": 0.0
+              },
+              {
+                "text": "as",
+                "logprob": -1.5741572380065918
+              },
+              {
+                "text": "it",
+                "logprob": -0.04097609594464302
+              },
+              {
+                "text": "allows",
+                "logprob": -0.834645688533783
+              },
+              {
+                "text": "a",
+                "logprob": -0.12862339615821838
+              },
+              {
+                "text": "resident",
+                "logprob": -0.4384455382823944
+              },
+              {
+                "text": "ial",
+                "logprob": -3.0278701160568744e-05
+              },
+              {
+                "text": "ten",
+                "logprob": -1.7404405298293568e-05
+              },
+              {
+                "text": "ant",
+                "logprob": -3.576278118089249e-07
+              },
+              {
+                "text": "(",
+                "logprob": -1.8471646308898926
+              },
+              {
+                "text": "a",
+                "logprob": -0.0723283588886261
+              },
+              {
+                "text": "private",
+                "logprob": -0.07609179615974426
+              },
+              {
+                "text": "citiz",
+                "logprob": -0.061111774295568466
+              },
+              {
+                "text": "en",
+                "logprob": 0.0
+              },
+              {
+                "text": ")",
+                "logprob": -0.0051805065013468266
+              },
+              {
+                "text": "to",
+                "logprob": -0.04184361919760704
+              },
+              {
+                "text": "bring",
+                "logprob": -1.76893949508667
+              },
+              {
+                "text": "a",
+                "logprob": -0.00859395693987608
+              },
+              {
+                "text": "civil",
+                "logprob": -0.01214348990470171
+              },
+              {
+                "text": "action",
+                "logprob": -0.01204750221222639
+              },
+              {
+                "text": "for",
+                "logprob": -0.3416770398616791
+              },
+              {
+                "text": "a",
+                "logprob": -0.08690879493951797
+              },
+              {
+                "text": "viol",
+                "logprob": -0.07494595646858215
+              },
+              {
+                "text": "ation",
+                "logprob": -6.9141146923357155e-06
+              },
+              {
+                "text": "of",
+                "logprob": -0.04371141642332077
+              },
+              {
+                "text": "the",
+                "logprob": -0.03625508025288582
+              },
+              {
+                "text": "stat",
+                "logprob": -0.1138213723897934
+              },
+              {
+                "text": "ute",
+                "logprob": -0.001630644896067679
+              },
+              {
+                "text": "and",
+                "logprob": -0.8962975740432739
+              },
+              {
+                "text": "seek",
+                "logprob": -0.44711989164352417
+              },
+              {
+                "text": "compens",
+                "logprob": -2.359368085861206
+              },
+              {
+                "text": "ation",
+                "logprob": -0.07220470160245895
+              },
+              {
+                "text": "or",
+                "logprob": -1.6094260215759277
+              },
+              {
+                "text": "actual",
+                "logprob": -2.2000601291656494
+              },
+              {
+                "text": "dam",
+                "logprob": -0.0024109601508826017
+              },
+              {
+                "text": "ages",
+                "logprob": -2.3841855067985307e-07
+              },
+              {
+                "text": ".",
+                "logprob": -1.0106335878372192
+              },
+              {
+                "text": "<|end|>",
+                "logprob": -0.11738071590662003
+              }
+            ],
+            "metrics": {
+              "sequence_negative_log_likelihood": 0.5933014347098873,
+              "max_token_negative_log_likelihood": 12.421090126037598,
+              "predictive_entropy": 0.12110602140062598,
+              "shannon_entropy": 0.6177428925959763
+            }
+          }
+        ],
+        "cached": false,
+        "request_time": 14.878615140914917,
+        "request_datetime": 1756149994
+      },
+      "num_train_instances": 0,
+      "prompt_truncated": false,
+      "num_conditioning_tokens": 0
+    }
+  ]
+}
