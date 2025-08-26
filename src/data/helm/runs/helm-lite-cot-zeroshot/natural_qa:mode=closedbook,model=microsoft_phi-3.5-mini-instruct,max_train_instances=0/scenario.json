@@ -1,0 +1,8 @@
+{
+  "name": "natural_qa",
+  "description": "Question answering from wikipedia.",
+  "tags": [
+    "question_answering"
+  ],
+  "definition_path": "https://github.com/stanford-crfm/helm/blob/main/src/helm/benchmark/scenarios/natural_qa_scenario.py"
+}

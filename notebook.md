@@ -749,9 +749,7 @@ helm-run --conf-paths src/eval-engine/src/helm/benchmark/presentation/run_entrie
 
 Also wrote the necessary code to compute the benchmarks using gemini 2.5 flash. All that is left is running it and computing the AUROC for each metric. Everything is already set up to play with other metrics and instruct models.
 
-I also debated with myself about the merits of creating an eval-engine from scratch. It may be a good idea to do it eventually, but right now its too much work when i can work with helm...
-
-But on the other hand it will get messy when I include black box metrics. But i'm getting ahead of myself
+I also debated with myself about the merits of creating an eval-engine from scratch. It may be a good idea to do it eventually, but right now its too much work when i can work with helm... But on the other hand it will get messy when I include black box metrics. 
 
 Idea:
 

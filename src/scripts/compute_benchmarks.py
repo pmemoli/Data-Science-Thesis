@@ -8,7 +8,7 @@ import os
 
 # %%
 model = "microsoft_phi-3.5-mini-instruct"
-suite = "helm-lite-custom"
+suite = "helm-lite-cot-zeroshot"
 data_path = f"src/data/helm/runs/{suite}"
 
 by_scenario = {
@@ -115,9 +115,6 @@ Correct Answers:
 values = []
 
 for scenario, runs in by_scenario.items():
-    if scenario == "narrative_qa":
-        continue
-
     for run in runs:
         print(f"Processing {run} in scenario {scenario}...\n")
 

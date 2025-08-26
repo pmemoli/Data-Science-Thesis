@@ -1,0 +1,9 @@
+{
+  "name": "MATH",
+  "description": "Mathematical Problem Solving",
+  "tags": [
+    "knowledge",
+    "reasoning"
+  ],
+  "definition_path": "https://github.com/stanford-crfm/helm/blob/main/src/helm/benchmark/scenarios/math_scenario.py"
+}

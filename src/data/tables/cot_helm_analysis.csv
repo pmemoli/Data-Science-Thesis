@@ -1,0 +1,4 @@
+scenario,run,domain,benchmark,sequence_negative_log_likelihood,max_token_negative_log_likelihood,predictive_entropy,shannon_entropy,model
+mmlu,"mmlu:subject=abstract_algebra,method=multiple_choice_joint,model=microsoft_phi-3.5-mini-instruct,max_train_instances=0",knowledge_qa,0.5945945945945946,0.4510881261490293,7.2072832154798085,0.09493603136433333,0.44904794563187356,microsoft_phi-3.5-mini-instruct
+mmlu,"mmlu:subject=college_chemistry,method=multiple_choice_joint,model=microsoft_phi-3.5-mini-instruct,max_train_instances=0",knowledge_qa,0.5462962962962963,0.4694443703082366,6.745846732898994,0.09652894272650217,0.4666110094678703,microsoft_phi-3.5-mini-instruct
+narrative_qa,"narrative_qa:model=microsoft_phi-3.5-mini-instruct,max_train_instances=0",knowledge_qa,0.9133333333333333,0.1992908175770528,1.069498177932285,0.0521594578744167,0.18800483768085766,microsoft_phi-3.5-mini-instruct
