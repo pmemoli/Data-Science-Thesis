@@ -713,7 +713,8 @@
       },
       "num_train_instances": 0,
       "prompt_truncated": false,
-      "num_conditioning_tokens": 0
+      "num_conditioning_tokens": 0,
+      "evaluation": false
     },
     {
       "instance": {
@@ -1682,7 +1683,8 @@
       },
       "num_train_instances": 0,
       "prompt_truncated": false,
-      "num_conditioning_tokens": 0
+      "num_conditioning_tokens": 0,
+      "evaluation": true
     },
     {
       "instance": {
@@ -2287,7 +2289,8 @@
       },
       "num_train_instances": 0,
       "prompt_truncated": false,
-      "num_conditioning_tokens": 0
+      "num_conditioning_tokens": 0,
+      "evaluation": true
     }
   ]
 }

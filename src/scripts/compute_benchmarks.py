@@ -12,14 +12,14 @@ suite = "helm-lite-cot-zeroshot"
 data_path = f"src/data/helm/runs/{suite}"
 
 by_scenario = {
-    "narrative_qa": [f"narrative_qa:model={model},max_train_instances=0"],
-    "mmlu": [
-        f"mmlu:subject=abstract_algebra,method=multiple_choice_joint,model={model},max_train_instances=0",
-        f"mmlu:subject=college_chemistry,method=multiple_choice_joint,model={model},max_train_instances=0",
-        f"mmlu:subject=computer_security,method=multiple_choice_joint,model={model},max_train_instances=0",
-        f"mmlu:subject=econometrics,method=multiple_choice_joint,model={model},max_train_instances=0",
-        f"mmlu:subject=us_foreign_policy,method=multiple_choice_joint,model={model},max_train_instances=0",
-    ],
+    # "narrative_qa": [f"narrative_qa:model={model},max_train_instances=0"],
+    # "mmlu": [
+    #     # f"mmlu:subject=abstract_algebra,method=multiple_choice_joint,model={model},max_train_instances=0",
+    #     # f"mmlu:subject=college_chemistry,method=multiple_choice_joint,model={model},max_train_instances=0",
+    #     # f"mmlu:subject=computer_security,method=multiple_choice_joint,model={model},max_train_instances=0",
+    #     # f"mmlu:subject=econometrics,method=multiple_choice_joint,model={model},max_train_instances=0",
+    #     # f"mmlu:subject=us_foreign_policy,method=multiple_choice_joint,model={model},max_train_instances=0",
+    # ],
     "math": [
         f"math:subject=number_theory,level=1,use_official_examples=False,use_chain_of_thought=True,model={model},max_train_instances=0",
         f"math:subject=intermediate_algebra,level=1,use_official_examples=False,use_chain_of_thought=True,model={model},max_train_instances=0",
