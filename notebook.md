@@ -765,3 +765,13 @@ Will take me 2 weeks probably but it can be really worth it! Better talk it with
 I can also add a bunch more datasets by making it custom! Possibly most of the phi 3.5 ones on top of helm.
 
 I have debugged everything. At night i'm running the evaluations and tomorrow i'm analysing the results. Not doing anything on wensday, gotta study.
+
+## August 26th 2025:
+
+Finally some results, but they are not so promising. The entropy for different tasks is very different. Non-math benchmarks have intrinsically more logprob entropy, whereas math is lower. This makes comparing performance between benchmarks very hard. Even within benchmarks, the auroc is very close to 0.5 other than in some specific cases (gsm or narrative_qa). I am also not seeing any type of correlation between the metrics themselves and the bechmark score. 
+
+This is a result in itself though, white box metrics are NOT suitable for finding domains in which the performance is low. They are primarily determined by the type of task. Of course more data is needed to affirm this in a paper, but i am quite positive of these results. I can also obtain them in paralell to the next step.
+
+The results kinda also force the next step, which is trying black box metrics on many more datasets. I am 100% building a simple framework and ditching crfm-helm.
+
+Ideally I get promising results with black box / ensemble metrics, which in turn motivates implementing ASEU and domain clustering...
