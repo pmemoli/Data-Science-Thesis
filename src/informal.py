@@ -5,135 +5,73 @@
 %autoreload 2
 
 import torch.nn.functional as F
-from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
+from src.engine.scenarios.gsm import GSM8K
+from transformers import pipeline
 
-# %%
-model = AutoModelForCausalLM.from_pretrained(
-    "microsoft/Phi-3-mini-4k-instruct",
-    device_map="auto",
-    torch_dtype="auto",
-    attn_implementation="eager",
+#%%
+dataset = GSM8K()
+
+#%%
+sample_result = dataset.sample(format="cot")
+
+print("Prompt:", sample_result["prompt"])
+print('')
+print("Reference:", sample_result["reference"])
+
+#%%
+pipe = pipeline(
+    "text-generation",
+    model="microsoft/Phi-3.5-mini-instruct",
+    tokenizer="microsoft/Phi-3.5-mini-instruct",
+    trust_remote_code=False,
+    device_map="cuda:0",
 )
-tokenizer = AutoTokenizer.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
 
-# %%
+#%%
+tokenizer = pipe.tokenizer
+model = pipe.model
+
+#%% apply chat template
 messages = [
-    [
-        {
-            "role": "system",
-            "content": "You are a helpful assistant who answers concisely",
-        },
-        {
-            "role": "user",
-            "content": "What is 2+2?",
-        },
-    ],
+    {"role": "system", "content": "You are a helpful assistant"},
+    {"role": "user", "content": sample_result["prompt"]},
 ]
 
-prompt = tokenizer.apply_chat_template(
-    messages, tokenize=False, add_generation_prompt=True
-)
+inputs = tokenizer.apply_chat_template(
+    messages,
+    tokenize=True,
+    add_generation_prompt=True,  # Adds proper assistant prompt
+    return_tensors="pt",
+    return_dict=True,  # Returns dict with input_ids AND attention_mask
+).to("cuda:0")
 
-inputs = tokenizer(prompt, return_tensors="pt", padding=True).input_ids
+prompt_length = inputs.input_ids.shape[1]
 
-#%%
-outputs = model.generate(
-    inputs,
-    max_new_tokens=1000,
-    do_sample=True,
-    temperature=1.0,
-    top_k=30,
-    top_p=0.98,
-    pad_token_id=tokenizer.pad_token_id,
-    eos_token_id=tokenizer.eos_token_id,
-    return_dict_in_generate=True,
-    output_scores=True,
-    output_attentions=True,
-    output_hidden_states=True,
-    use_cache=True,
-)
-
-#%%
-outputs.attentions
-
-#%%
-def _process_outputs(self, outputs, prompt_length, top_k=20):
-    # Obtain the probability distribution of the generated tokens
-    generated_ids = outputs.sequences[:, prompt_length:]
-
-    logits = torch.stack(outputs.scores, dim=1)
-    token_distribution = F.softmax(logits, dim=-1)
-
-    topk_probs, topk_indices = torch.topk(
-        token_distribution, k=top_k, dim=-1
+# %%
+with torch.no_grad():
+    outputs = model.generate(
+        input_ids=inputs.input_ids,
+        attention_mask=inputs.attention_mask,
+        max_new_tokens=1024,
+        temperature=0.5,
+        num_return_sequences=1,
+        do_sample=True,
+        pad_token_id=tokenizer.eos_token_id,
+        eos_token_id=tokenizer.eos_token_id,
+        use_cache=True,
+        return_dict_in_generate=True,
+        output_hidden_states=True,
     )
 
-    # Obtain sequence probabilities
-    sequence_probabilities = torch.gather(
-        token_distribution,
-        -1,
-        generated_ids.unsqueeze(-1),
-    ).squeeze(-1)
+# %%
+sequences = outputs.sequences[:, prompt_length:]
+for i, sequence in enumerate(sequences):
+    generated_text = tokenizer.decode(sequence, skip_special_tokens=True)
+    print(f"Generated {i+1}:\n", generated_text)
+    print('---')
 
-    # Obtain attention
-    decode_attentions = [step_att[-1].squeeze(dim=2) for step_att in outputs.attentions[1:]]
+# %%
+def early_stop(hidden_states):
+    pass
 
-    max_seq_length = max(att.size(-1) for att in decode_attentions)
-    attention_tensor = torch.stack(
-        [F.pad(att, (0, max_seq_length - att.size(-1))) for att in decode_attentions],
-        dim=-2
-    )
-
-    # Obtain hidden states
-    decode_hidden_states = [step_hidden[-1].squeeze(dim=1) for step_hidden in outputs.hidden_states[1:]]
-
-    hidden_states_tensor = torch.stack(
-        decode_hidden_states, dim=1
-    )
-
-    return {
-        "hidden_states": hidden_states_tensor,
-        "attentions": attention_tensor,
-        "token_distribution": topk_probs,
-        "token_distribution_ids": topk_indices,
-        "sequence_probabilities": sequence_probabilities,
-    }
-
-#%%
-result = _process_outputs(model, outputs, inputs.shape[1], top_k=50)
-
-#%%
-outputs.attentions
-
-# %% Attention
-decode_attentions = [step_att[-1].squeeze(dim=2) for step_att in outputs.attentions[1:]]
-
-max_seq_length = max(att.size(-1) for att in decode_attentions)
-attention_tensor = torch.stack(
-    [F.pad(att, (0, max_seq_length - att.size(-1))) for att in decode_attentions],
-    dim=-2
-)
-
-attention_tensor.shape
-
-outputs.attentions[0][-1].shape
-
-inputs.shape
-
-#%%
-generated_ids = outputs.sequences[:, inputs.shape[1]:]
-generated_ids.shape
-
-# decode
-decoded_text = tokenizer.batch_decode(
-    generated_ids
-)
-
-print(decoded_text)
-
-#%%
-generated_text = tokenizer.batch_decode(
-    outputs.sequences, skip_special_tokens=True
-)
-print(generated_text)

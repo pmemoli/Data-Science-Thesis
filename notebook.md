@@ -775,3 +775,45 @@ This is a result in itself though, white box metrics are NOT suitable for findin
 The results kinda also force the next step, which is trying black box metrics on many more datasets. I am 100% building a simple framework and ditching crfm-helm.
 
 Ideally I get promising results with black box / ensemble metrics, which in turn motivates implementing ASEU and domain clustering...
+
+## August 27th 2025:    
+
+Possible title: 
+
+Clarity-Oriented
+
+“Estimating Answer Trustworthiness from LLM Internal States”
+
+“Real-Time Confidence Scoring for LLM Responses Without Supervision”
+
+“On-the-Fly Reliability Estimation in LLMs via Internal Signals”
+
+Novelty-Emphasizing
+
+“Trust Signals: Leveraging Internal Dynamics of LLMs for Confidence Estimation”
+
+“Self-Reflective Models: Predicting Answer Reliability from Hidden States”
+
+“Hallucination Detection from Within: Confidence Estimation via LLM Internals”
+
+Scientific/Compact
+
+“Unsupervised Confidence Estimation in LLMs”
+
+“Intrinsic Confidence: A Self-Supervised Approach to Answer Trustworthiness”
+
+“Hidden-State Metrics for Real-Time LLM Confidence”
+
+Talked with my director, he liked the results and the conclusion that the logprob metrics are not enough. He suggested trying different metrics based on the variation between the distribution along the transformer layers. There are quite a lot of metrics that can be derived from that. 
+
+The priority is playing with this metric as a candidate in the context of gsm and math benchmarks. After that i may go with ASEU or the black box metrics.
+
+Possible metrics:
+
+- Average early stop layer accoring to some criterion (hidden state or softmax + threshold)
+
+- KL-divergence metrics (maybe for some subset such as last 1/2 or 1/4 layers):
+    - U₁ = (1/L) * Σᵢ₌₁ᴸ KL(pᵢ || pₗ)
+    - U₂ = Var(KL(p₁ || pₗ), KL(p₂ || pₗ), ..., KL(pₗ₋₁ || pₗ))
+    - U₄ = KL(p_early || p_late) (p_early and late averages of some quarters)
+    - U₅ = Var(H(p₁), H(p₂), ..., H(pₗ))
