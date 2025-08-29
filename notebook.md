@@ -810,10 +810,19 @@ The priority is playing with this metric as a candidate in the context of gsm an
 
 Possible metrics:
 
-- Average early stop layer accoring to some criterion (hidden state or softmax + threshold)
+- Average early stop layer accoring to some criterion, such as hidden state or softmax + threshold or "p-value" for exiting a given layer
 
 - KL-divergence metrics (maybe for some subset such as last 1/2 or 1/4 layers):
     - U₁ = (1/L) * Σᵢ₌₁ᴸ KL(pᵢ || pₗ)
-    - U₂ = Var(KL(p₁ || pₗ), KL(p₂ || pₗ), ..., KL(pₗ₋₁ || pₗ))
+    - U₂ = Var(KL(p₁ || pₗ), KL(p₂ || pₗ), ..., KL(pₗ₋₁ || pₗ)) (and median)
     - U₄ = KL(p_early || p_late) (p_early and late averages of some quarters)
-    - U₅ = Var(H(p₁), H(p₂), ..., H(pₗ))
+    - U₅ = Var(H(p₁), H(p₂), ..., H(pₗ)) (and median)
+
+## August 29th 2025
+
+Thought something soooo cool. All these token level uncertainty estimations get dilluted when averaging over long sequences. That may be one of the reasons why the AUROC was reasonably high for gsm8k and narrative-qa, but not for other metrics. There are many ways of pooling and averaging to ignore low-entropy tokens:
+
+- Entropy / max prob weighting
+- Top k proportion pooling (maybe something dynamic too?)
+
+This applies to ALL uncertainty metrics! This opens a pandora box of experimentation! I can take the pooling as a hyperparameter and try a bunch of metrics such as the ones above.
