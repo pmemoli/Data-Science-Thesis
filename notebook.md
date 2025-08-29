@@ -826,3 +826,6 @@ Thought something soooo cool. All these token level uncertainty estimations get 
 - Top k proportion pooling (maybe something dynamic too?)
 
 This applies to ALL uncertainty metrics! This opens a pandora box of experimentation! I can take the pooling as a hyperparameter and try a bunch of metrics such as the ones above.
+
+The idea is as simple as defining a token-level metric, and then normalizing/pooling.
+
