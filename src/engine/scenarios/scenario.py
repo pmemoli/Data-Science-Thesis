@@ -6,7 +6,7 @@ class Scenario:
         self.items: list[DatasetItem] = []
 
     def load_dataset(self):
-        pass # To be implemented in subclasses
+        pass # Implemented in subclasses
 
     def sample(self, format:Task | None=None) -> SampleResult | None:
         dataset_item = self.items.pop() if self.items else None

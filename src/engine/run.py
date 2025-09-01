@@ -7,7 +7,7 @@ def run_benchmark(
     model_name: str,
     suite: str,
     result_path: str,
-    temperature:int = 0.5,
+    temperature:float = 0.5,
     max_length:int = 1024,
     batch_size:int = 1,
     sample_amount:int = 1,

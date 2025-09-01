@@ -831,4 +831,4 @@ The idea is as simple as defining a token-level metric, and then normalizing/poo
 
 ## September 1st 2025
 
-
+Debugged the layer evolution metrics and the last layer logprobs metrics. Also made them batch friendly. Tomorrow i begin writing the early exit metrics.

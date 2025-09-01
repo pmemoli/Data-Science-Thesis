@@ -79,6 +79,8 @@ LastLayerDistributionUQMetric = Literal[
 def last_layer_distribution_uq(
     hidden_states, # [layer, batch_size, sequence_length, hidden_size] 
     lm_head, 
+    sequences: torch.Tensor,
+    pad_token_id: int,
     generated_sequences, # [batch_size, max_sequence_length]
     metric_name: LastLayerDistributionUQMetric,
     pooling_ratio=1,
@@ -112,6 +114,8 @@ def last_layer_distribution_uq(
         result = pool_uq_tokens(
             token_uq, # type: ignore
             last_layer_distribution,
+            sequences,
+            pad_token_id,
             pooling_ratio,
             weighting
         )
@@ -288,6 +292,8 @@ This is sooo cool
 last_layer_distribution_uq(
     hidden_states=hidden_state_reshape(outputs.hidden_states),
     lm_head=model.lm_head,
+    sequences=outputs.sequences[:, prompt_length:],
+    pad_token_id=tokenizer.pad_token_id,
     generated_sequences=outputs.sequences[:, prompt_length:],
     metric_name="predictive_entropy",
     # pooling_ratio=0.20,
