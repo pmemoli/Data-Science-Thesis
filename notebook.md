@@ -829,3 +829,6 @@ This applies to ALL uncertainty metrics! This opens a pandora box of experimenta
 
 The idea is as simple as defining a token-level metric, and then normalizing/pooling.
 
+## September 1st 2025
+
+
