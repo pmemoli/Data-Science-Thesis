@@ -99,7 +99,6 @@ def last_layer_distribution_uq(
     lm_head, 
     sequences: torch.Tensor,
     pad_token_id: int,
-    generated_sequences, # [batch_size, max_sequence_length]
     metric_name: LastLayerDistributionUQMetric,
     pooling_ratio=1,
     weighting: None | Literal["entropy", "prob"] = None,
@@ -117,14 +116,14 @@ def last_layer_distribution_uq(
             token_uq = -torch.log(torch.gather(
                 last_layer_distribution, 
                 dim=-1, 
-                index=generated_sequences.unsqueeze(-1)
+                index=sequences.unsqueeze(-1)
             ).squeeze(-1) + eps)
 
         elif metric_name == "predictive_entropy":
             selected_token_probs = torch.gather(
                 last_layer_distribution, 
                 dim=-1, 
-                index=generated_sequences.unsqueeze(-1)
+                index=sequences.unsqueeze(-1)
             ).squeeze(-1)
 
             token_uq = -selected_token_probs * torch.log(selected_token_probs + eps)
@@ -222,3 +221,65 @@ def layer_evolution_uq(
     return result 
 
 # Early exit based metrics
+EarlyExitUQMetric = Literal[
+    "state_mean_exit_layer",
+    "softmax_mean_exit_layer",
+]
+
+def early_exit_uq(
+    hidden_states, # [layer, batch_size, sequence_length, hidden_size] 
+    lm_head,
+    threshold: float,
+    sequences: torch.Tensor,
+    pad_token_id: int,
+    metric_name: EarlyExitUQMetric,
+    pooling_ratio=1,
+    weighting: None | Literal["entropy", "prob"] = None,
+):
+    with torch.no_grad():
+        last_layer_distribution = F.softmax(lm_head(hidden_states[-1]), dim=-1)
+
+        layer_amount = hidden_states.shape[0]
+        layer_uq_tensor = torch.zeros(
+            hidden_states.shape[0], # layers 
+            hidden_states.shape[1], # batch size
+            hidden_states.shape[2], # sequence length
+        ).to("cpu")
+
+        for layer_idx in range(len(layer_amount) - 1):
+            layer_states = hidden_states[layer_idx]
+            next_layer_states = hidden_states[layer_idx + 1]
+
+            if metric_name == "state_mean_exit_layer":
+                difference = 1 - F.cosine_similarity(
+                    layer_states,
+                    next_layer_states,
+                    dim=-1,
+                    eps=1e-8
+                )
+
+            elif metric_name == "softmax_mean_exit_layer":
+                layer_distribution = F.softmax(lm_head(layer_states), dim=-1)
+                top_token_prob, _ = torch.max(layer_distribution, dim=-1) # [batch_size, sequence_length]
+
+                next_layer_distribution = F.softmax(lm_head(next_layer_states), dim=-1)
+                next_layer_top_token_prob, _ = torch.max(next_layer_distribution, dim=-1) # [batch_size, sequence_length]
+
+                difference = torch.abs(top_token_prob - next_layer_top_token_prob)
+
+            # [layers, batch_size, sequence_length]
+            layer_uq_tensor[layer_idx] = (difference < threshold).float()
+
+        token_uq = torch.argmax(layer_uq_tensor, dim=0)
+
+        result = pool_uq_tokens(
+            token_uq, # type: ignore
+            last_layer_distribution,
+            sequences,
+            pad_token_id,
+            pooling_ratio,
+            weighting
+        )
+
+    return result
+

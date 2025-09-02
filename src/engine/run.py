@@ -43,7 +43,7 @@ def run_benchmark(
             messages,
             max_length=max_length,
             temperature=temperature,
-            num_return_sequences=2,
+            num_return_sequences=1,
             return_full_text=False,
             truncation=True,
             pad_token_id=pipe.tokenizer.eos_token_id,
@@ -57,5 +57,7 @@ def run_benchmark(
             print("Prompt:", prompt)
             print("\nReference:", reference)
             print("\nGenerated:", generated_text)
+
+        # compute metrics
 
         amount_processed += 1

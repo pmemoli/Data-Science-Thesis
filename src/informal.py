@@ -70,59 +70,6 @@ for i, sequence in enumerate(sequences):
     print(f"Generated {i+1}:\n", generated_text)
 
 # %%
-LastLayerDistributionUQMetric = Literal[
-    "shannon_entropy",
-    "predictive_entropy",
-    "negative_log_likelihood"
-]
-
-def last_layer_distribution_uq(
-    hidden_states, # [layer, batch_size, sequence_length, hidden_size] 
-    lm_head, 
-    sequences: torch.Tensor,
-    pad_token_id: int,
-    generated_sequences, # [batch_size, max_sequence_length]
-    metric_name: LastLayerDistributionUQMetric,
-    pooling_ratio=1,
-    weighting: None | Literal["entropy", "prob"] = None,
-):
-    with torch.no_grad():
-        last_layer_distribution = F.softmax(lm_head(hidden_states[-1]), dim=-1)
-
-        if metric_name == "shannon_entropy":
-            token_uq = -torch.sum(
-                last_layer_distribution * torch.log(last_layer_distribution + eps), 
-                dim=-1
-            )
-
-        elif metric_name == "negative_log_likelihood":
-            token_uq = -torch.log(torch.gather(
-                last_layer_distribution, 
-                dim=-1, 
-                index=generated_sequences.unsqueeze(-1)
-            ).squeeze(-1) + eps)
-
-        elif metric_name == "predictive_entropy":
-            selected_token_probs = torch.gather(
-                last_layer_distribution, 
-                dim=-1, 
-                index=generated_sequences.unsqueeze(-1)
-            ).squeeze(-1)
-
-            token_uq = -selected_token_probs * torch.log(selected_token_probs + eps)
-
-        result = pool_uq_tokens(
-            token_uq, # type: ignore
-            last_layer_distribution,
-            sequences,
-            pad_token_id,
-            pooling_ratio,
-            weighting
-        )
-
-    return result
-
-#%%
 def kl_divergence(probs_p: torch.Tensor, probs_q: torch.Tensor) -> torch.Tensor:
     """
     Input: probs_p [batch_size, sequence_length, vocab_size], probs_q idem
@@ -135,6 +82,29 @@ def kl_divergence(probs_p: torch.Tensor, probs_q: torch.Tensor) -> torch.Tensor:
 
     return kl
 
+# %%
+def hidden_state_reshape(hidden_states: tuple[tuple[torch.Tensor]]) -> torch.Tensor:
+    """
+    Reshape the hidden states from the model output to a tensor of shape:
+    [num_layers, batch_size, generated_length, hidden_size]
+    """
+    num_steps = len(hidden_states)
+
+    step_tensors = []
+
+    for step_idx in range(0, num_steps):
+        step_hidden_states = hidden_states[step_idx]
+        step_hidden_states = torch.stack(step_hidden_states, dim=0) 
+
+        if step_idx != 0:
+            step_tensors.append(step_hidden_states)
+        else:
+            step_tensors.append(step_hidden_states[:, :, -1, :].unsqueeze(2))
+
+    return torch.cat(step_tensors, dim=2) # type: ignore
+
+
+# Token-pooling function
 def pool_uq_tokens(
     metric: torch.Tensor, 
     last_layer_distribution: torch.Tensor,
@@ -191,124 +161,66 @@ def pool_uq_tokens(
 
     return result
 
-def hidden_state_reshape(hidden_states: tuple[tuple[torch.Tensor]]) -> torch.Tensor:
-    """
-    Reshape the hidden states from the model output to a tensor of shape:
-    [num_layers, batch_size, generated_length, hidden_size]
-    """
-    num_steps = len(hidden_states)
-
-    step_tensors = []
-
-    for step_idx in range(0, num_steps):
-        step_hidden_states = hidden_states[step_idx]
-        step_hidden_states = torch.stack(step_hidden_states, dim=0) 
-
-        if step_idx != 0:
-            step_tensors.append(step_hidden_states)
-        else:
-            step_tensors.append(step_hidden_states[:, :, -1, :].unsqueeze(2))
-
-    return torch.cat(step_tensors, dim=2) # type: ignore
-
-LayerEvolutionUQMetric = Literal[
-    "mean_kl_divergence", 
-    "var_kl_divergence", 
-    "mean_shannon_entropy", 
-    "var_shannon_entropy"
+# %%
+EarlyExitUQMetric = Literal[
+    "state_mean_exit_layer",
+    "softmax_mean_exit_layer",
 ]
 
-def layer_evolution_uq(
-    hidden_states, # [num_layers, batch_size, generated_length, hidden_size]
-    lm_head, 
+def early_exit_uq(
+    hidden_states, # [layer, batch_size, sequence_length, hidden_size] 
+    lm_head,
+    threshold: float,
     sequences: torch.Tensor,
     pad_token_id: int,
-    metric_name: LayerEvolutionUQMetric,
-    layers_from_end: int = 1,
-    pooling_ratio:float = 1,
+    metric_name: EarlyExitUQMetric,
+    pooling_ratio=1,
     weighting: None | Literal["entropy", "prob"] = None,
 ):
-    hidden_states.to("cpu")
-    lm_head.to("cpu")
-
     with torch.no_grad():
         last_layer_distribution = F.softmax(lm_head(hidden_states[-1]), dim=-1)
 
         layer_amount = hidden_states.shape[0]
-
         layer_uq_tensor = torch.zeros(
             hidden_states.shape[0], # layers 
             hidden_states.shape[1], # batch size
             hidden_states.shape[2], # sequence length
         ).to("cpu")
 
-        for layer_states_idx in range(layer_amount - layers_from_end, layer_amount - 1):
-            layer_states = hidden_states[layer_states_idx]
+        for layer_idx in range(len(layer_amount) - 1):
+            layer_states = hidden_states[layer_idx]
+            next_layer_states = hidden_states[layer_idx + 1]
 
-            layer_distribution = F.softmax(lm_head(layer_states), dim=-1)
-
-            if "kl_divergence" in metric_name:
-                layer_uq = kl_divergence(
-                    layer_distribution, 
-                    last_layer_distribution
-                )
-            elif "shannon_entropy" in metric_name:
-                layer_uq = -torch.sum(
-                    layer_distribution * torch.log(layer_distribution + eps), 
-                    dim=-1
+            if metric_name == "state_mean_exit_layer":
+                difference = 1 - F.cosine_similarity(
+                    layer_states,
+                    next_layer_states,
+                    dim=-1,
+                    eps=1e-8
                 )
 
-            layer_uq_tensor[layer_states_idx, :, :] = layer_uq # type: ignore
+            elif metric_name == "softmax_mean_exit_layer":
+                layer_distribution = F.softmax(lm_head(layer_states), dim=-1)
+                top_token_prob, _ = torch.max(layer_distribution, dim=-1) # [batch_size, sequence_length]
 
-        if "mean" in metric_name:
-            token_uq = torch.mean(layer_uq_tensor, dim=0)
-        elif "var" in metric_name:
-            token_uq = torch.var(layer_uq_tensor, dim=0)
+                next_layer_distribution = F.softmax(lm_head(next_layer_states), dim=-1)
+                next_layer_top_token_prob, _ = torch.max(next_layer_distribution, dim=-1) # [batch_size, sequence_length]
 
-    result = pool_uq_tokens(
-        token_uq, # type: ignore
-        last_layer_distribution,
-        sequences,
-        pad_token_id,
-        pooling_ratio,
-        weighting,
-    )
+                difference = torch.abs(top_token_prob - next_layer_top_token_prob)
 
-    torch.cuda.empty_cache()
-    gc.collect()
+            # [layers, batch_size, sequence_length]
+            layer_uq_tensor[layer_idx] = difference < threshold
 
-    return result 
+        token_uq = torch.argmax(layer_uq_tensor, dim=0)
 
+        result = pool_uq_tokens(
+            token_uq, # type: ignore
+            last_layer_distribution,
+            sequences,
+            pad_token_id,
+            pooling_ratio,
+            weighting
+        )
 
-#%%
-"""
-TODO: 
-    - Add the early exit metrics 
-    - TEST with brute-force search through the hyperparameters on gsm.
-
-This is sooo cool
-"""
-
-last_layer_distribution_uq(
-    hidden_states=hidden_state_reshape(outputs.hidden_states),
-    lm_head=model.lm_head,
-    sequences=outputs.sequences[:, prompt_length:],
-    pad_token_id=tokenizer.pad_token_id,
-    generated_sequences=outputs.sequences[:, prompt_length:],
-    metric_name="predictive_entropy",
-    # pooling_ratio=0.20,
-    # weighting="entropy"
-)
-
-#%%
-layer_evolution_uq(
-    hidden_states=hidden_state_reshape(outputs.hidden_states),
-    lm_head=model.lm_head,
-    sequences=outputs.sequences[:, prompt_length:],
-    pad_token_id=tokenizer.pad_token_id,
-    metric_name="mean_kl_divergence",
-    layers_from_end=10,
-    # pooling_ratio=0.20,
-    # weighting="entropy"
-)
+    return result
 

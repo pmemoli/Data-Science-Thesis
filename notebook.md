@@ -832,3 +832,10 @@ The idea is as simple as defining a token-level metric, and then normalizing/poo
 ## September 1st 2025
 
 Debugged the layer evolution metrics and the last layer logprobs metrics. Also made them batch friendly. Tomorrow i begin writing the early exit metrics.
+
+## September 2nd 2025
+
+Developed the early exit metric (did not debug it though). I'm leaving the t-value for later, since i already have quite a lot to experiment with.
+
+Next step is running gsm and computing the metrics. If they have a highish AUROC, then its worthwhile to compare them with black box metrics, and with other benchmarks...
+
