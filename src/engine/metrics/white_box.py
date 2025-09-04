@@ -7,6 +7,32 @@ import gc
 
 eps = 1e-8
 
+# Defines metric grid
+metrics = [
+    "last_layer_distribution_shannon_entropy",
+    "last_layer_distribution_negative_log_likelihood",
+    "last_layer_distribution_predictive_entropy",
+    "layer_evolution_mean_kl_divergence",
+    "layer_evolution_var_kl_divergence",
+    "layer_evolution_mean_shannon_entropy",
+    "layer_evolution_var_shannon_entropy",
+    "early_exit_state_mean_exit_layer",
+    "early_exit_softmax_mean_exit_layer",
+]
+
+aggregation_methods = [
+    "5%_sequence",
+    "10%_sequence",
+    "20%_sequence",
+    "full_sequence",
+]
+
+weighting_methods = [
+    None,
+    "entropy",
+    "prob",
+]
+
 # Reshape hidden states from model.generate()
 def hidden_state_reshape(hidden_states: tuple[tuple[torch.Tensor]]) -> torch.Tensor:
     """
@@ -100,7 +126,7 @@ def last_layer_distribution_uq(
     sequences: torch.Tensor,
     pad_token_id: int,
     metric_name: LastLayerDistributionUQMetric,
-    pooling_ratio=1,
+    pooling_ratio:float=1.0,
     weighting: None | Literal["entropy", "prob"] = None,
 ):
     with torch.no_grad():
@@ -233,7 +259,7 @@ def early_exit_uq(
     sequences: torch.Tensor,
     pad_token_id: int,
     metric_name: EarlyExitUQMetric,
-    pooling_ratio=1,
+    pooling_ratio:float=1.0,
     weighting: None | Literal["entropy", "prob"] = None,
 ):
     with torch.no_grad():
@@ -246,7 +272,7 @@ def early_exit_uq(
             hidden_states.shape[2], # sequence length
         ).to("cpu")
 
-        for layer_idx in range(len(layer_amount) - 1):
+        for layer_idx in range(layer_amount - 1):
             layer_states = hidden_states[layer_idx]
             next_layer_states = hidden_states[layer_idx + 1]
 

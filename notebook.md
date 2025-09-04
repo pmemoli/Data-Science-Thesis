@@ -814,9 +814,9 @@ Possible metrics:
 
 - KL-divergence metrics (maybe for some subset such as last 1/2 or 1/4 layers):
     - U₁ = (1/L) * Σᵢ₌₁ᴸ KL(pᵢ || pₗ)
-    - U₂ = Var(KL(p₁ || pₗ), KL(p₂ || pₗ), ..., KL(pₗ₋₁ || pₗ)) (and median)
+    - U₂ = Var(KL(p₁ || pₗ), KL(p₂ || pₗ), ..., KL(pₗ₋₁ || pₗ))
     - U₄ = KL(p_early || p_late) (p_early and late averages of some quarters)
-    - U₅ = Var(H(p₁), H(p₂), ..., H(pₗ)) (and median)
+    - U₅ = Var(H(p₁), H(p₂), ..., H(pₗ))
 
 ## August 29th 2025
 
@@ -838,4 +838,8 @@ Debugged the layer evolution metrics and the last layer logprobs metrics. Also m
 Developed the early exit metric (did not debug it though). I'm leaving the t-value for later, since i already have quite a lot to experiment with.
 
 Next step is running gsm and computing the metrics. If they have a highish AUROC, then its worthwhile to compare them with black box metrics, and with other benchmarks...
+
+## September 4th 2025
+
+Wrote the run script. Next week (have a final on monday, so not touching the thesis) i'm debugging the code, making sure everything runs properly and running the evaluations on gsm8k. I'd love to have some results by the 11th!
 
