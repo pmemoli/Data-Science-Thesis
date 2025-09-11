@@ -1,6 +1,6 @@
 .teamviewer
 .env
-src/data/helm/scenarios/
+src/data/runs
 sync.sh
 download_results.sh
 venv

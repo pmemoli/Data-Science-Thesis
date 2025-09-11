@@ -1,45 +1,14 @@
-# Evaluates
-
 # %%
 from litellm import completion
 from pydantic import BaseModel
-import json
+import time
+import torch
 import os
 
 # %%
-model = "microsoft_phi-3.5-mini-instruct"
-suite = "helm-lite-cot-zeroshot"
-data_path = f"src/data/helm/runs/{suite}"
-
-by_scenario = {
-    # "narrative_qa": [f"narrative_qa:model={model},max_train_instances=0"],
-    # "mmlu": [
-    #     # f"mmlu:subject=abstract_algebra,method=multiple_choice_joint,model={model},max_train_instances=0",
-    #     # f"mmlu:subject=college_chemistry,method=multiple_choice_joint,model={model},max_train_instances=0",
-    #     # f"mmlu:subject=computer_security,method=multiple_choice_joint,model={model},max_train_instances=0",
-    #     # f"mmlu:subject=econometrics,method=multiple_choice_joint,model={model},max_train_instances=0",
-    #     # f"mmlu:subject=us_foreign_policy,method=multiple_choice_joint,model={model},max_train_instances=0",
-    # ],
-    "math": [
-        f"math:subject=number_theory,level=1,use_official_examples=False,use_chain_of_thought=True,model={model},max_train_instances=0",
-        f"math:subject=intermediate_algebra,level=1,use_official_examples=False,use_chain_of_thought=True,model={model},max_train_instances=0",
-        f"math:subject=algebra,level=1,use_official_examples=False,use_chain_of_thought=True,model={model},max_train_instances=0",
-        f"math:subject=prealgebra,level=1,use_official_examples=False,use_chain_of_thought=True,model={model},max_train_instances=0",
-        f"math:subject=geometry,level=1,use_official_examples=False,use_chain_of_thought=True,model={model},max_train_instances=0",
-        f"math:subject=counting_and_probability,level=1,use_official_examples=False,use_chain_of_thought=True,model={model},max_train_instances=0",
-        f"math:subject=precalculus,level=1,use_official_examples=False,use_chain_of_thought=True,model={model},max_train_instances=0",
-    ],
-    "gsm": [f"gsm:model={model},stop=none,max_train_instances=0"],
-    "legalbench": [
-        f"legalbench:subset=abercrombie,model={model},max_train_instances=0",
-        f"legalbench:subset=corporate_lobbying,model={model},max_train_instances=0",
-        f"legalbench:subset=international_citizenship_questions,model={model},max_train_instances=0",
-        f"legalbench:subset=function_of_decision_section,model={model},max_train_instances=0",
-        f"legalbench:subset=proa,model={model},max_train_instances=0",
-    ],
-    "med_qa": [f"med_qa:model={model},max_train_instances=0"],
-}
-
+suite = "validation"
+data_path = f"src/data/runs/{suite}"
+filename = "gsm8k_microsoft_Phi-3-mini-4k-instruct_20250911-143125.pt"
 
 # %%
 class Response(BaseModel):
@@ -48,52 +17,28 @@ class Response(BaseModel):
 
 api_key = os.getenv("GEMINI_API_KEY")  # type: ignore
 
-
-def normalize_text(text: str) -> str:
-    import re
-
-    text = text.lower().strip()
-    text = re.sub(r"\b(the|a|an)\s+", "", text)  # Remove articles
-    text = re.sub(r"'s?\b", "", text)  # Remove possessives
-    text = re.sub(r"\s+", " ", text).strip()  # Normalize spaces
-    return text
-
-
-def evaluate_response(question: str, response: str, correct_answers: list[str]) -> bool:
+def evaluate_response(question: str, response: str, correct_answer: str) -> bool:
     # Clean response
     cleaned_response = (
         response.replace("<|end|>", "").replace("<|endoftext|>", "").strip()
     )
 
     # Quick normalization check first
-    normalized_response = normalize_text(cleaned_response)
-    for correct_answer in correct_answers:
-        if normalized_response == normalize_text(correct_answer):
-            return True
-
-    answer_str = "\n".join([f"- {ans}" for ans in correct_answers])
 
     agent_prompt = f"""
 Question: {question}
 
-Response: {response}
+Response: {cleaned_response}
 
-Correct Answers:
+Correct Answer:
 
-{answer_str}
+{correct_answer}
 """
 
     messages = [
         {
             "role": "system",
-            "content": """Task: Determine if the response is equivalent to any of the correct answers. 
-
-            Consider these as correct matches:
-            - Exact matches (ignoring case and punctuation)
-            - Semantically equivalent answers (same meaning, different wording)
-            - Answers that contain the essential correct information
-
-            Note that for multiple choice answers, the response must match the correct one despite any additional explanation.
+            "content": """Task: Determine if the response is corresponds to the correct answer for the question, based on the given Correct Answer text. 
 
             Answer ONLY with the exact format: {{"success": True}} or {{"success": False}}""",
         },
@@ -112,40 +57,30 @@ Correct Answers:
 
 
 # %%
-values = []
+data = torch.load(os.path.join(data_path, filename))
 
-for scenario, runs in by_scenario.items():
-    for run in runs:
-        print(f"Processing {run} in scenario {scenario}...\n")
+#%%
+for item_idx in range(25, len(data)):
+    for i in range(4):
+        try:
+            item = data[item_idx]
 
-        path = f"{data_path}/{run}/scenario_state.json"
-        with open(path, "r") as f:
-            scenario_state = json.load(f)
+            question = item["prompt"]
+            response = item["generation"]
+            correct_answer = item["reference"]
 
-        instances = scenario_state["request_states"]
+            success = evaluate_response(question, response, correct_answer)
 
-        for instance in instances:
-            prompt = instance["request"]["prompt"]
-            response = instance["result"]["completions"][0]["text"]
+            item["success"] = success
 
-            references = instance["instance"]["references"]
+            print("\n")
+            print(f"Processing item {item_idx + 1}/{len(data)}...")
+            print(f"Success: {success}")
 
-            correct_response = references[0]["output"]["text"]
+            break
 
-            correct_answers = []
-            for reference in references:
-                if "correct" in reference["tags"]:
-                    correct_answers.append(reference["output"]["text"])
+        except Exception as e:
+            time.sleep(2**i)  # Exponential backoff
 
-            eval_result = evaluate_response(
-                question=prompt, response=response, correct_answers=correct_answers
-            )
-
-            instance["evaluation"] = eval_result
-
-            print(
-                answer_str := f"Q: {prompt}\nA: {response}\nCorrect: {correct_answers}\nEval: {eval_result}\n"
-            )
-
-        with open(path, "w") as f:
-            json.dump(scenario_state, f, indent=2)
+#%%
+torch.save(data, os.path.join(data_path, filename))

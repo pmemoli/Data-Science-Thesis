@@ -1,8 +1,0 @@
-{
-  "name": "WMT_14",
-  "description": "Scenario for the 2014 Workshop on Statistical Machine Translation",
-  "tags": [
-    "machine_translation"
-  ],
-  "definition_path": "https://github.com/stanford-crfm/helm/blob/main/src/helm/benchmark/scenarios/wmt_14_scenario.py"
-}

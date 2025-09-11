@@ -843,3 +843,77 @@ Next step is running gsm and computing the metrics. If they have a highish AUROC
 
 Wrote the run script. Next week (have a final on monday, so not touching the thesis) i'm debugging the code, making sure everything runs properly and running the evaluations on gsm8k. I'd love to have some results by the 11th!
 
+## September 9th 2025
+
+To run the tests this is the command:
+
+python -m src.engine.run \
+  --dataset_name "gsm8k" \
+  --model_name "microsoft/Phi-3-mini-4k-instruct" \
+  --suite "test" \
+  --result_path "./src/runs" \
+  --temperature 0.5 \
+  --max_length 512 \
+  --device "cpu" \
+  --limit 1
+
+Today I debugged the early exit metric and the run function.
+
+I noticed that the weighting is not really a "weighted average" in the proper sense (weights dont add up to 1). That may skew the results quite a bit. I modified it so that it performs a proper weighted average with l1 normalization. 
+
+All that is left is running the results and seeing whatever it returns. I absolutely want to implement attention weighting, which is quite more sophisticated (32 layers, each with 32 attention heads). Attentions from each layer can themselves be weighted, possibly by the amount of state or softmax variation!
+
+TODO:
+
+- Run on gsm and presents the results with what I already have.
+- Implement attention weighting and re-run.
+- If results are good, compare with black box metrics.
+
+## September 10th 2025
+
+I ran:
+
+python -m src.engine.run \
+  --dataset_name "gsm8k" \
+  --model_name "microsoft/Phi-3-mini-4k-instruct" \
+  --suite "validation" \
+  --result_path "./src/data/runs" \
+  --temperature 0.5 \
+  --max_length 1024 \
+  --device "cuda:0" \
+  --limit 300
+
+And stored the results. Tomorrow i'm plotting the auroc in a cute table, and talking with my director about how to approach the attention design. If the attention and other metrics provide a good auroc, all that is left (as far as not-writing goes) is re-running this on many more benchmarks and analysing the results!
+
+## September 11th 2025  
+
+https://arxiv.org/pdf/1804.07781
+https://aclanthology.org/2020.acl-main.385.pdf
+https://arxiv.org/abs/1902.10186
+
+Done today: 
+
+- Store tensors for 100 items of gsm8k
+- Evaluate on those 100 items with gemini flash
+
+Ran: 
+
+python -m src.engine.run \
+  --dataset_name "gsm8k" \
+  --model_name "microsoft/Phi-3-mini-4k-instruct" \
+  --suite "validation" \
+  --result_path "./src/data/runs" \
+  --temperature 0.5 \
+  --max_length 1024 \
+  --store_tensors True \
+  --store_metrics False \
+  --device "cuda:0" \
+  --limit 100
+
+which now simply stores the tensors, rather than compute the metrics. The 100 samples take about 26gb of space.
+
+TODO for tomorrow:
+
+1. Write the grid_run.py script to run all the metrics from the stored tensors.
+2. Compute AUROC for the entire grid.
+3. Understand the attention propagation paper thing xdxd.

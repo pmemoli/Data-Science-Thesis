@@ -1,9 +1,0 @@
-{
-  "name": "med_qa",
-  "description": "An open domain question answering (QA) dataset collected from professional medical board exams.",
-  "tags": [
-    "question_answering",
-    "biomedical"
-  ],
-  "definition_path": "https://github.com/stanford-crfm/helm/blob/main/src/helm/benchmark/scenarios/med_qa_scenario.py"
-}

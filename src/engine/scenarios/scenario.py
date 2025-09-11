@@ -25,5 +25,5 @@ class Scenario:
 
         return {"prompt": prompt, "reference": reference}
 
-    def has_samples(self) -> bool:
+    def has_next(self) -> bool:
         return len(self.items) > 0
