@@ -5,7 +5,7 @@ import gc
 eps = 1e-8
 
 # Token-pooling function
-WeightMethod = Literal["entropy", "prob", "attention"]
+WeightMethod = Literal["entropy", "prob"]
 
 def sequence_ensemble(
     metric: torch.Tensor,  # [batch_size, sequence_length]

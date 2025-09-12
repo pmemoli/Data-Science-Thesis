@@ -6,9 +6,9 @@ eps = 1e-8
 
 # Last layer distribution based metrics
 LogitsUQMetric = Literal[
-    "shannon_entropy",
-    "predictive_entropy",
-    "negative_log_likelihood"
+    "logits_shannon_entropy",
+    "logits_predictive_entropy",
+    "logits_negative_log_likelihood"
 ]
 
 def logits_uq(
@@ -34,20 +34,20 @@ def logits_uq(
     with torch.no_grad():
         last_layer_distribution = F.softmax(lm_head(hidden_states[-1]), dim=-1)
 
-        if metric_name == "shannon_entropy":
+        if metric_name == "logits_shannon_entropy":
             token_uq = -torch.sum(
                 last_layer_distribution * torch.log(last_layer_distribution + eps), 
                 dim=-1
             )
 
-        elif metric_name == "negative_log_likelihood":
+        elif metric_name == "logits_negative_log_likelihood":
             token_uq = -torch.log(torch.gather(
                 last_layer_distribution, 
                 dim=-1, 
                 index=sequences.unsqueeze(-1)
             ).squeeze(-1) + eps)
 
-        elif metric_name == "predictive_entropy":
+        elif metric_name == "logits_predictive_entropy":
             selected_token_probs = torch.gather(
                 last_layer_distribution, 
                 dim=-1, 

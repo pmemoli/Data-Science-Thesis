@@ -147,8 +147,139 @@ attentions = attentions_reshape(outputs.attentions, prompt_length)
 attentions.shape
 
 #%%
-attentions[0, 0, 0, -1, :]
+LogitsUQMetric = Literal[
+    "logits_shannon_entropy",
+    "logits_predictive_entropy",
+    "logits_negative_log_likelihood"
+]
+
+def logits_uq(
+    hidden_states, # [layer, batch_size, sequence_length, hidden_size] 
+    lm_head, 
+    sequences: torch.Tensor,
+    metric_name: LogitsUQMetric,
+):
+    """
+    Compute uncertainty metrics based on the last layer distribution.
+
+    Input:
+        hidden_states: tuple of tensors from the model, each of shape
+                       [layer, batch_size, sequence_length, hidden_size]
+        lm_head: the language model head to project hidden states to vocab size
+        sequences: tensor of shape [batch_size, sequence_length] with token ids
+        metric_name: one of "shannon_entropy", "predictive_entropy", "negative_log_likelihood"
+
+    Output:
+        token_uq: tensor of shape [batch_size, sequence_length] with uncertainty scores
+    """
+
+    with torch.no_grad():
+        last_layer_distribution = F.softmax(lm_head(hidden_states[-1]), dim=-1)
+
+        if metric_name == "logits_shannon_entropy":
+            token_uq = -torch.sum(
+                last_layer_distribution * torch.log(last_layer_distribution + eps), 
+                dim=-1
+            )
+
+        elif metric_name == "logits_negative_log_likelihood":
+            token_uq = -torch.log(torch.gather(
+                last_layer_distribution, 
+                dim=-1, 
+                index=sequences.unsqueeze(-1)
+            ).squeeze(-1) + eps)
+
+        elif metric_name == "logits_predictive_entropy":
+            selected_token_probs = torch.gather(
+                last_layer_distribution, 
+                dim=-1, 
+                index=sequences.unsqueeze(-1)
+            ).squeeze(-1)
+
+            token_uq = -selected_token_probs * torch.log(selected_token_probs + eps)
+
+    return token_uq
 
 #%%
-outputs.attentions[0][0].shape, prompt_length
-outputs.sequences[0, prompt_length:].shape
+eps = 1e-8
+
+# Token-pooling function
+WeightMethod = Literal["entropy", "prob"]
+
+def sequence_ensemble(
+    metric: torch.Tensor,  # [batch_size, sequence_length]
+    last_layer_distribution: torch.Tensor,
+    sequences: torch.Tensor,
+    pad_token_id: int,
+    pooling_ratio: float = 1,
+    weighting: None | WeightMethod = None,
+):
+    """
+    Pool the uncertainty metric over the generated tokens based on different criterions.
+
+    -metric: [batch_size, sequence_length]
+    -last_layer_distribution: [batch_size, sequence_length, vocab_size]
+    -output_mask: None or [batch_size, sequence_length] with 1 for valid tokens and 0 for padding/eos
+    -pooling_ratio: float between 0 and 1 indicating the ratio of tokens to pool
+    -weighting: None or "entropy" or "prob" to weight the metric by the token
+
+    returns [batch_size]
+    """
+
+    output_mask = (sequences != pad_token_id).float() 
+
+    with torch.no_grad():
+        if weighting == "entropy":
+            weights = -torch.sum(last_layer_distribution * torch.log(last_layer_distribution + 1e-8), dim=-1)
+
+        elif weighting == "prob":
+            max_probs, _ = torch.max(last_layer_distribution, dim=-1)
+            weights = 1 - max_probs
+
+        # And attention!
+
+        pool_amount = max(1, int(pooling_ratio * metric.shape[1]))
+        top_k_values, top_k_ids = torch.topk(metric, pool_amount, dim=-1)
+
+        selected_mask_values = torch.gather(
+            output_mask, 
+            dim=-1, 
+            index=top_k_ids
+        )
+        top_k_values = torch.where(selected_mask_values == 0, torch.nan, top_k_values)
+
+        # Weighted average
+        if weighting:
+            selected_weights = torch.gather(weights, dim=-1, index=top_k_ids)
+            selected_weights = torch.where(selected_mask_values == 0, torch.nan, selected_weights)
+            
+            result = torch.nansum(top_k_values * selected_weights, dim=-1) / torch.nansum(selected_weights, dim=-1)
+
+        else:
+            result = torch.nanmean(top_k_values, dim=-1)
+
+    torch.cuda.empty_cache()
+    gc.collect()
+
+    return result
+
+#%%
+hidden_states = hidden_states_reshape(outputs.hidden_states)
+token_logits_uq = logits_uq(
+    hidden_states=hidden_states,
+    lm_head=model.lm_head,
+    sequences=sequences,
+    metric_name="logits_shannon_entropy",
+)
+
+last_layer_distribution = F.softmax(model.lm_head(hidden_states[-1]), dim=-1)
+pooled_uq = sequence_ensemble(
+    metric=token_logits_uq,
+    last_layer_distribution=last_layer_distribution,
+    sequences=sequences,
+    pad_token_id=tokenizer.pad_token_id,
+    pooling_ratio=0.5,
+    weighting=None,
+)
+
+pooled_uq

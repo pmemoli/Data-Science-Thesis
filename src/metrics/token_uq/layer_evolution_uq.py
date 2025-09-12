@@ -17,10 +17,10 @@ def kl_divergence(probs_p: torch.Tensor, probs_q: torch.Tensor) -> torch.Tensor:
     return kl
 
 LayerEvolutionUQMetric = Literal[
-    "mean_kl_divergence", 
-    "var_kl_divergence", 
-    "mean_shannon_entropy", 
-    "var_shannon_entropy"
+    "layer_evolution_mean_kl_divergence", 
+    "layer_evolution_var_kl_divergence", 
+    "layer_evolution_mean_shannon_entropy", 
+    "layer_evolution_var_shannon_entropy"
 ]
 
 def layer_evolution_uq(

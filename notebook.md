@@ -917,3 +917,24 @@ TODO for tomorrow:
 1. Write the grid_run.py script to run all the metrics from the stored tensors.
 2. Compute AUROC for the entire grid.
 3. Understand the attention propagation paper thing xdxd.
+
+## September 12th 2025
+
+Wrote the grid_run.py script:
+
+python -m src.metrics.grid_run \
+    --model_name "microsoft/Phi-3-mini-4k-instruct" \
+    --datafile "./src/data/runs/validation/gsm8k_microsoft_Phi-3-mini-4k-instruct_20250911-143125.pt" \
+    --output_file "./src/data/results/gsm8k_phi3_mini_metrics_layer_evolution.json"  \
+    --metrics "layer_evolution_mean_kl_divergence" "layer_evolution_var_kl_divergence" "layer_evolution_mean_shannon_entropy" "layer_evolution_var_shannon_entropy"
+
+That computes the auroc for the specified metrics (100 items). Also ran it.
+
+The conclusion is that logit based metrics completly outperform early exit and layer evolution metrics. The pooling mechanism is also quite influential. For logit based-metrics without weighting, the auroc considerably decreases the more of the sequence is taken into account, while the top values only average the top 5% highest entropy tokens. Weights are also significant, with prob/entropy weighing slightly increasing the auroc (but not enough data is present to properly conclude this)
+
+Layer evolution variance can be quite good for shannon variance for the last n layers!
+
+For other metrics, the auroc is highest on the raw average without weighting. 
+
+I believe this simplifies the problem quite a bit. We already have the token-level metric (shannon entropy). The issue is now finding the way to ensemble this. If attention flow works properly, all thats left is comparing with black box metrics, telling the story, and writing the thesis.
+

@@ -6,8 +6,8 @@ eps = 1e-8
 
 # Early exit based metrics
 EarlyExitUQMetric = Literal[
-    "state_mean_exit_layer",
-    "softmax_mean_exit_layer",
+    "early_exit_state_mean_exit_layer",
+    "early_exit_softmax_mean_exit_layer",
 ]
 
 def early_exit_uq(
@@ -44,7 +44,7 @@ def early_exit_uq(
             layer_states = hidden_states[layer_idx]
             next_layer_states = hidden_states[layer_idx + 1]
 
-            if metric_name == "state_mean_exit_layer":
+            if metric_name == "early_exit_state_mean_exit_layer":
                 difference = 1 - F.cosine_similarity(
                     layer_states,
                     next_layer_states,
@@ -52,7 +52,7 @@ def early_exit_uq(
                     eps=1e-8
                 )
 
-            elif metric_name == "softmax_mean_exit_layer":
+            elif metric_name == "early_exit_softmax_mean_exit_layer":
                 layer_distribution = F.softmax(lm_head(layer_states), dim=-1)
                 top_2_token_prob, _ = torch.topk(layer_distribution, 2, dim=-1)
 
