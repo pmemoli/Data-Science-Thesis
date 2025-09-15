@@ -28,7 +28,9 @@ def hidden_states_reshape(
     return torch.cat(step_tensors, dim=2)  # type: ignore
 
 
-def attentions_reshape(attentions: tuple[tuple[torch.Tensor]]) -> torch.Tensor:
+def attentions_reshape(
+    attentions: tuple[tuple[torch.Tensor]], prompt_length: int
+) -> torch.Tensor:
     """
     Reshape the attentions from the model output:
     [num_steps, num_layers] (tuple tuple)

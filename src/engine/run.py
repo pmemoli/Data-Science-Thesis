@@ -7,7 +7,8 @@ import argparse
 import torch
 import time
 import json
-import os 
+import os
+
 
 def run_benchmark(
     dataset_name: str,
@@ -80,8 +81,12 @@ def run_benchmark(
                 output_attentions=True,
             )
 
-        hidden_states = hidden_states_reshape(outputs.hidden_states).to(device=device)
-        attentions = attentions_reshape(outputs.attentions).to(device=device)
+        hidden_states = hidden_states_reshape(outputs.hidden_states).to(
+            device=device
+        )
+        attentions = attentions_reshape(outputs.attentions, prompt_length).to(
+            device=device
+        )
         sequences = outputs.sequences[:, prompt_length:].to(device=device)
         string_sequence = tokenizer.decode(
             sequences[0],
@@ -90,6 +95,7 @@ def run_benchmark(
 
         result = {
             "prompt": prompt,
+            "prompt_length": prompt_length,
             "reference": reference,
             "generation": string_sequence,
             "hidden_states": hidden_states.cpu() if store_tensors else None,
@@ -99,7 +105,7 @@ def run_benchmark(
 
         results.append(result)
         amount_processed += 1
-        
+
         # Progress indicator
         if amount_processed % 10 == 0:
             print(f"Processed {amount_processed} samples...")
@@ -119,95 +125,86 @@ def run_benchmark(
 def parse_arguments():
     parser = argparse.ArgumentParser(
         description="Run benchmark evaluation on language models",
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
-    
+
     # Required arguments
     parser.add_argument(
         "--dataset_name",
         type=str,
         required=True,
-        help="Name of the dataset to use (must be registered in REGISTRY)"
+        help="Name of the dataset to use (must be registered in REGISTRY)",
     )
-    
+
     parser.add_argument(
-        "--model_name", 
+        "--model_name",
         type=str,
         required=True,
-        help="Name or path of the model to evaluate"
+        help="Name or path of the model to evaluate",
     )
-    
+
     parser.add_argument(
-        "--suite",
-        type=str, 
-        required=True,
-        help="Name of the evaluation suite"
+        "--suite", type=str, required=True, help="Name of the evaluation suite"
     )
-    
+
     parser.add_argument(
-        "--result_path",
-        type=str,
-        required=True,
-        help="Path to save results"
+        "--result_path", type=str, required=True, help="Path to save results"
     )
-    
+
     # Optional arguments with defaults
     parser.add_argument(
         "--temperature",
         type=float,
         default=0.5,
-        help="Temperature for text generation"
+        help="Temperature for text generation",
     )
-    
+
     parser.add_argument(
         "--max_length",
         type=int,
         default=1024,
-        help="Maximum length for generated text"
+        help="Maximum length for generated text",
     )
-    
+
     parser.add_argument(
-        "--batch_size", 
-        type=int,
-        default=1,
-        help="Batch size for processing"
+        "--batch_size", type=int, default=1, help="Batch size for processing"
     )
-    
+
     parser.add_argument(
         "--sample_amount",
         type=int,
         default=1,
-        help="Number of samples to generate per prompt"
+        help="Number of samples to generate per prompt",
     )
-    
+
     parser.add_argument(
         "--device",
         type=str,
         default="cuda:0",
-        help="Device to run the model on (e.g., 'cuda:0', 'cpu')"
+        help="Device to run the model on (e.g., 'cuda:0', 'cpu')",
     )
 
     parser.add_argument(
         "--store_tensors",
         type=bool,
         required=True,
-        help="Whether to store hidden states and attentions (True/False)"
+        help="Whether to store hidden states and attentions (True/False)",
     )
 
     parser.add_argument(
         "--store_metrics",
         type=bool,
         default=False,
-        help="Whether to store evaluation metrics (True/False)"
+        help="Whether to store evaluation metrics (True/False)",
     )
-    
+
     parser.add_argument(
         "--limit",
         type=int,
         default=None,
-        help="Limit the number of samples to process (useful for testing)"
+        help="Limit the number of samples to process (useful for testing)",
     )
-    
+
     return parser.parse_args()
 
 
@@ -215,7 +212,7 @@ def main():
     """Main entry point for command line execution."""
     try:
         args = parse_arguments()
-        
+
         # Validate dataset name
         if args.dataset_name not in REGISTRY:
             available_datasets = list(REGISTRY.keys())
@@ -223,12 +220,14 @@ def main():
                 f"Dataset '{args.dataset_name}' not found in registry. "
                 f"Available datasets: {available_datasets}"
             )
-        
+
         # Validate device
         if args.device.startswith("cuda") and not torch.cuda.is_available():
-            print("Warning: CUDA requested but not available. Falling back to CPU.")
+            print(
+                "Warning: CUDA requested but not available. Falling back to CPU."
+            )
             args.device = "cpu"
-        
+
         print("\nStarting benchmark with the following configuration:\n")
         print(f"  Dataset: {args.dataset_name}")
         print(f"  Model: {args.model_name}")
@@ -239,7 +238,7 @@ def main():
         print(f"  Limit: {args.limit if args.limit else 'No limit'}")
         print(f"  Results will be saved to: {args.result_path}")
         print("-" * 30)
-        
+
         run_benchmark(
             dataset_name=args.dataset_name,
             model_name=args.model_name,
@@ -252,9 +251,9 @@ def main():
             device=args.device,
             limit=args.limit,
             store_tensors=args.store_tensors,
-            store_metrics=args.store_metrics
+            store_metrics=args.store_metrics,
         )
-        
+
     except KeyboardInterrupt:
         print("\nBenchmark interrupted by user.")
     except Exception as e:

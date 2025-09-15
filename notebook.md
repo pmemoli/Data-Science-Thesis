@@ -908,7 +908,7 @@ python -m src.engine.run \
   --store_tensors True \
   --store_metrics False \
   --device "cuda:0" \
-  --limit 100
+  --limit 120
 
 which now simply stores the tensors, rather than compute the metrics. The 100 samples take about 26gb of space.
 
