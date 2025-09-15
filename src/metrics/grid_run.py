@@ -21,7 +21,8 @@ WeightingMethod = Literal[
     "raw_mean",
     "entropy",
     "prob",
-    # missing weighted entropy!
+    "attention_rollout_mean",
+    "attention_rollout_last",
 ]
 
 AggregationMethod = Literal[
@@ -62,7 +63,9 @@ def compute_uq_auroc_grid(
         sequences = item["sequences"].to(model.device)
 
         with torch.no_grad():
-            last_layer_distribution = torch.softmax(lm_head(hidden_states[-1]), dim=-1)
+            last_layer_distribution = torch.softmax(
+                lm_head(hidden_states[-1]), dim=-1
+            )
 
             grid = {metric: {} for metric in metrics}
             grid["success"] = item["success"]
@@ -99,7 +102,9 @@ def compute_uq_auroc_grid(
                                     weighting=weight_param,  # type: ignore
                                 )
 
-                                grid[metric][f"{agg}_{weight}_{threshold}"] = score.item()
+                                grid[metric][
+                                    f"{agg}_{weight}_{threshold}"
+                                ] = score.item()
 
                         elif "logits" in metric:
                             score = logits_uq(
@@ -117,7 +122,6 @@ def compute_uq_auroc_grid(
                                 pad_token_id=tokenizer.pad_token_id,
                                 weighting=weight_param,  # type: ignore
                             )
-
 
                             grid[metric][f"{agg}_{weight}"] = score.item()
 
@@ -139,7 +143,9 @@ def compute_uq_auroc_grid(
                                     weighting=weight_param,  # type: ignore
                                 )
 
-                                grid[metric][f"{agg}_{layers_from_end}_{weight}"] = score.item()
+                                grid[metric][
+                                    f"{agg}_{layers_from_end}_{weight}"
+                                ] = score.item()
 
         completion += 1
         dataset_metrics.append(grid)
@@ -158,7 +164,9 @@ def compute_uq_auroc_grid(
                         for item in dataset_metrics:
                             if key in item[metric]:
                                 score = item[metric][key]
-                                if score is not None and not torch.isnan(torch.tensor(score)):
+                                if score is not None and not torch.isnan(
+                                    torch.tensor(score)
+                                ):
                                     all_scores.append(item[metric][key])
                                     all_failures.append(not item["success"])
 
@@ -178,7 +186,9 @@ def compute_uq_auroc_grid(
                         for item in dataset_metrics:
                             if key in item[metric]:
                                 score = item[metric][key]
-                                if score is not None and not torch.isnan(torch.tensor(score)):
+                                if score is not None and not torch.isnan(
+                                    torch.tensor(score)
+                                ):
                                     all_scores.append(item[metric][key])
                                     all_failures.append(not item["success"])
 
@@ -197,7 +207,9 @@ def compute_uq_auroc_grid(
                     for item in dataset_metrics:
                         if key in item[metric]:
                             score = item[metric][key]
-                            if score is not None and not torch.isnan(torch.tensor(score)):
+                            if score is not None and not torch.isnan(
+                                torch.tensor(score)
+                            ):
                                 all_scores.append(item[metric][key])
                                 all_failures.append(not item["success"])
 
@@ -208,8 +220,8 @@ def compute_uq_auroc_grid(
 
                     results[metric][key] = auroc
 
-
     return results
+
 
 if __name__ == "__main__":
     from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -217,18 +229,49 @@ if __name__ == "__main__":
     import json
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model_name", type=str, required=True, help="Model name or path")
-    parser.add_argument("--datafile", type=str, required=True, help="Path to the data file")
-    parser.add_argument("--output_file", type=str, required=True, help="Path to save the results")
+    parser.add_argument(
+        "--model_name", type=str, required=True, help="Model name or path"
+    )
+    parser.add_argument(
+        "--datafile", type=str, required=True, help="Path to the data file"
+    )
+    parser.add_argument(
+        "--output_file",
+        type=str,
+        required=True,
+        help="Path to save the results",
+    )
 
-    parser.add_argument("--metrics", type=str, nargs="*", default=[], help="List of metrics to compute")
-    parser.add_argument("--aggregation_methods", type=str, nargs="*", default=[], help="List of aggregation methods")
-    parser.add_argument("--weighting_methods", type=str, nargs="*", default=[], help="List of weighting methods")
+    parser.add_argument(
+        "--metrics",
+        type=str,
+        nargs="*",
+        default=[],
+        help="List of metrics to compute",
+    )
+    parser.add_argument(
+        "--aggregation_methods",
+        type=str,
+        nargs="*",
+        default=[],
+        help="List of aggregation methods",
+    )
+    parser.add_argument(
+        "--weighting_methods",
+        type=str,
+        nargs="*",
+        default=[],
+        help="List of weighting methods",
+    )
 
     args = parser.parse_args()
 
-    model = AutoModelForCausalLM.from_pretrained(args.model_name, device_map="cuda:0")
-    tokenizer = AutoTokenizer.from_pretrained(args.model_name, device_map="cuda:0")
+    model = AutoModelForCausalLM.from_pretrained(
+        args.model_name, device_map="cuda:0"
+    )
+    tokenizer = AutoTokenizer.from_pretrained(
+        args.model_name, device_map="cuda:0"
+    )
 
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token

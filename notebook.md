@@ -938,3 +938,12 @@ For other metrics, the auroc is highest on the raw average without weighting.
 
 I believe this simplifies the problem quite a bit. We already have the token-level metric (shannon entropy). The issue is now finding the way to ensemble this. If attention flow works properly, all thats left is comparing with black box metrics, telling the story, and writing the thesis.
 
+## September 15th
+
+Found this paper: https://arxiv.org/pdf/2409.19001v1, which applies attention rollout ideas to decode-only models! May be super useful. 
+
+Today I implemented the attention rollout weighting. I normalized the attention weights by the amount of tokens that can attend to each token. This consists of basically dividing the i-th column by (n - i), where n is the length of the sequence, and then normalizing so that it adds up to 1.
+
+The normalization step is impossibly ugly, but otherwise the entire attention resides in the first token.
+
+The following todos are computing the auroc with these new weights, and implementing other attention weighting schemes (such as the ones from the paper).
