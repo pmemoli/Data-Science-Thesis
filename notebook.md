@@ -947,3 +947,9 @@ Today I implemented the attention rollout weighting. I normalized the attention 
 The normalization step is impossibly ugly, but otherwise the entire attention resides in the first token.
 
 The following todos are computing the auroc with these new weights, and implementing other attention weighting schemes (such as the ones from the paper).
+
+## September 16th 
+
+Included norm weighting from the paper, and also added a cosine difference weighting. For the normal rollout, i enabled an option that lets me select the proportion of weight to attention, and the proportion to the identity matrix (residual connection).
+
+All thats left is re-running everything to get the attention outputs, and finally obtaining the auroc for these new metrics.

@@ -1,7 +1,11 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 from src.engine.scenarios import REGISTRY
-from src.engine.core.utils import hidden_states_reshape, attentions_reshape
+from src.engine.core.utils import (
+    hidden_states_reshape,
+    attentions_reshape,
+    attention_outputs_reshape,
+)
 
 import argparse
 import torch
@@ -36,6 +40,21 @@ def run_benchmark(
         model_name,
         trust_remote_code=False,
     )
+
+    # Add hook to store attention outputs
+    attention_outputs = {}
+
+    def save_attention_output(layer_idx):
+        def hook(module, input, output):
+            # Store attention output for this generation step
+            if f"layer_{layer_idx}" not in attention_outputs:
+                attention_outputs[f"layer_{layer_idx}"] = []
+            attention_outputs[f"layer_{layer_idx}"].append(output[0].detach())
+
+        return hook
+
+    for i, layer in enumerate(model.model.layers):
+        layer.self_attn.register_forward_hook(save_attention_output(i))
 
     # Processes one item at a time for simplicity
     results = []
@@ -81,14 +100,12 @@ def run_benchmark(
                 output_attentions=True,
             )
 
-        hidden_states = hidden_states_reshape(outputs.hidden_states).to(
-            device=device
-        )
-        attentions = attentions_reshape(outputs.attentions, prompt_length).to(
-            device=device
-        )
-        sequences = outputs.sequences[:, prompt_length:].to(device=device)
-        string_sequence = tokenizer.decode(
+        hidden_states = hidden_states_reshape(outputs.hidden_states)
+        attentions = attentions_reshape(outputs.attentions)
+        attentions_outputs = attention_outputs_reshape(attention_outputs)
+
+        sequences = outputs.sequences[:, prompt_length:]
+        decoded_sequence = tokenizer.decode(
             sequences[0],
             skip_special_tokens=True,
         )
@@ -97,11 +114,14 @@ def run_benchmark(
             "prompt": prompt,
             "prompt_length": prompt_length,
             "reference": reference,
-            "generation": string_sequence,
-            "hidden_states": hidden_states.cpu() if store_tensors else None,
-            "attentions": attentions.cpu() if store_tensors else None,
-            "sequences": sequences.cpu() if store_tensors else None,
+            "generation": decoded_sequence,
         }
+
+        if store_tensors:
+            result["hidden_states"] = hidden_states.cpu()
+            result["attentions"] = attentions.cpu()
+            result["attention_outputs"] = attentions_outputs.cpu()
+            result["sequences"] = sequences.cpu()
 
         results.append(result)
         amount_processed += 1

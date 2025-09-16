@@ -6,12 +6,19 @@ eps = 1e-8
 
 # Token-pooling function
 WeightMethod = Literal[
-    "entropy", "prob", "attention_rollout_mean", "attention_rollout_last"
+    "entropy",
+    "prob",
+    "attention_rollout_mean",
+    "attention_rollout_last",
+    "attention_influence_mean",
+    "attention_influence_last",
 ]
 
 
 def attention_rollout(
     attentions: torch.Tensor,
+    residual_stream_proportion: float = 0.5,
+    attention_output_proportion: float = 0.5,
 ) -> torch.Tensor:
     """
     Perform attention rollout as described in the paper:
@@ -29,37 +36,74 @@ def attention_rollout(
     # Aggregate heads to [num_layers, batch_size, total_length, total_length]
     attentions = attentions.mean(dim=2)  # type: ignore
 
-    # Normalize by the receptive field size
-    sequence_length = attentions.size(-1)
-    receptive_field_sizes = (
-        (
-            torch.arange(sequence_length + 1, 1, step=-1)
-            .float()
-            .to(attentions.device)
-        )
-        .unsqueeze(0)
-        .unsqueeze(0)
-        .unsqueeze(0)
-    ).to(attentions.device)
-
-    attentions = attentions / (receptive_field_sizes + eps)
-    attentions = attentions / (attentions.sum(dim=-1, keepdim=True) + eps)
-
     # Normalize attention to take into account residual connections
+    sequence_length = attentions.size(-1)
     identity = torch.eye(sequence_length).to(attentions.device)
-    attentions = 0.5 * (attentions + identity.unsqueeze(0).unsqueeze(0))
+    attentions = (
+        attention_output_proportion * attentions
+        + residual_stream_proportion * identity.unsqueeze(0).unsqueeze(0)
+    )
 
     # Recursively multiply the weight matrices
     rollout = attentions[0, :, :, :]
     num_layers = attentions.size(0)
     for i in range(1, num_layers):
-        rollout = torch.bmm(rollout, attentions[i, :, :, :])
+        rollout = torch.bmm(attentions[i, :, :, :], rollout)
 
     return rollout  # type: ignore
 
 
-def influence():
-    pass
+def influence(
+    attentions: torch.Tensor,
+    hidden_states: torch.Tensor,
+    attention_outputs: torch.Tensor,
+) -> torch.Tensor:
+    """
+    Perform attention rollout as described in the paper:
+    https://aclanthology.org/2020.acl-main.385.pdf
+
+    Input:
+    attentions (torch.Tensor): Tensor of shape
+    [num_layers, batch_size, num_heads, total_length, total_length]
+
+    Output:
+    torch.Tensor: Tensor of shape
+    [batch_size, total_length, total_length]
+    """
+
+    # Aggregate heads to [num_layers, batch_size, total_length, total_length]
+    attentions = attentions.mean(dim=2)  # type: ignore
+
+    # Normalize the attention matrix to take into account the residual connections
+    # [num_layers, batch_size, total_length]
+    hidden_state_norms = torch.linalg.norm(hidden_states, dim=-1)[:-1]
+    attention_output_norms = torch.linalg.norm(attention_outputs, dim=-1)
+
+    # [num_layers, batch_size, total_length, total_length]
+    hs_norm_matrix = torch.diag_embed(hidden_state_norms)
+    ao_norm_matrix = torch.diag_embed(attention_output_norms)
+    normalization_matrix = torch.diag_embed(
+        1 / (attention_output_norms + hidden_state_norms + eps)
+    )
+
+    num_layers = attentions.size(0)
+    for layer_idx in range(num_layers):
+        attentions[layer_idx] = torch.bmm(
+            ao_norm_matrix[layer_idx], attentions[layer_idx]
+        )
+        attentions[layer_idx] = (
+            hs_norm_matrix[layer_idx] + attentions[layer_idx]
+        )
+        attentions[layer_idx] = torch.bmm(
+            normalization_matrix[layer_idx], attentions[layer_idx]
+        )
+
+    # Influence algorithm
+    influence = attentions[0, :, :, :]
+    for i in range(1, num_layers):
+        influence = torch.bmm(attentions[i, :, :, :], influence)
+
+    return influence
 
 
 def sequence_ensemble(

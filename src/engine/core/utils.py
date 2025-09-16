@@ -7,10 +7,10 @@ def hidden_states_reshape(
 ) -> torch.Tensor:
     """
     Reshape the hidden states from the model output
-    [num_steps, num_layers, batch_size, 1 (except for encoding), hidden_size]
+    [num_steps][num_layers][batch_size, 1 (except for encoding), hidden_size]
 
     to a tensor of shape:
-    [num_layers, batch_size, generated_length, hidden_size]
+    [num_layers, batch_size, total_length, hidden_size]
     """
     num_steps = len(hidden_states)
 
@@ -20,24 +20,47 @@ def hidden_states_reshape(
         step_hidden_states = hidden_states[step_idx]
         step_hidden_states = torch.stack(step_hidden_states, dim=0)
 
-        if step_idx != 0:
-            step_tensors.append(step_hidden_states)
-        else:
-            step_tensors.append(step_hidden_states[:, :, -1, :].unsqueeze(2))
+        step_tensors.append(step_hidden_states)
 
     return torch.cat(step_tensors, dim=2)  # type: ignore
 
 
-def attentions_reshape(
-    attentions: tuple[tuple[torch.Tensor]], prompt_length: int
-) -> torch.Tensor:
+def attention_outputs_reshape(attention_outputs: dict) -> torch.Tensor:
+    """
+    Reshape the attention outputs from the hooks
+    [layer_name][num_steps][batch_size, num_heads, 1 (except for encoding), hidden_size]
+
+    To a tensor of shape
+    [num_layers, batch_size, total_length, hidden_size]
+    """
+
+    # With this, i can properly combine everything! Tomorrow i'm implementing this properly.
+
+    num_steps = len(attention_outputs["layer_0"])
+
+    step_tensors = []
+    for step_idx in range(num_steps):
+        step_hidden_states = []
+        for layer_idx in range(len(attention_outputs.keys())):
+            step_hidden_states.append(
+                attention_outputs[f"layer_{layer_idx}"][step_idx]
+            )
+
+        step_hidden_states = torch.stack(step_hidden_states, dim=0)
+
+        step_tensors.append(step_hidden_states)
+
+    return torch.cat(step_tensors, dim=2)  # type: ignore
+
+
+def attentions_reshape(attentions: tuple[tuple[torch.Tensor]]) -> torch.Tensor:
     """
     Reshape the attentions from the model output:
     [num_steps, num_layers] (tuple tuple)
     [batch_size, num_heads, 1 (except for encoding), seq_len_so_far]
 
     to a tensor of shape:
-    [num_layers, batch_size, num_heads, generated_length, total_length]
+    [num_layers, batch_size, num_heads, total_length, total_length]
     """
 
     num_steps = len(attentions)
@@ -48,7 +71,7 @@ def attentions_reshape(
     encoding_attentions = torch.stack(encoding_attentions, dim=0)
 
     seq_len_so_far = encoding_attentions.shape[-1]
-    pad_size = max_seq_len - prompt_length
+    pad_size = max_seq_len - seq_len_so_far
 
     # [num_layers, batch_size, num_heads, prompt_length, total_length]
     encoding_attentions = F.pad(encoding_attentions, (0, pad_size), value=0.0)
