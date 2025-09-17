@@ -1,6 +1,7 @@
 # %%
 from litellm import completion
 from pydantic import BaseModel
+import json
 import time
 import torch
 import os
@@ -8,7 +9,8 @@ import os
 # %%
 suite = "validation"
 data_path = f"src/data/runs/{suite}"
-filename = "gsm8k_microsoft_Phi-3-mini-4k-instruct_20250911-143125.pt"
+filename = "gsm8k_microsoft_Phi-3.5-mini-instruct_20250916-210355.pt"
+
 
 # %%
 class Response(BaseModel):
@@ -17,7 +19,10 @@ class Response(BaseModel):
 
 api_key = os.getenv("GEMINI_API_KEY")  # type: ignore
 
-def evaluate_response(question: str, response: str, correct_answer: str) -> bool:
+
+def evaluate_response(
+    question: str, response: str, correct_answer: str
+) -> bool:
     # Clean response
     cleaned_response = (
         response.replace("<|end|>", "").replace("<|endoftext|>", "").strip()
@@ -57,10 +62,27 @@ Correct Answer:
 
 
 # %%
-data = torch.load(os.path.join(data_path, filename))
+data = torch.load(
+    os.path.join(data_path, filename), map_location="cpu", mmap=True
+)
 
-#%%
-for item_idx in range(25, len(data)):
+# %%
+import hashlib
+
+
+def hash_result(question, response):
+    hasher = hashlib.sha256()
+    hasher.update(question.encode("utf-8"))
+    hasher.update(b"\x00")
+    hasher.update(response.encode("utf-8"))
+    return hasher.hexdigest()
+
+
+# %%
+evaluations = {}
+
+# %%
+for item_idx in range(len(data)):
     for i in range(4):
         try:
             item = data[item_idx]
@@ -71,7 +93,7 @@ for item_idx in range(25, len(data)):
 
             success = evaluate_response(question, response, correct_answer)
 
-            item["success"] = success
+            evaluations[hash_result(question, response)] = success
 
             print("\n")
             print(f"Processing item {item_idx + 1}/{len(data)}...")
@@ -82,5 +104,10 @@ for item_idx in range(25, len(data)):
         except Exception as e:
             time.sleep(2**i)  # Exponential backoff
 
-#%%
-torch.save(data, os.path.join(data_path, filename))
+# %%
+# Save evaluations
+with open(
+    os.path.join(data_path, f"evaluations_{filename.replace('.pt', '.json')}"),
+    "w",
+) as f:
+    json.dump(evaluations, f)

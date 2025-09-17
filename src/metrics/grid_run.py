@@ -3,6 +3,16 @@ from .sequence_ensemble import sequence_ensemble
 from sklearn.metrics import roc_auc_score
 from typing import Literal
 import torch
+import json
+import hashlib
+
+
+def hash_result(question, response):
+    hasher = hashlib.sha256()
+    hasher.update(question.encode("utf-8"))
+    hasher.update(b"\x00")
+    hasher.update(response.encode("utf-8"))
+    return hasher.hexdigest()
 
 
 Metric = Literal[
@@ -21,8 +31,10 @@ WeightingMethod = Literal[
     "raw_mean",
     "entropy",
     "prob",
-    "attention_rollout_mean",
-    "attention_rollout_last",
+    "attention_rollout",
+    "attention_influence_norm",
+    "attention_influence_angle",
+    "attention_influence_projection",
 ]
 
 AggregationMethod = Literal[
@@ -50,7 +62,16 @@ def compute_uq_auroc_grid(
     if len(weighting_methods) == 0:
         weighting_methods = list(WeightingMethod.__args__)
 
-    data = torch.load(datafile)
+    # Load tensors
+    data = torch.load(datafile, map_location="cpu", mmap=True)
+
+    # Load evaluations
+    eval_file = datafile.replace(".pt", ".json").replace(
+        "validation/", "validation/evaluations_"
+    )
+    with open(eval_file, "r") as f:
+        evaluations = json.load(f)
+
     lm_head = model.lm_head
 
     dataset_metrics = []
@@ -60,6 +81,11 @@ def compute_uq_auroc_grid(
         print(f"Processing item {completion+1}/{len(data)}")
 
         hidden_states = item["hidden_states"].to(model.device)
+        attention_outputs = item["attention_outputs"].to(model.device)
+        attentions = item["attentions"].to(model.device)
+
+        prompt_length = item["prompt_length"]
+
         sequences = item["sequences"].to(model.device)
 
         with torch.no_grad():
@@ -68,7 +94,9 @@ def compute_uq_auroc_grid(
             )
 
             grid = {metric: {} for metric in metrics}
-            grid["success"] = item["success"]
+            grid["success"] = evaluations[
+                hash_result(item["prompt"], item["generation"])
+            ]
 
             for metric in metrics:
                 for agg in aggregation_methods:
@@ -96,10 +124,12 @@ def compute_uq_auroc_grid(
                                 score = sequence_ensemble(
                                     metric=score,
                                     last_layer_distribution=last_layer_distribution,
-                                    sequences=sequences,
+                                    hidden_states=hidden_states,
+                                    attention_outputs=attention_outputs,
+                                    attentions=attentions,
                                     pooling_ratio=pooling_ratio,
-                                    pad_token_id=tokenizer.pad_token_id,
                                     weighting=weight_param,  # type: ignore
+                                    prompt_length=prompt_length,
                                 )
 
                                 grid[metric][
@@ -117,10 +147,12 @@ def compute_uq_auroc_grid(
                             score = sequence_ensemble(
                                 metric=score,
                                 last_layer_distribution=last_layer_distribution,
-                                sequences=sequences,
+                                hidden_states=hidden_states,
+                                attention_outputs=attention_outputs,
+                                attentions=attentions,
                                 pooling_ratio=pooling_ratio,
-                                pad_token_id=tokenizer.pad_token_id,
                                 weighting=weight_param,  # type: ignore
+                                prompt_length=prompt_length,
                             )
 
                             grid[metric][f"{agg}_{weight}"] = score.item()
@@ -137,10 +169,12 @@ def compute_uq_auroc_grid(
                                 score = sequence_ensemble(
                                     metric=score,
                                     last_layer_distribution=last_layer_distribution,
-                                    sequences=sequences,
+                                    hidden_states=hidden_states,
+                                    attention_outputs=attention_outputs,
+                                    attentions=attentions,
                                     pooling_ratio=pooling_ratio,
-                                    pad_token_id=tokenizer.pad_token_id,
                                     weighting=weight_param,  # type: ignore
+                                    prompt_length=prompt_length,
                                 )
 
                                 grid[metric][
@@ -267,10 +301,10 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     model = AutoModelForCausalLM.from_pretrained(
-        args.model_name, device_map="cuda:0"
+        args.model_name, device_map="cpu"
     )
     tokenizer = AutoTokenizer.from_pretrained(
-        args.model_name, device_map="cuda:0"
+        args.model_name, device_map="cpu"
     )
 
     if tokenizer.pad_token is None:

@@ -8,17 +8,17 @@ eps = 1e-8
 WeightMethod = Literal[
     "entropy",
     "prob",
-    "attention_rollout_mean",
-    "attention_rollout_last",
-    "attention_influence_mean",
-    "attention_influence_last",
+    "attention_rollout",
+    "attention_influence_norm",
+    "attention_influence_angle",
+    "attention_influence_projection",
 ]
 
 
 def attention_rollout(
     attentions: torch.Tensor,
-    residual_stream_proportion: float = 0.5,
-    attention_output_proportion: float = 0.5,
+    residual_stream_proportion: float = 0.9,
+    attention_output_proportion: float = 0.1,
 ) -> torch.Tensor:
     """
     Perform attention rollout as described in the paper:
@@ -57,6 +57,7 @@ def influence(
     attentions: torch.Tensor,
     hidden_states: torch.Tensor,
     attention_outputs: torch.Tensor,
+    difference: Literal["norm", "angle", "projection"] = "norm",
 ) -> torch.Tensor:
     """
     Perform attention rollout as described in the paper:
@@ -75,28 +76,80 @@ def influence(
     attentions = attentions.mean(dim=2)  # type: ignore
 
     # Normalize the attention matrix to take into account the residual connections
-    # [num_layers, batch_size, total_length]
-    hidden_state_norms = torch.linalg.norm(hidden_states, dim=-1)[:-1]
-    attention_output_norms = torch.linalg.norm(attention_outputs, dim=-1)
-
-    # [num_layers, batch_size, total_length, total_length]
-    hs_norm_matrix = torch.diag_embed(hidden_state_norms)
-    ao_norm_matrix = torch.diag_embed(attention_output_norms)
-    normalization_matrix = torch.diag_embed(
-        1 / (attention_output_norms + hidden_state_norms + eps)
-    )
-
     num_layers = attentions.size(0)
-    for layer_idx in range(num_layers):
-        attentions[layer_idx] = torch.bmm(
-            ao_norm_matrix[layer_idx], attentions[layer_idx]
+    hidden_states = hidden_states[:-1]  # removes output hidden states
+    sequence_length = attentions.size(-1)
+
+    if difference == "norm":
+        # [num_layers, batch_size, total_length]
+        hidden_state_norms = torch.linalg.norm(hidden_states, dim=-1)
+        attention_output_norms = torch.linalg.norm(attention_outputs, dim=-1)
+
+        # [num_layers, batch_size, total_length, total_length]
+        hs_norm_matrix = torch.diag_embed(hidden_state_norms)
+        ao_norm_matrix = torch.diag_embed(attention_output_norms)
+        normalization_matrix = torch.diag_embed(
+            1 / (attention_output_norms + hidden_state_norms + eps)
         )
-        attentions[layer_idx] = (
-            hs_norm_matrix[layer_idx] + attentions[layer_idx]
+
+        for layer_idx in range(num_layers):
+            attentions[layer_idx] = torch.bmm(
+                ao_norm_matrix[layer_idx], attentions[layer_idx]
+            )
+            attentions[layer_idx] = (
+                hs_norm_matrix[layer_idx] + attentions[layer_idx]
+            )
+            attentions[layer_idx] = torch.bmm(
+                normalization_matrix[layer_idx], attentions[layer_idx]
+            )
+
+    elif difference == "angle":
+        sum = hidden_states + attention_outputs
+        hs_angle = torch.cosine_similarity(hidden_states, sum, dim=-1)
+        ao_angle = torch.cosine_similarity(attention_outputs, sum, dim=-1)
+
+        hs_angle_matrix = torch.diag_embed(hs_angle)
+        ao_angle_matrix = torch.diag_embed(ao_angle)
+        normalization_matrix = torch.diag_embed(
+            1 / (hs_angle + ao_angle + eps)
         )
-        attentions[layer_idx] = torch.bmm(
-            normalization_matrix[layer_idx], attentions[layer_idx]
-        )
+
+        for layer_idx in range(num_layers):
+            attentions[layer_idx] = torch.bmm(
+                ao_angle_matrix[layer_idx], attentions[layer_idx]
+            )
+            attentions[layer_idx] = (
+                hs_angle_matrix[layer_idx] + attentions[layer_idx]
+            )
+            attentions[layer_idx] = torch.bmm(
+                normalization_matrix[layer_idx], attentions[layer_idx]
+            )
+
+    elif difference == "projection":
+
+        def projection(a, b):
+            return torch.sum(a * b, dim=-1) / (
+                torch.linalg.norm(b, dim=-1) ** 2
+            )
+
+        sum = hidden_states + attention_outputs
+        hs_proj = projection(hidden_states, sum)
+        ao_proj = projection(attention_outputs, sum)
+
+        hs_proj_matrix = torch.diag_embed(hs_proj)
+        ao_proj_matrix = torch.diag_embed(ao_proj)
+        normalization_matrix = torch.diag_embed(1 / (hs_proj + ao_proj + eps))
+
+        for layer_idx in range(num_layers):
+            attentions[layer_idx] = torch.bmm(
+                ao_proj_matrix[layer_idx], attentions[layer_idx]
+            )
+            attentions[layer_idx] = (
+                hs_proj_matrix[layer_idx] + attentions[layer_idx]
+            )
+            attentions[layer_idx] = torch.bmm(
+                normalization_matrix[layer_idx], attentions[layer_idx]
+            )
 
     # Influence algorithm
     influence = attentions[0, :, :, :]
@@ -110,11 +163,11 @@ def sequence_ensemble(
     metric: torch.Tensor,  # [batch_size, sequence_length]
     last_layer_distribution: torch.Tensor,
     attentions: torch.Tensor,
-    sequences: torch.Tensor,
-    pad_token_id: int,
+    attention_outputs: torch.Tensor,
+    hidden_states: torch.Tensor,
     pooling_ratio: float = 1,
     prompt_length: int = 0,
-    weighting: None | WeightMethod = None,
+    weighting: None | str = None,
 ):
     """
     Pool the uncertainty metric over the generated tokens based on different criterions.
@@ -128,9 +181,9 @@ def sequence_ensemble(
     returns [batch_size]
     """
 
-    output_mask = (sequences != pad_token_id).float()
-
     with torch.no_grad():
+        metric = metric[:, prompt_length:]
+
         if not weighting:
             pass
 
@@ -146,36 +199,41 @@ def sequence_ensemble(
             weights = 1 - max_probs
 
         elif "attention_rollout" in weighting:
-            rollout = attention_rollout(attentions)
-            if "mean" in weighting:
-                weights = torch.mean(rollout[:, :, prompt_length:], dim=-1)
+            rollout = attention_rollout(attentions, 0.96, 0.04)
+            weights = torch.mean(rollout, dim=1)
 
-            elif "last" in weighting:
-                weights = rollout[:, -1, prompt_length:]
+        elif "attention_influence" in weighting:
+            if "norm" in weighting:
+                mode = "norm"
+            elif "angle" in weighting:
+                mode = "angle"
+            else:
+                mode = "projection"
+
+            infl = influence(
+                attentions, hidden_states, attention_outputs, mode
+            )
+            weights = torch.mean(infl, dim=1)
 
         pool_amount = max(1, int(pooling_ratio * metric.shape[1]))
-        top_k_values, top_k_ids = torch.topk(metric, pool_amount, dim=-1)
 
-        selected_mask_values = torch.gather(
-            output_mask, dim=-1, index=top_k_ids
-        )
-        top_k_values = torch.where(
-            selected_mask_values == 0, torch.nan, top_k_values
-        )
-
-        # Weighted average
+        # Weight the metric
         if weighting:
-            selected_weights = torch.gather(weights, dim=-1, index=top_k_ids)
-            selected_weights = torch.where(
-                selected_mask_values == 0, torch.nan, selected_weights
+            weights = weights[:, prompt_length:]
+
+            # If weighting, choose the top k according to the weights
+            top_k_weights, top_k_ids = torch.topk(weights, pool_amount, dim=-1)
+            top_k_values = torch.gather(metric, dim=-1, index=top_k_ids)
+
+            top_k_values = (
+                top_k_values * top_k_weights / torch.sum(top_k_weights, dim=-1)
             )
 
-            result = torch.nansum(
-                top_k_values * selected_weights, dim=-1
-            ) / torch.nansum(selected_weights, dim=-1)
-
         else:
-            result = torch.nanmean(top_k_values, dim=-1)
+            top_k_values, top_k_ids = torch.topk(metric, pool_amount, dim=-1)
+            top_k_values = top_k_values / pool_amount
+
+        result = torch.sum(top_k_values, dim=-1)
 
     torch.cuda.empty_cache()
     gc.collect()

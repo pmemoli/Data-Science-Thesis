@@ -10,7 +10,7 @@ from src.engine.core.utils import (
 import argparse
 import torch
 import time
-import json
+import gc
 import os
 
 
@@ -49,7 +49,9 @@ def run_benchmark(
             # Store attention output for this generation step
             if f"layer_{layer_idx}" not in attention_outputs:
                 attention_outputs[f"layer_{layer_idx}"] = []
-            attention_outputs[f"layer_{layer_idx}"].append(output[0].detach())
+            attention_outputs[f"layer_{layer_idx}"].append(
+                output[0].detach().cpu()
+            )
 
         return hook
 
@@ -122,6 +124,10 @@ def run_benchmark(
             result["attentions"] = attentions.cpu()
             result["attention_outputs"] = attentions_outputs.cpu()
             result["sequences"] = sequences.cpu()
+
+        gc.collect()
+        attention_outputs.clear()
+        attention_outputs = {}
 
         results.append(result)
         amount_processed += 1

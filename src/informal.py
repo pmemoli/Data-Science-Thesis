@@ -22,7 +22,7 @@ model = AutoModelForCausalLM.from_pretrained(
     "microsoft/Phi-3-mini-4k-instruct",
     attn_implementation="eager",
     trust_remote_code=False,
-    device_map="cpu",
+    device_map="cuda:0",
 )
 tokenizer = AutoTokenizer.from_pretrained(
     "microsoft/Phi-3-mini-4k-instruct",
@@ -40,7 +40,7 @@ inputs = tokenizer.apply_chat_template(
     add_generation_prompt=True,  # Adds proper assistant prompt
     return_tensors="pt",
     return_dict=True,  # Returns dict with input_ids AND attention_mask
-).to("cpu")
+).to("cuda:0")
 
 prompt_length = inputs.input_ids.shape[1]
 
@@ -61,7 +61,6 @@ def save_attention_output(layer_idx):
 for i, layer in enumerate(model.model.layers):
     layer.self_attn.register_forward_hook(save_attention_output(i))
 
-# %%
 with torch.no_grad():
     outputs = model.generate(
         input_ids=inputs.input_ids,
@@ -131,7 +130,6 @@ def attention_outputs_reshape(attention_outputs: dict) -> torch.Tensor:
     return torch.cat(step_tensors, dim=2)  # type: ignore
 
 
-# %%
 def attentions_reshape(attentions: tuple[tuple[torch.Tensor]]) -> torch.Tensor:
     """
     Reshape the attentions from the model output:
@@ -221,7 +219,7 @@ def influence(
     attentions: torch.Tensor,
     hidden_states: torch.Tensor,
     attention_outputs: torch.Tensor,
-    difference: Literal["norm", "cosine"] = "norm",
+    difference: Literal["norm", "angle", "projection"] = "norm",
 ) -> torch.Tensor:
     """
     Perform attention rollout as described in the paper:
@@ -242,6 +240,7 @@ def influence(
     # Normalize the attention matrix to take into account the residual connections
     num_layers = attentions.size(0)
     hidden_states = hidden_states[:-1]  # removes output hidden states
+    sequence_length = attentions.size(-1)
 
     if difference == "norm":
         # [num_layers, batch_size, total_length]
@@ -266,25 +265,50 @@ def influence(
                 normalization_matrix[layer_idx], attentions[layer_idx]
             )
 
-    elif difference == "cosine":
-        updated_hidden_states = hidden_states + attention_outputs
-        cosine_difference = 1 - torch.cosine_similarity(
-            hidden_states, updated_hidden_states, dim=-1
-        )
+    elif difference == "angle":
+        sum = hidden_states + attention_outputs
+        hs_angle = torch.cosine_similarity(hidden_states, sum, dim=-1)
+        ao_angle = torch.cosine_similarity(attention_outputs, sum, dim=-1)
 
-        id_matrix = torch.eye(cosine_difference.size(-1)).unsqueeze(0)
-        cd_matrix = torch.diag_embed(cosine_difference)
+        hs_angle_matrix = torch.diag_embed(hs_angle)
+        ao_angle_matrix = torch.diag_embed(ao_angle)
         normalization_matrix = torch.diag_embed(
-            1 / (cosine_difference + 1 + eps)
+            1 / (hs_angle + ao_angle + eps)
         )
 
         for layer_idx in range(num_layers):
             attentions[layer_idx] = torch.bmm(
-                cd_matrix[layer_idx], attentions[layer_idx]
+                ao_angle_matrix[layer_idx], attentions[layer_idx]
             )
             attentions[layer_idx] = (
-                id_matrix + attentions[layer_idx]
-            )  # type: ignore
+                hs_angle_matrix[layer_idx] + attentions[layer_idx]
+            )
+            attentions[layer_idx] = torch.bmm(
+                normalization_matrix[layer_idx], attentions[layer_idx]
+            )
+
+    elif difference == "projection":
+
+        def projection(a, b):
+            return torch.sum(a * b, dim=-1) / (
+                torch.linalg.norm(b, dim=-1) ** 2
+            )
+
+        sum = hidden_states + attention_outputs
+        hs_proj = projection(hidden_states, sum)
+        ao_proj = projection(attention_outputs, sum)
+
+        hs_proj_matrix = torch.diag_embed(hs_proj)
+        ao_proj_matrix = torch.diag_embed(ao_proj)
+        normalization_matrix = torch.diag_embed(1 / (hs_proj + ao_proj + eps))
+
+        for layer_idx in range(num_layers):
+            attentions[layer_idx] = torch.bmm(
+                ao_proj_matrix[layer_idx], attentions[layer_idx]
+            )
+            attentions[layer_idx] = (
+                hs_proj_matrix[layer_idx] + attentions[layer_idx]
+            )
             attentions[layer_idx] = torch.bmm(
                 normalization_matrix[layer_idx], attentions[layer_idx]
             )
@@ -297,26 +321,184 @@ def influence(
     return influence
 
 
+LogitsUQMetric = Literal[
+    "logits_shannon_entropy",
+    "logits_predictive_entropy",
+    "logits_negative_log_likelihood",
+]
+
+
+def logits_uq(
+    hidden_states,  # [layer, batch_size, sequence_length, hidden_size]
+    lm_head,
+    sequences: torch.Tensor,
+    metric_name: LogitsUQMetric,
+):
+    """
+    Compute uncertainty metrics based on the last layer distribution.
+
+    Input:
+        hidden_states: tuple of tensors from the model, each of shape
+                       [layer, batch_size, sequence_length, hidden_size]
+        lm_head: the language model head to project hidden states to vocab size
+        sequences: tensor of shape [batch_size, sequence_length] with token ids
+        metric_name: one of "shannon_entropy", "predictive_entropy", "negative_log_likelihood"
+
+    Output:
+        token_uq: tensor of shape [batch_size, sequence_length] with uncertainty scores
+    """
+
+    with torch.no_grad():
+        last_layer_distribution = F.softmax(lm_head(hidden_states[-1]), dim=-1)
+
+        if metric_name == "logits_shannon_entropy":
+            token_uq = -torch.sum(
+                last_layer_distribution
+                * torch.log(last_layer_distribution + eps),
+                dim=-1,
+            )
+
+        elif metric_name == "logits_negative_log_likelihood":
+            token_uq = -torch.log(
+                torch.gather(
+                    last_layer_distribution,
+                    dim=-1,
+                    index=sequences.unsqueeze(-1),
+                ).squeeze(-1)
+                + eps
+            )
+
+        elif metric_name == "logits_predictive_entropy":
+            selected_token_probs = torch.gather(
+                last_layer_distribution, dim=-1, index=sequences.unsqueeze(-1)
+            ).squeeze(-1)
+
+            token_uq = -selected_token_probs * torch.log(
+                selected_token_probs + eps
+            )
+
+    return token_uq
+
+
+def sequence_ensemble(
+    metric: torch.Tensor,  # [batch_size, sequence_length]
+    last_layer_distribution: torch.Tensor,
+    attentions: torch.Tensor,
+    attention_outputs: torch.Tensor,
+    hidden_states: torch.Tensor,
+    pooling_ratio: float = 1,
+    prompt_length: int = 0,
+    weighting: None | str = None,
+):
+    """
+    Pool the uncertainty metric over the generated tokens based on different criterions.
+
+    -metric: [batch_size, sequence_length]
+    -last_layer_distribution: [batch_size, sequence_length, vocab_size]
+    -output_mask: None or [batch_size, sequence_length] with 1 for valid tokens and 0 for padding/eos
+    -pooling_ratio: float between 0 and 1 indicating the ratio of tokens to pool
+    -weighting: None or "entropy" or "prob" to weight the metric by the token
+
+    returns [batch_size]
+    """
+
+    with torch.no_grad():
+        metric = metric[:, prompt_length:]
+
+        if not weighting:
+            pass
+
+        elif weighting == "entropy":
+            weights = -torch.sum(
+                last_layer_distribution
+                * torch.log(last_layer_distribution + 1e-8),
+                dim=-1,
+            )
+
+        elif weighting == "prob":
+            max_probs, _ = torch.max(last_layer_distribution, dim=-1)
+            weights = 1 - max_probs
+
+        elif "attention_rollout" in weighting:
+            rollout = attention_rollout(attentions, 0.96, 0.04)
+            weights = torch.mean(rollout, dim=1)
+
+        elif "attention_influence" in weighting:
+            if "norm" in weighting:
+                mode = "norm"
+            elif "angle" in weighting:
+                mode = "angle"
+            else:
+                mode = "projection"
+
+            infl = influence(
+                attentions, hidden_states, attention_outputs, mode
+            )
+            weights = torch.mean(infl, dim=1)
+
+        pool_amount = max(1, int(pooling_ratio * metric.shape[1]))
+
+        # Weight the metric
+        if weighting:
+            weights = weights[:, prompt_length:]
+
+            # If weighting, choose the top k according to the weights
+            top_k_weights, top_k_ids = torch.topk(weights, pool_amount, dim=-1)
+            top_k_values = torch.gather(metric, dim=-1, index=top_k_ids)
+
+            top_k_values = (
+                top_k_values * top_k_weights / torch.sum(top_k_weights, dim=-1)
+            )
+
+        else:
+            top_k_values, top_k_ids = torch.topk(metric, pool_amount, dim=-1)
+            top_k_values = top_k_values / pool_amount
+
+        result = torch.sum(top_k_values, dim=-1)
+
+    torch.cuda.empty_cache()
+    gc.collect()
+
+    return result
+
+
 # %%
 attentions = attentions_reshape(outputs.attentions)
 attention_outputs_reshaped = attention_outputs_reshape(attention_outputs)
 hidden_states_reshaped = hidden_states_reshape(outputs.hidden_states)
 
-layer = 25
-torch.cosine_similarity(
-    hidden_states_reshaped[layer],
-    hidden_states_reshaped[layer] + attention_outputs_reshaped[layer],
+# %%
+logits_uq_scores = logits_uq(
+    hidden_states_reshaped,
+    model.lm_head,
+    outputs.sequences,
+    metric_name="logits_shannon_entropy",
 )
+
+last_layer_distribution = F.softmax(
+    model.lm_head(hidden_states_reshaped[-1]), dim=-1
+)
+
+ensembled_score = sequence_ensemble(
+    logits_uq_scores,
+    last_layer_distribution,
+    attentions,
+    attention_outputs_reshaped,
+    hidden_states_reshaped,
+    pooling_ratio=1.0,
+    prompt_length=prompt_length,
+    weighting="attention_influence_projection",
+)
+
+ensembled_score
 
 # %%
 influence_score = influence(
     attentions,
     hidden_states_reshaped,
     attention_outputs_reshaped,
-    difference="cosine",
+    difference="projection",
 )
-
-influence_score[0][-1][prompt_length:]
 
 output_influence = torch.mean(influence_score, dim=1)[0][prompt_length:]
 output_influence / torch.sum(output_influence)
@@ -328,7 +510,7 @@ rollout = attention_rollout(
     attention_output_proportion=0.05,
 )
 output_rollout = torch.mean(rollout, dim=1)[0][prompt_length:]
-output_rollout
+output_rollout / torch.sum(output_rollout)
 
 # %%
 # print generated text

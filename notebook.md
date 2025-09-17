@@ -952,4 +952,34 @@ The following todos are computing the auroc with these new weights, and implemen
 
 Included norm weighting from the paper, and also added a cosine difference weighting. For the normal rollout, i enabled an option that lets me select the proportion of weight to attention, and the proportion to the identity matrix (residual connection).
 
-All thats left is re-running everything to get the attention outputs, and finally obtaining the auroc for these new metrics.
+There are sooo many more things to try regarding the attention metrics. But I need to re-run everything to get the new internal signals. I have no connection to my director's pc and no battery, so i'm going to wait until tomorrow to re-run everything.
+
+python -m src.engine.run \
+  --dataset_name "gsm8k" \
+  --model_name "microsoft/Phi-3.5-mini-instruct" \
+  --suite "validation" \
+  --result_path "./src/data/runs" \
+  --temperature 0.5 \
+  --max_length 1024 \
+  --store_tensors True \
+  --store_metrics False \
+  --device "cuda:0" \
+  --limit 110
+
+## September 17th
+
+Running:
+
+python -m src.metrics.grid_run \
+    --model_name "microsoft/Phi-3-mini-4k-instruct" \
+    --datafile "./src/data/runs/validation/gsm8k_microsoft_Phi-3.5-mini-instruct_20250916-210355.pt" \
+    --output_file "./src/data/results/gsm8k_phi3.5_mini_shannon_attention_weight_end_pool_weight.json"  \
+    --metrics "logits_shannon_entropy"
+
+Results are bad, the attention weighting lowers the auroc in all configurations. It makes sense since rollout is sooo noisy even with improvmenents.
+
+I did find a sota technique that relies on backprop. It is definitely more expensive, but it may be worth it to try it out and see if it works:
+
+https://lxt.readthedocs.io/en/latest/quickstart.html
+
+Regardless of this, the attention rollout improvements are interesting in themselves. While they can't be applied to autoregressive models, they CAN be applied to bert like models and may just improve results (possible paper?).
