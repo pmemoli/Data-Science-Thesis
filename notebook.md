@@ -983,3 +983,34 @@ I did find a sota technique that relies on backprop. It is definitely more expen
 https://lxt.readthedocs.io/en/latest/quickstart.html
 
 Regardless of this, the attention rollout improvements are interesting in themselves. While they can't be applied to autoregressive models, they CAN be applied to bert like models and may just improve results (possible paper?).
+
+## September 18th
+
+Taking a break for today. This is a recap of what i talked with my director:
+
+- Estudio de ablacion donde divido los ejemplos por el largo total.
+
+Leads:
+    - Comparacion curvas
+    - LPX para tener una buena estimacion de la relevancia de los tokens
+    - Hacer attention flow sobre el encoder
+
+Empiezo comparando las curvas, y veo a partir de ahi.
+
+Plotie las curvas de shannon y encontre que es falsa la idea de que los primeros tokens son los mas inciertos. Las curvas son hiper picudas y no parecen tener mucho patron a nivel donde estan los picos. Calculando metricas en funcoin de los picos, encuentro que el acg height es muy similar en los casos positivos y negativos. Lo que varia es la cantidad de picos y su densidad.
+
+Si puedo pesar esos picos por la atencion que se les da, puedo tener una re estimacion... 
+
+LRP puede ser promisorio, por hacer algo mas que nada...
+
+TODO: Ver (graficamente) con heatmaps los metodos interpretabilidad atencion. 
+
+## September 22th
+
+I visualized the attention influence methods on a heatmap. It looks super cool. Tomorrow i'm playing with using them to weight the entropy.
+
+I also introduced some receptive field normalization which is promising!
+
+Next step is weighing the entropies with these and analyze how the distributions compare...
+
+

@@ -1,12 +1,10 @@
-import torch
-from typing import Literal
 import gc
+from typing import Literal
+import torch
 
 eps = 1e-8
 
-# Token-pooling function
-WeightMethod = Literal[
-    "entropy",
+weighting_options = [
     "prob",
     "attention_rollout",
     "attention_influence_norm",
@@ -15,10 +13,14 @@ WeightMethod = Literal[
 ]
 
 
+eps = 1e-8
+
+
 def attention_rollout(
     attentions: torch.Tensor,
-    residual_stream_proportion: float = 0.9,
-    attention_output_proportion: float = 0.1,
+    residual_stream_proportion: float = 0.5,
+    attention_output_proportion: float = 0.5,
+    receptive_field_norm: bool = False,
 ) -> torch.Tensor:
     """
     Perform attention rollout as described in the paper:
@@ -35,6 +37,26 @@ def attention_rollout(
 
     # Aggregate heads to [num_layers, batch_size, total_length, total_length]
     attentions = attentions.mean(dim=2)  # type: ignore
+
+    # Weight by the amount of tokens that can attend to it
+    if receptive_field_norm:
+        n = attentions.size(-1)
+        norm_matrix = torch.zeros(n, n)
+        i_indices = torch.arange(n).unsqueeze(1).expand(n, n)
+        j_indices = torch.arange(n).unsqueeze(0).expand(n, n)
+
+        norm_matrix.fill_diagonal_(1)
+
+        lower_mask = i_indices > j_indices
+        norm_matrix[lower_mask] = 1.0 / (
+            i_indices[lower_mask] - j_indices[lower_mask] + 1
+        )
+
+        norm_matrix = norm_matrix[None, None, :, :].to(attentions.device)
+        attentions = attentions * norm_matrix
+
+        # Normalize again
+        attentions = attentions / attentions.sum(dim=-1, keepdim=True)
 
     # Normalize attention to take into account residual connections
     sequence_length = attentions.size(-1)
@@ -58,6 +80,7 @@ def influence(
     hidden_states: torch.Tensor,
     attention_outputs: torch.Tensor,
     difference: Literal["norm", "angle", "projection"] = "norm",
+    receptive_field_norm: bool = False,
 ) -> torch.Tensor:
     """
     Perform attention rollout as described in the paper:
@@ -75,10 +98,29 @@ def influence(
     # Aggregate heads to [num_layers, batch_size, total_length, total_length]
     attentions = attentions.mean(dim=2)  # type: ignore
 
+    # Weight by the amount of tokens that can attend to it
+    if receptive_field_norm:
+        n = attentions.size(-1)
+        norm_matrix = torch.zeros(n, n)
+        i_indices = torch.arange(n).unsqueeze(1).expand(n, n)
+        j_indices = torch.arange(n).unsqueeze(0).expand(n, n)
+
+        norm_matrix.fill_diagonal_(1)
+
+        lower_mask = i_indices > j_indices
+        norm_matrix[lower_mask] = 1.0 / (
+            i_indices[lower_mask] - j_indices[lower_mask] + 1
+        )
+
+        norm_matrix = norm_matrix[None, None, :, :].to(attentions.device)
+        attentions = attentions * norm_matrix
+
+        # Normalize again
+        attentions = attentions / attentions.sum(dim=-1, keepdim=True)
+
     # Normalize the attention matrix to take into account the residual connections
     num_layers = attentions.size(0)
     hidden_states = hidden_states[:-1]  # removes output hidden states
-    sequence_length = attentions.size(-1)
 
     if difference == "norm":
         # [num_layers, batch_size, total_length]

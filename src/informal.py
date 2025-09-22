@@ -22,7 +22,7 @@ model = AutoModelForCausalLM.from_pretrained(
     "microsoft/Phi-3-mini-4k-instruct",
     attn_implementation="eager",
     trust_remote_code=False,
-    device_map="cuda:0",
+    device_map="cpu",
 )
 tokenizer = AutoTokenizer.from_pretrained(
     "microsoft/Phi-3-mini-4k-instruct",
@@ -40,7 +40,7 @@ inputs = tokenizer.apply_chat_template(
     add_generation_prompt=True,  # Adds proper assistant prompt
     return_tensors="pt",
     return_dict=True,  # Returns dict with input_ids AND attention_mask
-).to("cuda:0")
+).to("cpu")
 
 prompt_length = inputs.input_ids.shape[1]
 
