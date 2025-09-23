@@ -1,4 +1,5 @@
 # %%
+from src.metrics.sequence_ensemble import influence
 import matplotlib.pyplot as plt
 import numpy as np
 import hashlib
@@ -6,9 +7,7 @@ import torch
 
 # %%
 path = "src/analysis"
-items = torch.load(
-    f"{path}/shannon_entropy_gsm8k_microsoft_Phi-3.5-mini-instruct-1.pt"
-)
+items = torch.load(f"{path}/tensors.pt")
 
 # %%
 tensor_data_filename = "src/data/runs/validation/gsm8k_microsoft_Phi-3.5-mini-instruct_20250916-210355.pt"
@@ -51,25 +50,79 @@ def plot_shannon_curve(data):
 
 
 # %% Descriptive statistics of the groups
-def descriptive_statistics(data):
-    entropy = data["shannon_entropy"][0, data["prompt_length"] :]
-    peak_threshold = 0.1
+def descriptive_statistics(entropy, influence):
+    influence = influence / influence.sum()
 
-    peaks = (entropy > peak_threshold).sum().item()
-
-    avg_peak_height = (
-        entropy[entropy > peak_threshold].mean().item() if peaks > 0 else 0.0
+    # Pure entropy based stats
+    entropy_peak_threshold = 0.5
+    high_entropy_mask = entropy > entropy_peak_threshold
+    entropy_peaks = high_entropy_mask.sum().item()
+    avg_entropy_peak_height = (
+        entropy[high_entropy_mask].mean().item() if entropy_peaks > 0 else 0.0
     )
-    peak_density = peaks / entropy.shape[0]
+    peak_density = entropy_peaks / entropy.shape[0]
+    highest_entropy_peak = entropy.max().item()
     avg_entropy = entropy.mean().item()
-    highest_peak = entropy.max().item()
+    entropy_p75 = torch.quantile(entropy, 0.75).item()
+
+    # Additional entropy-only statistics
+    entropy_std = entropy.std().item()
+    entropy_median = torch.median(entropy).item()
+
+    # Additional percentiles
+    entropy_p90 = torch.quantile(entropy, 0.90).item()
+
+    # Entropy gradient statistics (local changes)
+    if entropy.shape[0] > 1:
+        entropy_diffs = torch.diff(entropy)
+        max_entropy_jump = entropy_diffs.abs().max().item()
+    else:
+        max_entropy_jump = 0.0
+
+    # Entropy mixed with influence stats
+    influence_peak_threshold = 1 / entropy.shape[0]
+    high_influence_mask = influence > influence_peak_threshold
+    critical_mask = high_entropy_mask & high_influence_mask
+    critical_peaks = critical_mask.sum().item()
+    critical_peak_density = critical_peaks / entropy.shape[0]
+    avg_critical_peak_height = (
+        entropy[critical_mask].mean().item() if critical_peaks > 0 else 0.0
+    )
+    highest_critical_peak = (
+        entropy[critical_mask].max().item() if critical_peaks > 0 else 0.0
+    )
+
+    # Weighted entropy by attention
+    weighted_entropy = entropy * influence
+    avg_weighted_entropy = weighted_entropy.sum().item()
+
+    weighted_entropy_p75 = torch.quantile(weighted_entropy, 0.75).item()
+    weighted_entropy_p90 = torch.quantile(weighted_entropy, 0.90).item()
 
     return {
-        "num_peaks": peaks,
-        "peak_density": peak_density,
+        # Basic entropy stats
         "avg_entropy": avg_entropy,
-        "highest_peak": highest_peak,
-        "avg_peak_height": avg_peak_height,
+        "entropy_std": entropy_std,
+        "entropy_median": entropy_median,
+        # Percentiles
+        "entropy_p75": entropy_p75,
+        "entropy_p90": entropy_p90,
+        # Peak analysis
+        "num_entropy_peaks": entropy_peaks,
+        "entropy_peak_density": peak_density,
+        "highest_entropy_peak": highest_entropy_peak,
+        "avg_entropy_peak_height": avg_entropy_peak_height,
+        # Change/smoothness metrics
+        "max_entropy_jump": max_entropy_jump,
+        # Mixed stats (with influence)
+        "avg_weighted_entropy": avg_weighted_entropy,
+        "num_critical_peaks": critical_peaks,
+        "critical_peak_density": critical_peak_density,
+        "avg_critical_peak_height": avg_critical_peak_height,
+        "highest_critical_peak": highest_critical_peak,
+        # Weighted percentiles
+        "weighted_entropy_p75": weighted_entropy_p75,
+        "weighted_entropy_p90": weighted_entropy_p90,
     }
 
 
@@ -77,9 +130,32 @@ def descriptive_statistics(data):
 positive_agregate_stats = {}
 negative_agregate_stats = {}
 
+i = 0
 for item in items:
-    stats = descriptive_statistics(item)
-    attention_stats = descriptive_statistics(item)
+    hash_id = hash_result(item["prompt"], item["generation"])
+    print(f"Processing item {i+1}/{len(items)}")
+
+    item_tensor_data = next(
+        x
+        for x in tensor_data
+        if hash_result(x["prompt"], x["generation"]) == hash_id
+    )
+
+    attentions = item_tensor_data["attentions"]
+    hidden_states = item_tensor_data["hidden_states"]
+    attention_outputs = item_tensor_data["attention_outputs"]
+    prompt_length = item_tensor_data["prompt_length"]
+
+    item_influence = influence(
+        attentions,
+        hidden_states,
+        attention_outputs,
+        difference="angle",
+        receptive_field_norm=True,
+    )[0].mean(dim=0)[prompt_length:]
+    item_entropy = item["shannon_entropy"][0, prompt_length:]
+
+    stats = descriptive_statistics(item_entropy, item_influence)
 
     # Aggregate stats
     if item["is_correct"]:
@@ -96,33 +172,45 @@ for item in items:
 
             negative_agregate_stats[key].append(value)
 
+    i += 1
+
     # Store curves
     # plot_shannon_curve(item)
 
-
-# Stats without attention weighting
+# %%
+# Compute average and standard deviation of the stats
 avg_positive_stats = {
-    k: sum(v) / len(v) for k, v in positive_agregate_stats.items()
+    k: np.mean(v) for k, v in positive_agregate_stats.items()
 }
-sd_positive_stats = {
-    k: float(np.std(v)) for k, v in positive_agregate_stats.items()
-}
-
+sd_positive_stats = {k: np.std(v) for k, v in positive_agregate_stats.items()}
 avg_negative_stats = {
-    k: sum(v) / len(v) for k, v in negative_agregate_stats.items()
+    k: np.mean(v) for k, v in negative_agregate_stats.items()
 }
-sd_negative_stats = {
-    k: float(np.std(v)) for k, v in negative_agregate_stats.items()
-}
+sd_negative_stats = {k: np.std(v) for k, v in negative_agregate_stats.items()}
 
-print("\n")
-print("Positive stats mean:")
-print(avg_positive_stats, sep="\n")
-# print("Positive stats std:")
-# print(sd_positive_stats, sep="\n")
+print(f"{'='*60}")
+print(f"{'HALLUCINATION DETECTION STATS':^60}")
+print(f"{'='*60}")
 
-print("\n")
-print("Negative stats:")
-print(avg_negative_stats, sep="\n")
-# print("Negative stats std:")
-# print(sd_negative_stats, sep="\n")
+for key in avg_positive_stats.keys():
+    pos_mean, pos_sd = avg_positive_stats[key], sd_positive_stats[key]
+    neg_mean, neg_sd = avg_negative_stats[key], sd_negative_stats[key]
+    abs_diff = neg_mean - pos_mean
+
+    cohen_denom = (pos_sd**2 + neg_sd**2) / 2
+    cohen_d = abs_diff / np.sqrt(cohen_denom)
+
+    if abs(neg_mean) > 1e-6:  # avoid division by zero
+        rel_diff = (abs_diff / abs(neg_mean)) * 100
+    else:
+        rel_diff = float("inf") if abs_diff != 0 else 0
+
+    # Highlight potentially discriminative features
+    print(f"{key:<20}")
+    print(f"   Correct: {pos_mean:6.3f} ± {pos_sd:5.3f}")
+    print(f"   Incorrect: {neg_mean:6.3f} ± {neg_sd:5.3f}")
+    print(f"   Diff:     {abs_diff:+6.3f}")
+    print(f"   RelDiff:  {rel_diff:6.2f}%")
+    print(f"   Cohen's d: {cohen_d:6.3f}")
+
+    print()

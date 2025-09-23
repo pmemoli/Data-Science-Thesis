@@ -1014,3 +1014,20 @@ I also introduced some receptive field normalization which is promising!
 Next step is weighing the entropies with these and analyze how the distributions compare...
 
 
+## September 23th
+
+python -m src.metrics.grid_run \
+    --model_name "microsoft/Phi-3-mini-4k-instruct" \
+    --datafile "./src/data/runs/validation/gsm8k_microsoft_Phi-3.5-mini-instruct_20250916-210355.pt" \
+    --output_file "./src/data/results/gsm8k_phi3.5_mini_shannon_attention_quantile75.json"  \
+    --metrics "logits_shannon_entropy" \
+    --weighting_methods "raw_mean" \
+    --aggregation_methods "all_sequence"
+
+Okay, so the attention weighting is not working. It improves with receptive field normalization but it still does not beat the raw mean. I also tested a bunch of metrics based on the cohens denominator, and exclusive logit based metrics always win.
+
+So, i can make a really good argument for the entropy distribution being an amazing feature for performance and halucination prediction. But can i really say more? I'm starting to think that its going to be quite hard incrementing the auroc significantly...
+
+I for sure need more data... Let's see what my director says.
+
+

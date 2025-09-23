@@ -336,24 +336,24 @@ for item in tensor_data:
 
     heat_values.append(shannon_entropy)
 
-    # heat_values.append(
-    #     influence(
-    #         attentions,
-    #         hidden_states,
-    #         attention_outputs,
-    #         difference="angle",
-    #         receptive_field_norm=True,
-    #     )[0].mean(dim=0)[prompt_length:]
-    # )
-    # heat_values.append(
-    #     influence(
-    #         attentions,
-    #         hidden_states,
-    #         attention_outputs,
-    #         difference="angle",
-    #         receptive_field_norm=False,
-    #     )[0].mean(dim=0)[prompt_length:]
-    # )
+    heat_values.append(
+        influence(
+            attentions,
+            hidden_states,
+            attention_outputs,
+            difference="angle",
+            receptive_field_norm=True,
+        )[0].mean(dim=0)[prompt_length:]
+    )
+    heat_values.append(
+        influence(
+            attentions,
+            hidden_states,
+            attention_outputs,
+            difference="angle",
+            receptive_field_norm=False,
+        )[0].mean(dim=0)[prompt_length:]
+    )
 
     heat_values.append(
         influence(

@@ -210,6 +210,7 @@ def sequence_ensemble(
     pooling_ratio: float = 1,
     prompt_length: int = 0,
     weighting: None | str = None,
+    quantile: float | None = None,
 ):
     """
     Pool the uncertainty metric over the generated tokens based on different criterions.
@@ -267,15 +268,24 @@ def sequence_ensemble(
             top_k_weights, top_k_ids = torch.topk(weights, pool_amount, dim=-1)
             top_k_values = torch.gather(metric, dim=-1, index=top_k_ids)
 
-            top_k_values = (
-                top_k_values * top_k_weights / torch.sum(top_k_weights, dim=-1)
-            )
-
         else:
             top_k_values, top_k_ids = torch.topk(metric, pool_amount, dim=-1)
-            top_k_values = top_k_values / pool_amount
 
-        result = torch.sum(top_k_values, dim=-1)
+        if quantile:
+            result = torch.quantile(top_k_values, quantile, dim=-1)
+
+        else:
+            if weighting:
+                top_k_values = (
+                    top_k_values
+                    * top_k_weights
+                    / torch.sum(top_k_weights, dim=-1)
+                )
+
+            else:
+                top_k_values = top_k_values / pool_amount
+
+            result = torch.sum(top_k_values, dim=-1)
 
     torch.cuda.empty_cache()
     gc.collect()
