@@ -5,48 +5,21 @@ import numpy as np
 import hashlib
 import torch
 
-# %%
 path = "src/analysis"
 items = torch.load(f"{path}/tensors.pt")
 
-# %%
 tensor_data_filename = "src/data/runs/validation/gsm8k_microsoft_Phi-3.5-mini-instruct_20250916-210355.pt"
 tensor_data = torch.load(
     tensor_data_filename, map_location=torch.device("cpu"), mmap=True
 )
 
 
-# %%
 def hash_result(question, response):
     hasher = hashlib.sha256()
     hasher.update(question.encode("utf-8"))
     hasher.update(b"\x00")
     hasher.update(response.encode("utf-8"))
     return hasher.hexdigest()
-
-
-# %% Stores the curves
-def plot_shannon_curve(data):
-    is_correct = data["is_correct"]
-    prompt_length = data["prompt_length"]
-    shannon_entropies = data["shannon_entropy"][0, prompt_length:]
-
-    # Compute store path
-    if is_correct:
-        store_path = f"{path}/positive_curves/{hash_result(data['prompt'], data['generation'])}.png"
-    else:
-        store_path = f"{path}/negative_curves/{hash_result(data['prompt'], data['generation'])}.png"
-
-    # Create the figure and plot
-    plt.figure()
-    plt.plot(shannon_entropies)
-    plt.xlabel("Token Index (after prompt)")
-    plt.ylabel("Shannon Entropy")
-    plt.title("Shannon Entropy Curve")
-
-    # Save and close
-    plt.savefig(store_path, bbox_inches="tight")
-    plt.close()
 
 
 # %% Descriptive statistics of the groups
@@ -83,21 +56,13 @@ def descriptive_statistics(entropy, influence):
     influence_peak_threshold = 1 / entropy.shape[0]
     high_influence_mask = influence > influence_peak_threshold
     critical_mask = high_entropy_mask & high_influence_mask
+
     critical_peaks = critical_mask.sum().item()
     critical_peak_density = critical_peaks / entropy.shape[0]
-    avg_critical_peak_height = (
-        entropy[critical_mask].mean().item() if critical_peaks > 0 else 0.0
-    )
-    highest_critical_peak = (
-        entropy[critical_mask].max().item() if critical_peaks > 0 else 0.0
-    )
 
     # Weighted entropy by attention
     weighted_entropy = entropy * influence
     avg_weighted_entropy = weighted_entropy.sum().item()
-
-    weighted_entropy_p75 = torch.quantile(weighted_entropy, 0.75).item()
-    weighted_entropy_p90 = torch.quantile(weighted_entropy, 0.90).item()
 
     return {
         # Basic entropy stats
@@ -118,11 +83,6 @@ def descriptive_statistics(entropy, influence):
         "avg_weighted_entropy": avg_weighted_entropy,
         "num_critical_peaks": critical_peaks,
         "critical_peak_density": critical_peak_density,
-        "avg_critical_peak_height": avg_critical_peak_height,
-        "highest_critical_peak": highest_critical_peak,
-        # Weighted percentiles
-        "weighted_entropy_p75": weighted_entropy_p75,
-        "weighted_entropy_p90": weighted_entropy_p90,
     }
 
 
@@ -150,7 +110,7 @@ for item in items:
         attentions,
         hidden_states,
         attention_outputs,
-        difference="angle",
+        difference="norm",
         receptive_field_norm=True,
     )[0].mean(dim=0)[prompt_length:]
     item_entropy = item["shannon_entropy"][0, prompt_length:]
@@ -173,9 +133,6 @@ for item in items:
             negative_agregate_stats[key].append(value)
 
     i += 1
-
-    # Store curves
-    # plot_shannon_curve(item)
 
 # %%
 # Compute average and standard deviation of the stats

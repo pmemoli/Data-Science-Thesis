@@ -91,9 +91,9 @@ def compute_uq_auroc_grid(
         sequences = item["sequences"].to(model.device)
 
         with torch.no_grad():
-            # last_layer_distribution = torch.softmax(
-            #     lm_head(hidden_states[-1]), dim=-1
-            # )
+            last_layer_distribution = torch.softmax(
+                lm_head(hidden_states[-1]), dim=-1
+            )
 
             grid = {metric: {} for metric in metrics}
             grid["success"] = evaluations[
@@ -155,7 +155,6 @@ def compute_uq_auroc_grid(
                                 pooling_ratio=pooling_ratio,
                                 weighting=weight_param,  # type: ignore
                                 prompt_length=prompt_length,
-                                quantile=0.75,
                             )
 
                             grid[metric][f"{agg}_{weight}"] = score.item()

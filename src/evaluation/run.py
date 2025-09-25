@@ -1,11 +1,12 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from src.engine.scenarios import REGISTRY
-from src.engine.core.utils import (
+from src.evaluation.scenarios import REGISTRY
+from src.evaluation.core.utils import (
     hidden_states_reshape,
     attentions_reshape,
     attention_outputs_reshape,
 )
+from src.metrics.token_uq import logits_uq
 
 import argparse
 import torch
@@ -21,10 +22,9 @@ def run_benchmark(
     result_path: str,
     temperature: float = 0.5,
     max_length: int = 1024,
-    batch_size: int = 1,
-    sample_amount: int = 1,
     store_tensors: bool = False,
     store_metrics: bool = False,
+    store_logprobs: bool = False,
     device: str = "cuda:0",
     limit: int | None = None,
 ):
@@ -102,13 +102,9 @@ def run_benchmark(
                 output_attentions=True,
             )
 
-        hidden_states = hidden_states_reshape(outputs.hidden_states)
-        attentions = attentions_reshape(outputs.attentions)
-        attentions_outputs = attention_outputs_reshape(attention_outputs)
-
-        sequences = outputs.sequences[:, prompt_length:]
+        output_sequence = outputs.sequences[0, prompt_length:]
         decoded_sequence = tokenizer.decode(
-            sequences[0],
+            output_sequence,
             skip_special_tokens=True,
         )
 
@@ -119,11 +115,30 @@ def run_benchmark(
             "generation": decoded_sequence,
         }
 
-        if store_tensors:
-            result["hidden_states"] = hidden_states.cpu()
-            result["attentions"] = attentions.cpu()
-            result["attention_outputs"] = attentions_outputs.cpu()
-            result["sequences"] = sequences.cpu()
+        if store_tensors or store_metrics or store_logprobs:
+            hidden_states = hidden_states_reshape(outputs.hidden_states)
+            full_sequence = outputs.sequences[0]
+
+            if store_tensors:
+                attentions = attentions_reshape(outputs.attentions)
+                attentions_outputs = attention_outputs_reshape(
+                    attention_outputs
+                )
+
+                result["hidden_states"] = hidden_states.cpu()
+                result["attentions"] = attentions.cpu()
+                result["attention_outputs"] = attentions_outputs.cpu()
+                result["sequences"] = full_sequence.cpu()
+
+            if store_logprobs:
+                shannon_uq = logits_uq(
+                    hidden_states,
+                    model.lm_head,
+                    full_sequence,
+                    "logits_shannon_entropy",
+                )
+
+                result["token_shannon_entropy"] = shannon_uq.cpu()
 
         gc.collect()
         attention_outputs.clear()
@@ -193,17 +208,6 @@ def parse_arguments():
     )
 
     parser.add_argument(
-        "--batch_size", type=int, default=1, help="Batch size for processing"
-    )
-
-    parser.add_argument(
-        "--sample_amount",
-        type=int,
-        default=1,
-        help="Number of samples to generate per prompt",
-    )
-
-    parser.add_argument(
         "--device",
         type=str,
         default="cuda:0",
@@ -222,6 +226,13 @@ def parse_arguments():
         type=bool,
         default=False,
         help="Whether to store evaluation metrics (True/False)",
+    )
+
+    parser.add_argument(
+        "--store_logprobs",
+        type=bool,
+        default=False,
+        help="Whether to store token log probabilities [fixed to shannon entropy] (True/False)",
     )
 
     parser.add_argument(
@@ -272,12 +283,11 @@ def main():
             result_path=args.result_path,
             temperature=args.temperature,
             max_length=args.max_length,
-            batch_size=args.batch_size,
-            sample_amount=args.sample_amount,
             device=args.device,
             limit=args.limit,
             store_tensors=args.store_tensors,
             store_metrics=args.store_metrics,
+            store_logprobs=args.store_logprobs,
         )
 
     except KeyboardInterrupt:

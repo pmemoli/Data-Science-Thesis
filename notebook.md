@@ -1030,4 +1030,23 @@ So, i can make a really good argument for the entropy distribution being an amaz
 
 I for sure need more data... Let's see what my director says.
 
+## September 25th
 
+1. Compare cross-dataset
+
+Para contar la historia:
+  -1. A study metrics for task agnostic llm-performance:
+    Probe banda de cosas y me da esto
+
+  -2. Token-level Shannon entropy distribution is a strong predictor of llm-performance:
+    Me quedo con la que anda mejor y hago un estudio de ablacion 
+
+  -3. Efficent metrics for task agnostic llm-performance estimation:
+    Me quedo con las que andan bien y son baratas
+
+2. Train the metamodel on shanon entropy distribution features
+
+The TODOs are as following:
+
+- Compute the shannon entropies for MATH and GSM8K, analyze how they compare.
+- Train a logistic regression model on the shannon entropy distribution features. The regression classifies if the answer is correct or not.
