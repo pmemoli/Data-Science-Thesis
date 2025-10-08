@@ -12,11 +12,10 @@ class GSM8K(Scenario):
         print("Loading GSM8K dataset...")
 
         dataset = datasets.load_dataset("gsm8k", "main")
-        for item in list(dataset["test"]):
+        for item in list(dataset["train"]):
             question = item["question"].strip()
             reference = item["answer"].strip()
 
             self.items.append({"question": question, "reference": reference})
 
         random.shuffle(self.items)
-

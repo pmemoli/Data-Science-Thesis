@@ -22,19 +22,29 @@ def run_benchmark(
     result_path: str,
     temperature: float = 0.5,
     max_length: int = 1024,
-    store_tensors: bool = False,
-    store_metrics: bool = False,
+    store_hidden_states: bool = False,
+    store_attentions: bool = False,
+    store_attention_outputs: bool = False,
     store_logprobs: bool = False,
     device: str = "cuda:0",
     limit: int | None = None,
 ):
+
+    file_path = f"{result_path}/{suite}"
+    os.makedirs(file_path, exist_ok=True)
+
+    def store_results(results):
+        time_stamp = time.strftime("%Y%m%d-%H%M%S")
+        output_file = f"{file_path}/{dataset_name}_{model_name.replace('/', '_')}_{time_stamp}.pt"
+        torch.save(results, output_file)
+
     ScenarioClass = REGISTRY[dataset_name]
     scenario = ScenarioClass()
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
         attn_implementation="eager",
         trust_remote_code=False,
-        device_map="cuda:0",
+        device_map=device,
     )
     tokenizer = AutoTokenizer.from_pretrained(
         model_name,
@@ -98,11 +108,11 @@ def run_benchmark(
                 eos_token_id=tokenizer.eos_token_id,
                 use_cache=True,
                 return_dict_in_generate=True,
-                output_hidden_states=True,
-                output_attentions=True,
+                output_hidden_states=store_hidden_states or store_logprobs,
+                output_attentions=store_attentions,
             )
 
-        output_sequence = outputs.sequences[0, prompt_length:]
+        output_sequence = outputs.sequences[0, :]
         decoded_sequence = tokenizer.decode(
             output_sequence,
             skip_special_tokens=True,
@@ -113,32 +123,43 @@ def run_benchmark(
             "prompt_length": prompt_length,
             "reference": reference,
             "generation": decoded_sequence,
+            "sequences": output_sequence.cpu(),
         }
 
-        if store_tensors or store_metrics or store_logprobs:
-            hidden_states = hidden_states_reshape(outputs.hidden_states)
-            full_sequence = outputs.sequences[0]
+        store_tensors = (
+            store_hidden_states or store_attentions or store_logprobs
+        )
 
-            if store_tensors:
+        if store_tensors:
+            hidden_states = hidden_states_reshape(outputs.hidden_states)
+
+            if store_hidden_states:
+                result["hidden_states"] = hidden_states.cpu()
+
+            if store_attentions:
                 attentions = attentions_reshape(outputs.attentions)
+
+                # average over heads for memory efficiency
+                attentions = torch.mean(attentions, dim=2)
+
+                result["attentions"] = attentions.cpu()
+
+            if store_attention_outputs:
                 attentions_outputs = attention_outputs_reshape(
                     attention_outputs
                 )
 
-                result["hidden_states"] = hidden_states.cpu()
-                result["attentions"] = attentions.cpu()
                 result["attention_outputs"] = attentions_outputs.cpu()
-                result["sequences"] = full_sequence.cpu()
 
             if store_logprobs:
                 shannon_uq = logits_uq(
                     hidden_states,
                     model.lm_head,
-                    full_sequence,
+                    output_sequence,
                     "logits_shannon_entropy",
                 )
 
-                result["token_shannon_entropy"] = shannon_uq.cpu()
+                result["token_shannon_entropy"] = shannon_uq[0].cpu()
 
         gc.collect()
         attention_outputs.clear()
@@ -151,15 +172,15 @@ def run_benchmark(
         if amount_processed % 10 == 0:
             print(f"Processed {amount_processed} samples...")
 
-    # Store results
-    file_path = f"{result_path}/{suite}"
-    os.makedirs(file_path, exist_ok=True)
+            store_results(results)
 
-    time_stamp = time.strftime("%Y%m%d-%H%M%S")
-    output_file = f"{file_path}/{dataset_name}_{model_name.replace('/', '_')}_{time_stamp}.pt"
-    torch.save(results, output_file)
+            results = []
+            gc.collect()
 
-    print(f"Benchmark completed. Results saved to: {output_file}")
+    if results:
+        store_results(results)
+
+    print(f"Benchmark completed. Results saved to {file_path}")
     print(f"Total samples processed: {amount_processed}")
 
 
@@ -208,24 +229,17 @@ def parse_arguments():
     )
 
     parser.add_argument(
-        "--device",
-        type=str,
-        default="cuda:0",
-        help="Device to run the model on (e.g., 'cuda:0', 'cpu')",
-    )
-
-    parser.add_argument(
-        "--store_tensors",
-        type=bool,
-        required=True,
-        help="Whether to store hidden states and attentions (True/False)",
-    )
-
-    parser.add_argument(
-        "--store_metrics",
+        "--store_hidden_states",
         type=bool,
         default=False,
-        help="Whether to store evaluation metrics (True/False)",
+        help="Whether to store hidden states (True/False)",
+    )
+
+    parser.add_argument(
+        "--store_attentions",
+        type=bool,
+        default=False,
+        help="Whether to store attention weights and outputs (True/False)",
     )
 
     parser.add_argument(
@@ -240,6 +254,13 @@ def parse_arguments():
         type=int,
         default=None,
         help="Limit the number of samples to process (useful for testing)",
+    )
+
+    parser.add_argument(
+        "--device",
+        type=str,
+        default="cuda:0",
+        help="Device to run the model on (e.g., 'cuda:0', 'cpu')",
     )
 
     return parser.parse_args()
@@ -285,8 +306,8 @@ def main():
             max_length=args.max_length,
             device=args.device,
             limit=args.limit,
-            store_tensors=args.store_tensors,
-            store_metrics=args.store_metrics,
+            store_hidden_states=args.store_hidden_states,
+            store_attentions=args.store_attentions,
             store_logprobs=args.store_logprobs,
         )
 

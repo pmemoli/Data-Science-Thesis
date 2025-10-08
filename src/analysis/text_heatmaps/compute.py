@@ -19,7 +19,7 @@ def hash_result(question, response):
 
 
 # %% Load data
-tensor_data_filename = "src/data/runs/validation/gsm8k_microsoft_Phi-3.5-mini-instruct_20250916-210355.pt"
+tensor_data_filename = "src/data/runs/gsm-exploration/gsm8k_microsoft_Phi-3.5-mini-instruct_20250916-210355.pt"
 tensor_data = torch.load(
     tensor_data_filename, map_location=torch.device("cpu"), mmap=True
 )
@@ -257,7 +257,7 @@ def save_text_heatmap(
     ]
     tokens = tokens[0]
 
-    special_tokens = set(tokenizer.all_special_tokens) | {"<0x0A>"}
+    special_tokens = set(tokenizer.all_special_tokens) | {"<0x0A>", "<|end|>"}
     punctuation = set(string.punctuation) | {"，", "。", "、", "！", "？"}
 
     for i, influence in enumerate(values):
@@ -315,16 +315,16 @@ for item in tensor_data:
     heat_values = []
     values_names = [
         "shannon entropy",
-        # "angle influence - rf norm",
-        # "angle influence - no rf norm",
+        "angle influence - rf norm",
+        "angle influence - no rf norm",
         "norm influence - rf norm",
         "norm influence - no rf norm",
         "projection influence - rf norm",
         "projection influence - no rf norm",
-        "rollout 0.9/0.1 - rf norm",
-        "rollout 0.9/0.1 - no rf norm",
         "rollout 0.5/0.5 - rf norm",
         "rollout 0.5/0.5 - no rf norm",
+        "rollout 0.9/0.1 - rf norm",
+        "rollout 0.9/0.1 - no rf norm",
     ]
 
     shannon_entropy = logits_uq(
@@ -343,7 +343,7 @@ for item in tensor_data:
             attention_outputs,
             difference="angle",
             receptive_field_norm=True,
-        )[0].mean(dim=0)[prompt_length:]
+        )[0][-1][prompt_length:]
     )
     heat_values.append(
         influence(
@@ -352,7 +352,7 @@ for item in tensor_data:
             attention_outputs,
             difference="angle",
             receptive_field_norm=False,
-        )[0].mean(dim=0)[prompt_length:]
+        )[0][-1][prompt_length:]
     )
 
     heat_values.append(
@@ -362,7 +362,7 @@ for item in tensor_data:
             attention_outputs,
             difference="norm",
             receptive_field_norm=True,
-        )[0].mean(dim=0)[prompt_length:]
+        )[0][-1][prompt_length:]
     )
     heat_values.append(
         influence(
@@ -371,7 +371,7 @@ for item in tensor_data:
             attention_outputs,
             difference="norm",
             receptive_field_norm=False,
-        )[0].mean(dim=0)[prompt_length:]
+        )[0][-1][prompt_length:]
     )
 
     heat_values.append(
@@ -381,7 +381,7 @@ for item in tensor_data:
             attention_outputs,
             difference="projection",
             receptive_field_norm=True,
-        )[0].mean(dim=0)[prompt_length:]
+        )[0][-1][prompt_length:]
     )
     heat_values.append(
         influence(
@@ -390,7 +390,7 @@ for item in tensor_data:
             attention_outputs,
             difference="projection",
             receptive_field_norm=False,
-        )[0].mean(dim=0)[prompt_length:]
+        )[0][-1][prompt_length:]
     )
 
     heat_values.append(
@@ -399,7 +399,7 @@ for item in tensor_data:
             attention_output_proportion=0.5,
             residual_stream_proportion=0.5,
             receptive_field_norm=True,
-        )[0].mean(dim=0)[prompt_length:]
+        )[0][-1][prompt_length:]
     )
     heat_values.append(
         attention_rollout(
@@ -407,7 +407,7 @@ for item in tensor_data:
             attention_output_proportion=0.5,
             residual_stream_proportion=0.5,
             receptive_field_norm=False,
-        )[0].mean(dim=0)[prompt_length:]
+        )[0][-1][prompt_length:]
     )
 
     heat_values.append(
@@ -416,21 +416,21 @@ for item in tensor_data:
             attention_output_proportion=0.9,
             residual_stream_proportion=0.1,
             receptive_field_norm=True,
-        )[0].mean(dim=0)[prompt_length:]
+        )[0][-1][prompt_length:]
     )
     heat_values.append(
         attention_rollout(
             attentions,
-            attention_output_proportion=0.9,
-            residual_stream_proportion=0.1,
+            attention_output_proportion=0.7,
+            residual_stream_proportion=0.3,
             receptive_field_norm=False,
-        )[0].mean(dim=0)[prompt_length:]
+        )[0][-1][prompt_length:]
     )
 
     token_sequence = sequences[0, :-1].tolist()
 
     save_text_heatmap(
-        f"src/analysis/text_heatmaps/{hash}.html",
+        f"src/analysis/text_heatmaps/heatmaps/{hash}_last.html",
         heat_values,
         values_names,
         sequences,

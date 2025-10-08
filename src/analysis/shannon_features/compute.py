@@ -1,5 +1,5 @@
 # %%
-from src.metrics.sequence_ensemble import influence
+from src.metrics.attention import attention_rollout
 import matplotlib.pyplot as plt
 import numpy as np
 import hashlib
@@ -8,7 +8,7 @@ import torch
 path = "src/analysis"
 items = torch.load(f"{path}/tensors.pt")
 
-tensor_data_filename = "src/data/runs/validation/gsm8k_microsoft_Phi-3.5-mini-instruct_20250916-210355.pt"
+tensor_data_filename = "src/data/runs/gsm-exploration/gsm8k_microsoft_Phi-3.5-mini-instruct_20250916-210355.pt"
 tensor_data = torch.load(
     tensor_data_filename, map_location=torch.device("cpu"), mmap=True
 )

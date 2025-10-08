@@ -1050,3 +1050,28 @@ The TODOs are as following:
 
 - Compute the shannon entropies for MATH and GSM8K, analyze how they compare.
 - Train a logistic regression model on the shannon entropy distribution features. The regression classifies if the answer is correct or not.
+
+# October 8th
+
+Took a looong break to work in AITW and prepare the language paradigms exam.
+
+The TODO for the next month is:
+
+- Decide on a rollout algorithm to store influences
+- Re-run the evaluations on gsm8k and math with the rollout algorithm
+- Visualize the results
+- Train a logistic regression model on the shannon entropy distribution features for a haluccination detection task
+- See the results on 5 different datasets, and compare them with the benchmarks
+
+Found out that the attention rollout weighting is actually amazing. I tried doing RECEPTIVE FIELD normalization, and ALSO averaging the final [seq, seq] tensor also by its respective receptive field on the first dimension, and that reaches an AUROC of 0.8-0.814 depending on the algorithm used. Surprisingly, the best results comes from the regular rollout algorithm with.
+
+I tried other receptive field normalizations but all of them make the results worse. 
+
+Next step is re-running everything on math and gsm8k (TRAIN) and storing:
+    - Shanon entropies
+    - Attention weights (with and without receptive field normalization):
+        - Raw rollout 0.5, 0.7, 0.9 residual
+        - Norm rollout
+        - Projection rollout
+
+After that I can visualize the results and see how they compare on both datasets.
