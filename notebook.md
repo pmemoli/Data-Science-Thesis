@@ -1075,3 +1075,39 @@ Next step is re-running everything on math and gsm8k (TRAIN) and storing:
         - Projection rollout
 
 After that I can visualize the results and see how they compare on both datasets.
+
+# October 9th
+
+Ran:
+
+python -m src.engine.store \
+  --dataset_name "gsm8k" \
+  --model_name "microsoft/Phi-3.5-mini-instruct" \
+  --suite "gsm-complete-test" \
+  --result_path "./src/data/runs" \
+  --temperature 0.5 \
+  --max_length 1024 \
+  --device "cuda:0" \
+  --store_attention_influence True \
+  --store_logprobs True
+
+and
+
+python -m src.engine.store \
+  --dataset_name "math" \
+  --model_name "microsoft/Phi-3.5-mini-instruct" \
+  --suite "math-complete-test" \
+  --result_path "./src/data/runs" \
+  --temperature 0.5 \
+  --max_length 1024 \
+  --device "cuda:0" \
+  --store_attention_influence True \
+  --store_logprobs True
+
+It store the shannon entropies and different attention influence weights.
+
+# October 10th
+
+Ran:
+
+python -m src.engine.evaluate --suite "gsm-test"

@@ -6,10 +6,7 @@ import numpy as np
 import hashlib
 import torch
 
-path = "src/analysis"
-items = torch.load(f"{path}/tensors.pt")
-
-tensor_data_filename = "src/data/runs/gsm-exploration/gsm8k_microsoft_Phi-3.5-mini-instruct_20250916-210355.pt"
+tensor_data_filename = "src/data/runs/gsm-test/gsm8k_microsoft_Phi-3.5-mini-instruct_20250916-210355.pt"
 tensor_data = torch.load(
     tensor_data_filename, map_location=torch.device("cpu"), mmap=True
 )
@@ -31,9 +28,6 @@ def descriptive_statistics(entropy, influence):
     entropy_peak_threshold = 0.2
     high_entropy_mask = entropy > entropy_peak_threshold
     entropy_peaks = high_entropy_mask.sum().item()
-    avg_entropy_peak_height = (
-        entropy[high_entropy_mask].mean().item() if entropy_peaks > 0 else 0.0
-    )
     peak_density = entropy_peaks / entropy.shape[0]
     highest_entropy_peak = entropy.max().item()
     avg_entropy = entropy.mean().item()
@@ -83,77 +77,13 @@ positive_agregate_stats = {}
 negative_agregate_stats = {}
 
 i = 0
-for item in items:
-    hash_id = hash_result(item["prompt"], item["generation"])
-    print(f"Processing item {i+1}/{len(items)}")
-
-    item_tensor_data = next(
-        x
-        for x in tensor_data
-        if hash_result(x["prompt"], x["generation"]) == hash_id
-    )
-
-    attentions = item_tensor_data["attentions"]
-    hidden_states = item_tensor_data["hidden_states"]
-    attention_outputs = item_tensor_data["attention_outputs"]
-    prompt_length = item_tensor_data["prompt_length"]
-
-    # item_influence = influence(
-    #     attentions,
-    #     hidden_states,
-    #     attention_outputs,
-    #     difference="norm",
-    #     receptive_field_norm=True,
-    # )[0][-1][prompt_length:]
-
-    # item_influence = influence(
-    #     attentions,
-    #     hidden_states,
-    #     attention_outputs,
-    #     difference="projection",
-    #     receptive_field_norm=True,
-    # )[0]
-
-    # item_influence = attention_rollout(
-    #     attentions,
-    #     attention_output_proportion=0.5,
-    #     residual_stream_proportion=0.5,
-    #     receptive_field_norm=True,
-    # )[0][-1][prompt_length:]
-
-    item_influence = attention_rollout(
-        attentions,
-        attention_output_proportion=0.1,
-        residual_stream_proportion=0.9,
-        receptive_field_norm=True,
-    )[0]
-
-    n = item_influence.size(-1)
-    aggregated_influence = item_influence.sum(dim=0)
-    divisors = torch.arange(n, 0, -1)
-    item_influence = (aggregated_influence / divisors)[prompt_length:]
-
-    item_entropy = item["shannon_entropy"][0, prompt_length:]
+for item in tensor_data:
+    prompt_length = item["prompt_length"]
 
     stats = descriptive_statistics(item_entropy, item_influence)
 
-    # Aggregate stats
-    if item["is_correct"]:
-        for key, value in stats.items():
-            if key not in positive_agregate_stats:
-                positive_agregate_stats[key] = []
 
-            positive_agregate_stats[key].append(value)
-
-    else:
-        for key, value in stats.items():
-            if key not in negative_agregate_stats:
-                negative_agregate_stats[key] = []
-
-            negative_agregate_stats[key].append(value)
-
-    i += 1
-
+# %%
 # Compute average and standard deviation of the stats
 avg_positive_stats = {
     k: np.mean(v) for k, v in positive_agregate_stats.items()
@@ -192,13 +122,6 @@ for key in avg_positive_stats.keys():
         [positive_agregate_stats[key], negative_agregate_stats[key]]
     )
 
-    # Calculate AUROC
-    # Higher feature values should indicate errors for good discrimination
-    try:
-        auroc = roc_auc_score(y_true, y_scores)
-    except ValueError:
-        auroc = float("nan")  # In case of issues (e.g., all same values)
-
     # Highlight potentially discriminative features
     print(f"{key:<20}")
     print(f"   Correct:   {pos_mean:6.3f} ± {pos_sd:5.3f}")
@@ -206,5 +129,4 @@ for key in avg_positive_stats.keys():
     print(f"   Diff:      {abs_diff:+6.3f}")
     print(f"   RelDiff:   {rel_diff:6.2f}%")
     print(f"   Cohen's d: {cohen_d:6.3f}")
-    print(f"   AUROC:     {auroc:6.3f}")
     print()

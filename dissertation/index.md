@@ -1,24 +1,31 @@
-## Introduccion al problema
+## Abstract
 
-## Breve introduccion a modelos de lenguaje y transformers
+1 parrafo motivacion
+1 parrafo del pq del problema
+1-2 parrafo de como lo resolviste
+1 parrafo de resultados
 
-## Encontrando buenas metricas a nivel de token (TRAIN)
+## Introduccion
 
-## Encontrando buenas metricas a nivel de secuencia (TRAIN)
+Lo mismo pero mas desarrollado
 
-### Introduccion a attention rollout
+## Marco teorico
 
---- Estoy aca
+. Breve introduccion a modelos de lenguaje y transformers
+. Hablar de las metricas de alucinacion y estado del arte
 
-## Evaluando y comparando en GSM8K y MATH (TEST)
+## Parte tecnica
 
-## Conclusiones 
+### Evaluando metricas de evaluacion
 
-SI DA EL TIEMPO:
+Lo dejo para el final
+.Resultados (1 modelo y 1 dataset [TEST, GSM8K])
 
-## Evaluando en otros datasets (ver si hay proporcionalidad)
+### [El nombre de la metrica]
 
-## Entrenando un modelo pequeño con los features obtenidos en un dataset de alucinaciones
+.Breve overview
+.Desarrolle este algoritmo y esta metrica
+.Resultados: evaluar y comparar en GSM8K [TEST], MATH, 2+ y maybe otros modelos 
+    (phi, qwen y oss)
 
-## Evaluando si hay transfer learning (datasets de reasoning)
-
+## Conclusion y futuras direcciones

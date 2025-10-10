@@ -1,6 +1,6 @@
 .teamviewer
 .env
-src/data/runs
+src/data/runs/gsm-exploration
 sync.sh
 download_results.sh
 venv

@@ -23,15 +23,28 @@ def attention_rollout(
     [batch_size, total_length, total_length]
     """
 
+    dtype = attentions.dtype
+
+    # Convert to specified dtype
+    attentions = attentions.to(dtype=dtype)
+
     # Aggregate heads to [num_layers, batch_size, total_length, total_length]
     attentions = attentions.mean(dim=2)  # type: ignore
 
     # Weight by the amount of tokens that can attend to it
     if receptive_field_norm:
         n = attentions.size(-1)
-        norm_matrix = torch.zeros(n, n)
-        i_indices = torch.arange(n).unsqueeze(1).expand(n, n)
-        j_indices = torch.arange(n).unsqueeze(0).expand(n, n)
+        norm_matrix = torch.zeros(n, n, dtype=dtype, device=attentions.device)
+        i_indices = (
+            torch.arange(n, dtype=dtype, device=attentions.device)
+            .unsqueeze(1)
+            .expand(n, n)
+        )
+        j_indices = (
+            torch.arange(n, dtype=dtype, device=attentions.device)
+            .unsqueeze(0)
+            .expand(n, n)
+        )
 
         norm_matrix.fill_diagonal_(1)
 
@@ -40,7 +53,7 @@ def attention_rollout(
             i_indices[lower_mask] - j_indices[lower_mask] + 1
         )
 
-        norm_matrix = norm_matrix[None, None, :, :].to(attentions.device)
+        norm_matrix = norm_matrix[None, None, :, :]
         attentions = attentions * norm_matrix
 
         # Normalize again
@@ -48,7 +61,9 @@ def attention_rollout(
 
     # Normalize attention to take into account residual connections
     sequence_length = attentions.size(-1)
-    identity = torch.eye(sequence_length).to(attentions.device)
+    identity = torch.eye(
+        sequence_length, dtype=dtype, device=attentions.device
+    )
     attentions = (
         attention_output_proportion * attentions
         + residual_stream_proportion * identity.unsqueeze(0).unsqueeze(0)
@@ -83,15 +98,30 @@ def influence(
     [batch_size, total_length, total_length]
     """
 
+    dtype = attentions.dtype
+
+    # Convert all inputs to specified dtype
+    attentions = attentions.to(dtype=dtype)
+    hidden_states = hidden_states.to(dtype=dtype)
+    attention_outputs = attention_outputs.to(dtype=dtype)
+
     # Aggregate heads to [num_layers, batch_size, total_length, total_length]
     attentions = attentions.mean(dim=2)  # type: ignore
 
     # Weight by the amount of tokens that can attend to it
     if receptive_field_norm:
         n = attentions.size(-1)
-        norm_matrix = torch.zeros(n, n)
-        i_indices = torch.arange(n).unsqueeze(1).expand(n, n)
-        j_indices = torch.arange(n).unsqueeze(0).expand(n, n)
+        norm_matrix = torch.zeros(n, n, dtype=dtype, device=attentions.device)
+        i_indices = (
+            torch.arange(n, dtype=dtype, device=attentions.device)
+            .unsqueeze(1)
+            .expand(n, n)
+        )
+        j_indices = (
+            torch.arange(n, dtype=dtype, device=attentions.device)
+            .unsqueeze(0)
+            .expand(n, n)
+        )
 
         norm_matrix.fill_diagonal_(1)
 
@@ -100,7 +130,7 @@ def influence(
             i_indices[lower_mask] - j_indices[lower_mask] + 1
         )
 
-        norm_matrix = norm_matrix[None, None, :, :].to(attentions.device)
+        norm_matrix = norm_matrix[None, None, :, :]
         attentions = attentions * norm_matrix
 
         # Normalize again
@@ -187,3 +217,14 @@ def influence(
         influence = torch.bmm(attentions[i, :, :, :], influence)
 
     return influence
+
+
+def aggregate_attention_influence(influence: torch.Tensor) -> torch.Tensor:
+    n = influence.size(-1)
+    aggregated_influence = influence.sum(dim=0)
+    divisors = torch.arange(
+        n, 0, -1, dtype=influence.dtype, device=influence.device
+    )
+    aggregated_influence = aggregated_influence / divisors
+
+    return aggregated_influence
