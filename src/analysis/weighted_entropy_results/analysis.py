@@ -1,41 +1,23 @@
 # %%
-from src.metrics.sequence_ensemble import influence, attention_rollout
 from sklearn.metrics import roc_auc_score
-from typing import Literal
 import numpy as np
-import hashlib
 import torch
-
-tensor_data_filename = "src/data/runs/gsm-test/gsm8k_microsoft_Phi-3.5-mini-instruct_20250916-210355.pt"
-tensor_data = torch.load(
-    tensor_data_filename, map_location=torch.device("cpu"), mmap=True
-)
-
-
-def hash_result(question, response):
-    hasher = hashlib.sha256()
-    hasher.update(question.encode("utf-8"))
-    hasher.update(b"\x00")
-    hasher.update(response.encode("utf-8"))
-    return hasher.hexdigest()
+import hashlib
+import os
 
 
 # %% Descriptive statistics of the groups
 def descriptive_statistics(entropy, influence):
-    influence = influence / influence.sum()
-
     # Pure entropy based stats
     entropy_peak_threshold = 0.2
     high_entropy_mask = entropy > entropy_peak_threshold
     entropy_peaks = high_entropy_mask.sum().item()
     peak_density = entropy_peaks / entropy.shape[0]
-    highest_entropy_peak = entropy.max().item()
     avg_entropy = entropy.mean().item()
-    entropy_p75 = torch.quantile(entropy, 0.75).item()
-    entropy_p90 = torch.quantile(entropy, 0.90).item()
-    entropy_std = entropy.std().item()
 
     # Entropy mixed with influence stats
+    influence = influence / influence.sum()
+
     influence_peak_threshold = 1 / entropy.shape[0]
     high_influence_mask = influence > influence_peak_threshold
     critical_mask = high_entropy_mask & high_influence_mask
@@ -47,44 +29,73 @@ def descriptive_statistics(entropy, influence):
     weighted_entropy = entropy * influence
     avg_weighted_entropy = weighted_entropy.sum().item()
 
-    weighted_entropy_std = weighted_entropy.std().item()
-    highest_weighted_entropy_peak = weighted_entropy.max().item()
-    max_weighted_entropy_jump = (
-        torch.diff(weighted_entropy).abs().max().item()
-        if weighted_entropy.shape[0] > 1
-        else 0.0
-    )
-
     return {
         # Basic entropy stats
         "avg_entropy": avg_entropy,
-        "entropy_std": entropy_std,
-        "entropy_p75": entropy_p75,
-        "entropy_p90": entropy_p90,
         "entropy_peak_density": peak_density,
-        "highest_entropy_peak": highest_entropy_peak,
         # Influence mixed stats
         "avg_weighted_entropy": avg_weighted_entropy,
-        "weighted_entropy_std": weighted_entropy_std,
         "critical_peak_density": critical_peak_density,
-        "highest_weighted_entropy_peak": highest_weighted_entropy_peak,
-        "max_weighted_entropy_jump": max_weighted_entropy_jump,
     }
 
 
-# %%
+def hash_result(question):
+    hasher = hashlib.sha256()
+    hasher.update(question.encode("utf-8"))
+    return hasher.hexdigest()
+
+
+tensor_data_filename = "src/data/runs/gsm-exploration/gsm8k_microsoft_Phi-3.5-mini-instruct_20250916-210355.pt"
+tensor_data = torch.load(
+    tensor_data_filename, map_location=torch.device("cpu"), mmap=True
+)
+
+hashes = [hash_result(item["prompt"]) for item in tensor_data]
+
+suite = "gsm-test"
+tensor_path = f"src/data/runs/{suite}"
+tensor_files = os.listdir(tensor_path)
+
 positive_agregate_stats = {}
 negative_agregate_stats = {}
 
 i = 0
-for item in tensor_data:
-    prompt_length = item["prompt_length"]
+for file in tensor_files:
+    full_path = f"{tensor_path}/{file}"
+    tensor = torch.load(full_path)
+    for tensor_item in tensor:
+        # hash = hash_result(tensor_item["prompt"])
+        # if hash in hashes:
+        #     continue
+        #
+        print(f"Processing item {i+1}")
 
-    stats = descriptive_statistics(item_entropy, item_influence)
+        entropy = tensor_item["token_shannon_entropy"].to(dtype=torch.float32)
+        influence = tensor_item["attention_influence"]["rfn"]["rollout_09"].to(
+            dtype=torch.float32
+        )
+        prompt_length = tensor_item["prompt_length"]
 
+        stats = descriptive_statistics(
+            entropy[prompt_length:], influence[prompt_length:]
+        )
 
-# %%
-# Compute average and standard deviation of the stats
+        if tensor_item["success"]:
+            for key, value in stats.items():
+                if key not in positive_agregate_stats:
+                    positive_agregate_stats[key] = []
+
+                positive_agregate_stats[key].append(value)
+
+        else:
+            for key, value in stats.items():
+                if key not in negative_agregate_stats:
+                    negative_agregate_stats[key] = []
+
+                negative_agregate_stats[key].append(value)
+
+        i += 1
+
 avg_positive_stats = {
     k: np.mean(v) for k, v in positive_agregate_stats.items()
 }
@@ -122,6 +133,13 @@ for key in avg_positive_stats.keys():
         [positive_agregate_stats[key], negative_agregate_stats[key]]
     )
 
+    # Calculate AUROC
+    # Higher feature values should indicate errors for good discrimination
+    try:
+        auroc = roc_auc_score(y_true, y_scores)
+    except ValueError:
+        auroc = float("nan")  # In case of issues (e.g., all same values)
+
     # Highlight potentially discriminative features
     print(f"{key:<20}")
     print(f"   Correct:   {pos_mean:6.3f} ± {pos_sd:5.3f}")
@@ -129,4 +147,5 @@ for key in avg_positive_stats.keys():
     print(f"   Diff:      {abs_diff:+6.3f}")
     print(f"   RelDiff:   {rel_diff:6.2f}%")
     print(f"   Cohen's d: {cohen_d:6.3f}")
+    print(f"   AUROC:     {auroc:6.3f}")
     print()

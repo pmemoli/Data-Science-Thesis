@@ -24,7 +24,6 @@ tensor_data = torch.load(
     tensor_data_filename, map_location=torch.device("cpu"), mmap=True
 )
 
-# %%
 model_name = "microsoft/Phi-3.5-mini-instruct"
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
@@ -60,32 +59,34 @@ def attention_rollout(
     [batch_size, total_length, total_length]
     """
 
+    dtype = attentions.dtype
+
+    # Convert to specified dtype
+    attentions = attentions.to(dtype=dtype)
+
     # Aggregate heads to [num_layers, batch_size, total_length, total_length]
     attentions = attentions.mean(dim=2)  # type: ignore
 
     # Weight by the amount of tokens that can attend to it
     if receptive_field_norm:
         n = attentions.size(-1)
-        norm_matrix = torch.zeros(n, n)
-        i_indices = torch.arange(n).unsqueeze(1).expand(n, n)
-        j_indices = torch.arange(n).unsqueeze(0).expand(n, n)
 
-        norm_matrix.fill_diagonal_(1)
-
-        lower_mask = i_indices > j_indices
-        norm_matrix[lower_mask] = 1.0 / (
-            i_indices[lower_mask] - j_indices[lower_mask] + 1
+        # Receptive field size for each column: [n, n-1, n-2, ..., 1]
+        receptive_field = torch.arange(
+            n, 0, -1, dtype=dtype, device=attentions.device
         )
 
-        norm_matrix = norm_matrix[None, None, :, :].to(attentions.device)
-        attentions = attentions * norm_matrix
+        # Divide each column by its receptive field size
+        attentions = attentions / receptive_field[None, None, None, :]
 
-        # Normalize again
+        # Renormalize rows
         attentions = attentions / attentions.sum(dim=-1, keepdim=True)
 
     # Normalize attention to take into account residual connections
     sequence_length = attentions.size(-1)
-    identity = torch.eye(sequence_length).to(attentions.device)
+    identity = torch.eye(
+        sequence_length, dtype=dtype, device=attentions.device
+    )
     attentions = (
         attention_output_proportion * attentions
         + residual_stream_proportion * identity.unsqueeze(0).unsqueeze(0)
@@ -120,27 +121,37 @@ def influence(
     [batch_size, total_length, total_length]
     """
 
+    dtype = attentions.dtype
+
+    # Convert all inputs to specified dtype
+    attentions = attentions.to(dtype=dtype)
+    hidden_states = hidden_states.to(dtype=dtype)
+    attention_outputs = attention_outputs.to(dtype=dtype)
+
     # Aggregate heads to [num_layers, batch_size, total_length, total_length]
-    attentions = attentions.mean(dim=2)  # type: ignore
+    attentions = attentions.max(dim=2).values  # type: ignore
 
     # Weight by the amount of tokens that can attend to it
     if receptive_field_norm:
         n = attentions.size(-1)
-        norm_matrix = torch.zeros(n, n)
-        i_indices = torch.arange(n).unsqueeze(1).expand(n, n)
-        j_indices = torch.arange(n).unsqueeze(0).expand(n, n)
 
-        norm_matrix.fill_diagonal_(1)
+        # Receptive field size for each column: [n, n-1, n-2, ..., 1]
+        # receptive_field = torch.arange(
+        #     n, 0, -1, dtype=dtype, device=attentions.device
+        # )
+        #
+        # # Divide each column by its receptive field size
+        # attentions = attentions / receptive_field[None, None, None, :]
 
-        lower_mask = i_indices > j_indices
-        norm_matrix[lower_mask] = 1.0 / (
-            i_indices[lower_mask] - j_indices[lower_mask] + 1
+        inverse_receptive_field = torch.arange(
+            1, n + 1, dtype=dtype, device=attentions.device
         )
+        # attentions = attentions * torch.sqrt(
+        #     inverse_receptive_field[None, None, None, :] + eps
+        # )
+        attentions = attentions * inverse_receptive_field[None, None, None, :]
 
-        norm_matrix = norm_matrix[None, None, :, :].to(attentions.device)
-        attentions = attentions * norm_matrix
-
-        # Normalize again
+        # Renormalize rows
         attentions = attentions / attentions.sum(dim=-1, keepdim=True)
 
     # Normalize the attention matrix to take into account the residual connections
@@ -227,6 +238,58 @@ def influence(
 
 
 # %%
+def compute_macs(attentions, epsilon=0.87):
+    """
+    Compute Multi-Layer Attention Consistency Scores (MACS).
+
+    Args:
+        attentions: Shape [num_layers, batch, heads, seq_len, seq_len]
+        input_length: Number of input tokens (N)
+        epsilon: Floor vector coefficient (default: 0.05)
+
+    Returns:
+        z_scores: Token importance Z-scores, shape [batch, input_length]
+        raw_consistency: Raw consistency scores, shape [batch, input_length]
+    """
+    if isinstance(attentions, list):
+        attentions = torch.stack(attentions)
+
+    num_layers = attentions.size(0)
+
+    consistency = None
+    for layer_idx in range(num_layers):
+        # Max-pool across heads [batch, seq_len, seq_len]
+        m_prime = attentions[layer_idx].max(dim=1).values
+
+        # Apply floor vector
+        m = (1 - epsilon) * m_prime + epsilon
+
+        # Multiplicative aggregation
+        consistency = m if consistency is None else consistency * m
+
+    raw_consistency = consistency
+
+    # Normalize to Z-scores
+    mean = raw_consistency.mean(dim=-1, keepdim=True)
+    std = raw_consistency.std(dim=-1, keepdim=True)
+    z_scores = (raw_consistency - mean) / (std + 1e-8)
+    z_scores = z_scores - z_scores.min(dim=-1, keepdim=True).values + 1e-8
+
+    return z_scores, raw_consistency
+
+
+# %%
+def aggregate_attention_influence(influence: torch.Tensor) -> torch.Tensor:
+    n = influence.size(-1)
+    aggregated_influence = influence.sum(dim=0)
+    divisors = torch.arange(
+        n, 0, -1, dtype=influence.dtype, device=influence.device
+    )
+    aggregated_influence = aggregated_influence / divisors
+
+    return aggregated_influence
+
+
 def visualize_tuples(tuples):
     values = [v for _, v in tuples]
 
@@ -257,7 +320,7 @@ def save_text_heatmap(
     ]
     tokens = tokens[0]
 
-    special_tokens = set(tokenizer.all_special_tokens) | {"<0x0A>", "<|end|>"}
+    special_tokens = {"<0x0A>", "<|end|>"}
     punctuation = set(string.punctuation) | {"，", "。", "、", "！", "？"}
 
     for i, influence in enumerate(values):
@@ -265,8 +328,6 @@ def save_text_heatmap(
 
         max_inf = max(influence).item()
         min_inf = min(influence).item()
-
-        mean_inf = torch.mean(influence).item()
 
         influence = torch.clamp(influence, 0, max=0.9 * max_inf)
         influence = (influence - min_inf) / (max_inf - min_inf + 1e-8)
@@ -276,23 +337,24 @@ def save_text_heatmap(
             clean_token = token.replace("▁", " ")
 
             # Rule 1: Ignore special tokens (set to 0)
-            if token in special_tokens:
-                value = torch.tensor(mean_inf)
+            if token in special_tokens or clean_token.strip() == "<0x0A>":
+                value = torch.tensor(0)
 
             # Rule 2: If token is punctuation (single char in punctuation set), set to 0
-            elif clean_token.strip() in punctuation:
-                value = torch.tensor(mean_inf)
+            elif (
+                clean_token.strip() in [".", ","] or clean_token in punctuation
+            ):
+                value = torch.tensor(0)
 
             html_tokens.append((clean_token, value.item()))
 
-        html_str += f"<h2>{influence_name} influence</h2>"
+        html_str += f"<h2>{influence_name}</h2>"
         html_str += f"<div>{visualize_tuples(html_tokens)}</div>"
 
     with open(filename, "w") as f:
         f.write(html_str)
 
 
-# %%
 data = []
 for item in tensor_data:
     prompt = item["prompt"]
@@ -313,121 +375,44 @@ for item in tensor_data:
         continue
 
     heat_values = []
-    values_names = [
-        "shannon entropy",
-        "angle influence - rf norm",
-        "angle influence - no rf norm",
-        "norm influence - rf norm",
-        "norm influence - no rf norm",
-        "projection influence - rf norm",
-        "projection influence - no rf norm",
-        "rollout 0.5/0.5 - rf norm",
-        "rollout 0.5/0.5 - no rf norm",
-        "rollout 0.9/0.1 - rf norm",
-        "rollout 0.9/0.1 - no rf norm",
-    ]
+    values_names = ["shannon entropy", "influence", "rollout", "macs"]
 
+    index = 10
     shannon_entropy = logits_uq(
         hidden_states=hidden_states,
         lm_head=model.lm_head,
         sequences=sequences,
         metric_name="logits_shannon_entropy",
-    )[0, prompt_length:]
+    )[0]
 
-    heat_values.append(shannon_entropy)
+    influence_values = influence(
+        attentions,
+        hidden_states,
+        attention_outputs,
+        difference="projection",
+        receptive_field_norm=True,
+    )[0]
 
-    heat_values.append(
-        influence(
-            attentions,
-            hidden_states,
-            attention_outputs,
-            difference="angle",
-            receptive_field_norm=True,
-        )[0][-1][prompt_length:]
-    )
-    heat_values.append(
-        influence(
-            attentions,
-            hidden_states,
-            attention_outputs,
-            difference="angle",
-            receptive_field_norm=False,
-        )[0][-1][prompt_length:]
-    )
+    rollout_values = attention_rollout(
+        attentions,
+        attention_output_proportion=0.1,
+        residual_stream_proportion=0.9,
+        receptive_field_norm=True,
+    )[0]
 
-    heat_values.append(
-        influence(
-            attentions,
-            hidden_states,
-            attention_outputs,
-            difference="norm",
-            receptive_field_norm=True,
-        )[0][-1][prompt_length:]
-    )
-    heat_values.append(
-        influence(
-            attentions,
-            hidden_states,
-            attention_outputs,
-            difference="norm",
-            receptive_field_norm=False,
-        )[0][-1][prompt_length:]
-    )
+    zscores, consistency = compute_macs(attentions)
+    macs = zscores[0].max(dim=0).values
+    # macs = aggregate_attention_influence(zscores[0])
+    macs = zscores[0, -1]
 
+    heat_values.append(shannon_entropy[prompt_length:-index])
     heat_values.append(
-        influence(
-            attentions,
-            hidden_states,
-            attention_outputs,
-            difference="projection",
-            receptive_field_norm=True,
-        )[0][-1][prompt_length:]
+        influence_values.max(dim=0).values[prompt_length:-index]
     )
-    heat_values.append(
-        influence(
-            attentions,
-            hidden_states,
-            attention_outputs,
-            difference="projection",
-            receptive_field_norm=False,
-        )[0][-1][prompt_length:]
-    )
+    heat_values.append(rollout_values.max(dim=0).values[prompt_length:-index])
+    heat_values.append(macs[prompt_length:-index])
 
-    heat_values.append(
-        attention_rollout(
-            attentions,
-            attention_output_proportion=0.5,
-            residual_stream_proportion=0.5,
-            receptive_field_norm=True,
-        )[0][-1][prompt_length:]
-    )
-    heat_values.append(
-        attention_rollout(
-            attentions,
-            attention_output_proportion=0.5,
-            residual_stream_proportion=0.5,
-            receptive_field_norm=False,
-        )[0][-1][prompt_length:]
-    )
-
-    heat_values.append(
-        attention_rollout(
-            attentions,
-            attention_output_proportion=0.9,
-            residual_stream_proportion=0.1,
-            receptive_field_norm=True,
-        )[0][-1][prompt_length:]
-    )
-    heat_values.append(
-        attention_rollout(
-            attentions,
-            attention_output_proportion=0.7,
-            residual_stream_proportion=0.3,
-            receptive_field_norm=False,
-        )[0][-1][prompt_length:]
-    )
-
-    token_sequence = sequences[0, :-1].tolist()
+    token_sequence = sequences[0, :-index].tolist()
 
     save_text_heatmap(
         f"src/analysis/text_heatmaps/heatmaps/{hash}_last.html",

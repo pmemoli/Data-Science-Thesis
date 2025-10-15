@@ -1111,3 +1111,27 @@ It store the shannon entropies and different attention influence weights.
 Ran:
 
 python -m src.engine.evaluate --suite "gsm-test"
+
+# October 15th
+
+5 days ago I ran everything on gsm-test and got an auroc of 0.75, which is better than just averaging but only marginally. I went on a tangent of trying different hyperparameters for the rollout algorithm. I ended up with these possibilities:
+
+Algorithms:
+    - Raw rollout (different proportions)
+    - Norm and projection rollout
+    - Macs algorithm (different epsilons)
+    - Raw mean, and raw mean with relevance (tomorrow)
+
+Normalizations:
+    - Receptive field normalization (2 of them)
+    - No normalization
+
+Aggregations:
+    - Raw mean
+    - Receptive field norm mean
+    - Max
+    - + different distribution statistics
+
+So... I should write the pipeline for trying that with different models and datasets.
+
+After that its just writing and obtaining more data for each ensemble.
