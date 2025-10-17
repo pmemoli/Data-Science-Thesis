@@ -63,11 +63,12 @@ def compute_macs(attentions, epsilon=0.87):
 
         # Apply floor vector
         m = (1 - epsilon) * m_prime + epsilon
+        # m = 1 + m_prime
 
         # Multiplicative aggregation
         consistency = m if consistency is None else consistency * m
 
-    raw_consistency = consistency
+    raw_consistency = consistency.pow(1 / num_layers)
 
     # Normalize to Z-scores
     mean = raw_consistency.mean(dim=-1, keepdim=True)
@@ -338,9 +339,12 @@ for item in items:
     #     receptive_field_norm=True,
     # )[0]
 
-    zscores, consistency = compute_macs(attentions)
-    # item_influence = consistency[0].max(dim=0).values[prompt_length:]
-    item_influence = aggregate_attention_influence(zscores[0])[prompt_length:]
+    zscores, consistency = compute_macs(attentions, epsilon=0.02)
+    # item_influence = zscores[0].max(dim=0).values[prompt_length:]
+    # item_influence = aggregate_attention_influence(consistency[0])[
+    #     prompt_length:
+    # ]
+    item_influence = zscores[0].max(dim=0).values[prompt_length:]
 
     item_entropy = item["shannon_entropy"][0, prompt_length:]
 

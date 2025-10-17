@@ -263,11 +263,12 @@ def compute_macs(attentions, epsilon=0.87):
 
         # Apply floor vector
         m = (1 - epsilon) * m_prime + epsilon
+        # m = 1 + m_prime
 
         # Multiplicative aggregation
         consistency = m if consistency is None else consistency * m
 
-    raw_consistency = consistency
+    raw_consistency = torch.pow(consistency, 1 / num_layers)
 
     # Normalize to Z-scores
     mean = raw_consistency.mean(dim=-1, keepdim=True)
@@ -400,10 +401,8 @@ for item in tensor_data:
         receptive_field_norm=True,
     )[0]
 
-    zscores, consistency = compute_macs(attentions)
-    macs = zscores[0].max(dim=0).values
-    # macs = aggregate_attention_influence(zscores[0])
-    macs = zscores[0, -1]
+    zscores, consistency = compute_macs(attentions, epsilon=0.02)
+    macs = zscores[0].mean(dim=0)
 
     heat_values.append(shannon_entropy[prompt_length:-index])
     heat_values.append(

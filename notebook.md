@@ -1132,6 +1132,17 @@ Aggregations:
     - Max
     - + different distribution statistics
 
+
+## October 16th
+
 So... I should write the pipeline for trying that with different models and datasets.
 
 After that its just writing and obtaining more data for each ensemble.
+
+Queda hacer el pipeline, escribir y correr.
+
+## October 17th
+
+Wrote the additive and geometric mean computations (mean over layers) in metrics/attentions.py. I could also weight them based on their influence over their proportion in the residual + attention_output sum; but it's probably just going to be added complexity and computational costs to a rather simple metric...
+
+All that's left is evaluating over GSM and MATH, writing and leaving the pipeline for more models...
