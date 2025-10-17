@@ -236,6 +236,7 @@ def attention_geometric_mean(
     attentions: torch.Tensor,
     pool: Literal["max", "mean"],
     epsilon: float = 0.01,
+    shift: float = 0.0,
 ) -> torch.Tensor:
     """
     Perform element wise geometric mean over the attention matrix, with max or mean pooling over the heads.
@@ -258,10 +259,10 @@ def attention_geometric_mean(
 
     product = (1 - epsilon) * attentions[0] + epsilon
     for layer_idx in range(1, num_layers):
-        m = (1 - epsilon) * attentions[layer_idx] + epsilon
+        m = (1 - epsilon) * attentions[layer_idx] + epsilon + shift
         product = product * m
 
-    geometric_mean = product.pow(1 / num_layers)
+    geometric_mean = product.pow(1 / num_layers) - shift
 
     return geometric_mean
 
