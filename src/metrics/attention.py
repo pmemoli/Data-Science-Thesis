@@ -108,12 +108,10 @@ def influence(
     Modify the rollout algorithm so that weighting is done dynamically, based on the porportion of attention output over the residual + attention_output sum
 
     Input:
-    attentions (torch.Tensor): Tensor of shape
-    [num_layers, batch_size, num_heads, total_length, total_length]
+    attentions (torch.Tensor): Tensor of shape [num_layers, batch_size, num_heads, total_length, total_length]
 
     Output:
-    torch.Tensor: Tensor of shape
-    [batch_size, total_length, total_length]
+    torch.Tensor: Tensor of shape [batch_size, total_length, total_length]
     """
 
     dtype = attentions.dtype
@@ -291,12 +289,64 @@ def attention_additive_mean(
     return additive_mean
 
 
-def aggregate_attention_influence(influence: torch.Tensor) -> torch.Tensor:
-    n = influence.size(-1)
-    aggregated_influence = influence.sum(dim=0)
+# Aggregations
+def receptive_field_mean(attention_map: torch.Tensor) -> torch.Tensor:
+    """
+    Compute the receptive field mean aggregation over the attention map.
+
+    Input:
+        attention_map: [batch_size, total_length, total_length]
+    Output:
+        aggregated_influence: [batch_size, total_length]
+    """
+
+    n = attention_map.size(-1)
+    aggregated_influence = attention_map.sum(dim=1)
     divisors = torch.arange(
-        n, 0, -1, dtype=influence.dtype, device=influence.device
+        n, 0, -1, dtype=attention_map.dtype, device=attention_map.device
     )
     aggregated_influence = aggregated_influence / divisors
 
+    return aggregated_influence
+
+
+def max_aggregation(attention_map: torch.Tensor) -> torch.Tensor:
+    """
+    Compute the max aggregation over the attention map.
+
+    Input:
+        attention_map: [batch_size, total_length, total_length]
+    Output:
+        aggregated_influence: [batch_size, total_length]
+    """
+
+    aggregated_influence, _ = attention_map.max(dim=1)
+    return aggregated_influence
+
+
+def mean_aggregation(attention_map: torch.Tensor) -> torch.Tensor:
+    """
+    Compute the mean aggregation over the attention map.
+
+    Input:
+        attention_map: [batch_size, total_length, total_length]
+    Output:
+        aggregated_influence: [batch_size, total_length]
+    """
+
+    aggregated_influence = attention_map.mean(dim=1)
+    return aggregated_influence
+
+
+def last_token_aggregation(attention_map: torch.Tensor) -> torch.Tensor:
+    """
+    Takes the last token's attention distribution as the aggregated influence.
+
+    Input:
+        attention_map: [batch_size, total_length, total_length]
+    Output:
+        aggregated_influence: [batch_size, total_length]
+    """
+
+    aggregated_influence = attention_map[:, -1, :]
     return aggregated_influence

@@ -1146,3 +1146,27 @@ Queda hacer el pipeline, escribir y correr.
 Wrote the additive and geometric mean computations (mean over layers) in metrics/attentions.py. I could also weight them based on their influence over their proportion in the residual + attention_output sum; but it's probably just going to be added complexity and computational costs to a rather simple metric...
 
 All that's left is evaluating over GSM and MATH, writing and leaving the pipeline for more models...
+
+## October 20th
+
+Wrote the attention map pipeline. Tomorrow I begin writing.
+
+
+## October 21th
+
+While writing the abstract, I run this:
+
+python -m src.engine.store \
+  --dataset_name "gsm8k" \
+  --model_name "microsoft/Phi-3.5-mini-instruct" \
+  --suite "phi3-gsm-test-v2" \
+  --result_path "./src/data/runs" \
+  --temperature 0.5 \
+  --max_length 1024 \
+  --device "cuda:0" \
+  --store_attention_influence True \
+  --store_metrics True
+
+and
+
+python -m src.engine.evaluate --suite "phi3-gsm-test"

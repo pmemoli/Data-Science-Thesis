@@ -1,8 +1,8 @@
-cot_prompt = """Answer this step by step with brief explanations:
+cot_prompt = """Solve the following math problem step by step, then provide the final numerical answer.
 
 Question: {question}
 
-Answer: """
+Solution:"""
 
 
 task_prompts = {

@@ -376,7 +376,12 @@ for item in tensor_data:
         continue
 
     heat_values = []
-    values_names = ["shannon entropy", "influence", "rollout", "macs"]
+    values_names = [
+        "shannon entropy",
+        "influence",
+        "rollout",
+        "geometric mean",
+    ]
 
     index = 10
     shannon_entropy = logits_uq(
@@ -401,8 +406,8 @@ for item in tensor_data:
         receptive_field_norm=True,
     )[0]
 
-    zscores, consistency = compute_macs(attentions, epsilon=0.02)
-    macs = zscores[0].mean(dim=0)
+    zscores, consistency = compute_macs(attentions, epsilon=0.0001)
+    macs = consistency[0].max(dim=0).values
 
     heat_values.append(shannon_entropy[prompt_length:-index])
     heat_values.append(

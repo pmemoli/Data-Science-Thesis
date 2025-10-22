@@ -1,19 +1,20 @@
 # Stores token-level activations and outputs during generation
 
 from transformers import AutoModelForCausalLM, AutoTokenizer
+import traceback
 
-from src.metrics.attention import (
-    attention_rollout,
-    influence,
-    aggregate_attention_influence,
-)
+from .attention_maps import compute_attention_maps
 from .scenarios import REGISTRY
 from .core.utils import (
     hidden_states_reshape,
     attentions_reshape,
     attention_outputs_reshape,
 )
-from src.metrics.token_uq import logits_uq
+from src.metrics.token_uq import (
+    logits_uq,
+    layer_evolution_uq,
+    full_layer_shannon_entropy,
+)
 
 import argparse
 import torch
@@ -33,7 +34,7 @@ def run(
     store_attentions: bool = False,
     store_attention_outputs: bool = False,
     store_attention_influence: bool = False,
-    store_logprobs: bool = False,
+    store_metrics: bool = False,
     device: str = "cuda:0",
     limit: int | None = None,
 ):
@@ -118,14 +119,13 @@ def run(
                     eos_token_id=tokenizer.eos_token_id,
                     use_cache=True,
                     return_dict_in_generate=True,
-                    output_hidden_states=store_hidden_states or store_logprobs,
+                    output_hidden_states=store_hidden_states or store_metrics,
                     output_attentions=store_attentions
                     or store_attention_influence,
                 )
 
-            output_sequence = outputs.sequences[0, :]
             decoded_sequence = tokenizer.decode(
-                output_sequence,
+                outputs.sequences[0, :],
                 skip_special_tokens=True,
             )
 
@@ -134,11 +134,11 @@ def run(
                 "prompt_length": prompt_length,
                 "reference": reference,
                 "generation": decoded_sequence,
-                "sequences": output_sequence.cpu(),
+                "sequences": outputs.sequences.cpu(),
             }
 
             store_tensors = (
-                store_hidden_states or store_attentions or store_logprobs
+                store_hidden_states or store_attentions or store_metrics
             )
 
             if store_tensors:
@@ -153,61 +153,47 @@ def run(
                 ).to(device, torch.bfloat16)
 
                 if store_attention_influence:
-                    result["attention_influence"] = {}
-                    result["attention_influence"]["rfn"] = {}
-                    result["attention_influence"]["nrfn"] = {}
+                    attention_maps = compute_attention_maps(
+                        attentions,
+                        hidden_states,
+                        attentions_outputs,
+                    )
+                    result["attention_maps"] = attention_maps
 
-                    for rfn in [True, False]:
-                        rfn_key = "rfn" if rfn else "nrfn"
-
-                        # Rollout 0.5, 0.5
-                        rollout_05 = attention_rollout(
-                            attentions,
-                            residual_stream_proportion=0.5,
-                            attention_output_proportion=0.5,
-                            receptive_field_norm=rfn,
-                        )[0]
-                        rollout_05 = aggregate_attention_influence(rollout_05)
-                        result["attention_influence"][rfn_key][
-                            "rollout_05"
-                        ] = rollout_05.cpu()
-
-                        # Rollout 0.9, 0.1
-                        rollout_09 = attention_rollout(
-                            attentions,
-                            residual_stream_proportion=0.9,
-                            attention_output_proportion=0.1,
-                            receptive_field_norm=rfn,
-                        )[0]
-                        rollout_09 = aggregate_attention_influence(rollout_09)
-                        result["attention_influence"][rfn_key][
-                            "rollout_09"
-                        ] = rollout_09.cpu()
-
-                        # Projection difference
-                        influence_proj = influence(
-                            attentions,
-                            hidden_states,
-                            attentions_outputs,
-                            difference="projection",
-                            receptive_field_norm=rfn,
-                        )[0]
-                        influence_proj = aggregate_attention_influence(
-                            influence_proj
-                        )
-                        result["attention_influence"][rfn_key][
-                            "influence_projection"
-                        ] = influence_proj.cpu()
-
-                if store_logprobs:
+                if store_metrics:
                     shannon_uq = logits_uq(
                         hidden_states,
                         model.lm_head,
-                        output_sequence,
+                        outputs.sequences,
                         "logits_shannon_entropy",
                     )
 
-                    result["token_shannon_entropy"] = shannon_uq[0].cpu()
+                    full_layer_shannon_uq = full_layer_shannon_entropy(
+                        hidden_states, model.lm_head
+                    )
+
+                    nll = logits_uq(
+                        hidden_states,
+                        model.lm_head,
+                        outputs.sequences,
+                        "logits_negative_log_likelihood",
+                    )
+
+                    layer_shannon_variance = layer_evolution_uq(
+                        hidden_states,
+                        model.lm_head,
+                        "layer_evolution_var_shannon_entropy",
+                        layers_from_end=5,
+                    )
+
+                    result["layer_shannon_entropy_variance"] = (
+                        layer_shannon_variance.cpu()
+                    )
+                    result["token_shannon_entropy"] = shannon_uq.cpu()
+                    result["full_layer_shannon_entropy"] = (
+                        full_layer_shannon_uq.cpu()
+                    )
+                    result["token_nll"] = nll.cpu()
 
                 if store_hidden_states:
                     result["hidden_states"] = hidden_states.cpu()
@@ -237,6 +223,7 @@ def run(
 
         except Exception as e:
             print(f"Error processing sample {amount_processed + 1}: {str(e)}")
+            print(traceback.format_exc())
             store_results(results)
             results = []
             gc.collect()
@@ -309,10 +296,10 @@ def parse_arguments():
     )
 
     parser.add_argument(
-        "--store_logprobs",
+        "--store_metrics",
         type=bool,
         default=False,
-        help="Whether to store token log probabilities [fixed to shannon entropy] (True/False)",
+        help="Whether to store the best performing metrics",
     )
 
     parser.add_argument(
@@ -390,7 +377,7 @@ def main():
             store_attention_outputs=args.store_attention_outputs,
             store_attention_influence=args.store_attention_influence,
             store_hidden_states=args.store_hidden_states,
-            store_logprobs=args.store_logprobs,
+            store_metrics=args.store_metrics,
         )
 
     except KeyboardInterrupt:

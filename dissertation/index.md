@@ -7,7 +7,7 @@
 
 ## Introduccion
 
-Lo mismo pero mas desarrollado
+Lo mismo pero mas desarrollado (Motivacion y el pq del problema)
 
 ## Marco teorico
 
@@ -15,6 +15,13 @@ Lo mismo pero mas desarrollado
 . Hablar de las metricas de alucinacion y estado del arte
 
 ## Parte tecnica
+
+Historia: 
+
+1. Buscamos features a nivel token que permitan discriminar bien.
+2. Evaluamos distintas formas de agregar.
+3. Entrenamos un modelo simple y vimos si existio transfer learning.
+4. Resultados.
 
 ### Evaluando metricas de evaluacion
 

@@ -57,13 +57,13 @@ def evaluate_suite(suite: str):
     tensor_path = f"src/data/runs/{suite}"
     tensor_files = os.listdir(tensor_path)
 
-    for file in tensor_files[:3]:
+    for file in tensor_files:
         print(f"Processing file: {file}")
 
         full_path = f"{tensor_path}/{file}"
         tensor = torch.load(full_path)
         for tensor_item in tensor:
-            for i in range(5):
+            for i in range(12):
                 try:
                     success = evaluate_response(
                         tensor_item["prompt"],
@@ -79,6 +79,8 @@ def evaluate_suite(suite: str):
                     time.sleep(2**i)
 
         torch.save(tensor, full_path)
+
+    print("done!")
 
 
 def parse_args():
