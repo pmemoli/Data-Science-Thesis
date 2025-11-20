@@ -1151,15 +1151,14 @@ All that's left is evaluating over GSM and MATH, writing and leaving the pipelin
 
 Wrote the attention map pipeline. Tomorrow I begin writing.
 
+## October 21-22th
 
-## October 21th
-
-While writing the abstract, I run this:
+Wrote the abstract and ran this:
 
 python -m src.engine.store \
   --dataset_name "gsm8k" \
   --model_name "microsoft/Phi-3.5-mini-instruct" \
-  --suite "phi3-gsm-test-v2" \
+  --suite "phi3-gsm-test-v3" \
   --result_path "./src/data/runs" \
   --temperature 0.5 \
   --max_length 1024 \
@@ -1167,6 +1166,258 @@ python -m src.engine.store \
   --store_attention_influence True \
   --store_metrics True
 
-and
+Also modified store metrics to store the information signatures.
+
+## October 22th
+
+TODO:
+
+python -m src.engine.evaluate --suite "phi3-gsm-test-v3"
+Plot data and write enough for presentation.
+
+influence_influence_norm_rfn_element_pool_mean_max_mean
+
+## October 27th
+
+TODO PROX 2 SEMANAS:
+
+- Escribir codigo para calcular la atencion agregada en c/layer
+- Armar dataset mixto (5 datasets)
+- Entrenar modelos (1d CNN sobre agregacion y RNN de algun tipo sobre matriz de entropia) sobre dataset mixto. Evaluar en el TEST de los 5 datasets para ambos modelos. 
+
+TODO PROX 3 SEMANAS:
+
+- ESCRIBIR TODO.
+
+## October 28th
+
+Por simplicidad, puedo quedarme con solo gsm8k:
+
+- GSM8K (90% train, 10% eval, 1300 test)
+
+Y que la conclusion sean todos esos features. El transfer learning puede verse despues. Hoy agregue para guardar la atencion agregada por layer y deje corriendo gsm8k para train. 
+
+python -m src.engine.store \
+  --dataset_name "gsm8k" \
+  --split "train" \
+  --model_name "microsoft/Phi-3.5-mini-instruct" \
+  --suite "phi3-mini-gsm-train" \
+  --result_path "./src/data/runs" \
+  --temperature 0.5 \
+  --max_length 1024 \
+  --device "cuda:0" \
+  --store_attention_influence True \
+  --store_metrics True
+
+Son 7473 datos. Puedo repetir todo el analisis, entrenar un modelo y evaluar en test.
+
+## October 30th
+
+Quedamos con mi director en evaluar no solo GSM pero tambien MATH y SCIBENCH. Puedo entrenar y evaluar en esos 3 datasets. Tambien puedo ver como dan los features de por si solos y como se comparan.
+
+Hoy estoy a full con el final, pero por lo menos corro:
+
+python -m src.engine.store \
+  --dataset_name "gsm8k" \
+  --split "test" \
+  --model_name "microsoft/Phi-3.5-mini-instruct" \
+  --suite "phi3-mini-gsm-test" \
+  --result_path "./src/data/runs" \
+  --temperature 0.5 \
+  --max_length 1024 \
+  --device "cuda:0" \
+  --store_attention_influence True \
+  --store_metrics True
+
+TODO:
+
+- Pasar analisis exploratorio a TEST y ver como da en MATH (test) y SCIBENCH (total)
+- Entrenar modelos mezclando GSM, MATH y SCIBENCH
+- Evaluar modelos en los 3 datasets
+
+## November 5th
+
+Hoy evaluo el dataset de gsm8k test:
+
+phi3-gsm-train
+phi3-gsm-test
 
 python -m src.engine.evaluate --suite "phi3-gsm-test"
+python -m src.engine.evaluate --suite "phi3-gsm-train"
+
+El TODO es obtener los resultados de experimentos y los graficos (sobre train el eda y test el entrenamiento), y despues escribir. Escribo con GSM8K y despues agrego MATH y SCIBENCH.
+
+La historia para la tesis puede ser:
+
+1. Hago analisis exploratorio sobre TRAIN gsm8k y muestro los resultados de TRAIN gsm8k
+2. Entreno modelos sobre TRAIN gsm8k y muestro los resultados de TEST gsm8k
+
+Y despues hago lo mismo pero agregando MATH y (tal vez) SCIBENCH. Preguntar a mi director que piensa.
+
+## November 7th
+
+Tengo gsm8k train y test descargados. Me falta MATH, SCIBENCH y seguramente agregue GPQA. Queda que este la GPU, entretanto escribo.
+
+## November 10th
+
+Escribi mejor el abstract.
+
+## November 11th
+
+Hoy recorri los experimentos en TRAIN, y me di cuenta que al test le faltan cosas a los tensores... Lo recorro mañana junto con los otros 3 datasets.
+
+La agregacion que decidi es esta influence_rollout_proportion_norm_rfn_element_headpool_mean_max_std.
+
+## November 12th
+
+No pude correr esto hoy:
+
+python -m src.engine.store \
+  --dataset_name "math" \
+  --split "test" \
+  --model_name "microsoft/Phi-3.5-mini-instruct" \
+  --suite "phi3-math-test" \
+  --result_path "./src/data/runs" \
+  --temperature 0.5 \
+  --max_length 1024 \
+  --device "cuda:0" \
+  --store_attention_influence True \
+  --store_metrics True
+
+python -m src.engine.store \
+  --dataset_name "math" \
+  --split "train" \
+  --model_name "microsoft/Phi-3.5-mini-instruct" \
+  --suite "phi3-math-train" \
+  --result_path "./src/data/runs" \
+  --temperature 0.5 \
+  --max_length 1024 \
+  --device "cuda:0" \
+  --store_attention_influence True \
+  --store_metrics True
+
+me tira connection timed out el ssh... Tampoco puedo entrar a team-viewer. Avance de cualquier forma con la introduccion y el objetivo ppal. Planteando el objetivo como simplemente buscar "un numero" para separar dominios, veo bastante meritorio probar LRP explain ademas de attention rollout, como versiones forward y backward de capturar influencia... En ~3 dias podria tener algun resultado provisorio con gsm8k train para ver que onda.
+
+## November 13th
+
+Logre correr los datasets. Queda que terminen de correr, y evaluarlos con claude haiku.
+
+Tambien escribi un cacho mas de la intro, y me voy a poner a ver si es posible experimentar con LRP explain. Estoy muy bullish con esa tecnica, pero hay que probar. 
+
+## November 14th
+
+Posibles jurados:
+
+Pablo brusco
+Bruno bianchi
+Enzo ferrante
+Diego slezak
+Ana bianco
+Otra gente de estadistica
+
+## November 15th
+
+Sigue corriendo MATH. Veo bastante meritorio probar LRP explain el finde mientras evaluo con haiku los datasets que ya tengo. Tambien estaria bueno definir bien el algoritmo utilizado para attention rollout. Despues de LRP explain (por lo menos sobre un subset de train) veo como se comparan en MATH, GSM8K, SCIBENCH y GPQA TEST.
+
+Termino corriendo MATH
+
+## November 17th
+
+Habia escrito el TODO pero se perdio xd.
+
+BACKLOG:
+
+- Probar LRP explain en QWEN3. Para el paper seguramente amerite probar distintos modelos...
+
+TODO en la semana:
+
+- Descargar GPQA y SCIBENCH
+- Evaluar todos los datasets con haiku
+
+- Pensar bien como distinguir entre metricas escalares para comparar datasets...
+- Evaluar como se comparan las metricas escalares para discriminar datasets
+- Entrenar distintos modelos sobre MATH y GSM8K y ver como da en los 4 datasets 
+
+Encontre que la influencia que mejor dio fue simplemente promediar las matrices de atnecion, y tomar la atencion maxima dada a cada token en la generacion. Esta bueno poner los 3 metodos (norm rollout, additive mean y geometric mean).
+
+Hoy corro:
+
+python -m src.engine.evaluate --suite "phi3-math-test"
+python -m src.engine.evaluate --suite "phi3-math-train"
+
+Y descargo GPQA y SCIBENCH:
+
+python -m src.engine.store \
+  --dataset_name "gpqa" \
+  --split "train" \
+  --model_name "microsoft/Phi-3.5-mini-instruct" \
+  --suite "phi3-gpqa-test" \
+  --result_path "./src/data/runs" \
+  --temperature 0.5 \
+  --max_length 1024 \
+  --device "cuda:0" \
+  --store_attention_influence True \
+  --store_metrics True
+
+python -m src.engine.store \
+  --dataset_name "scibench" \
+  --split "train" \
+  --model_name "microsoft/Phi-3.5-mini-instruct" \
+  --suite "phi3-scibench-test" \
+  --result_path "./src/data/runs" \
+  --temperature 0.5 \
+  --max_length 1024 \
+  --device "cuda:0" \
+  --store_attention_influence True \
+  --store_metrics True
+
+Oka, despues de descargar y evaluar todo quedaria ver como:
+
+1. Se comparan las metricas escalares entre datasets
+2. Entrenar modelos sobre MATH y GSM8K y evaluar en los 4 datasets
+
+## November 18th
+
+Termino de correr todo. Ademas evalue con haiku:
+
+python -m src.engine.evaluate --suite "phi3-gpqa-test"
+python -m src.engine.evaluate --suite "phi3-scibench-test"
+
+fuuuck gpqa me esta dio todo casi todo False. Debe estar en como 5% de accuracy. Tiene sentido pq le saque el multiple choice... Veremos como da.
+
+## November 19th
+
+TODO hoy:
+
+Voy a tener que recorrer MATH train y test lrpm. Borre los archivos por accidente.
+
+Noto que 100% existe la correlacion. Hay que hablar con mi director como presento los resultados estos. Tambien es un tema que sean tan pocos datos.
+
+Para mañana hablo con director sobre:
+
+- Comprar resultados entre datasets (va a tener que correr math train y test...)
+- Escribir atencion aditiva y geometrica
+
+Quiero dejar esto bien escrito y analizado antes de pasar a entrenar un micro modelo...
+
+## November 20th
+
+Corrio bien todo. Pero falta gsm test:
+
+python -m src.engine.store \
+  --dataset_name "gsm8k" \
+  --split "test" \
+  --model_name "microsoft/Phi-3.5-mini-instruct" \
+  --suite "phi3-gsm-test" \
+  --result_path "./src/data/runs" \
+  --temperature 0.5 \
+  --max_length 1024 \
+  --device "cuda:0" \
+  --store_attention_influence True \
+  --store_metrics True
+
+Le puse tambien un seed de 1, que deberia hacer para todos los datasets del paper... Pero bueno, lo dejo para los otros modelos/benchmarks.
+
+Escribi bastante! Ya esta toda la seccion de analisis exploratorio y todos los datos para la evaluacion de las metricas directas. Queda el analisis de metricas directas. Como son 6 metricas, lsa grafico asi nomas.
+
+

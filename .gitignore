@@ -1,9 +1,7 @@
 .teamviewer
 .env
-src/data/runs/gsm-exploration
-src/data/runs/gsm-test
-src/data/runs/gsm-test-v1
-src/data/runs/phi3-gsm-test
+src/data/runs/
+src/data/runs
 sync.sh
 download_results.sh
 venv

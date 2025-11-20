@@ -5,7 +5,6 @@ from src.metrics.attention import (
     influence,
     attention_geometric_mean,
     attention_additive_mean,
-    receptive_field_mean,
     max_aggregation,
     mean_aggregation,
     last_token_aggregation,
@@ -23,7 +22,6 @@ class AttentionConfig:
 
 
 AGGREGATION_FUNCTIONS = {
-    "receptive_field_mean": receptive_field_mean,
     "max": max_aggregation,
     "mean": mean_aggregation,
     "last_token": last_token_aggregation,
@@ -34,6 +32,7 @@ def compute_attention_maps(
     attentions: torch.Tensor,
     hidden_states: torch.Tensor,
     attention_outputs: torch.Tensor,
+    prompt_length: torch.Tensor,
     configs: List[AttentionConfig] | None = None,
     aggregations: List[str] | None = None,
 ) -> Dict[str, torch.Tensor]:
@@ -65,7 +64,7 @@ def compute_attention_maps(
                 raise ValueError(f"Unknown aggregation: {agg_name}")
 
             agg_func = AGGREGATION_FUNCTIONS[agg_name]
-            aggregated = agg_func(result)
+            aggregated = agg_func(result)[:, :, prompt_length:]
 
             key = f"{config.name}_{agg_name}"
             attention_maps[key] = aggregated.half().cpu()
@@ -76,64 +75,35 @@ def compute_attention_maps(
 def get_default_configs() -> List[AttentionConfig]:
     configs = []
 
-    for pool in ["mean", "max"]:
-        pool_suffix = f"pool_{pool}"
-        for rfn in ["element", "column", None]:
-            rfn_suffix = f"rfn_{rfn}" if rfn else "nrfn"
-
-            configs.extend(
-                [
-                    AttentionConfig(
-                        method="rollout",
-                        name=f"rollout_05_05_{rfn_suffix}_{pool_suffix}",
-                        kwargs={
-                            "residual_stream_proportion": 0.5,
-                            "attention_output_proportion": 0.5,
-                            "receptive_field_norm": rfn,
-                            "pool": pool,
-                        },
-                    ),
-                    AttentionConfig(
-                        method="rollout",
-                        name=f"rollout_09_01_{rfn_suffix}_{pool_suffix}",
-                        kwargs={
-                            "residual_stream_proportion": 0.9,
-                            "attention_output_proportion": 0.1,
-                            "receptive_field_norm": rfn,
-                            "pool": pool,
-                        },
-                    ),
-                ]
+    for prop in ["norm", "projection"]:
+        prop_suffix = f"proportion_{prop}"
+        configs.append(
+            AttentionConfig(
+                method="influence",
+                name=f"rollout_{prop_suffix}_rfn_element_headpool_mean",
+                kwargs={
+                    "proportion": prop,
+                    "receptive_field_norm": "element",
+                    "pool": "mean",
+                },
             )
+        )
 
-            for prop in ["norm", "projection"]:
-                configs.append(
-                    AttentionConfig(
-                        method="influence",
-                        name=f"influence_{prop}_{rfn_suffix}_{pool_suffix}",
-                        kwargs={
-                            "proportion": prop,
-                            "receptive_field_norm": rfn,
-                            "pool": pool,
-                        },
-                    )
-                )
-
-        for epsilon in [0.001, 0.01, 0.1]:
+    for pool in ["mean", "max"]:
+        pool_suffix = f"headpool_{pool}"
+        for epsilon in [0.001, 0.01]:
             epsilon_suffix = f"eps_{epsilon}"
-            for shift in [0.0, 1.0]:
-                shift_suffix = f"shift_{shift}"
-                configs.append(
-                    AttentionConfig(
-                        method="geometric_mean",
-                        name=f"geometric_mean_{pool_suffix}_{epsilon_suffix}_{shift_suffix}",
-                        kwargs={
-                            "pool": pool,
-                            "epsilon": epsilon,
-                            "shift": shift,
-                        },
-                    )
+            configs.append(
+                AttentionConfig(
+                    method="geometric_mean",
+                    name=f"geometric_mean_{pool_suffix}_{epsilon_suffix}",
+                    kwargs={
+                        "pool": pool,
+                        "epsilon": epsilon,
+                        "shift": 0,
+                    },
                 )
+            )
 
         configs.append(
             AttentionConfig(

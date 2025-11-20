@@ -95,3 +95,69 @@ def full_layer_shannon_entropy(
         )
 
     return token_uq
+
+
+def full_layer_max_prob(
+    hidden_states,
+    lm_head,
+):
+    """
+    Compute uncertainty metrics based on the last layer distribution.
+
+    Input:
+        hidden_states: [layer, batch_size, sequence_length, hidden_size]
+        lm_head: the language model head to project hidden states to vocab size
+        sequences: tensor of shape [batch_size, sequence_length] with token ids
+        metric_name: one of "shannon_entropy", "predictive_entropy", "negative_log_likelihood"
+
+    Output:
+        token_uq: tensor of shape [layer, batch_size, sequence_length] with uncertainty scores
+    """
+
+    with torch.no_grad():
+        # [layer_amount, batch_size, sequence_length, vocab_size]
+        last_layer_distribution = F.softmax(lm_head(hidden_states), dim=-1)
+
+        # [layer_amount, batch_size, sequence_length]
+        token_uq = torch.max(last_layer_distribution, dim=-1).values
+
+    return token_uq
+
+
+def full_layer_selected_prob(
+    hidden_states,
+    lm_head,
+    sequences: torch.Tensor,
+):
+    """
+    Compute uncertainty metrics based on the last layer distribution.
+
+    Input:
+        hidden_states: [layer, batch_size, sequence_length, hidden_size]
+        lm_head: the language model head to project hidden states to vocab size
+        sequences: tensor of shape [batch_size, sequence_length] with token ids
+        metric_name: one of "shannon_entropy", "predictive_entropy", "negative_log_likelihood"
+
+    Output:
+        token_uq: tensor of shape [layer, batch_size, sequence_length] with uncertainty scores
+    """
+
+    with torch.no_grad():
+        # [batch_size, sequence_length]
+        sequences = sequences[:, 1:]
+
+        # [num_layers, batch_size, sequence_length, 1]
+        sequences = (
+            sequences.unsqueeze(0)
+            .unsqueeze(-1)
+            .expand(hidden_states.size(0), -1, -1, -1)
+        )
+
+        # [num_layers, batch_size, sequence_length, vocab_size]
+        last_layer_distribution = F.softmax(lm_head(hidden_states), dim=-1)
+
+        token_uq = torch.gather(
+            last_layer_distribution, dim=-1, index=sequences
+        ).squeeze(-1)
+
+    return token_uq

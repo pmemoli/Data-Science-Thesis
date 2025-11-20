@@ -5,9 +5,17 @@ import torch
 import os
 
 from typing import Literal
+from huggingface_hub import login
+from dotenv import load_dotenv
+
+load_dotenv()
+
+token = os.getenv("HF_TOKEN")
+if token:
+    login(token=token)
 
 
-class GSM8K(Scenario):
+class GPQA(Scenario):
     def __init__(
         self,
         split: Literal["train", "test"] = "test",
@@ -19,7 +27,7 @@ class GSM8K(Scenario):
     def load_dataset(
         self, split: Literal["train", "test"], file_path: str | None = None
     ):
-        print("Loading GSM8K dataset...")
+        print("Loading GPQA dataset...")
 
         tensor_files = os.listdir(file_path)
 
@@ -34,10 +42,10 @@ class GSM8K(Scenario):
                 question = tensor_item["prompt"].strip()
                 questions.append(question)
 
-        dataset = datasets.load_dataset("gsm8k", "main")
-        for item in list(dataset[split]):
-            question = item["question"].strip()
-            reference = item["answer"].strip()
+        dataset = datasets.load_dataset("Idavidrein/gpqa", "gpqa_main")
+        for item in list(dataset["train"]):
+            question = item["Question"].strip()
+            reference = item["Correct Answer"].strip()
 
             if question in questions:
                 continue

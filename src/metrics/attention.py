@@ -21,7 +21,7 @@ def attention_rollout(
 
     Output:
     torch.Tensor: Tensor of shape
-    [batch_size, total_length, total_length]
+    [num_layers, batch_size, total_length, total_length]
     """
 
     dtype = attentions.dtype
@@ -88,12 +88,18 @@ def attention_rollout(
     )
 
     # Recursively multiply the weight matrices
-    rollout = attentions[0, :, :, :]
     num_layers = attentions.size(0)
+
+    rollout = attentions[0, :, :, :]
+    layer_rollout = torch.zeros(
+        num_layers, *rollout.shape, dtype=dtype, device=attentions.device
+    )
+    layer_rollout[0] = rollout
     for i in range(1, num_layers):
         rollout = torch.bmm(attentions[i, :, :, :], rollout)
+        layer_rollout[i] = rollout
 
-    return rollout  # type: ignore
+    return layer_rollout  # type: ignore
 
 
 def influence(
@@ -111,7 +117,7 @@ def influence(
     attentions (torch.Tensor): Tensor of shape [num_layers, batch_size, num_heads, total_length, total_length]
 
     Output:
-    torch.Tensor: Tensor of shape [batch_size, total_length, total_length]
+    torch.Tensor: Tensor of shape [num_layers, batch_size, total_length, total_length]
     """
 
     dtype = attentions.dtype
@@ -223,11 +229,18 @@ def influence(
             )
 
     # Influence algorithm
+    num_layers = attentions.size(0)
+
     influence = attentions[0, :, :, :]
+    layer_influence = torch.zeros(
+        num_layers, *influence.shape, dtype=dtype, device=attentions.device
+    )
+    layer_influence[0] = influence
     for i in range(1, num_layers):
         influence = torch.bmm(attentions[i, :, :, :], influence)
+        layer_influence[i] = influence
 
-    return influence
+    return layer_influence  # type: ignore
 
 
 def attention_geometric_mean(
@@ -245,7 +258,7 @@ def attention_geometric_mean(
 
     Output:
     torch.Tensor: Tensor of shape
-    [batch_size, total_length, total_length]
+    [num_layers, batch_size, total_length, total_length]
     """
 
     num_layers = attentions.size(0)
@@ -255,14 +268,27 @@ def attention_geometric_mean(
     else:
         attentions = attentions.mean(dim=2)
 
-    product = (1 - epsilon) * attentions[0] + epsilon
+    product = (1 - epsilon) * attentions[0] + epsilon + shift
+    layer_product = torch.zeros(
+        num_layers,
+        *product.shape,
+        dtype=attentions.dtype,
+        device=attentions.device
+    )
+    layer_product[0] = product
     for layer_idx in range(1, num_layers):
         m = (1 - epsilon) * attentions[layer_idx] + epsilon + shift
         product = product * m
+        layer_product[layer_idx] = product
 
-    geometric_mean = product.pow(1 / num_layers) - shift
+    # geometric_mean = product.pow(1 / num_layers) - shift
+    layer_geometric_mean = torch.zeros_like(layer_product)
+    for layer_idx in range(num_layers):
+        layer_geometric_mean[layer_idx] = (
+            layer_product[layer_idx].pow(1 / (layer_idx + 1)) - shift
+        )
 
-    return geometric_mean
+    return layer_geometric_mean
 
 
 def attention_additive_mean(
@@ -277,50 +303,42 @@ def attention_additive_mean(
 
     Output:
     torch.Tensor: Tensor of shape
-    [batch_size, total_length, total_length]
+    [num_layers, batch_size, total_length, total_length]
     """
+    num_layers = attentions.size(0)
 
     if pool == "max":
         attentions, _ = attentions.max(dim=2)
     else:
         attentions = attentions.mean(dim=2)
 
-    additive_mean = attentions.mean(dim=0)
-    return additive_mean
+    sum = attentions[0]
+    layer_mean = torch.zeros(
+        num_layers,
+        *sum.shape,
+        dtype=attentions.dtype,
+        device=attentions.device
+    )
+    layer_mean[0] = sum
+    for layer_idx in range(1, num_layers):
+        sum = sum + attentions[layer_idx]
+        layer_mean[layer_idx] = sum / (layer_idx + 1)
+
+    return layer_mean
 
 
 # Aggregations
-def receptive_field_mean(attention_map: torch.Tensor) -> torch.Tensor:
-    """
-    Compute the receptive field mean aggregation over the attention map.
-
-    Input:
-        attention_map: [batch_size, total_length, total_length]
-    Output:
-        aggregated_influence: [batch_size, total_length]
-    """
-
-    n = attention_map.size(-1)
-    aggregated_influence = attention_map.sum(dim=1)
-    divisors = torch.arange(
-        n, 0, -1, dtype=attention_map.dtype, device=attention_map.device
-    )
-    aggregated_influence = aggregated_influence / divisors
-
-    return aggregated_influence
-
-
 def max_aggregation(attention_map: torch.Tensor) -> torch.Tensor:
     """
     Compute the max aggregation over the attention map.
 
     Input:
-        attention_map: [batch_size, total_length, total_length]
+        attention_map: [num_layers, batch_size, total_length, total_length]
     Output:
-        aggregated_influence: [batch_size, total_length]
+        aggregated_influence: [num_layers, batch_size, total_length]
     """
 
-    aggregated_influence, _ = attention_map.max(dim=1)
+    aggregated_influence, _ = attention_map.max(dim=2)
     return aggregated_influence
 
 
@@ -329,12 +347,12 @@ def mean_aggregation(attention_map: torch.Tensor) -> torch.Tensor:
     Compute the mean aggregation over the attention map.
 
     Input:
-        attention_map: [batch_size, total_length, total_length]
+        attention_map: [num_layers, batch_size, total_length, total_length]
     Output:
-        aggregated_influence: [batch_size, total_length]
+        aggregated_influence: [num_layers, batch_size, total_length]
     """
 
-    aggregated_influence = attention_map.mean(dim=1)
+    aggregated_influence = attention_map.mean(dim=2)
     return aggregated_influence
 
 
@@ -343,10 +361,10 @@ def last_token_aggregation(attention_map: torch.Tensor) -> torch.Tensor:
     Takes the last token's attention distribution as the aggregated influence.
 
     Input:
-        attention_map: [batch_size, total_length, total_length]
+        attention_map: [num_layers, batch_size, total_length, total_length]
     Output:
-        aggregated_influence: [batch_size, total_length]
+        aggregated_influence: [num_layers, batch_size, total_length]
     """
 
-    aggregated_influence = attention_map[:, -1, :]
+    aggregated_influence = attention_map[:, :, -1, :]
     return aggregated_influence

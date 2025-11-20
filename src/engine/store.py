@@ -1,5 +1,6 @@
 # Stores token-level activations and outputs during generation
 
+from datasets.utils.py_utils import Literal
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import traceback
 
@@ -11,11 +12,12 @@ from .core.utils import (
     attention_outputs_reshape,
 )
 from src.metrics.token_uq import (
-    logits_uq,
-    layer_evolution_uq,
     full_layer_shannon_entropy,
+    full_layer_selected_prob,
 )
 
+import numpy as np
+import random
 import argparse
 import torch
 import time
@@ -23,11 +25,19 @@ import gc
 import os
 
 
+def set_seed(seed):
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    np.random.seed(seed)
+    random.seed(seed)
+
+
 def run(
     dataset_name: str,
     model_name: str,
     suite: str,
     result_path: str,
+    split: Literal["train", "test"] = "train",
     temperature: float = 0.5,
     max_length: int = 1024,
     store_hidden_states: bool = False,
@@ -38,6 +48,7 @@ def run(
     device: str = "cuda:0",
     limit: int | None = None,
 ):
+    set_seed(1)
 
     file_path = f"{result_path}/{suite}"
     os.makedirs(file_path, exist_ok=True)
@@ -48,7 +59,7 @@ def run(
         torch.save(results, output_file)
 
     ScenarioClass = REGISTRY[dataset_name]
-    scenario = ScenarioClass()
+    scenario = ScenarioClass(split=split, file_path=file_path)
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
         attn_implementation="eager",
@@ -125,7 +136,7 @@ def run(
                 )
 
             decoded_sequence = tokenizer.decode(
-                outputs.sequences[0, :],
+                outputs.sequences[0, prompt_length:],
                 skip_special_tokens=True,
             )
 
@@ -134,7 +145,7 @@ def run(
                 "prompt_length": prompt_length,
                 "reference": reference,
                 "generation": decoded_sequence,
-                "sequences": outputs.sequences.cpu(),
+                "sequences": outputs.sequences.cpu()[:, prompt_length:],
             }
 
             store_tensors = (
@@ -157,43 +168,27 @@ def run(
                         attentions,
                         hidden_states,
                         attentions_outputs,
+                        prompt_length=prompt_length,
                     )
                     result["attention_maps"] = attention_maps
 
                 if store_metrics:
-                    shannon_uq = logits_uq(
-                        hidden_states,
-                        model.lm_head,
-                        outputs.sequences,
-                        "logits_shannon_entropy",
-                    )
-
                     full_layer_shannon_uq = full_layer_shannon_entropy(
                         hidden_states, model.lm_head
-                    )
+                    )[:, :, prompt_length:]
 
-                    nll = logits_uq(
+                    full_layer_selected_prob_uq = full_layer_selected_prob(
                         hidden_states,
                         model.lm_head,
-                        outputs.sequences,
-                        "logits_negative_log_likelihood",
-                    )
+                        outputs.sequences.to(device),
+                    )[:, :, prompt_length:]
 
-                    layer_shannon_variance = layer_evolution_uq(
-                        hidden_states,
-                        model.lm_head,
-                        "layer_evolution_var_shannon_entropy",
-                        layers_from_end=5,
-                    )
-
-                    result["layer_shannon_entropy_variance"] = (
-                        layer_shannon_variance.cpu()
-                    )
-                    result["token_shannon_entropy"] = shannon_uq.cpu()
                     result["full_layer_shannon_entropy"] = (
                         full_layer_shannon_uq.cpu()
                     )
-                    result["token_nll"] = nll.cpu()
+                    result["full_layer_selected_prob"] = (
+                        full_layer_selected_prob_uq.cpu()
+                    )
 
                 if store_hidden_states:
                     result["hidden_states"] = hidden_states.cpu()
@@ -330,6 +325,13 @@ def parse_arguments():
         help="Device to run the model on (e.g., 'cuda:0', 'cpu')",
     )
 
+    parser.add_argument(
+        "--split",
+        type=str,
+        default="test",
+        help="Dataset split to use ('train' or 'test')",
+    )
+
     return parser.parse_args()
 
 
@@ -378,6 +380,7 @@ def main():
             store_attention_influence=args.store_attention_influence,
             store_hidden_states=args.store_hidden_states,
             store_metrics=args.store_metrics,
+            split=args.split,
         )
 
     except KeyboardInterrupt:

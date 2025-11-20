@@ -5,7 +5,7 @@ import torch
 import time
 import os
 
-api_key = os.getenv("GEMINI_API_KEY")  # type: ignore
+api_key = os.getenv("ANTHROPIC_API_KEY")  # type: ignore
 
 
 class Response(BaseModel):
@@ -43,7 +43,7 @@ Correct Answer:
     ]
 
     result = completion(
-        model="gemini/gemini-2.5-flash",
+        model="claude-haiku-4-5-20251001",
         messages=messages,
         api_key=api_key,  # type: ignore
     )
@@ -63,6 +63,10 @@ def evaluate_suite(suite: str):
         full_path = f"{tensor_path}/{file}"
         tensor = torch.load(full_path)
         for tensor_item in tensor:
+            if "success" in tensor_item:
+                print("Already evaluated, skipping...")
+                continue
+
             for i in range(12):
                 try:
                     success = evaluate_response(
