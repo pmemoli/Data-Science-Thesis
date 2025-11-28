@@ -1420,4 +1420,6 @@ Le puse tambien un seed de 1, que deberia hacer para todos los datasets del pape
 
 Escribi bastante! Ya esta toda la seccion de analisis exploratorio y todos los datos para la evaluacion de las metricas directas. Queda el analisis de metricas directas. Como son 6 metricas, lsa grafico asi nomas.
 
+## November 27th
 
+Continue escribiendo bastante. Queda entrenar el modelo, referencias y los resumenes/conclusiones. Para el finde esta liquidado.

@@ -1,5 +1,15 @@
 {
   "metrics": {
+    "baseline": {
+      "se_avg": 0.7622918497312638,
+      "se_max": 0.7676785509135081,
+      "nll_mean": 0.7476,
+      "nll_max": 0.6819,
+      "lntp": 0.7476,
+      "mtp": 0.6819,
+      "perplexity": 0.7476,
+      "response_improbability": 0.7782
+    },
     "no_influence": {
       "last_layer_mean": {
         "auroc": 0.7622918497312638,
